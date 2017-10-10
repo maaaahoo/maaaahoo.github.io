@@ -109,7 +109,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。<br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
+    <section class="markdown-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
 <h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone 你的dva项目</div><div class="line">cd project</div><div class="line">npm install</div></pre></td></tr></table></figure>
 <p>成功下载完所有配置文件之后执行，再次确认你的项目可以正确访问</p>
@@ -119,7 +119,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;proxy&quot;: &#123;</div><div class="line">  &quot;/api&quot;: &#123;</div><div class="line">  &quot;target&quot;: 你的后台服务地址,</div><div class="line">  &quot;changeOrigin&quot;: true,</div><div class="line">  &quot;pathRewrite&quot;: &#123; &quot;^/api&quot; : &quot;&quot; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>之后进入命令行，执行编译操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure>
-<p>执行完之后会在主目录下生成dist文件夹，里面包含index.html、index.js、index.css以及资源文件夹static</p>
+<p>执行完之后会在主目录下生成dist文件夹，里面包含index.html、index.js、index.css以及资源文件夹static。<br>打包完成后，把dist文件夹上传至服务器上即可访问，这里用的是nginx服务器。</p>
 <h3 id="nginx简介"><a href="#nginx简介" class="headerlink" title="nginx简介"></a>nginx简介</h3><p><strong>Nginx</strong>（发音同 engine x）是一款轻量级的Web 服务器／反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。</p>
 <p><strong>本项目采用 Nginx 作为 Web 服务器。</strong></p>
 <h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找</p>
@@ -155,7 +155,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi nginx.conf</div></pre></td></tr></table></figure>
 <p>在配置文件的http下写入如下配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #charset koi8-r;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">       proxy_set_header X-Real-IP $remote_addr;</div><div class="line">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">       proxy_set_header HOST $http_host;</div><div class="line">       proxy_set_header X-Nginx_Proxy true;</div><div class="line">       proxy_redirect off;</div><div class="line">       root  dist;</div><div class="line">       index  index.html index.htm;</div><div class="line">       try_files $uri /index.html;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location ^~ /api/ &#123;</div><div class="line">      proxy_set_header  X-Real-IP  $remote_addr;</div><div class="line">      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">      proxy_read_timeout       300;</div><div class="line">      proxy_send_timeout       600;</div><div class="line">      proxy_ignore_client_abort on;</div><div class="line">      proxy_connect_timeout    300;</div><div class="line">      proxy_next_upstream     error;</div><div class="line">      proxy_pass 这里填入后台服务地址;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p>之后将本地的dist文件夹上传至服务器的/usr/local/nginx文件夹下即可，上传成功之后启动nginx</p>
+<p>之后用scp命令将本地的dist文件夹上传至服务器的/usr/local/nginx文件夹下即可，上传成功之后启动nginx</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</div></pre></td></tr></table></figure>
 <p>成功之后访问服务器即可看到项目首页</p>
 </section>
@@ -200,7 +200,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2017/10/01/dva-deploy/';
+    var url = 'https://mah93.github.io/2017/10/01/dva-deploy/';
     var banner = 'http://file.muyutech.com/about.jpg'
     if (banner == '' || banner ==undefined || banner == null) {
       $('#article-banner').css({
