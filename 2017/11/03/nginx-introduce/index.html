@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="mah93&#39;s blog">
+  <meta name="keyword" content="hexo-theme">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      学习Nginx小结 | mah93
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>mah93</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>学习Nginx小结</h2>
+  <p class="post-date">2017-11-03</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    <strong>Nginx</strong>是一个高性能的 HTTP 和 反向代理 服务器，也是一个 IMAP/POP3/SMTP 代理服务器。 <strong>Nginx</strong> 是由 Igor Sysoev 为俄罗斯访问量第二的 Rambler.ru 站点开发的，它已经在该站点运行超过两年半了。 Igor 将源代码以类 BSD 许可证的形式发布。尽管还是测试版，但是，<strong>Nginx</strong> 已经因为它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名了。</p>
+<h2 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h2><p>​    <strong>Nginx</strong>提供邮件代理服务，主要包含以下功能：</p>
+<ul>
+<li>支持使用外部HTTP认证服务器重定向用户到IMAP／POP3后端，并支持IMAP认证方式和POP3认证方式。</li>
+<li>支持使用HTTP认证服务器认证用户后重定向连接到内部SMTP后端，并支持SMTP认证方式。</li>
+<li>支持邮件代理服务下的安全套接层安全协议SSL。</li>
+<li>支持纯文本通信协议的扩展协议STARTTLS。</li>
+</ul>
+<h2 id="HTTP代理和反向代理"><a href="#HTTP代理和反向代理" class="headerlink" title="HTTP代理和反向代理"></a>HTTP代理和反向代理</h2><p>​    代理服务和反向代理服务是<strong>Nginx</strong>服务器作为Web服务器的主要功能之一，尤其是反向代理服务，是应用十分广泛的功能。</p>
+<p>​    在提供反向代理服务方面，<strong>Nginx</strong>服务器转发前端请求性能稳定，并且后端转发与业务配置相互分离，配置相当灵活。在进行<strong>Nginx</strong>服务器配置的时候，配置后端转发请求完全不用关心网络环境如何，可以指定任意IP地址和端口号，或者其他类型的链接、请求等。</p>
+<h3 id="Nginx作为反向代理的特点"><a href="#Nginx作为反向代理的特点" class="headerlink" title="Nginx作为反向代理的特点"></a><strong>Nginx作为反向代理的特点</strong></h3><ul>
+<li>接收用户请求是异步的，即先将用户请求全部接收下来，再一次性发送后后端web服务器，极大的减轻后端web服务器的压力；</li>
+<li><strong>Nginx</strong>代理和后端web服务器间无需长连接；</li>
+<li>发送响应报文时，是边接收来自后端web服务器的数据，边发送给客户端的；</li>
+<li>调度灵活。<strong>Nginx</strong>工作在网络协议栈的第七层，能够对HTTP应用请求进行解析和分流，支持比较复杂的正则规则，具有更优化的负载均衡效果。</li>
+<li>网络依赖型低。<strong>Nginx</strong>对网络的依赖程度非常低，理论上讲，只要能够ping通就可以实施负载均衡，而且可以有效区分内网和外网流量。</li>
+<li>支持服务器检测。<strong>Nginx</strong>能够根据应用服务器处理页面返回的状态码、超时信息等检测服务器是否出现故障，并及时返回错误的请求重新提交到其它节点上。</li>
+</ul>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>​    客户端向<strong>Nginx</strong>发送请求，接着<strong>Nginx</strong>根据某种负载机制转发请求至目标服务器(这些服务器都运行着相同的应用)，并把获得的内容返回给客户端，期中，代理请求可能根据配置被发往不同的服务器。</p>
+<img src="/2017/11/03/nginx-introduce/nginx负载均衡.png" alt="This is an example image" title="This is an example image">
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找</p>
+<p>登录服务器之后执行，下载nginx安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo wget http://nginx.org/download/nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
+<p>然后解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo  tar -xzvf nginx-1.2.2.tar.gz</span></div></pre></td></tr></table></figure>
+<p>进入解压之后的文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> nginx-1.2.2</span></div><div class="line"><span class="meta">$</span><span class="bash"> ./configure</span></div></pre></td></tr></table></figure>
+<p>如果一切顺利的话，执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> make</span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure>
+<p>完成安装，可以在/usr/local文件下找到nginx文件夹</p>
+<p>然后访问服务器即可看到</p>
+<p><strong>welcome nginx</strong></p>
+<p>字样</p>
+<h3 id="Nginx安装常见问题"><a href="#Nginx安装常见问题" class="headerlink" title="Nginx安装常见问题"></a>Nginx安装常见问题</h3><ul>
+<li><h4 id="缺少pcre"><a href="#缺少pcre" class="headerlink" title="缺少pcre"></a>缺少pcre</h4><p>执行./configure之后，出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
+<p>即提示缺少pcre library    </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get undate</div><div class="line">$ sudo apt-get install libpcre3 libpcre3-dev</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="缺少gcc-c-和libtool"><a href="#缺少gcc-c-和libtool" class="headerlink" title="缺少gcc-c++和libtool"></a>缺少gcc-c++和libtool</h4><p>执行./configure之后，出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libtool: compile: unrecognized option `-DHAVE_CONFIG_H&apos; </div><div class="line">libtool: compile: Try `libtool --help&apos; for more information. </div><div class="line">make[1]: *** [pcrecpp.lo] Error 1 </div><div class="line">make[1]: Leaving directory `/usr/local/src//pcre-8.31&apos; </div><div class="line">make: *** [all] Error 2root@wolfdog-virtual-machine:~/work/pcre-8.12$ libtool -help -DHAVE_CONFIG_H </div><div class="line">The program &apos;libtool&apos; is currently not installed.  You can install it by typing: </div><div class="line">sudo apt-get install libtool</div></pre></td></tr></table></figure>
+<p>即提示缺少libtool和gcc-c++</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libtool  </div><div class="line">$ sudo apt-get install gcc-c++</div></pre></td></tr></table></figure>
+</li>
+<li><h4 id="缺少zlib库"><a href="#缺少zlib库" class="headerlink" title="缺少zlib库"></a>缺少zlib库</h4><p>执行./configure之后，出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP gzip module requires the zlib library. </div><div class="line">You can either disable the module by using --without-http_gzip_module </div><div class="line">option, or install the zlib library into the system, or build the zlib library </div><div class="line">statically from the source with nginx by using --with-zlib=&lt;path&gt; option.</div></pre></td></tr></table></figure>
+<p>其提示缺少zlib库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssl libssl-dev libperl-dev</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Nginx命令"><a href="#Nginx命令" class="headerlink" title="Nginx命令"></a>Nginx命令</h2><h3 id="Nginx启动"><a href="#Nginx启动" class="headerlink" title="Nginx启动"></a>Nginx启动</h3><p>进入nginx安装目录，运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./sbin/nginx</div></pre></td></tr></table></figure>
+<p>如果没有任何错误信息输出，则启动成功。也可以使用以下命令加载配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./nginx/sbin/nginx -c ./nginx/conf/nginx.conf</span></div></pre></td></tr></table></figure>
+<p>启动成功之后可以使用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ps -ef|grep nginx</span></div></pre></td></tr></table></figure>
+<p>来查看<strong>Nginx</strong>服务的进程状态。</p>
+<h3 id="Nginx停止"><a href="#Nginx停止" class="headerlink" title="Nginx停止"></a>Nginx停止</h3><p>​    停止<strong>Nginx</strong>服务有两种方法：一种是快速停止，一种是平缓停止。快速停止是指立即停止当前<strong>Nginx</strong>服务正在处理的所有网络请求，马上丢弃连接，定制工作。平缓停止是指允许<strong>Nginx</strong>服务将当前正在处理的网络请求处理完成，并不再接受新的请求，之后关闭连接，停止工作。</p>
+<p>​    停止<strong>Nginx</strong>服务的操作比较多，可以发送信号：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./sbin/nginx -g TERM | INT | QUIT</span></div></pre></td></tr></table></figure>
+<p>​    其中，TERM和INT信号用于快速停止，QUIT用于平缓停止。</p>
+<p>​    或者：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> TERM | INT | QUIT `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
+<p>​    当然也可以使用kill命令向<strong>Nginx</strong>进程发送-9或者SIGKILL信号强制关闭<strong>Nginx</strong>服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -9 | SIGKILL `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
+<h3 id="Nginx重启"><a href="#Nginx重启" class="headerlink" title="Nginx重启"></a>Nginx重启</h3><p>​    以下命令实现<strong>Nginx</strong>平滑重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> HUP `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
+<h2 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">`nginx.conf`</div><div class="line">user nobody									    #指定用户群</div><div class="line">worker_processes								#cpu核数／进程数</div><div class="line">												#工作衍生数／核数*2</div><div class="line">error_log 										#错误日志存放地点</div><div class="line">pid												#控制系统中重要文件</div><div class="line">events &#123;</div><div class="line">  worker_connections							#最大连接数</div><div class="line">&#125;</div><div class="line">http &#123;</div><div class="line">  gzip											#压缩传输</div><div class="line">  server &#123;										#server块</div><div class="line">    ...</div><div class="line">    location &#123;                       			#location块</div><div class="line">      </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>http块主要是配置代理、缓存和日志定义绝大多数功能和第三方模块配置。</li>
+</ul>
+<ul>
+<li>server块配置虚拟主机。</li>
+<li>location块对请求进行处理。</li>
+</ul>
+<h3 id="Nginx配置虚拟主机"><a href="#Nginx配置虚拟主机" class="headerlink" title="Nginx配置虚拟主机"></a>Nginx配置虚拟主机</h3><p>虚拟主机指的是server块对外提供的虚拟主机</p>
+<ol>
+<li><p>查看服务器的IP地址</p>
+</li>
+<li><p>绑定IP地址与虚拟主机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ifconfig XXX:0 192.168.X.X netmask XXX.XXX.XXX.XXX up</div><div class="line">$ ifconfig XXX:1 192.168.X.X+1 netmask XXX.XXX.XXX.XXX up</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>虚拟主机的配置</p>
+<p>虚拟主机的配置可以在nginx.conf下配置，但是不推荐。可以新建一个配置文件，配置好之后在nginx.conf下引用该文件即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ touch xxx.conf</div><div class="line">` 配置写在http中的server下 `</div><div class="line">server &#123;</div><div class="line">  listen: 192.168.X.X;					#刚刚配置的虚拟主机IP，不指定端口的话默认80端口</div><div class="line">  server_name; 							#名称</div><div class="line">  access_log; 							#日志文件</div><div class="line">  location / &#123;</div><div class="line">    index html.index;					#访问的首页</div><div class="line">    root html;							#访问路径</div><div class="line">  &#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="缓存配置"><a href="#缓存配置" class="headerlink" title="缓存配置"></a>缓存配置</h3><p>对于网页请求的缓存配置在http下的server块中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">local ~.*\.(jpg)&#123;</div><div class="line">  expires 2d;							#设置图片2天过期</div><div class="line">&#125;</div><div class="line">local ~.*\.(css|js)&#123;</div><div class="line">  expires 1h;							#设置css文件和js文件1小时过期</div><div class="line">&#125;</div><div class="line"></div><div class="line">`压缩配置`</div><div class="line">#gzip on;								#开启gzip压缩</div><div class="line">#gzip_min_length 1k;					#小于1k不进行压缩</div><div class="line">#gzip_buffers 4 16k;					#申请内存大小（4个16k）</div><div class="line">#gzip_http_version 1.1;					#识别版本</div><div class="line">#gzip_vary on;							#判断客户端浏览器是否支持gzip压缩</div></pre></td></tr></table></figure>
+<h3 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h3><ul>
+<li>Nginx的日志文件在http块中配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#log_format								#日志文件格式配置</div><div class="line">`在http配置`</div><div class="line">#remote_addr							#客户端IP地址</div><div class="line">#remote_user							#客户端用户名</div><div class="line">#request								#请求地址</div><div class="line">#status									#请求状态</div><div class="line">#body_bytes_sent						#向用户发送字节数</div><div class="line">#http_refer								#原网页（从哪里访问）</div><div class="line">#http_user_agent						#客户浏览器信息</div><div class="line">#http_x_forword_for						#客户端IP地址</div><div class="line">`日志文件存储路径`</div><div class="line">#access_log	xx/xx/xx					#存放路径</div><div class="line">#access_off								#关闭日志文件记录</div></pre></td></tr></table></figure>
+<ul>
+<li>日志文件切割（手动切割）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mv access.log 20160708.log				#移动</div><div class="line"># kill -USR | 进程号					  #切割日志</div><div class="line"># ps -ef | grep nginx					#nginx进程号</div></pre></td></tr></table></figure>
+<p>总体的流程是：先备份老的日志文件，之后再切割</p>
+<ul>
+<li>自动切割日志文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ crontab + 批处理 						  定时每天操作</div><div class="line">`新建批处理文件`</div><div class="line">$ touch cutlog.sh</div><div class="line">$ vi cutlog.sh</div><div class="line"></div><div class="line">D=$(date+%Y%M%d)</div><div class="line">mv /user/local/nginx/logs/access.log &#123;D&#125;.log</div><div class="line">kill -USR | (cat /user/local/nginx/nginx.pid)</div><div class="line"></div><div class="line">`定时处理批处理`</div><div class="line">#crontab -e 23 59 *** /bin/bash /user/local/nginx/logs/cutlog.sh</div></pre></td></tr></table></figure>
+<h2 id="Nginx卸载"><a href="#Nginx卸载" class="headerlink" title="Nginx卸载"></a>Nginx卸载</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找。</p>
+<p>仍然使用apt-get命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ apt-get purge nginx</div><div class="line">$ apt-get autoremove</div></pre></td></tr></table></figure>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Nginx" >
+    <span class="tag-code">Nginx</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!--<div class="qrcode">-->
+      <!--<canvas id="share-qrcode"></canvas>-->
+      <!--<p class="notice">扫描二维码，分享此文章</p>-->
+    <!--</div>-->
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://mah93.github.io/2017/11/03/nginx-introduce/';
+    var banner = 'http://file.muyutech.com/about.jpg'
+    if (banner == '' || banner ==undefined || banner == null) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "学习Nginx小结",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
