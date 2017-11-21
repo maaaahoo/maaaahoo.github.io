@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="mah93&#39;s blog">
+  <meta name="keyword" content="hexo-theme">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      App安全性设计 | mah93
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>mah93</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>App安全性设计</h2>
+  <p class="post-date">2017-11-21</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>​    HTTP协议是没有加密的明文传输协议，<strong>如果APP采用HTTP传输数据，则会泄露传输内容，可能被中间人劫持，修改传输的内容</strong>。劫持了HTTP通信，往APP的通信中加入了自己的推广内容，还有一些低俗的推广广告，这很影响用户体验。一些别有用心的人通过搭建公共WiFi，进行流量劫持、嗅探，可以获得通过HTTP传输的敏感信息。为了保护用户的信息安全、保护自己的商业利益，减少攻击面，需要保障通信信道的安全，采用开发方便的HTTPS无疑是最优方案。</p>
+<p>​    <strong>HTTPS：</strong>在http(超文本传输协议)基础上提出的一种安全的http协议，因此可以称为安全的超文本传输协议。http协议直接放置在TCP协议之上，而https提出在http和TCP中间加上一层加密层。从发送端看，这一层负责把http的内容加密后送到下层的TCP，从接收方看，这一层负责将TCP送来的数据解密还原成http的内容。</p>
+<p>​    其实HTTPS从最终的数据解析的角度，与HTTP没有任何的区别，HTTPS就是将HTTP协议数据包放到SSL/TSL层加密后，在TCP/IP层组成IP数据报去传输，以此保证传输数据的安全；而对于接收端，在SSL/TSL将接收的数据包解密之后，将数据传给HTTP协议层，就是普通的HTTP数据。HTTP和SSL/TSL都处于OSI模型的应用层。</p>
+<h2 id="SSL-TSL"><a href="#SSL-TSL" class="headerlink" title="SSL/TSL"></a>SSL/TSL</h2><p>​    简单的来说，SSL/TSL通过四次握手，主要交换三个信息：</p>
+<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p>​    该证书包含了公钥等信息，一般是由服务器发给客户端，接收方通过验证这个证书是不是由信赖的CA签发，或者与本地的证书相对比，来判断证书是否可信；假如需要双向验证，则服务器和客户端都需要发送数字证书给对方验证。</p>
+<h3 id="三个随机数"><a href="#三个随机数" class="headerlink" title="三个随机数"></a>三个随机数</h3><p>​    这三个随机数构成了后续通信过程中用来对数据进行对称加密解密的<strong>“对话密钥”</strong>。</p>
+<p>​    首先客户端先发第一个随机数N1，然后服务器回了第二个随机数N2（这个过程同时把之前提到的证书发给客户端），这两个随机数都是明文的；而第三个随机数N3（这个随机数被称为Premaster secret），客户端用数字证书的公钥进行非对称加密，发给服务器；而服务器用只有自己知道的私钥来解密，获取第三个随机数。只有，服务端和客户端都有了三个随机数N1+N2+N3，然后两端就使用这三个随机数来生成“对话密钥”，在此之后的通信都是使用这个“对话密钥”来进行对称加密解密。因为这个过程中，服务端的私钥只用来解密第三个随机数，从来没有在网络中传输过，这样的话，只要私钥没有被泄露，那么数据就是安全的。</p>
+<h3 id="加密通信协议"><a href="#加密通信协议" class="headerlink" title="加密通信协议"></a>加密通信协议</h3><p>​    就是双方商量使用哪一种加密方式，假如两者支持的加密方式不匹配，则无法进行通信；</p>
+<p>​    有个常见的问题，关于随机数为什么要三个？只最后一个随机数N3不可以么？</p>
+<p>​    这是由于SSL/TLS设计，就假设服务器不相信所有的客户端都能够提供完全随机数，假如某个客户端提供的随机数不随机的话，就大大增加了“对话密钥”被破解的风险，所以由三组随机数组成最后的随机数，保证了随机数的随机性，以此来保证每次生成的“对话密钥”安全性。</p>
+<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><p>​    token是一种身份验证的机制，初始时用户提交账号数据给服务端，服务端采用一定的策略生成一个字符串（token），token字符串中包含了少量的用户信息，并且有一定的期限。服务端会把token字符串传给客户端，客户端保存token字符串，并在接下来的请求中带上这个字符串。</p>
+<p>​    服务端在生成token时，加入少量的用户信息，比如用户的id。服务端接收到token之后，可以解析出这些数据，从而将token和用户关联了起来。</p>
+<p>​    token具有一定的时效性，如果token过期了，客户端应该对token续期或者重新生成token。这取决于token的过期机制。在token续期或者重新生成token的时候，需要额外加入数据来验证身份。因为token已经过期了，即token已经不能用来验证用户的身份了。这个时候可以请求用户重新输入账号和密码。</p>
+<h2 id="混淆"><a href="#混淆" class="headerlink" title="混淆"></a>混淆</h2><p>​    代码混淆技术基本原理是使反编译工具反编译出来的代码人难以阅读，从而达到防止被逆向破解的目的。</p>
+<h2 id="Android混淆"><a href="#Android混淆" class="headerlink" title="Android混淆"></a>Android混淆</h2><h3 id="Java类名、方法名混淆"><a href="#Java类名、方法名混淆" class="headerlink" title="Java类名、方法名混淆"></a>Java类名、方法名混淆</h3><p>​    Dalvik字节码包含了大量的调试信息，如类名、方法名、字段名、参数名、变量名等，使用反编译工具可以还原这些信息。由于类名、方法名等通常都会遵循一定的命名规范，破解者很容易根据这些信息来猜测代码功能，阅读起来就跟查看源代码一样。从Android2.3开始，Google在SDK中加入了一款叫ProGuard的代码混淆工具，ProGuard会删除这些调试信息，并用无意义的字符序列来替换类名、方法名等，使得使用反编译出来的代码难以阅读，提升逆向难度。使用ProGuard混淆过过后，反编译出来的类名和方法名无法阅读。</p>
+<h3 id="Java代码混淆"><a href="#Java代码混淆" class="headerlink" title="Java代码混淆"></a>Java代码混淆</h3><p>​    通过对功能代码流程进行乱序混淆，实际运行时乱序混淆后的代码流程却和原始代码流程是一样的，但反编译出来的代码流程静态阅读时与原始流程有很大差异，使破解者很难通过静态分析理解代码功能，从而保护代码不被逆向分析。比如，原始的代码流程是1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7，经过乱序混淆后静态反汇编查看到的代码流程可能变成2-&gt;7-&gt;5-&gt;1-&gt;6-&gt;4-&gt;3，实际运行时代码流程仍然是1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7。</p>
+<h3 id="Dalvik字节码加密"><a href="#Dalvik字节码加密" class="headerlink" title="Dalvik字节码加密"></a>Dalvik字节码加密</h3><p>​    将dex文件中的部分或全部Dalvik字节码加密，每次需要执行时由专门的Native代码负责动态解密和回填，静态反编译出来的代码已经无法阅读甚至无法反编译，动态调试也难以逆向分析。</p>
+<h2 id="iOS混淆"><a href="#iOS混淆" class="headerlink" title="iOS混淆"></a>iOS混淆</h2><h3 id="字符串加密"><a href="#字符串加密" class="headerlink" title="字符串加密"></a>字符串加密</h3><p>​    对程序中使用到字符串的地方，首先获取到使用到的字符串，当然要注意哪些是能加密，哪些不能加密的，然后对字符串进行加密，并保存加密后的数据，再在使用字符串的地方插入解密算法，这样就很好的保护了明文字符串。</p>
+<h3 id="类名方法名混淆"><a href="#类名方法名混淆" class="headerlink" title="类名方法名混淆"></a>类名方法名混淆</h3><p>​    对于程序中的类名方法名，自己产生一个随机的字符串来替换这些定义的类名和方法名，但是不是所有类名，方法名都能替换的，要过滤到系统有关的函数以及类，</p>
+<h3 id="程序代码混淆"><a href="#程序代码混淆" class="headerlink" title="程序代码混淆"></a>程序代码混淆</h3><p>​    可以基于Xcode使用的编译器clang，然后在中间层也就是IR实现自己的一些混淆处理，比如加入一些无用的逻辑块啊，代码块啊，以及加入各种跳转但是又不影响程序原有的逻辑。</p>
+<h2 id="加壳"><a href="#加壳" class="headerlink" title="加壳"></a>加壳</h2><p>​    加壳是在二进制的程序中植入一段代码，在运行的时候优先取得程序的控制权，做一些额外的工作。大多数病毒就是基于此原理。是应用加固的一种手法对原始二进制原文进行加密/隐藏/混淆。所谓加壳，是一种通过一系列数学运算，将可执行程序文件或动态链接库文件的编码进行改变（目前还有一些加壳软件可以压缩、加密驱动程序），以达到缩小文件体积或加密程序编码的目的。当被加壳的程序运行时，外壳程序先被执行，然后由这个外壳程序负责将用户原有的程序在内存中解压缩，并把控制权交还给脱壳后的真正程序。一切操作自动完成，用户不知道也无需知道壳程序是如何运行的。一般情况下，加壳程序和未加壳程序的运行结果是一样的。</p>
+<h3 id="加壳作用"><a href="#加壳作用" class="headerlink" title="加壳作用"></a>加壳作用</h3><p>​    加壳的程序可以有效阻止对程序的反汇编分析，以达到它不可告人的目的。这种技术也常用来保护软件版权，防止被软件破解。</p>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
+<li>保护自己核心代码算法,提高破解/盗版/二次打包的难度。</li>
+<li>还可以缓解代码注入/动态调试/内存注入攻击。</li>
+</ul>
+<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>​    身份认证也称为“身份验证”或“身份鉴别”，是指确认操作者身份的过程，从而确定该用户是否具有对某种资源的访问和使用权限，进而使应用能够可靠、有效地执行，防止攻击者假冒合法用户获得资源的访问权限，保证系统和数据的安全，以及授权访问者的合法利益。</p>
+<h3 id="静态密码"><a href="#静态密码" class="headerlink" title="静态密码"></a>静态密码</h3><p>​    用户的密码是由用户自己设定的。在登录时输入正确的密码，就认为操作者就是合法用户。实际上，由于用户担心自己的密码忘记，经常使用简单的密码组合。不仅容易被猜中，而且不易保存。所以在设置密码的时候尽量复杂，数字加字母等组合。登录密码和重要操作密码应该设置成不一样的字符串，更加保证了安全性。</p>
+<h3 id="短信密码"><a href="#短信密码" class="headerlink" title="短信密码"></a>短信密码</h3><p>​    短信密码以手机短信形式请求包含6位随机数的动态密码，身份认证系统以短信形式发送随机的6位密码到客户的手机上。客户在登录或者交易认证时候输入此动态密码，从而确保系统身份认证的安全性。具有以下优点：</p>
+<ul>
+<li>安全性</li>
+</ul>
+<p>​    由于手机与客户绑定比较紧密，短信密码生成与使用场景是物理隔绝的，因此密码在通路上被截取几率降至最低。</p>
+<ul>
+<li>普及性</li>
+</ul>
+<p>​    只要会接收短信即可使用，大大降低短信密码技术的使用门槛，学习成本几乎为0，所以在市场接受度上面不会存在阻力。</p>
+<ul>
+<li>易收费</li>
+</ul>
+<p>​    由于移动互联网用户天然养成了付费的习惯，这和PC时代互联网截然不同的理念，而且收费通道非常的发达，如果是网银、第三方支付、电子商务可将短信密码作为一项增值业务，每月通过SP收费不会有阻力，因此也可增加收益。</p>
+<ul>
+<li><p>易维护</p>
+<p>   由于短信网关技术非常成熟，大大降低短信密码系统上马的复杂度和风险，短信密码业务后期客服成本低，稳定的系统在提升安全同时也营造良好的口碑效应，这也是银行也大量采纳这项技术很重要的原因。</p>
+</li>
+</ul>
+<h3 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h3><p>​    指纹，由于其具有终身不变性、唯一性和方便性，已几乎成为生物特征识别的代名词。随着硬件系统的不断更新换代，指纹识别技术已经普及。由于指纹的可靠性，众多应用将指纹识别作为主要的身份认证凭证，替代传统的输入密码，由于不存在数据的交换问题，极大的提高了安全性。指纹识别具有以下优点：</p>
+<ul>
+<li>指纹是人体独一无二的特征，并且它们的复杂度足以提供用于鉴别的足够特征；</li>
+<li>如果要增加可靠性，只需登记更多的指纹、鉴别更多的手指，最多可以多达十个，而每一个指纹都是独一无二的；</li>
+<li>扫描指纹的速度很快，使用非常方便；</li>
+<li>读取指纹时，用户必需将手指与指纹采集头相互接触，与指纹采集头直接；</li>
+<li>接触是读取人体生物特征最可靠的方法；</li>
+</ul>
+<h2 id="加密传输"><a href="#加密传输" class="headerlink" title="加密传输"></a>加密传输</h2><p>​    加密传输是指在客户端和服务端进行数据传输之前，对敏感数据进行加密，不进行明文传输。对于密码、个人信息等敏感信息进行加密算法加密。“对称”加密挑选AES，“非对称”加密选择RSA。</p>
+<h3 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h3><p>​    AES算法基于排列和置换运算。排列是对数据重新进行安排，置换是将一个数据单元替换为另一个。AES 使用几种不同的方法来执行排列和置换运算。<br>​    AES是一个迭代的、对称密钥分组的密码，它可以使用128、192 和 256 位密钥，并且用 128 位（16字    节）分组加密和解密数据。与公共密钥密码使用密钥对不同，对称密钥密码使用相同的密钥加密和解密数据。通过分组密码返回的加密数据的位数与输入数据相同。迭代加密使用一个循环结构，在该循环中重复置换和替换输入数据。</p>
+<h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><p>​    RSA这种非对称加密算法，在App的使用当中，需要明白其主要作用有2个：</p>
+<ul>
+<li><strong>信息加密：</strong> 通信双方可以在公开的网络环境下，“安全”的商量对称加密算法所使用的密钥。</li>
+<li><strong>电子签名：</strong> 为了防止中间人攻击，通信双方在商量密钥之前可以通过签名算法确认对方的身份。</li>
+</ul>
+<h2 id="安全组件"><a href="#安全组件" class="headerlink" title="安全组件"></a>安全组件</h2><h3 id="加密键盘"><a href="#加密键盘" class="headerlink" title="加密键盘"></a>加密键盘</h3><p>​    大部分中文应用弹出的默认键盘是简体中文输入法键盘，在输入用户名和密码的时候，如果使用简体中文输入法键盘，输入英文字符和数字字符的用户名和密码时，会自动启动系统输入法自动更正提示，然后用户的输入记录会被缓存下来。</p>
+<p>​    所以客户端 app 输入密码时都不使用系统键盘，而使用自己定制的键盘，原因主要有 2 个：</p>
+<ul>
+<li>避免第三方读取系统键盘缓存</li>
+<li>防止屏幕录制 （加密键盘按键不加按下效果）</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#App" >
+    <span class="tag-code">App</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!--<div class="qrcode">-->
+      <!--<canvas id="share-qrcode"></canvas>-->
+      <!--<p class="notice">扫描二维码，分享此文章</p>-->
+    <!--</div>-->
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://mah93.github.io/2017/11/21/app-safety-design/';
+    var banner = 'http://file.muyutech.com/about.jpg'
+    if (banner == '' || banner ==undefined || banner == null) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "App安全性设计",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
