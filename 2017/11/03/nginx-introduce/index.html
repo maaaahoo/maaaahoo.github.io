@@ -142,7 +142,7 @@
 <p>然后访问服务器即可看到</p>
 <p><strong>welcome nginx</strong></p>
 <p>字样</p>
-<h3 id="Nginx安装常见问题"><a href="#Nginx安装常见问题" class="headerlink" title="Nginx安装常见问题"></a>Nginx安装常见问题</h3><ul>
+<h3 id="Nginx安装常见问题-ubuntu"><a href="#Nginx安装常见问题-ubuntu" class="headerlink" title="Nginx安装常见问题(ubuntu)"></a>Nginx安装常见问题(ubuntu)</h3><ul>
 <li><h4 id="缺少pcre"><a href="#缺少pcre" class="headerlink" title="缺少pcre"></a>缺少pcre</h4><p>执行./configure之后，出现</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
 <p>即提示缺少pcre library    </p>
@@ -159,6 +159,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssl libssl-dev libperl-dev</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="Nginx安装常见问题-centos"><a href="#Nginx安装常见问题-centos" class="headerlink" title="Nginx安装常见问题(centos)"></a>Nginx安装常见问题(centos)</h3><p>在centos系统下如遇到以上问题，运行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install gcc-c++</div><div class="line">$ yum install -y pcre pcre-devel　　</div><div class="line">$ yum install -y zlib zlib-devel</div><div class="line">$ yum install -y openssl openssl-devel</div></pre></td></tr></table></figure>
 <h2 id="Nginx命令"><a href="#Nginx命令" class="headerlink" title="Nginx命令"></a>Nginx命令</h2><h3 id="Nginx启动"><a href="#Nginx启动" class="headerlink" title="Nginx启动"></a>Nginx启动</h3><p>进入nginx安装目录，运行以下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./sbin/nginx</div></pre></td></tr></table></figure>
 <p>如果没有任何错误信息输出，则启动成功。也可以使用以下命令加载配置文件：</p>
