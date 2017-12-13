@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="mah93&#39;s blog">
+  <meta name="keyword" content="hexo-theme">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      mobx学习笔记 | mah93
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>mah93</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>mobx学习笔记</h2>
+  <p class="post-date">2017-12-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><em>简单、高扩展的状态管理库</em></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>npm install mobx --save</code></p>
+<p>配合React: <code>npm install mobx-react --save</code></p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。</p>
+<p>MobX的思想非常简单：来源于应用的状态的任何事物，都能被自动获得。</p>
+<p>包括UI、数据变更、与服务器通信等等。</p>
+<img src="/2017/12/13/mobx-introduce/flow.png" alt="This is an example image" title="This is an example image">
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="可观察的状态（observable-state）"><a href="#可观察的状态（observable-state）" class="headerlink" title="可观察的状态（observable state）"></a>可观察的状态（observable state）</h3><p>MobX 给已有的数据结构增加了可观察的能力（如对象、数组、类实例等）。你只需要很简单地使用<a href="http://mobxjs.github.io/mobx/refguide/observable-decorator.html" target="_blank" rel="external">@observable</a> 装饰你的类属性（property）即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Todo &#123;</div><div class="line">    id = Math.random();</div><div class="line">    @observable title = &quot;&quot;;</div><div class="line">    @observable finished = false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="计算值（Computed-values）"><a href="#计算值（Computed-values）" class="headerlink" title="计算值（Computed values）"></a>计算值（Computed values）</h3><p>使用 MobX，你可以很容易的定义计算值，当相关数据变化时，计算值会自动发生变化。 计算值可以通过使用 <a href="http://mobxjs.github.io/mobx/refguide/computed-decorator.html" target="_blank" rel="external"><code>@computed</code></a> 装饰器声明，也可以通过 <code>(extend)Observable</code> 配合 getter/setter 函数进行声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class TodoList &#123;</div><div class="line">    @observable todos = [];</div><div class="line">    @computed get unfinishedTodoCount() &#123;</div><div class="line">        return this.todos.filter(todo =&gt; !todo.finished).length;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>MobX 会确保当一个 todo 增加或者当 <code>finished</code> 改变时， <code>unfinishedTodoCount</code> 是自动更新的。 计算值类似于电子表格程序的公式。它们的更新永远是自动的，并且只在需要的时候更新。</p>
+<h3 id="observer"><a href="#observer" class="headerlink" title="@observer"></a>@observer</h3><p><code>observer</code> 函数/装饰器可以用来将 React 组件转变成响应式组件。当被监听的变量更改的时候，引用到该变量的组件会相应重新渲染。</p>
+<p>当组件之间有嵌套情况的时候，向子组件传递的是引用，而不是该引用的值。</p>
+<h3 id="action-动作"><a href="#action-动作" class="headerlink" title="action (动作)"></a>action (动作)</h3><p>用法:</p>
+<ul>
+<li><code>action(fn)</code></li>
+<li><code>action(name, fn)</code></li>
+<li><code>@action classMethod() {}</code></li>
+<li><code>@action(name) classMethod () {}</code></li>
+<li><code>@action boundClassMethod = (args) =&gt; { body }</code></li>
+<li><code>@action(name) boundClassMethod = (args) =&gt; { body }</code></li>
+<li><code>@action.bound classMethod() {}</code></li>
+<li><code>@action.bound(function() {})</code></li>
+</ul>
+<p>任何应用都有动作。动作是任何用来修改状态的东西。 action就是用来修饰改变观察值的函数。</p>
+<p>mobx还有很多其他的函数以及方法，这里只介绍了其中最常用的四个，其他的功能可以在 <a href="http://cn.mobx.js.org/" target="_blank" rel="external">mobx官网</a> 中查看。</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>下面是一个简单的mobx应用，一个父组件包含着两个子组件。当其中一个子组件发生改变时，不会触发另一个组件的重新渲染，从而达到了我们的预期需求：只有发生改变的地方需要重新渲染。实际开发的时候只需要将可能会发生改变的组件独立出来，每次只更新一个组件或几个组件。尽可能减少render函数的负担，提高react-native的重绘能力。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">class MyState &#123;</div><div class="line">  @observable num1 = 0;</div><div class="line">  @observable num2 = 100;</div><div class="line"></div><div class="line">  @action addNum1 = () =&gt; &#123;</div><div class="line">    this.num1 ++;</div><div class="line">  &#125;;</div><div class="line">  @action addNum2 = () =&gt; &#123;</div><div class="line">    this.num2 ++;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const newState = new MyState();</div><div class="line"></div><div class="line">const AllNum = observer((props) =&gt; &#123;</div><div class="line">  console.log(&apos;刷新all&apos;);</div><div class="line">  return (</div><div class="line">    &lt;View&gt;</div><div class="line">      &lt;Text&gt;num2 = &#123;props.store.num2&#125;&lt;/Text&gt;</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Button onPress=&#123;props.store.addNum2&#125; title=&quot;button2&quot; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    &lt;/View&gt;</div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">const Main = observer((props) =&gt; &#123;</div><div class="line">  console.log(&apos;刷新main&apos;);</div><div class="line">  return (</div><div class="line">    &lt;View&gt;</div><div class="line">      &lt;Text&gt;num1 = &#123;props.store.num1&#125;&lt;/Text&gt;</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Button onPress=&#123;props.store.addNum1&#125; title=&quot;button1&quot; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    &lt;/View&gt;</div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">@observer</div><div class="line">export default class Asset extends PureComponent &#123;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Main store=&#123;newState&#125; /&gt;</div><div class="line">        &lt;AllNum store=&#123;newState&#125; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>引入mobx做为项目的数据管理，势必会带来代码量增加等问题。我们可以在项目目录结构上作出相应调整，以便于更好的开发。</p>
+<h3 id="以功能为标准划分"><a href="#以功能为标准划分" class="headerlink" title="以功能为标准划分"></a>以功能为标准划分</h3><p>将文件夹按照功能区分，比如pages下存放所有的页面，logics下存放所有的mobx的逻辑等。</p>
+<p>这样的结构可以一眼就划分出每个js的功能，每个文件夹下存放着相同功能的js。</p>
+<p>带来的问题就是，页面与逻辑不在一个地方。查找起来十分麻烦，pages下的子目录与logics下的子目录结构是相似的或者是相同的，刚接触的时候容易搞混。当功能变动，或者是整体迁移的时候，涉及页面零散不易拆分。</p>
+<h3 id="以模块为标准划分"><a href="#以模块为标准划分" class="headerlink" title="以模块为标准划分"></a>以模块为标准划分</h3><p>文件夹按照一个个页面功能划分，如首页、注册登录模块、我的模块等，每个文件夹下存放该模块的页面、逻辑等所有涉及到该模块的代码。</p>
+<p>这样的划分的好处是，文件结构可以与设计的页面对应起来。划分出一个个独立的模块，实现该模块的所有或者说大部分的代码都在同一个文件夹，易于拆分。</p>
+<p>但当模块与模块之间有交互或者跳转的时候，就会横跨几个文件夹，难以对照。又或者模块之间有共用组件的时候就变得十分难以划分。无论将共用组件放到哪里，都不合适。放在其中一个模块中，另一个模块去引用的时候十分困难。两边都放上代码，但是十分麻烦。要是再用一个与模块同级的文件夹，那各个模块又不能真正“独立”起来。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Mobx" >
+    <span class="tag-code">Mobx</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!--<div class="qrcode">-->
+      <!--<canvas id="share-qrcode"></canvas>-->
+      <!--<p class="notice">扫描二维码，分享此文章</p>-->
+    <!--</div>-->
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://mah93.github.io/2017/12/13/mobx-introduce/';
+    var banner = 'http://file.muyutech.com/about.jpg'
+    if (banner == '' || banner ==undefined || banner == null) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "mobx学习笔记",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
