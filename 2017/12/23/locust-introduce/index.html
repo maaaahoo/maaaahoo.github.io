@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="mah93&#39;s blog">
+  <meta name="keyword" content="hexo-theme">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Locust使用说明 | mah93
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+</head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>mah93</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Locust使用说明</h2>
+  <p class="post-date">2017-12-23</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://github.com/locustio/locust" target="_blank" rel="external">Locust</a> 是一个开源负载测试工具。使用python代码定义用户行为，也可以仿真百万个用户。</p>
+<p>Locust 是非常简单易用，分布式，用户负载测试工具。Locust 主要为网站或者其他系统进行负载测试，能测试出一个系统可以并发处理多少用户。</p>
+<p>Locust 是完全基于时间的，因此单个机器支持几千个并发用户。相比其他许多事件驱动的应用，Locust 不使用回调，而是使用轻量级的处理方式gevent。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>使用纯 Python 代码编写用户测试场景；不需要 UIs 或者 XML</li>
+<li>分布式&amp;可伸缩 - 支持成千上万的用户</li>
+<li>基于 Web 的 UI</li>
+<li>可以测试任意系统；虽然 Locust 是面向 Web 的，但是也可以测试其他任意的系统</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><p>安装Python2 或Python3，通过命令行或者是官网安装</p>
+<h3 id="安装Locust"><a href="#安装Locust" class="headerlink" title="安装Locust"></a>安装Locust</h3><p>通过pip命令安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip  install --index https://pypi.mirrors.ustc.edu.cn/simple/ locust</div></pre></td></tr></table></figure>
+<p>安装完成后，命令行中验证</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust --help</div></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建test-py"><a href="#创建test-py" class="headerlink" title="创建test.py"></a>创建test.py</h3><p>创建一个test.py，然后编辑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">from locust import HttpLocust, TaskSet, task</div><div class="line"></div><div class="line">class WebsiteTasks(TaskSet):</div><div class="line">    def on_start(self):</div><div class="line">        pass</div><div class="line">        </div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.post(&quot;/login&quot;, &#123;</div><div class="line">            &quot;username&quot;: &quot;test_user&quot;,</div><div class="line">            &quot;password&quot;: &quot;&quot;</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.get(&quot;/&quot;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def about(self):</div><div class="line">        self.client.get(&quot;/about/&quot;)</div><div class="line"></div><div class="line">class WebsiteUser(HttpLocust):</div><div class="line">    task_set = WebsiteTasks</div><div class="line">    min_wait = 5000</div><div class="line">    max_wait = 15000</div></pre></td></tr></table></figure>
+<p>task_set：任务指定的方法</p>
+<p>min_wait：最小等待时间（ms）</p>
+<p>max_ wait：最大等待时间（ms）</p>
+<p>on_start：会首先执行该方法</p>
+<p>@task（1）：单个任务（权重）</p>
+<p>每次执行任务，会在最小等待时间到最大等待时间中随机执行，按照task的权重执行某一任务</p>
+<h3 id="自定义成功失败"><a href="#自定义成功失败" class="headerlink" title="自定义成功失败"></a>自定义成功失败</h3><p>locust会根据一次请求的状态码来确定该次请求是否成功，并表现在界面上。</p>
+<p>当需要测试的接口，涉及到业务。就需要根据返回的数据来判断该次请求是否成功</p>
+<p>需要将post请求改成以下方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with self.client.post(&quot;/login&quot;, &#123;&quot;username&quot;: &quot;test_user&quot;,&quot;password&quot;: &quot;123&quot;&#125;) as response:</div><div class="line">        response.success(&apos;success&apos;)//成功</div><div class="line">        response.failure(&apos;error&apos;)//失败</div></pre></td></tr></table></figure>
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>编辑完test.py之后，在命令行中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust -f ./test.py --host=你的服务器地址</div></pre></td></tr></table></figure>
+<p>没有报错之后，打开本地8089端口，即可看到locust的测试页面</p>
+<img src="/2017/12/23/locust-introduce/locust.png" alt="This is an example image" title="This is an example image">
+<p>输入所需测试强度，即可开始测试。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Locust" >
+    <span class="tag-code">Locust</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- 打赏 START -->
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    <!--<div class="qrcode">-->
+      <!--<canvas id="share-qrcode"></canvas>-->
+      <!--<p class="notice">扫描二维码，分享此文章</p>-->
+    <!--</div>-->
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'https://mah93.github.io/2017/12/23/locust-introduce/';
+    var banner = 'http://file.muyutech.com/about.jpg'
+    if (banner == '' || banner ==undefined || banner == null) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+        
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Locust使用说明",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

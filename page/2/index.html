@@ -39,7 +39,7 @@
       
         <li class="list-item">
           
-            <a href="/" class="item-link">Home</a>
+            <a href="/" class="item-link active">Home</a>
           
         </li>
       
@@ -72,7 +72,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link">Home</a>
+              <a href="/" class="menu-link mobile-active">Home</a>
             
           </li>
         
@@ -99,88 +99,36 @@
   </div>
 </header>
 
-    <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+    <main class="app-body">
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2017/10/01/hello-world/">Hello World</a>
+      </h2>
+      <p class="article-date">October 1, 2017</p>
+      
+      <div class="article-summary">
+        
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
+        
+      </div>
+      <a class="more" href="/2017/10/01/hello-world/">Read more</a>
+    </article>
+  
+
+  
+    <div class="guide-pager">
+  
+    <a href="/"><span class="page-arrow">← </span>Prev</a>
+  
+  
+    <a class="unvisible" href="/">Next <span class="page-arrow">→</span></a>
+  
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2017
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2017/12/23/locust-introduce/" class="archive-title">Locust使用说明</a>
-        <p class="archive-date">12-23</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/12/13/mobx-introduce/" class="archive-title">mobx学习笔记</a>
-        <p class="archive-date">12-13</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/12/01/who-is-this/" class="archive-title">this到底指的是谁</a>
-        <p class="archive-date">12-01</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/11/21/app-safety-design/" class="archive-title">App安全性设计</a>
-        <p class="archive-date">11-21</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/11/15/react-native-introduce/" class="archive-title">React Native简介</a>
-        <p class="archive-date">11-15</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/11/03/nginx-introduce/" class="archive-title">学习Nginx小结</a>
-        <p class="archive-date">11-03</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/10/30/dva-learning/" class="archive-title">Dva最不佳实践</a>
-        <p class="archive-date">10-30</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/10/19/app-develop-mode/" class="archive-title">App开发模式简介</a>
-        <p class="archive-date">10-19</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/10/10/dva-compatible/" class="archive-title">Dva兼容性</a>
-        <p class="archive-date">10-10</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/10/01/dva-deploy/" class="archive-title">Dva项目部署至Nginx服务器</a>
-        <p class="archive-date">10-01</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2017/10/01/hello-world/" class="archive-title">Hello World</a>
-        <p class="archive-date">10-01</p>
-      </div>
-    
-  </div>
-</section>
   
 </main>
 
-<script>
-  (function () {
-    var url = 'https://mah93.github.io/archives/2017/11/index.html';
-    $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
-  })();
-</script>
+
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
