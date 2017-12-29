@@ -1,115 +1,61 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-  <meta name="description" content="mah93&#39;s blog">
-  <meta name="keyword" content="hexo-theme">
+<head>
+  <meta charset="utf-8">
   
-    <link rel="shortcut icon" href="/css/images/logo.png">
+  <title>mobx学习笔记 | mah93</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简单、高扩展的状态管理库 安装npm install mobx --save 配合React: npm install mobx-react --save 概述MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。 MobX的思想非常简单：来源于应用的状态的任何事物，都能被自动获得。">
+<meta name="keywords" content="Mobx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mobx学习笔记">
+<meta property="og:url" content="https://mah93.github.io/2017/12/13/mobx-introduce/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="简单、高扩展的状态管理库 安装npm install mobx --save 配合React: npm install mobx-react --save 概述MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。 MobX的思想非常简单：来源于应用的状态的任何事物，都能被自动获得。">
+<meta property="og:image" content="https://mah93.github.io/2017/12/13/mobx-introduce/flow.png">
+<meta property="og:updated_time" content="2017-12-13T05:11:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mobx学习笔记">
+<meta name="twitter:description" content="简单、高扩展的状态管理库 安装npm install mobx --save 配合React: npm install mobx-react --save 概述MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。 MobX的思想非常简单：来源于应用的状态的任何事物，都能被自动获得。">
+<meta name="twitter:image" content="https://mah93.github.io/2017/12/13/mobx-introduce/flow.png">
   
-  <title>
-    
-      mobx学习笔记 | mah93
-    
-  </title>
-  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+    <link rel="alternative" href="/atom.xml" title="mah93" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/plugins/gitment.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
-  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
-  <script src="/js/qrious.js"></script>
-<script src="/js/gitment.js"></script>
+  
+
 </head>
-<div class="wechat-share">
-  <img src="/css/images/logo.png" />
-</div>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-mobx-introduce" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mobx学习笔记
+    </h1>
+  
 
-  <body>
-    <header class="header fixed-header">
-  <div class="header-container">
-    <a class="home-link" href="/">
-      <div class="logo"></div>
-      <span>mah93</span>
-    </a>
-    <ul class="right-list">
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/13/mobx-introduce/" class="article-date">
+  <time datetime="2017-12-13T05:05:17.000Z" itemprop="datePublished">2017-12-13</time>
+</a>
       
-        <li class="list-item">
-          
-            <a href="/" class="item-link">Home</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/tags/" class="item-link">Tags</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/archives/" class="item-link">Archives</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/about/" class="item-link">About</a>
-          
-        </li>
-      
-    </ul>
-    <div class="menu">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
     </div>
-    <div class="menu-mask">
-      <ul class="menu-list">
-        
-          <li class="menu-item">
-            
-              <a href="/" class="menu-link">Home</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/tags/" class="menu-link">Tags</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/archives/" class="menu-link">Archives</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/about/" class="menu-link">About</a>
-            
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</header>
-
-    <div id="article-banner">
-  <h2>mobx学习笔记</h2>
-  <p class="post-date">2017-12-13</p>
-  <div class="arrow-down">
-    <a href="javascript:;"></a>
-  </div>
-</div>
-<main class="app-body flex-box">
-  <!-- Article START -->
-  <article class="post-article">
-    <section class="markdown-content"><p><em>简单、高扩展的状态管理库</em></p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>简单、高扩展的状态管理库</em></p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>npm install mobx --save</code></p>
 <p>配合React: <code>npm install mobx-react --save</code></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。</p>
@@ -145,168 +91,90 @@
 <h3 id="以模块为标准划分"><a href="#以模块为标准划分" class="headerlink" title="以模块为标准划分"></a>以模块为标准划分</h3><p>文件夹按照一个个页面功能划分，如首页、注册登录模块、我的模块等，每个文件夹下存放该模块的页面、逻辑等所有涉及到该模块的代码。</p>
 <p>这样的划分的好处是，文件结构可以与设计的页面对应起来。划分出一个个独立的模块，实现该模块的所有或者说大部分的代码都在同一个文件夹，易于拆分。</p>
 <p>但当模块与模块之间有交互或者跳转的时候，就会横跨几个文件夹，难以对照。又或者模块之间有共用组件的时候就变得十分难以划分。无论将共用组件放到哪里，都不合适。放在其中一个模块中，另一个模块去引用的时候十分困难。两边都放上代码，但是十分麻烦。要是再用一个与模块同级的文件夹，那各个模块又不能真正“独立”起来。</p>
-</section>
-    <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
+
+      
+
+      
         
-  <a href="/tags#Mobx" >
-    <span class="tag-code">Mobx</span>
-  </a>
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/23/locust-introduce/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Locust使用说明
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/01/who-is-this/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">this到底指的是谁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/mah93" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
 
       </div>
-    
-    <!-- Tags END -->
-    <!-- 打赏 START -->
-    
-    <!-- 打赏 END -->
-    <!-- 二维码 START -->
-    <!--<div class="qrcode">-->
-      <!--<canvas id="share-qrcode"></canvas>-->
-      <!--<p class="notice">扫描二维码，分享此文章</p>-->
-    <!--</div>-->
-    <!-- 二维码 END -->
-    
-      <!-- No Comment -->
-    
-  </article>
-  <!-- Article END -->
-  <!-- Catalog START -->
+      <footer id="footer">
   
-  <!-- Catalog END -->
-</main>
-
-<script>
-  (function () {
-    var url = 'https://mah93.github.io/2017/12/13/mobx-introduce/';
-    var banner = 'http://file.muyutech.com/about.jpg'
-    if (banner == '' || banner ==undefined || banner == null) {
-      $('#article-banner').css({
-        'background-image': 'url(' + banner + ')'
-      })
-    } else {
-      $('#article-banner').geopattern(url)
-    }
-    $('.header').removeClass('fixed-header')
-
-     // error image
-    $(".markdown-content img").on('error', function() {
-      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
-      $(this).css({
-        'cursor': 'default'
-      })
-    })
-
-    // zoom image
-    $(".markdown-content img").on('click', function() {
-      var src = $(this).attr('src')
-      if (src !== 'http://file.muyutech.com/error-img.png') {
-        var imageW = $(this).width()
-        var imageH = $(this).height()
-        
-        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
-        zoom = zoom < 1 ? 1 : zoom
-        zoom = zoom > 2 ? 2 : zoom
-        var transY = (($(window).height() - imageH) / 2).toFixed(2)
-
-        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
-        $('.image-view-wrap').addClass('wrap-active')
-        $('.image-view-wrap img').css({
-          'width': `${imageW}`,
-          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
-        })
-        $('html').css('overflow', 'hidden')
-
-        $('.image-view-wrap').on('click', function() {
-          $(this).remove()
-          $('html').attr('style', '')
-        })
-      }
-    })
-
-    // qrcode
-    var qr = new QRious({
-      element: document.getElementById('share-qrcode'),
-      value: document.location.href
-    });
-
-    // gitment
-    var gitmentConfig = "";
-    if (gitmentConfig !== 'undefined') {
-      var gitment = new Gitment({
-        id: "mobx学习笔记",
-        owner: "",
-        repo: "",
-        oauth: {
-          client_id: "",
-          client_secret: ""
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
-      })
-      gitment.render(document.getElementById('comments'))
-    }
-  })();
-</script>
-
-    <div class="scroll-top">
-  <span class="arrow-icon"></span>
-</div>
-    <footer class="app-footer">
-  <p class="copyright">
-    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
-    <br>
-  </p>
+	<div id="footer-info" class="inner">
+	  &copy; 2017 mah93 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
 </footer>
 
-<script>
-  function async(u, c) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-</script>
-<script>
-  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-    FastClick.attach(document.body);
-  })
-</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/mah93" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
 
-<script>
-  var hasLine = 'true';
-  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
-    $('figure pre').each(function(i, block) {
-      var figure = $(this).parents('figure');
-      if (hasLine == 'false') {
-        figure.find('.gutter').hide();
-      }
-      var lang = figure.attr('class').split(' ')[1] || 'code';
-      var codeHtml = $(this).html();
-      var codeTag = document.createElement('code');
-      codeTag.className = lang;
-      codeTag.innerHTML = codeHtml;
-      $(this).attr('class', '').empty().html(codeTag);
-      figure.attr('data-lang', lang.toUpperCase());
-      hljs.highlightBlock(block);
-    });
-  })
-</script>
-<!-- Baidu Tongji -->
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
 
 <script src="/js/script.js"></script>
-  </body>
+
+  </div>
+</body>
 </html>

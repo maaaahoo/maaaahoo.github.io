@@ -1,115 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-  <meta name="description" content="mah93&#39;s blog">
-  <meta name="keyword" content="hexo-theme">
+<head>
+  <meta charset="utf-8">
   
-    <link rel="shortcut icon" href="/css/images/logo.png">
+  <title>Dva兼容性 | mah93</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Dva项目兼容性之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。 Fetch之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自">
+<meta name="keywords" content="React,Dva">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva兼容性">
+<meta property="og:url" content="https://mah93.github.io/2017/10/10/dva-compatible/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="Dva项目兼容性之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。 Fetch之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自">
+<meta property="og:image" content="https://mah93.github.io/2017/10/10/dva-compatible/fetch兼容性.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/10/dva-compatible/68747470733a2f2f73617563656c6162732e636f6d2f6f70656e5f73617563652f6275696c645f6d61747269782f6178696f732e737667.svg">
+<meta property="og:updated_time" content="2017-10-21T08:45:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dva兼容性">
+<meta name="twitter:description" content="Dva项目兼容性之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。 Fetch之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自">
+<meta name="twitter:image" content="https://mah93.github.io/2017/10/10/dva-compatible/fetch兼容性.png">
   
-  <title>
-    
-      Dva兼容性 | mah93
-    
-  </title>
-  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
-  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+    <link rel="alternative" href="/atom.xml" title="mah93" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/plugins/gitment.css">
-  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
-  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
-  <script src="/js/qrious.js"></script>
-<script src="/js/gitment.js"></script>
+  
+
 </head>
-<div class="wechat-share">
-  <img src="/css/images/logo.png" />
-</div>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <section id="main"><article id="post-dva-compatible" class="article article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dva兼容性
+    </h1>
+  
 
-  <body>
-    <header class="header fixed-header">
-  <div class="header-container">
-    <a class="home-link" href="/">
-      <div class="logo"></div>
-      <span>mah93</span>
-    </a>
-    <ul class="right-list">
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/10/10/dva-compatible/" class="article-date">
+  <time datetime="2017-10-10T11:02:32.000Z" itemprop="datePublished">2017-10-10</time>
+</a>
       
-        <li class="list-item">
-          
-            <a href="/" class="item-link">Home</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/tags/" class="item-link">Tags</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/archives/" class="item-link">Archives</a>
-          
-        </li>
-      
-        <li class="list-item">
-          
-            <a href="/about/" class="item-link">About</a>
-          
-        </li>
-      
-    </ul>
-    <div class="menu">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
     </div>
-    <div class="menu-mask">
-      <ul class="menu-list">
-        
-          <li class="menu-item">
-            
-              <a href="/" class="menu-link">Home</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/tags/" class="menu-link">Tags</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/archives/" class="menu-link">Archives</a>
-            
-          </li>
-        
-          <li class="menu-item">
-            
-              <a href="/about/" class="menu-link">About</a>
-            
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</header>
-
-    <div id="article-banner">
-  <h2>Dva兼容性</h2>
-  <p class="post-date">2017-10-10</p>
-  <div class="arrow-down">
-    <a href="javascript:;"></a>
-  </div>
-</div>
-<main class="app-body flex-box">
-  <!-- Article START -->
-  <article class="post-article">
-    <section class="markdown-content"><h2 id="Dva项目兼容性"><a href="#Dva项目兼容性" class="headerlink" title="Dva项目兼容性"></a>Dva项目兼容性</h2><p>之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Dva项目兼容性"><a href="#Dva项目兼容性" class="headerlink" title="Dva项目兼容性"></a>Dva项目兼容性</h2><p>之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。</p>
 <h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><p>之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自带的请求框架，就没有深入的学习。查询一系列资料之后，将fetch的知识学习了一遍。</p>
 <p>Fetch API 是基于 Promise 设计，在你理解了Promise之后，Fetch对于你来说并不困难，通过阅读文档很快就能学会。推荐推荐 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch" target="_blank" rel="external">MDN Fetch 教程</a> 和 万能的<a href="https://fetch.spec.whatwg.org/" target="_blank" rel="external">WHATWG Fetch 规范</a>。由于旧的浏览器并不支持Promise，所以导致了Fetch的局限性。</p>
 <p>Fetch原生支持率：</p>
@@ -159,172 +106,90 @@
 <p>在编译之前将index.js的相对路径改成绝对路径、</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> */</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>index.css同理</p>
-</section>
-    <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
-        
-  <a href="/tags#React" >
-    <span class="tag-code">React</span>
-  </a>
 
-  <a href="/tags#Dva" >
-    <span class="tag-code">Dva</span>
-  </a>
+      
+
+      
+        
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/19/app-develop-mode/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          App开发模式简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/01/dva-deploy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Dva项目部署至Nginx服务器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        <aside id="sidebar">
+  <nav class="menus">
+  	<ul>
+  		<li><a href="/"><i class="icon icon-home"></i></a></li>
+  		
+			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
+  		
+  		
+			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
+  		
+  		
+  			<li><a href="https://github.com/mah93" target="_blank"><i class="icon icon-github"></i></a></li>
+  		
+  	</ul>
+  </nav>
+  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
+</aside>
 
       </div>
-    
-    <!-- Tags END -->
-    <!-- 打赏 START -->
-    
-    <!-- 打赏 END -->
-    <!-- 二维码 START -->
-    <!--<div class="qrcode">-->
-      <!--<canvas id="share-qrcode"></canvas>-->
-      <!--<p class="notice">扫描二维码，分享此文章</p>-->
-    <!--</div>-->
-    <!-- 二维码 END -->
-    
-      <!-- No Comment -->
-    
-  </article>
-  <!-- Article END -->
-  <!-- Catalog START -->
+      <footer id="footer">
   
-  <!-- Catalog END -->
-</main>
-
-<script>
-  (function () {
-    var url = 'https://mah93.github.io/2017/10/10/dva-compatible/';
-    var banner = 'http://file.muyutech.com/about.jpg'
-    if (banner == '' || banner ==undefined || banner == null) {
-      $('#article-banner').css({
-        'background-image': 'url(' + banner + ')'
-      })
-    } else {
-      $('#article-banner').geopattern(url)
-    }
-    $('.header').removeClass('fixed-header')
-
-     // error image
-    $(".markdown-content img").on('error', function() {
-      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
-      $(this).css({
-        'cursor': 'default'
-      })
-    })
-
-    // zoom image
-    $(".markdown-content img").on('click', function() {
-      var src = $(this).attr('src')
-      if (src !== 'http://file.muyutech.com/error-img.png') {
-        var imageW = $(this).width()
-        var imageH = $(this).height()
-        
-        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
-        zoom = zoom < 1 ? 1 : zoom
-        zoom = zoom > 2 ? 2 : zoom
-        var transY = (($(window).height() - imageH) / 2).toFixed(2)
-
-        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
-        $('.image-view-wrap').addClass('wrap-active')
-        $('.image-view-wrap img').css({
-          'width': `${imageW}`,
-          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
-        })
-        $('html').css('overflow', 'hidden')
-
-        $('.image-view-wrap').on('click', function() {
-          $(this).remove()
-          $('html').attr('style', '')
-        })
-      }
-    })
-
-    // qrcode
-    var qr = new QRious({
-      element: document.getElementById('share-qrcode'),
-      value: document.location.href
-    });
-
-    // gitment
-    var gitmentConfig = "";
-    if (gitmentConfig !== 'undefined') {
-      var gitment = new Gitment({
-        id: "Dva兼容性",
-        owner: "",
-        repo: "",
-        oauth: {
-          client_id: "",
-          client_secret: ""
-        },
-        theme: {
-          render(state, instance) {
-            const container = document.createElement('div')
-            container.lang = "en-US"
-            container.className = 'gitment-container gitment-root-container'
-            container.appendChild(instance.renderHeader(state, instance))
-            container.appendChild(instance.renderEditor(state, instance))
-            container.appendChild(instance.renderComments(state, instance))
-            container.appendChild(instance.renderFooter(state, instance))
-            return container;
-          }
-        }
-      })
-      gitment.render(document.getElementById('comments'))
-    }
-  })();
-</script>
-
-    <div class="scroll-top">
-  <span class="arrow-icon"></span>
-</div>
-    <footer class="app-footer">
-  <p class="copyright">
-    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
-    <br>
-  </p>
+	<div id="footer-info" class="inner">
+	  &copy; 2017 mah93 
+	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
+	</div>
 </footer>
 
-<script>
-  function async(u, c) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-</script>
-<script>
-  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-    FastClick.attach(document.body);
-  })
-</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tag</a>
+  
+    <a href="https://github.com/mah93" class="mobile-nav-link">Github</a>
+  
+</nav>
+    
 
-<script>
-  var hasLine = 'true';
-  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
-    $('figure pre').each(function(i, block) {
-      var figure = $(this).parents('figure');
-      if (hasLine == 'false') {
-        figure.find('.gutter').hide();
-      }
-      var lang = figure.attr('class').split(' ')[1] || 'code';
-      var codeHtml = $(this).html();
-      var codeTag = document.createElement('code');
-      codeTag.className = lang;
-      codeTag.innerHTML = codeHtml;
-      $(this).attr('class', '').empty().html(codeTag);
-      figure.attr('data-lang', lang.toUpperCase());
-      hljs.highlightBlock(block);
-    });
-  })
-</script>
-<!-- Baidu Tongji -->
+<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
 
 <script src="/js/script.js"></script>
-  </body>
+
+  </div>
+</body>
 </html>
