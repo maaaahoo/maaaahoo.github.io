@@ -1,64 +1,333 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>Dva项目部署至Nginx服务器 | mah93</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地 123$ git clone 你的dva项目$ cd project$ n">
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="React,Dva,Nginx," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地123$ git clone 你的dva项目$ cd project$ n">
 <meta name="keywords" content="React,Dva,Nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dva项目部署至Nginx服务器">
 <meta property="og:url" content="https://mah93.github.io/2017/10/01/dva-deploy/index.html">
 <meta property="og:site_name" content="mah93">
-<meta property="og:description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地 123$ git clone 你的dva项目$ cd project$ n">
-<meta property="og:updated_time" content="2017-10-21T08:45:47.000Z">
+<meta property="og:description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地123$ git clone 你的dva项目$ cd project$ n">
+<meta property="og:image" content="https://mah93.github.io/2017/10/01/dva-deploy/dva_logo.jpg">
+<meta property="og:updated_time" content="2018-02-01T09:56:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dva项目部署至Nginx服务器">
-<meta name="twitter:description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地 123$ git clone 你的dva项目$ cd project$ n">
+<meta name="twitter:description" content="前言dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考这里项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。 部署前准备在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地123$ git clone 你的dva项目$ cd project$ n">
+<meta name="twitter:image" content="https://mah93.github.io/2017/10/01/dva-deploy/dva_logo.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mah93.github.io/2017/10/01/dva-deploy/"/>
+
+
+
+
+
+  <title>Dva项目部署至Nginx服务器 | mah93</title>
   
-    <link rel="alternative" href="/atom.xml" title="mah93" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div class="outer">
-        <section id="main"><article id="post-dva-deploy" class="article article-type-post" itemscope itemprop="blogPost">
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
   
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Dva项目部署至Nginx服务器
-    </h1>
   
 
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mah93</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/01/dva-deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Dva项目部署至Nginx服务器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-01T22:31:10+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/10/01/dva-deploy/" class="article-date">
-  <time datetime="2017-10-01T14:31:10.000Z" itemprop="datePublished">2017-10-01</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
-<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure>
+
+      
+        <img src="/2017/10/01/dva-deploy/dva_logo.jpg" alt="dva_logo.jpg" title="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
+<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure></p>
 <p>成功下载完所有配置文件之后执行，再次确认你的项目可以正确访问</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm start</div></pre></td></tr></table></figure>
 <p>即可自动打开浏览器的8000端口，成功运行该项目，如果没有自动弹出则访问<a href="http://localhost:8000/" target="_blank" rel="external">localhost:8000/</a></p>
+<a id="more"></a> 
 <h2 id="部署配置"><a href="#部署配置" class="headerlink" title="部署配置"></a>部署配置</h2><p>在项目中的.roadhogrc文件中删除以下配置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;proxy&quot;: &#123;</div><div class="line">  &quot;/api&quot;: &#123;</div><div class="line">  &quot;target&quot;: 你的后台服务地址,</div><div class="line">  &quot;changeOrigin&quot;: true,</div><div class="line">  &quot;pathRewrite&quot;: &#123; &quot;^/api&quot; : &quot;&quot; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>之后进入命令行，执行编译操作</p>
@@ -104,88 +373,394 @@
 <p>成功之后访问服务器即可看到项目首页</p>
 
       
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/Dva/" rel="tag"># Dva</a>
+          
+            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+          
+        </div>
+      
 
       
-        
-    </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/01/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/10/dva-compatible/" rel="prev" title="Dva兼容性">
+                Dva兼容性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
     
-<nav id="article-nav">
-  
-    <a href="/2017/10/10/dva-compatible/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Dva兼容性
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/10/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
+    <div class="sidebar-inner">
 
-  
-</article>
+      
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-</section>
-        <aside id="sidebar">
-  <nav class="menus">
-  	<ul>
-  		<li><a href="/"><i class="icon icon-home"></i></a></li>
-  		
-			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
-  		
-  		
-			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
-  		
-  		
-  			<li><a href="https://github.com/mah93" target="_blank"><i class="icon icon-github"></i></a></li>
-  		
-  	</ul>
-  </nav>
-  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
-</aside>
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mah93</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
 
-      </div>
-      <footer id="footer">
-  
-	<div id="footer-info" class="inner">
-	  &copy; 2017 mah93 
-	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
-	</div>
-</footer>
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mah93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署前准备"><span class="nav-number">2.</span> <span class="nav-text">部署前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署配置"><span class="nav-number">3.</span> <span class="nav-text">部署配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx简介"><span class="nav-number">3.1.</span> <span class="nav-text">nginx简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nginx"><span class="nav-number">4.</span> <span class="nav-text">安装nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx安装常见问题"><span class="nav-number">5.</span> <span class="nav-text">nginx安装常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少pcre"><span class="nav-number">5.1.</span> <span class="nav-text">缺少pcre</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少gcc-c-和libtool"><span class="nav-number">5.2.</span> <span class="nav-text">缺少gcc-c++和libtool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺少zlib库"><span class="nav-number">5.3.</span> <span class="nav-text">缺少zlib库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx配置"><span class="nav-number">6.</span> <span class="nav-text">nginx配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
 
     </div>
-    <nav id="mobile-nav">
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tag</a>
-  
-    <a href="https://github.com/mah93" class="mobile-nav-link">Github</a>
-  
-</nav>
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
 
-<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>

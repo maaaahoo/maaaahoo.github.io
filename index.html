@@ -1,56 +1,325 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>mah93</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
 <meta property="og:title" content="mah93">
 <meta property="og:url" content="https://mah93.github.io/index.html">
 <meta property="og:site_name" content="mah93">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mah93">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mah93.github.io/"/>
+
+
+
+
+
+  <title>mah93</title>
   
-    <link rel="alternative" href="/atom.xml" title="mah93" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css">
-  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
 
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <div class="outer">
-        <section id="main">
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
   
-    <article id="post-locust-introduce" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/23/locust-introduce/">Locust使用说明</a>
-    </h1>
   
 
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mah93</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/12/23/locust-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/locust-introduce/" itemprop="url">Locust使用说明</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-23T22:13:20+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/12/23/locust-introduce/" class="article-date">
-  <time datetime="2017-12-23T14:13:20.000Z" itemprop="datePublished">2017-12-23</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://github.com/locustio/locust" target="_blank" rel="external">Locust</a> 是一个开源负载测试工具。使用python代码定义用户行为，也可以仿真百万个用户。</p>
+
+      
+        
+          <img src="/2017/12/23/locust-introduce/locust_logo@2x.png" alt="locust_logo@2x.png" title="">
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a href="https://github.com/locustio/locust" target="_blank" rel="external">Locust</a> 是一个开源负载测试工具。使用python代码定义用户行为，也可以仿真百万个用户。</p>
 <p>Locust 是非常简单易用，分布式，用户负载测试工具。Locust 主要为网站或者其他系统进行负载测试，能测试出一个系统可以并发处理多少用户。</p>
 <p>Locust 是完全基于时间的，因此单个机器支持几千个并发用户。相比其他许多事件驱动的应用，Locust 不使用回调，而是使用轻量级的处理方式gevent。</p>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
@@ -59,290 +328,516 @@
 <li>基于 Web 的 UI</li>
 <li>可以测试任意系统；虽然 Locust 是面向 Web 的，但是也可以测试其他任意的系统</li>
 </ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><p>安装Python2 或Python3，通过命令行或者是官网安装</p>
-<h3 id="安装Locust"><a href="#安装Locust" class="headerlink" title="安装Locust"></a>安装Locust</h3><p>通过pip命令安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip  install --index https://pypi.mirrors.ustc.edu.cn/simple/ locust</div></pre></td></tr></table></figure>
-<p>安装完成后，命令行中验证</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust --help</div></pre></td></tr></table></figure>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建test-py"><a href="#创建test-py" class="headerlink" title="创建test.py"></a>创建test.py</h3><p>创建一个test.py，然后编辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">from locust import HttpLocust, TaskSet, task</div><div class="line"></div><div class="line">class WebsiteTasks(TaskSet):</div><div class="line">    def on_start(self):</div><div class="line">        pass</div><div class="line">        </div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.post(&quot;/login&quot;, &#123;</div><div class="line">            &quot;username&quot;: &quot;test_user&quot;,</div><div class="line">            &quot;password&quot;: &quot;&quot;</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.get(&quot;/&quot;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def about(self):</div><div class="line">        self.client.get(&quot;/about/&quot;)</div><div class="line"></div><div class="line">class WebsiteUser(HttpLocust):</div><div class="line">    task_set = WebsiteTasks</div><div class="line">    min_wait = 5000</div><div class="line">    max_wait = 15000</div></pre></td></tr></table></figure>
-<p>task_set：任务指定的方法</p>
-<p>min_wait：最小等待时间（ms）</p>
-<p>max_ wait：最大等待时间（ms）</p>
-<p>on_start：会首先执行该方法</p>
-<p>@task（1）：单个任务（权重）</p>
-<p>每次执行任务，会在最小等待时间到最大等待时间中随机执行，按照task的权重执行某一任务</p>
-<h3 id="自定义成功失败"><a href="#自定义成功失败" class="headerlink" title="自定义成功失败"></a>自定义成功失败</h3><p>locust会根据一次请求的状态码来确定该次请求是否成功，并表现在界面上。</p>
-<p>当需要测试的接口，涉及到业务。就需要根据返回的数据来判断该次请求是否成功</p>
-<p>需要将post请求改成以下方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with self.client.post(&quot;/login&quot;, &#123;&quot;username&quot;: &quot;test_user&quot;,&quot;password&quot;: &quot;123&quot;&#125;) as response:</div><div class="line">        response.success(&apos;success&apos;)//成功</div><div class="line">        response.failure(&apos;error&apos;)//失败</div></pre></td></tr></table></figure>
-<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>编辑完test.py之后，在命令行中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust -f ./test.py --host=你的服务器地址</div></pre></td></tr></table></figure>
-<p>没有报错之后，打开本地8089端口，即可看到locust的测试页面</p>
-<img src="/2017/12/23/locust-introduce/locust.png" alt="This is an example image" title="This is an example image">
-<p>输入所需测试强度，即可开始测试。</p>
-
-      
-
-      
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/locust-introduce/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-mobx-introduce" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/13/mobx-introduce/">mobx学习笔记</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/12/13/mobx-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/13/mobx-introduce/" itemprop="url">mobx学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-13T13:05:17+08:00">
+                2017-12-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/12/13/mobx-introduce/" class="article-date">
-  <time datetime="2017-12-13T05:05:17.000Z" itemprop="datePublished">2017-12-13</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <p><em>简单、高扩展的状态管理库</em></p>
+
+      
+        
+          <img src="/2017/12/13/mobx-introduce/mobx_logo@2x.png" alt="mobx_logo@2x.png" title="">
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><code>npm install mobx --save</code></p>
 <p>配合React: <code>npm install mobx-react --save</code></p>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>MobX 是一个通过对开发者透明的函数响应式编程（TFRP）方式，让状态管理（state management）变得简单、具有高扩展性的库，并且这个库经过了严格的测试。</p>
 <p>MobX的思想非常简单：来源于应用的状态的任何事物，都能被自动获得。</p>
 <p>包括UI、数据变更、与服务器通信等等。</p>
-<img src="/2017/12/13/mobx-introduce/flow.png" alt="This is an example image" title="This is an example image">
-<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="可观察的状态（observable-state）"><a href="#可观察的状态（observable-state）" class="headerlink" title="可观察的状态（observable state）"></a>可观察的状态（observable state）</h3><p>MobX 给已有的数据结构增加了可观察的能力（如对象、数组、类实例等）。你只需要很简单地使用<a href="http://mobxjs.github.io/mobx/refguide/observable-decorator.html" target="_blank" rel="external">@observable</a> 装饰你的类属性（property）即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">class Todo &#123;</div><div class="line">    id = Math.random();</div><div class="line">    @observable title = &quot;&quot;;</div><div class="line">    @observable finished = false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="计算值（Computed-values）"><a href="#计算值（Computed-values）" class="headerlink" title="计算值（Computed values）"></a>计算值（Computed values）</h3><p>使用 MobX，你可以很容易的定义计算值，当相关数据变化时，计算值会自动发生变化。 计算值可以通过使用 <a href="http://mobxjs.github.io/mobx/refguide/computed-decorator.html" target="_blank" rel="external"><code>@computed</code></a> 装饰器声明，也可以通过 <code>(extend)Observable</code> 配合 getter/setter 函数进行声明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class TodoList &#123;</div><div class="line">    @observable todos = [];</div><div class="line">    @computed get unfinishedTodoCount() &#123;</div><div class="line">        return this.todos.filter(todo =&gt; !todo.finished).length;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>MobX 会确保当一个 todo 增加或者当 <code>finished</code> 改变时， <code>unfinishedTodoCount</code> 是自动更新的。 计算值类似于电子表格程序的公式。它们的更新永远是自动的，并且只在需要的时候更新。</p>
-<h3 id="observer"><a href="#observer" class="headerlink" title="@observer"></a>@observer</h3><p><code>observer</code> 函数/装饰器可以用来将 React 组件转变成响应式组件。当被监听的变量更改的时候，引用到该变量的组件会相应重新渲染。</p>
-<p>当组件之间有嵌套情况的时候，向子组件传递的是引用，而不是该引用的值。</p>
-<h3 id="action-动作"><a href="#action-动作" class="headerlink" title="action (动作)"></a>action (动作)</h3><p>用法:</p>
-<ul>
-<li><code>action(fn)</code></li>
-<li><code>action(name, fn)</code></li>
-<li><code>@action classMethod() {}</code></li>
-<li><code>@action(name) classMethod () {}</code></li>
-<li><code>@action boundClassMethod = (args) =&gt; { body }</code></li>
-<li><code>@action(name) boundClassMethod = (args) =&gt; { body }</code></li>
-<li><code>@action.bound classMethod() {}</code></li>
-<li><code>@action.bound(function() {})</code></li>
-</ul>
-<p>任何应用都有动作。动作是任何用来修改状态的东西。 action就是用来修饰改变观察值的函数。</p>
-<p>mobx还有很多其他的函数以及方法，这里只介绍了其中最常用的四个，其他的功能可以在 <a href="http://cn.mobx.js.org/" target="_blank" rel="external">mobx官网</a> 中查看。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>下面是一个简单的mobx应用，一个父组件包含着两个子组件。当其中一个子组件发生改变时，不会触发另一个组件的重新渲染，从而达到了我们的预期需求：只有发生改变的地方需要重新渲染。实际开发的时候只需要将可能会发生改变的组件独立出来，每次只更新一个组件或几个组件。尽可能减少render函数的负担，提高react-native的重绘能力。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">class MyState &#123;</div><div class="line">  @observable num1 = 0;</div><div class="line">  @observable num2 = 100;</div><div class="line"></div><div class="line">  @action addNum1 = () =&gt; &#123;</div><div class="line">    this.num1 ++;</div><div class="line">  &#125;;</div><div class="line">  @action addNum2 = () =&gt; &#123;</div><div class="line">    this.num2 ++;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const newState = new MyState();</div><div class="line"></div><div class="line">const AllNum = observer((props) =&gt; &#123;</div><div class="line">  console.log(&apos;刷新all&apos;);</div><div class="line">  return (</div><div class="line">    &lt;View&gt;</div><div class="line">      &lt;Text&gt;num2 = &#123;props.store.num2&#125;&lt;/Text&gt;</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Button onPress=&#123;props.store.addNum2&#125; title=&quot;button2&quot; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    &lt;/View&gt;</div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">const Main = observer((props) =&gt; &#123;</div><div class="line">  console.log(&apos;刷新main&apos;);</div><div class="line">  return (</div><div class="line">    &lt;View&gt;</div><div class="line">      &lt;Text&gt;num1 = &#123;props.store.num1&#125;&lt;/Text&gt;</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Button onPress=&#123;props.store.addNum1&#125; title=&quot;button1&quot; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    &lt;/View&gt;</div><div class="line">  );</div><div class="line">&#125;);</div><div class="line"></div><div class="line">@observer</div><div class="line">export default class Asset extends PureComponent &#123;</div><div class="line">  render() &#123;</div><div class="line">    return (</div><div class="line">      &lt;View&gt;</div><div class="line">        &lt;Main store=&#123;newState&#125; /&gt;</div><div class="line">        &lt;AllNum store=&#123;newState&#125; /&gt;</div><div class="line">      &lt;/View&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>引入mobx做为项目的数据管理，势必会带来代码量增加等问题。我们可以在项目目录结构上作出相应调整，以便于更好的开发。</p>
-<h3 id="以功能为标准划分"><a href="#以功能为标准划分" class="headerlink" title="以功能为标准划分"></a>以功能为标准划分</h3><p>将文件夹按照功能区分，比如pages下存放所有的页面，logics下存放所有的mobx的逻辑等。</p>
-<p>这样的结构可以一眼就划分出每个js的功能，每个文件夹下存放着相同功能的js。</p>
-<p>带来的问题就是，页面与逻辑不在一个地方。查找起来十分麻烦，pages下的子目录与logics下的子目录结构是相似的或者是相同的，刚接触的时候容易搞混。当功能变动，或者是整体迁移的时候，涉及页面零散不易拆分。</p>
-<h3 id="以模块为标准划分"><a href="#以模块为标准划分" class="headerlink" title="以模块为标准划分"></a>以模块为标准划分</h3><p>文件夹按照一个个页面功能划分，如首页、注册登录模块、我的模块等，每个文件夹下存放该模块的页面、逻辑等所有涉及到该模块的代码。</p>
-<p>这样的划分的好处是，文件结构可以与设计的页面对应起来。划分出一个个独立的模块，实现该模块的所有或者说大部分的代码都在同一个文件夹，易于拆分。</p>
-<p>但当模块与模块之间有交互或者跳转的时候，就会横跨几个文件夹，难以对照。又或者模块之间有共用组件的时候就变得十分难以划分。无论将共用组件放到哪里，都不合适。放在其中一个模块中，另一个模块去引用的时候十分困难。两边都放上代码，但是十分麻烦。要是再用一个与模块同级的文件夹，那各个模块又不能真正“独立”起来。</p>
-
-      
-
-      
+<img src="/2017/12/13/mobx-introduce/flow.png" alt="flow.png" title="">
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/13/mobx-introduce/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-who-is-this" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/01/who-is-this/">this到底指的是谁</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/12/01/who-is-this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/01/who-is-this/" itemprop="url">this到底指的是谁</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-01T18:47:04+08:00">
+                2017-12-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/12/01/who-is-this/" class="article-date">
-  <time datetime="2017-12-01T10:47:04.000Z" itemprop="datePublished">2017-12-01</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>JavaScript中的this依赖于函数的调用方式，因此把this称为调用上下文很合适。</p>
+
+      
+        
+          <img src="/2017/12/01/who-is-this/who_logo.jpg" alt="who_logo.jpg" title="">
+<p>JavaScript中的this依赖于函数的调用方式，因此把this称为调用上下文很合适。</p>
 <p>先来一个最简单的例子</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function ask()&#123;</div><div class="line">  console.log(this.name)</div><div class="line">&#125;</div><div class="line">var li_lei = &#123;</div><div class="line">  name: &quot;han mei mei&quot;,</div><div class="line">  ask: ask</div><div class="line">&#125;</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;han mei mei&quot;</div></pre></td></tr></table></figure>
 <p>稍微复杂一点</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var li_lei = &#123;</div><div class="line">  name: &quot;li lei&quot;,</div><div class="line">  ask: function ()&#123;</div><div class="line">    console.log(this.name)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var han_mei_mei = &#123;</div><div class="line">  name: &quot;han_mei_mei&quot;,</div><div class="line">  ask: li_lei.ask</div><div class="line">&#125;</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;han mei mei&quot;</div></pre></td></tr></table></figure>
-<p>根据上面的两个例子引出一个概念，请记住：</p>
-<h5 id="function中的this一般情况下表示的是调用对象（调用对象-方法名-）"><a href="#function中的this一般情况下表示的是调用对象（调用对象-方法名-）" class="headerlink" title="function中的this一般情况下表示的是调用对象（调用对象.方法名()）"></a>function中的this一般情况下表示的是调用对象（调用对象.方法名()）</h5><p>那么接下来需要考虑一个问题，在js里经常把function作为回调函数传来传去，用什么手段可以让function中的this保持不变？</p>
-<h3 id="让function中的this“保持不变”"><a href="#让function中的this“保持不变”" class="headerlink" title="让function中的this“保持不变”"></a>让function中的this“保持不变”</h3><p>使用bind方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var li_lei = &#123;</div><div class="line">  name: &quot;li lei&quot;,</div><div class="line">  _ask: function()&#123;</div><div class="line">    console.log(this.name)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">li_lei.ask = li_lei._ask.bind(li_lei)</div><div class="line"></div><div class="line">var han_mei_mei = &#123;</div><div class="line">  name: &quot;han mei mei&quot;</div><div class="line">&#125;</div><div class="line">han_mei_mei.ask = li_lei.ask</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;li lei&quot;</div></pre></td></tr></table></figure>
-<p>改成用类来举例（类的声明用es6语法）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">class LiLei &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.name = &quot;li lei&quot;;</div><div class="line">    this.ask = this._ask.bind(this);</div><div class="line">  &#125;</div><div class="line">  _ask()&#123;</div><div class="line">    console.log(this.name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var li_lei = new LiLei();</div><div class="line"></div><div class="line">class HanMeiMei &#123;</div><div class="line">  constructor(li_lei_instance)&#123;</div><div class="line">    this.name = &quot;han mei mei&quot;;</div><div class="line">    this.ask = li_lei_instance.ask</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var han_mei_mei = new HanMeiMei(li_lei)</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;li lei</div></pre></td></tr></table></figure>
-<p>不使用bind实现同样的效果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class LiLei &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.name = &quot;li lei&quot;;</div><div class="line">	</div><div class="line">	var that = this;</div><div class="line">	this.ask = function()&#123;</div><div class="line">      console.log(that.name);</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var li_lei = new LiLei();</div><div class="line"></div><div class="line">class HanMeiMei &#123;</div><div class="line">  constructor(li_lei_instance)&#123;</div><div class="line">    this.name = &quot;han mei mei&quot;;</div><div class="line">    this.ask = li_lei_instance.ask</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var han_mei_mei = new HanMeiMei(li_lei)</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;li lei</div></pre></td></tr></table></figure>
-<p>变复杂一点</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">class LiLei &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.name = &quot;li lei&quot;;</div><div class="line">    this.ask = this.bind_ask();</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  bind_ask()&#123;</div><div class="line">    var that = this;</div><div class="line">    var fun = function()&#123;</div><div class="line">      console.log(that.name);</div><div class="line">    &#125;</div><div class="line">    return fun;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var li_lei = new LiLei();</div><div class="line"></div><div class="line">class HanMeiMei &#123;</div><div class="line">  constructor(li_lei_instance)&#123;</div><div class="line">    this.name = &quot;han mei mei&quot;;</div><div class="line">    this.ask = li_lei_instance.ask</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var han_mei_mei = new HanMeiMei(li_lei)</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;li lei</div></pre></td></tr></table></figure>
-<p>使用ES6中的箭头函数来实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class LiLei &#123;</div><div class="line">  constructor() &#123;</div><div class="line">    this.name = &quot;li lei&quot;;</div><div class="line">    this.ask = () =&gt; &#123;</div><div class="line">      console.log(this.name)</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var li_lei = new LiLei();</div><div class="line"></div><div class="line">class HanMeiMei &#123;</div><div class="line">  constructor(li_lei_instance)&#123;</div><div class="line">    this.name = &quot;han mei mei&quot;;</div><div class="line">    this.ask = li_lei_instance.ask</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var han_mei_mei = new HanMeiMei(li_lei)</div><div class="line"></div><div class="line">`这两个方法分别输出什么`</div><div class="line">li_lei.ask()             =&gt; &quot;li lei&quot;</div><div class="line">han_mei_mei.ask()        =&gt; &quot;li lei</div></pre></td></tr></table></figure>
-<p>ES6中的箭头函数和普通的function在处理this上是有差别的，根据上面的例子你应该已经明白了：</p>
-<h4 id="ES6的箭头函数中的this，永远保持不变，一只表示声明时的this"><a href="#ES6的箭头函数中的this，永远保持不变，一只表示声明时的this" class="headerlink" title="ES6的箭头函数中的this，永远保持不变，一只表示声明时的this"></a>ES6的箭头函数中的this，永远保持不变，一只表示声明时的this</h4>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/01/who-is-this/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
 
       
-        
-    </div>
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-app-safety-design" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/21/app-safety-design/">App安全性设计</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/11/21/app-safety-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/21/app-safety-design/" itemprop="url">App安全性设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-21T12:34:26+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/11/21/app-safety-design/" class="article-date">
-  <time datetime="2017-11-21T04:34:26.000Z" itemprop="datePublished">2017-11-21</time>
-</a>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>​    HTTP协议是没有加密的明文传输协议，<strong>如果APP采用HTTP传输数据，则会泄露传输内容，可能被中间人劫持，修改传输的内容</strong>。劫持了HTTP通信，往APP的通信中加入了自己的推广内容，还有一些低俗的推广广告，这很影响用户体验。一些别有用心的人通过搭建公共WiFi，进行流量劫持、嗅探，可以获得通过HTTP传输的敏感信息。为了保护用户的信息安全、保护自己的商业利益，减少攻击面，需要保障通信信道的安全，采用开发方便的HTTPS无疑是最优方案。</p>
-<p>​    <strong>HTTPS：</strong>在http(超文本传输协议)基础上提出的一种安全的http协议，因此可以称为安全的超文本传输协议。http协议直接放置在TCP协议之上，而https提出在http和TCP中间加上一层加密层。从发送端看，这一层负责把http的内容加密后送到下层的TCP，从接收方看，这一层负责将TCP送来的数据解密还原成http的内容。</p>
-<p>​    其实HTTPS从最终的数据解析的角度，与HTTP没有任何的区别，HTTPS就是将HTTP协议数据包放到SSL/TSL层加密后，在TCP/IP层组成IP数据报去传输，以此保证传输数据的安全；而对于接收端，在SSL/TSL将接收的数据包解密之后，将数据传给HTTP协议层，就是普通的HTTP数据。HTTP和SSL/TSL都处于OSI模型的应用层。</p>
-<h2 id="SSL-TSL"><a href="#SSL-TSL" class="headerlink" title="SSL/TSL"></a>SSL/TSL</h2><p>​    简单的来说，SSL/TSL通过四次握手，主要交换三个信息：</p>
-<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p>​    该证书包含了公钥等信息，一般是由服务器发给客户端，接收方通过验证这个证书是不是由信赖的CA签发，或者与本地的证书相对比，来判断证书是否可信；假如需要双向验证，则服务器和客户端都需要发送数字证书给对方验证。</p>
-<h3 id="三个随机数"><a href="#三个随机数" class="headerlink" title="三个随机数"></a>三个随机数</h3><p>​    这三个随机数构成了后续通信过程中用来对数据进行对称加密解密的<strong>“对话密钥”</strong>。</p>
-<p>​    首先客户端先发第一个随机数N1，然后服务器回了第二个随机数N2（这个过程同时把之前提到的证书发给客户端），这两个随机数都是明文的；而第三个随机数N3（这个随机数被称为Premaster secret），客户端用数字证书的公钥进行非对称加密，发给服务器；而服务器用只有自己知道的私钥来解密，获取第三个随机数。只有，服务端和客户端都有了三个随机数N1+N2+N3，然后两端就使用这三个随机数来生成“对话密钥”，在此之后的通信都是使用这个“对话密钥”来进行对称加密解密。因为这个过程中，服务端的私钥只用来解密第三个随机数，从来没有在网络中传输过，这样的话，只要私钥没有被泄露，那么数据就是安全的。</p>
-<h3 id="加密通信协议"><a href="#加密通信协议" class="headerlink" title="加密通信协议"></a>加密通信协议</h3><p>​    就是双方商量使用哪一种加密方式，假如两者支持的加密方式不匹配，则无法进行通信；</p>
-<p>​    有个常见的问题，关于随机数为什么要三个？只最后一个随机数N3不可以么？</p>
-<p>​    这是由于SSL/TLS设计，就假设服务器不相信所有的客户端都能够提供完全随机数，假如某个客户端提供的随机数不随机的话，就大大增加了“对话密钥”被破解的风险，所以由三组随机数组成最后的随机数，保证了随机数的随机性，以此来保证每次生成的“对话密钥”安全性。</p>
-<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><p>​    token是一种身份验证的机制，初始时用户提交账号数据给服务端，服务端采用一定的策略生成一个字符串（token），token字符串中包含了少量的用户信息，并且有一定的期限。服务端会把token字符串传给客户端，客户端保存token字符串，并在接下来的请求中带上这个字符串。</p>
-<p>​    服务端在生成token时，加入少量的用户信息，比如用户的id。服务端接收到token之后，可以解析出这些数据，从而将token和用户关联了起来。</p>
-<p>​    token具有一定的时效性，如果token过期了，客户端应该对token续期或者重新生成token。这取决于token的过期机制。在token续期或者重新生成token的时候，需要额外加入数据来验证身份。因为token已经过期了，即token已经不能用来验证用户的身份了。这个时候可以请求用户重新输入账号和密码。</p>
-<h2 id="混淆"><a href="#混淆" class="headerlink" title="混淆"></a>混淆</h2><p>​    代码混淆技术基本原理是使反编译工具反编译出来的代码人难以阅读，从而达到防止被逆向破解的目的。</p>
-<h2 id="Android混淆"><a href="#Android混淆" class="headerlink" title="Android混淆"></a>Android混淆</h2><h3 id="Java类名、方法名混淆"><a href="#Java类名、方法名混淆" class="headerlink" title="Java类名、方法名混淆"></a>Java类名、方法名混淆</h3><p>​    Dalvik字节码包含了大量的调试信息，如类名、方法名、字段名、参数名、变量名等，使用反编译工具可以还原这些信息。由于类名、方法名等通常都会遵循一定的命名规范，破解者很容易根据这些信息来猜测代码功能，阅读起来就跟查看源代码一样。从Android2.3开始，Google在SDK中加入了一款叫ProGuard的代码混淆工具，ProGuard会删除这些调试信息，并用无意义的字符序列来替换类名、方法名等，使得使用反编译出来的代码难以阅读，提升逆向难度。使用ProGuard混淆过过后，反编译出来的类名和方法名无法阅读。</p>
-<h3 id="Java代码混淆"><a href="#Java代码混淆" class="headerlink" title="Java代码混淆"></a>Java代码混淆</h3><p>​    通过对功能代码流程进行乱序混淆，实际运行时乱序混淆后的代码流程却和原始代码流程是一样的，但反编译出来的代码流程静态阅读时与原始流程有很大差异，使破解者很难通过静态分析理解代码功能，从而保护代码不被逆向分析。比如，原始的代码流程是1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7，经过乱序混淆后静态反汇编查看到的代码流程可能变成2-&gt;7-&gt;5-&gt;1-&gt;6-&gt;4-&gt;3，实际运行时代码流程仍然是1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;6-&gt;7。</p>
-<h3 id="Dalvik字节码加密"><a href="#Dalvik字节码加密" class="headerlink" title="Dalvik字节码加密"></a>Dalvik字节码加密</h3><p>​    将dex文件中的部分或全部Dalvik字节码加密，每次需要执行时由专门的Native代码负责动态解密和回填，静态反编译出来的代码已经无法阅读甚至无法反编译，动态调试也难以逆向分析。</p>
-<h2 id="iOS混淆"><a href="#iOS混淆" class="headerlink" title="iOS混淆"></a>iOS混淆</h2><h3 id="字符串加密"><a href="#字符串加密" class="headerlink" title="字符串加密"></a>字符串加密</h3><p>​    对程序中使用到字符串的地方，首先获取到使用到的字符串，当然要注意哪些是能加密，哪些不能加密的，然后对字符串进行加密，并保存加密后的数据，再在使用字符串的地方插入解密算法，这样就很好的保护了明文字符串。</p>
-<h3 id="类名方法名混淆"><a href="#类名方法名混淆" class="headerlink" title="类名方法名混淆"></a>类名方法名混淆</h3><p>​    对于程序中的类名方法名，自己产生一个随机的字符串来替换这些定义的类名和方法名，但是不是所有类名，方法名都能替换的，要过滤到系统有关的函数以及类，</p>
-<h3 id="程序代码混淆"><a href="#程序代码混淆" class="headerlink" title="程序代码混淆"></a>程序代码混淆</h3><p>​    可以基于Xcode使用的编译器clang，然后在中间层也就是IR实现自己的一些混淆处理，比如加入一些无用的逻辑块啊，代码块啊，以及加入各种跳转但是又不影响程序原有的逻辑。</p>
-<h2 id="加壳"><a href="#加壳" class="headerlink" title="加壳"></a>加壳</h2><p>​    加壳是在二进制的程序中植入一段代码，在运行的时候优先取得程序的控制权，做一些额外的工作。大多数病毒就是基于此原理。是应用加固的一种手法对原始二进制原文进行加密/隐藏/混淆。所谓加壳，是一种通过一系列数学运算，将可执行程序文件或动态链接库文件的编码进行改变（目前还有一些加壳软件可以压缩、加密驱动程序），以达到缩小文件体积或加密程序编码的目的。当被加壳的程序运行时，外壳程序先被执行，然后由这个外壳程序负责将用户原有的程序在内存中解压缩，并把控制权交还给脱壳后的真正程序。一切操作自动完成，用户不知道也无需知道壳程序是如何运行的。一般情况下，加壳程序和未加壳程序的运行结果是一样的。</p>
-<h3 id="加壳作用"><a href="#加壳作用" class="headerlink" title="加壳作用"></a>加壳作用</h3><p>​    加壳的程序可以有效阻止对程序的反汇编分析，以达到它不可告人的目的。这种技术也常用来保护软件版权，防止被软件破解。</p>
-<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ul>
-<li>保护自己核心代码算法,提高破解/盗版/二次打包的难度。</li>
-<li>还可以缓解代码注入/动态调试/内存注入攻击。</li>
-</ul>
-<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>​    身份认证也称为“身份验证”或“身份鉴别”，是指确认操作者身份的过程，从而确定该用户是否具有对某种资源的访问和使用权限，进而使应用能够可靠、有效地执行，防止攻击者假冒合法用户获得资源的访问权限，保证系统和数据的安全，以及授权访问者的合法利益。</p>
-<h3 id="静态密码"><a href="#静态密码" class="headerlink" title="静态密码"></a>静态密码</h3><p>​    用户的密码是由用户自己设定的。在登录时输入正确的密码，就认为操作者就是合法用户。实际上，由于用户担心自己的密码忘记，经常使用简单的密码组合。不仅容易被猜中，而且不易保存。所以在设置密码的时候尽量复杂，数字加字母等组合。登录密码和重要操作密码应该设置成不一样的字符串，更加保证了安全性。</p>
-<h3 id="短信密码"><a href="#短信密码" class="headerlink" title="短信密码"></a>短信密码</h3><p>​    短信密码以手机短信形式请求包含6位随机数的动态密码，身份认证系统以短信形式发送随机的6位密码到客户的手机上。客户在登录或者交易认证时候输入此动态密码，从而确保系统身份认证的安全性。具有以下优点：</p>
-<ul>
-<li>安全性</li>
-</ul>
-<p>​    由于手机与客户绑定比较紧密，短信密码生成与使用场景是物理隔绝的，因此密码在通路上被截取几率降至最低。</p>
-<ul>
-<li>普及性</li>
-</ul>
-<p>​    只要会接收短信即可使用，大大降低短信密码技术的使用门槛，学习成本几乎为0，所以在市场接受度上面不会存在阻力。</p>
-<ul>
-<li>易收费</li>
-</ul>
-<p>​    由于移动互联网用户天然养成了付费的习惯，这和PC时代互联网截然不同的理念，而且收费通道非常的发达，如果是网银、第三方支付、电子商务可将短信密码作为一项增值业务，每月通过SP收费不会有阻力，因此也可增加收益。</p>
-<ul>
-<li><p>易维护</p>
-<p>   由于短信网关技术非常成熟，大大降低短信密码系统上马的复杂度和风险，短信密码业务后期客服成本低，稳定的系统在提升安全同时也营造良好的口碑效应，这也是银行也大量采纳这项技术很重要的原因。</p>
-</li>
-</ul>
-<h3 id="指纹识别"><a href="#指纹识别" class="headerlink" title="指纹识别"></a>指纹识别</h3><p>​    指纹，由于其具有终身不变性、唯一性和方便性，已几乎成为生物特征识别的代名词。随着硬件系统的不断更新换代，指纹识别技术已经普及。由于指纹的可靠性，众多应用将指纹识别作为主要的身份认证凭证，替代传统的输入密码，由于不存在数据的交换问题，极大的提高了安全性。指纹识别具有以下优点：</p>
-<ul>
-<li>指纹是人体独一无二的特征，并且它们的复杂度足以提供用于鉴别的足够特征；</li>
-<li>如果要增加可靠性，只需登记更多的指纹、鉴别更多的手指，最多可以多达十个，而每一个指纹都是独一无二的；</li>
-<li>扫描指纹的速度很快，使用非常方便；</li>
-<li>读取指纹时，用户必需将手指与指纹采集头相互接触，与指纹采集头直接；</li>
-<li>接触是读取人体生物特征最可靠的方法；</li>
-</ul>
-<h2 id="加密传输"><a href="#加密传输" class="headerlink" title="加密传输"></a>加密传输</h2><p>​    加密传输是指在客户端和服务端进行数据传输之前，对敏感数据进行加密，不进行明文传输。对于密码、个人信息等敏感信息进行加密算法加密。“对称”加密挑选AES，“非对称”加密选择RSA。</p>
-<h3 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h3><p>​    AES算法基于排列和置换运算。排列是对数据重新进行安排，置换是将一个数据单元替换为另一个。AES 使用几种不同的方法来执行排列和置换运算。<br>​    AES是一个迭代的、对称密钥分组的密码，它可以使用128、192 和 256 位密钥，并且用 128 位（16字    节）分组加密和解密数据。与公共密钥密码使用密钥对不同，对称密钥密码使用相同的密钥加密和解密数据。通过分组密码返回的加密数据的位数与输入数据相同。迭代加密使用一个循环结构，在该循环中重复置换和替换输入数据。</p>
-<h3 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h3><p>​    RSA这种非对称加密算法，在App的使用当中，需要明白其主要作用有2个：</p>
-<ul>
-<li><strong>信息加密：</strong> 通信双方可以在公开的网络环境下，“安全”的商量对称加密算法所使用的密钥。</li>
-<li><strong>电子签名：</strong> 为了防止中间人攻击，通信双方在商量密钥之前可以通过签名算法确认对方的身份。</li>
-</ul>
-<h2 id="安全组件"><a href="#安全组件" class="headerlink" title="安全组件"></a>安全组件</h2><h3 id="加密键盘"><a href="#加密键盘" class="headerlink" title="加密键盘"></a>加密键盘</h3><p>​    大部分中文应用弹出的默认键盘是简体中文输入法键盘，在输入用户名和密码的时候，如果使用简体中文输入法键盘，输入英文字符和数字字符的用户名和密码时，会自动启动系统输入法自动更正提示，然后用户的输入记录会被缓存下来。</p>
-<p>​    所以客户端 app 输入密码时都不使用系统键盘，而使用自己定制的键盘，原因主要有 2 个：</p>
-<ul>
-<li>避免第三方读取系统键盘缓存</li>
-<li>防止屏幕录制 （加密键盘按键不加按下效果）</li>
-</ul>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
       
         
+          <img src="/2017/11/21/app-safety-design/app_logo.jpg" alt="app_logo.jpg" title="">
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>​    HTTP协议是没有加密的明文传输协议，<strong>如果APP采用HTTP传输数据，则会泄露传输内容，可能被中间人劫持，修改传输的内容</strong>。劫持了HTTP通信，往APP的通信中加入了自己的推广内容，还有一些低俗的推广广告，这很影响用户体验。一些别有用心的人通过搭建公共WiFi，进行流量劫持、嗅探，可以获得通过HTTP传输的敏感信息。为了保护用户的信息安全、保护自己的商业利益，减少攻击面，需要保障通信信道的安全，采用开发方便的HTTPS无疑是最优方案。<br>​    <strong>HTTPS：</strong>在http(超文本传输协议)基础上提出的一种安全的http协议，因此可以称为安全的超文本传输协议。http协议直接放置在TCP协议之上，而https提出在http和TCP中间加上一层加密层。从发送端看，这一层负责把http的内容加密后送到下层的TCP，从接收方看，这一层负责将TCP送来的数据解密还原成http的内容。</p>
+<p>​    其实HTTPS从最终的数据解析的角度，与HTTP没有任何的区别，HTTPS就是将HTTP协议数据包放到SSL/TSL层加密后，在TCP/IP层组成IP数据报去传输，以此保证传输数据的安全；而对于接收端，在SSL/TSL将接收的数据包解密之后，将数据传给HTTP协议层，就是普通的HTTP数据。HTTP和SSL/TSL都处于OSI模型的应用层。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/21/app-safety-design/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-react-native-introduce" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/15/react-native-introduce/">React Native简介</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/11/15/react-native-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/15/react-native-introduce/" itemprop="url">React Native简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-15T10:26:05+08:00">
+                2017-11-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/11/15/react-native-introduce/" class="article-date">
-  <time datetime="2017-11-15T02:26:05.000Z" itemprop="datePublished">2017-11-15</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用React Native开发有一段时间了，想写一下有关的资料以便自己查阅，一下内容均来自于网络，如有侵犯联系我删除。<br>是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。<br>使用React Native开发者可以维护多种平台(Web,Android和IOS)的同一份业务逻辑核心代码来创建原生应用。<br>现阶段Web APP的的体验还是无法达到Native APP的体验，所以这边fackbook更加强调的是<strong>“learn once, write everywhere”</strong>，应用前端我们使用js和React来开发不同平台的UI，下层核心模块编写复用的业务逻辑代码，提供应用开发效率。</p>
+
+      
+        
+          <img src="/2017/11/15/react-native-introduce/react-native_logo.jpg" alt="react-native_logo.jpg" title="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用React Native开发有一段时间了，想写一下有关的资料以便自己查阅，一下内容均来自于网络，如有侵犯联系我删除。<br>是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。<br>使用React Native开发者可以维护多种平台(Web,Android和IOS)的同一份业务逻辑核心代码来创建原生应用。<br>现阶段Web APP的的体验还是无法达到Native APP的体验，所以这边fackbook更加强调的是<strong>“learn once, write everywhere”</strong>，应用前端我们使用js和React来开发不同平台的UI，下层核心模块编写复用的业务逻辑代码，提供应用开发效率。</p>
 <p>React Native的设计理念：<strong>既拥有Native的用户体验、又保留React的开发效率</strong>。</p>
 <h2 id="React-Native背景"><a href="#React-Native背景" class="headerlink" title="React Native背景"></a>React Native背景</h2><ul>
 <li>React 是由Facebook推出的一个JavaScript框架，主要用于前端开发。</li>
@@ -360,105 +855,131 @@
 </li>
 <li>React是采用JSX语法，一种JS语法糖，方便快速开发。</li>
 </ul>
-<h2 id="常见的五种App开发模式"><a href="#常见的五种App开发模式" class="headerlink" title="常见的五种App开发模式"></a>常见的五种App开发模式</h2><h3 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h3><ul>
-<li>Native App:指使用原生API开发App,比如iOS用OC语言开发</li>
-<li>优点：性能高</li>
-<li>缺点：开发维护成本高，养一个原生开发工程师需要很多钱，最重要iOS版本更新也成问题。</li>
-</ul>
-<h3 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h3><ul>
-<li>Web App:指使用Html开发的移动端网页App,类似微信小程序，整个App都是网页。</li>
-<li>优点：用户不需要安装，不会占用手机内存</li>
-<li>缺点：用户体验不好，不能离线，必须联网</li>
-</ul>
-<h3 id="Hybrid-App（Cordova）"><a href="#Hybrid-App（Cordova）" class="headerlink" title="Hybrid App（Cordova）"></a>Hybrid App（Cordova）</h3><ul>
-<li>Hybrid App:混合开发模式，原生Api+Html共同开发，比如iOS,用html写好界面，用UIWebView展示。</li>
-<li>优点:界面复用性强，一个界面，iOS和安卓都可以使用</li>
-<li>缺点:相对于原生，性能相对有所损害</li>
-</ul>
-<h3 id="Weex"><a href="#Weex" class="headerlink" title="Weex"></a>Weex</h3><ul>
-<li>Weex:基于Vue(JS框架)的语法开发的App,底层会自动把JS代码解析成对应平台(iOS,安卓)的原生API，本质还是原生API开发，只不过表面是用Vue开发。</li>
-<li>优点:可以做到一套代码，跨平台执行，底层会自动判断当前是哪个平台，转换为对应平台的原生API代码。</li>
-<li>缺点：开源较晚，互联网上相关资料还比较少，社区规模较小</li>
-</ul>
-<h3 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><ul>
-<li>React Native:基于React开发的App</li>
-<li>优点：跳过App Store审核，远程更新代码，提高迭代频率和效率，既有Native的体验，又保留React的开发效率。</li>
-<li>缺点:对于不熟悉前端开发的人员上手比较慢，不能真正意义上做到跨平台，使用后，对app体积增加。</li>
-<li>相信大多数人了解完React Native，越来越困惑了，那不是跟Native冲突了吗，Native是用原生Api开发,但是React Native又是用React开发。</li>
-</ul>
-<h2 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h2><img src="/2017/11/15/react-native-introduce/react-native简单框架.png" alt="This is an example image" title="This is an example image">
-<ol>
-<li>React：不同平台上编写基于React的代码，“Learn once, write anywhere”。</li>
-<li>Virtual DOM：相对Browser环境下的DOM（文档对象模型）而言，Virtual DOM是DOM在内存中的一种轻量级表达方式（原话是lightweight representation of the document），可以通过不同的渲染引擎生成不同平台下的UI，JS和Native之间通过Bridge通信。</li>
-<li>iOS/Android。(Web得通过React Web)</li>
-</ol>
-<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><img src="/2017/11/15/react-native-introduce/react-native线程模型.png" alt="This is an example image" title="This is an example image">
-<p>React Native应用中存在三个线程队列，它们工作的流程大概如下：UI Event Queue触发事件，通过Bridge调用JS代码在JS Event Queue中运行，JS运行后将视图更新分发给Native Module Event Queue中的线程,Native Module Event Queue负责计算，然后将最后的结果交给UI Event Queue中的线程去更新。 其中UI Event Queue为主线程。</p>
-<h3 id="JavaScript对象和原生代码交互"><a href="#JavaScript对象和原生代码交互" class="headerlink" title="JavaScript对象和原生代码交互"></a>JavaScript对象和原生代码交互</h3><p>下图以JavaScript与Objective-C交互为例，大致描述交互过程。</p>
-<img src="/2017/11/15/react-native-introduce/react-native底层交互.png" alt="This is an example image" title="This is an example image">
-<p>1.JS端调用某个OC模块暴露出来的方法。</p>
-<p>2.把上一步的调用分解为ModuleName,MethodName,arguments，再扔给MessageQueue处理。</p>
-<p>在初始化时模块配置表上的每一个模块都生成了对应的remoteModule对象，对象里也生成了跟模块配置表里一一对应的方法，这些方法里可以拿到自身的模块名，方法名，并对callback进行一些处理，再移交给MessageQueue。具体实现在BatchedBridgeFactory.js的<a href="https://github.com/facebook/react-native/blob/72d3d724a3a0c6bc46981efd0dad8f7f61121a47/Libraries/BatchedBridge/BatchingImplementation/BatchedBridgeFactory.js#L37" target="_blank" rel="external">_createBridgedModule</a>里，整个实现区区24行代码，感受下JS的魔力吧。</p>
-<p>3.在这一步把JS的callback函数缓存在MessageQueue的一个成员变量里，用CallbackID代表callback。在通过保存在MessageQueue的模块配置表把上一步传进来的ModuleName和MethodName转为ModuleID和MethodID。</p>
-<p>4.把上述步骤得到的ModuleID,MethodId,CallbackID和其他参数argus传给OC。至于具体是怎么传的，后面再说。</p>
-<p>5.OC接收到消息，通过模块配置表拿到对应的模块和方法。</p>
-<p>实际上模块配置表已经经过处理了，跟JS一样，在初始化时OC也对模块配置表上的每一个模块生成了对应的实例并缓存起来，模块上的每一个方法也都生成了对应的<a href="https://github.com/facebook/react-native/blob/72d3d724a3a0c6bc46981efd0dad8f7f61121a47/React/Base/RCTBridge.m#L111" target="_blank" rel="external">RCTModuleMethod</a>对象，这里通过ModuleID和MethodID取到对应的Module实例和RCTModuleMethod实例进行调用。具体实现在_handleRequestNumber:moduleID:methodID:params:。</p>
-<p>6.RCTModuleMethod对JS传过来的每一个参数进行处理。</p>
-<p>RCTModuleMethod可以拿到OC要调用的目标方法的每个参数类型，处理JS类型到目标类型的转换，所有JS传过来的数字都是NSNumber，这里会转成对应的int/long/double等类型，更重要的是会为block类型参数的生成一个block。</p>
-<p>例如-(void)select:(int)index response:(RCTResponseSenderBlock)callback 这个方法，拿到两个参数的类型为int,block，JS传过来的两个参数类型是NSNumber,NSString(CallbackID)，这时会把NSNumber转为int，NSString(CallbackID)转为一个block，block的内容是把回调的值和CallbackID传回给JS。</p>
-<p>这些参数组装完毕后，通过NSInvocation动态调用相应的OC模块方法。</p>
-<p>7.OC模块方法调用完，执行block回调。</p>
-<p>8.调用到第6步说明的RCTModuleMethod生成的block。</p>
-<p>9.block里带着CallbackID和block传过来的参数去调JS里MessageQueue的方法invokeCallbackAndReturnFlushedQueue。</p>
-<p>10.MessageQueue通过CallbackID找到相应的JS callback方法。</p>
-<p>11.调用callback方法，并把OC带过来的参数一起传过去，完成回调。</p>
-<p>整个流程就是这样，简单概括下，差不多就是：JS函数调用转ModuleID/MethodID -&gt; callback转CallbackID -&gt; OC根据ID拿到方法 -&gt; 处理参数 -&gt; 调用OC方法 -&gt; 回调CallbackID -&gt; JS通过CallbackID拿到callback执行</p>
-<h2 id="JavaScript和本地代码间的通信"><a href="#JavaScript和本地代码间的通信" class="headerlink" title="JavaScript和本地代码间的通信"></a>JavaScript和本地代码间的通信</h2><img src="/2017/11/15/react-native-introduce/react-native本地通讯.png" alt="This is an example image" title="This is an example image">
-<p>其中通信的特点是：</p>
-<ul>
-<li>异步的</li>
-<li>序列化的</li>
-<li>批量的，对于大批量的通信事件可以将其分成几部分，减少时间延迟</li>
-</ul>
-<h2 id="异步执行"><a href="#异步执行" class="headerlink" title="异步执行"></a>异步执行</h2><p>在Javascript代码和原生平台之间的所有操作都是异步执行的，并且原生模块还可以根据需要创建新的线程。这意味着你可以在主线程解码图片，然后在后台将它保存到磁盘，或者在不阻塞UI的情况下计算文字大小和界面布局等等。所以React Native开发的app天然具备流畅和反应灵敏的优势。Javascript和原生代码之间的通讯是完全可序列化的，这使得我们可以借助Chrome开发者工具去调试应用，而不论应用运行在模拟器还是真机上。</p>
-<img src="/2017/11/15/react-native-introduce/react-native调试.png" alt="This is an example image" title="This is an example image">
-<h2 id="拓展性"><a href="#拓展性" class="headerlink" title="拓展性"></a>拓展性</h2><p>使用React Native，无需编写一行原生代码即可创造一款不错的app。尽管如此，使用自定义的原生视图和模块来扩展React Native也非常容易 —— 这意味着你现有的所有工作都可以被复用，你喜欢的各种原生库都可以被导入。</p>
-
-      
-
-      
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/15/react-native-introduce/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-nginx-introduce" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/03/nginx-introduce/">学习Nginx小结</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/11/03/nginx-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/03/nginx-introduce/" itemprop="url">学习Nginx小结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T13:29:52+08:00">
+                2017-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/11/03/nginx-introduce/" class="article-date">
-  <time datetime="2017-11-03T05:29:52.000Z" itemprop="datePublished">2017-11-03</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    <strong>Nginx</strong>是一个高性能的 HTTP 和 反向代理 服务器，也是一个 IMAP/POP3/SMTP 代理服务器。 <strong>Nginx</strong> 是由 Igor Sysoev 为俄罗斯访问量第二的 Rambler.ru 站点开发的，它已经在该站点运行超过两年半了。 Igor 将源代码以类 BSD 许可证的形式发布。尽管还是测试版，但是，<strong>Nginx</strong> 已经因为它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名了。</p>
+
+      
+        
+          <img src="/2017/11/03/nginx-introduce/nginx_logo.png" alt="nginx_logo.png" title="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    <strong>Nginx</strong>是一个高性能的 HTTP 和 反向代理 服务器，也是一个 IMAP/POP3/SMTP 代理服务器。 <strong>Nginx</strong> 是由 Igor Sysoev 为俄罗斯访问量第二的 Rambler.ru 站点开发的，它已经在该站点运行超过两年半了。 Igor 将源代码以类 BSD 许可证的形式发布。尽管还是测试版，但是，<strong>Nginx</strong> 已经因为它的稳定性、丰富的功能集、示例配置文件和低系统资源的消耗而闻名了。</p>
 <h2 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h2><p>​    <strong>Nginx</strong>提供邮件代理服务，主要包含以下功能：</p>
 <ul>
 <li>支持使用外部HTTP认证服务器重定向用户到IMAP／POP3后端，并支持IMAP认证方式和POP3认证方式。</li>
@@ -468,139 +989,131 @@
 </ul>
 <h2 id="HTTP代理和反向代理"><a href="#HTTP代理和反向代理" class="headerlink" title="HTTP代理和反向代理"></a>HTTP代理和反向代理</h2><p>​    代理服务和反向代理服务是<strong>Nginx</strong>服务器作为Web服务器的主要功能之一，尤其是反向代理服务，是应用十分广泛的功能。</p>
 <p>​    在提供反向代理服务方面，<strong>Nginx</strong>服务器转发前端请求性能稳定，并且后端转发与业务配置相互分离，配置相当灵活。在进行<strong>Nginx</strong>服务器配置的时候，配置后端转发请求完全不用关心网络环境如何，可以指定任意IP地址和端口号，或者其他类型的链接、请求等。</p>
-<h3 id="Nginx作为反向代理的特点"><a href="#Nginx作为反向代理的特点" class="headerlink" title="Nginx作为反向代理的特点"></a><strong>Nginx作为反向代理的特点</strong></h3><ul>
-<li>接收用户请求是异步的，即先将用户请求全部接收下来，再一次性发送后后端web服务器，极大的减轻后端web服务器的压力；</li>
-<li><strong>Nginx</strong>代理和后端web服务器间无需长连接；</li>
-<li>发送响应报文时，是边接收来自后端web服务器的数据，边发送给客户端的；</li>
-<li>调度灵活。<strong>Nginx</strong>工作在网络协议栈的第七层，能够对HTTP应用请求进行解析和分流，支持比较复杂的正则规则，具有更优化的负载均衡效果。</li>
-<li>网络依赖型低。<strong>Nginx</strong>对网络的依赖程度非常低，理论上讲，只要能够ping通就可以实施负载均衡，而且可以有效区分内网和外网流量。</li>
-<li>支持服务器检测。<strong>Nginx</strong>能够根据应用服务器处理页面返回的状态码、超时信息等检测服务器是否出现故障，并及时返回错误的请求重新提交到其它节点上。</li>
-</ul>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>​    客户端向<strong>Nginx</strong>发送请求，接着<strong>Nginx</strong>根据某种负载机制转发请求至目标服务器(这些服务器都运行着相同的应用)，并把获得的内容返回给客户端，期中，代理请求可能根据配置被发往不同的服务器。</p>
-<img src="/2017/11/03/nginx-introduce/nginx负载均衡.png" alt="This is an example image" title="This is an example image">
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找</p>
-<p>登录服务器之后执行，下载nginx安装包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo wget http://nginx.org/download/nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
-<p>然后解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo  tar -xzvf nginx-1.2.2.tar.gz</span></div></pre></td></tr></table></figure>
-<p>进入解压之后的文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> nginx-1.2.2</span></div><div class="line"><span class="meta">$</span><span class="bash"> ./configure</span></div></pre></td></tr></table></figure>
-<p>如果一切顺利的话，执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> make</span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure>
-<p>完成安装，可以在/usr/local文件下找到nginx文件夹</p>
-<p>然后访问服务器即可看到</p>
-<p><strong>welcome nginx</strong></p>
-<p>字样</p>
-<h3 id="Nginx安装常见问题-ubuntu"><a href="#Nginx安装常见问题-ubuntu" class="headerlink" title="Nginx安装常见问题(ubuntu)"></a>Nginx安装常见问题(ubuntu)</h3><ul>
-<li><h4 id="缺少pcre"><a href="#缺少pcre" class="headerlink" title="缺少pcre"></a>缺少pcre</h4><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
-<p>即提示缺少pcre library    </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get undate</div><div class="line">$ sudo apt-get install libpcre3 libpcre3-dev</div></pre></td></tr></table></figure>
-</li>
-<li><h4 id="缺少gcc-c-和libtool"><a href="#缺少gcc-c-和libtool" class="headerlink" title="缺少gcc-c++和libtool"></a>缺少gcc-c++和libtool</h4><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libtool: compile: unrecognized option `-DHAVE_CONFIG_H&apos; </div><div class="line">libtool: compile: Try `libtool --help&apos; for more information. </div><div class="line">make[1]: *** [pcrecpp.lo] Error 1 </div><div class="line">make[1]: Leaving directory `/usr/local/src//pcre-8.31&apos; </div><div class="line">make: *** [all] Error 2root@wolfdog-virtual-machine:~/work/pcre-8.12$ libtool -help -DHAVE_CONFIG_H </div><div class="line">The program &apos;libtool&apos; is currently not installed.  You can install it by typing: </div><div class="line">sudo apt-get install libtool</div></pre></td></tr></table></figure>
-<p>即提示缺少libtool和gcc-c++</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libtool  </div><div class="line">$ sudo apt-get install gcc-c++</div></pre></td></tr></table></figure>
-</li>
-<li><h4 id="缺少zlib库"><a href="#缺少zlib库" class="headerlink" title="缺少zlib库"></a>缺少zlib库</h4><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP gzip module requires the zlib library. </div><div class="line">You can either disable the module by using --without-http_gzip_module </div><div class="line">option, or install the zlib library into the system, or build the zlib library </div><div class="line">statically from the source with nginx by using --with-zlib=&lt;path&gt; option.</div></pre></td></tr></table></figure>
-<p>其提示缺少zlib库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssl libssl-dev libperl-dev</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="Nginx安装常见问题-centos"><a href="#Nginx安装常见问题-centos" class="headerlink" title="Nginx安装常见问题(centos)"></a>Nginx安装常见问题(centos)</h3><p>在centos系统下如遇到以上问题，运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ yum install gcc-c++</div><div class="line">$ yum install -y pcre pcre-devel　　</div><div class="line">$ yum install -y zlib zlib-devel</div><div class="line">$ yum install -y openssl openssl-devel</div></pre></td></tr></table></figure>
-<h2 id="Nginx命令"><a href="#Nginx命令" class="headerlink" title="Nginx命令"></a>Nginx命令</h2><h3 id="Nginx启动"><a href="#Nginx启动" class="headerlink" title="Nginx启动"></a>Nginx启动</h3><p>进入nginx安装目录，运行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./sbin/nginx</div></pre></td></tr></table></figure>
-<p>如果没有任何错误信息输出，则启动成功。也可以使用以下命令加载配置文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./nginx/sbin/nginx -c ./nginx/conf/nginx.conf</span></div></pre></td></tr></table></figure>
-<p>启动成功之后可以使用：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ps -ef|grep nginx</span></div></pre></td></tr></table></figure>
-<p>来查看<strong>Nginx</strong>服务的进程状态。</p>
-<h3 id="Nginx停止"><a href="#Nginx停止" class="headerlink" title="Nginx停止"></a>Nginx停止</h3><p>​    停止<strong>Nginx</strong>服务有两种方法：一种是快速停止，一种是平缓停止。快速停止是指立即停止当前<strong>Nginx</strong>服务正在处理的所有网络请求，马上丢弃连接，定制工作。平缓停止是指允许<strong>Nginx</strong>服务将当前正在处理的网络请求处理完成，并不再接受新的请求，之后关闭连接，停止工作。</p>
-<p>​    停止<strong>Nginx</strong>服务的操作比较多，可以发送信号：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ./sbin/nginx -g TERM | INT | QUIT</span></div></pre></td></tr></table></figure>
-<p>​    其中，TERM和INT信号用于快速停止，QUIT用于平缓停止。</p>
-<p>​    或者：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> TERM | INT | QUIT `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
-<p>​    当然也可以使用kill命令向<strong>Nginx</strong>进程发送-9或者SIGKILL信号强制关闭<strong>Nginx</strong>服务：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> -9 | SIGKILL `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
-<h3 id="Nginx重启"><a href="#Nginx重启" class="headerlink" title="Nginx重启"></a>Nginx重启</h3><p>​    以下命令实现<strong>Nginx</strong>平滑重启：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">kill</span> HUP `/nginx/logs/nginx.pid`</span></div></pre></td></tr></table></figure>
-<h2 id="Nginx配置文件"><a href="#Nginx配置文件" class="headerlink" title="Nginx配置文件"></a>Nginx配置文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">`nginx.conf`</div><div class="line">user nobody									    #指定用户群</div><div class="line">worker_processes								#cpu核数／进程数</div><div class="line">												#工作衍生数／核数*2</div><div class="line">error_log 										#错误日志存放地点</div><div class="line">pid												#控制系统中重要文件</div><div class="line">events &#123;</div><div class="line">  worker_connections							#最大连接数</div><div class="line">&#125;</div><div class="line">http &#123;</div><div class="line">  gzip											#压缩传输</div><div class="line">  server &#123;										#server块</div><div class="line">    ...</div><div class="line">    location &#123;                       			#location块</div><div class="line">      </div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>http块主要是配置代理、缓存和日志定义绝大多数功能和第三方模块配置。</li>
-</ul>
-<ul>
-<li>server块配置虚拟主机。</li>
-<li>location块对请求进行处理。</li>
-</ul>
-<h3 id="Nginx配置虚拟主机"><a href="#Nginx配置虚拟主机" class="headerlink" title="Nginx配置虚拟主机"></a>Nginx配置虚拟主机</h3><p>虚拟主机指的是server块对外提供的虚拟主机</p>
-<ol>
-<li><p>查看服务器的IP地址</p>
-</li>
-<li><p>绑定IP地址与虚拟主机</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ifconfig XXX:0 192.168.X.X netmask XXX.XXX.XXX.XXX up</div><div class="line">$ ifconfig XXX:1 192.168.X.X+1 netmask XXX.XXX.XXX.XXX up</div><div class="line">...</div></pre></td></tr></table></figure>
-</li>
-<li><p>虚拟主机的配置</p>
-<p>虚拟主机的配置可以在nginx.conf下配置，但是不推荐。可以新建一个配置文件，配置好之后在nginx.conf下引用该文件即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ touch xxx.conf</div><div class="line">` 配置写在http中的server下 `</div><div class="line">server &#123;</div><div class="line">  listen: 192.168.X.X;					#刚刚配置的虚拟主机IP，不指定端口的话默认80端口</div><div class="line">  server_name; 							#名称</div><div class="line">  access_log; 							#日志文件</div><div class="line">  location / &#123;</div><div class="line">    index html.index;					#访问的首页</div><div class="line">    root html;							#访问路径</div><div class="line">  &#125;	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h3 id="缓存配置"><a href="#缓存配置" class="headerlink" title="缓存配置"></a>缓存配置</h3><p>对于网页请求的缓存配置在http下的server块中配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">local ~.*\.(jpg)&#123;</div><div class="line">  expires 2d;							#设置图片2天过期</div><div class="line">&#125;</div><div class="line">local ~.*\.(css|js)&#123;</div><div class="line">  expires 1h;							#设置css文件和js文件1小时过期</div><div class="line">&#125;</div><div class="line"></div><div class="line">`压缩配置`</div><div class="line">#gzip on;								#开启gzip压缩</div><div class="line">#gzip_min_length 1k;					#小于1k不进行压缩</div><div class="line">#gzip_buffers 4 16k;					#申请内存大小（4个16k）</div><div class="line">#gzip_http_version 1.1;					#识别版本</div><div class="line">#gzip_vary on;							#判断客户端浏览器是否支持gzip压缩</div></pre></td></tr></table></figure>
-<h3 id="日志文件"><a href="#日志文件" class="headerlink" title="日志文件"></a>日志文件</h3><ul>
-<li>Nginx的日志文件在http块中配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#log_format								#日志文件格式配置</div><div class="line">`在http配置`</div><div class="line">#remote_addr							#客户端IP地址</div><div class="line">#remote_user							#客户端用户名</div><div class="line">#request								#请求地址</div><div class="line">#status									#请求状态</div><div class="line">#body_bytes_sent						#向用户发送字节数</div><div class="line">#http_refer								#原网页（从哪里访问）</div><div class="line">#http_user_agent						#客户浏览器信息</div><div class="line">#http_x_forword_for						#客户端IP地址</div><div class="line">`日志文件存储路径`</div><div class="line">#access_log	xx/xx/xx					#存放路径</div><div class="line">#access_off								#关闭日志文件记录</div></pre></td></tr></table></figure>
-<ul>
-<li>日志文件切割（手动切割）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ mv access.log 20160708.log				#移动</div><div class="line"># kill -USR | 进程号					  #切割日志</div><div class="line"># ps -ef | grep nginx					#nginx进程号</div></pre></td></tr></table></figure>
-<p>总体的流程是：先备份老的日志文件，之后再切割</p>
-<ul>
-<li>自动切割日志文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$ crontab + 批处理 						  定时每天操作</div><div class="line">`新建批处理文件`</div><div class="line">$ touch cutlog.sh</div><div class="line">$ vi cutlog.sh</div><div class="line"></div><div class="line">D=$(date+%Y%M%d)</div><div class="line">mv /user/local/nginx/logs/access.log &#123;D&#125;.log</div><div class="line">kill -USR | (cat /user/local/nginx/nginx.pid)</div><div class="line"></div><div class="line">`定时处理批处理`</div><div class="line">#crontab -e 23 59 *** /bin/bash /user/local/nginx/logs/cutlog.sh</div></pre></td></tr></table></figure>
-<h2 id="Nginx卸载"><a href="#Nginx卸载" class="headerlink" title="Nginx卸载"></a>Nginx卸载</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找。</p>
-<p>仍然使用apt-get命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ apt-get purge nginx</div><div class="line">$ apt-get autoremove</div></pre></td></tr></table></figure>
-
-      
-
-      
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/03/nginx-introduce/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-dva-learning" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/30/dva-learning/">Dva最不佳实践</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/30/dva-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/30/dva-learning/" itemprop="url">Dva最不佳实践</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-30T21:50:36+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/10/30/dva-learning/" class="article-date">
-  <time datetime="2017-10-30T13:50:36.000Z" itemprop="datePublished">2017-10-30</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于之前写了几个dva的项目，近期没怎么用有些遗忘了，写个小结记录一下。</p>
+
+      
+        
+          <img src="/2017/10/30/dva-learning/dva_logo3.png" alt="dva_logo3.png" title="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于之前写了几个dva的项目，近期没怎么用有些遗忘了，写个小结记录一下。</p>
 <p>dva是基于react、react-router、redux封装的一个轻框架。详细的介绍在 <a href="https://github.com/dvajs/dva" target="_blank" rel="external">dva官网</a>，这里仅仅摘录部分。项目托管在GitHub上，<a href="https://github.com/mah93/dva-learning" target="_blank" rel="external">点击这里</a>。</p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li><strong>易学易用</strong>：仅有 6 个 api，对 redux 用户尤其友好</li>
@@ -612,115 +1125,131 @@
 <li><strong>完善的语法分析库 dva-ast</strong>：<a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dva-cli</a> 基于此实现了智能创建 model, router 等</li>
 <li><strong>支持 TypeScript</strong>：通过 d.ts (<a href="https://github.com/sorrycc/dva-boilerplate-typescript" target="_blank" rel="external">例子</a>)</li>
 </ul>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li>确保 node 版本是 6.5 +</li>
-<li>用 <a href="https://github.com/cnpm/cnpm" target="_blank" rel="external">cnpm</a> 或 <a href="https://github.com/yarnpkg/yarn" target="_blank" rel="external">yarn</a> 能节约你安装依赖的时间</li>
-</ul>
-<h2 id="Step1-安装-dva-cli-并创建应用"><a href="#Step1-安装-dva-cli-并创建应用" class="headerlink" title="Step1. 安装 dva-cli 并创建应用"></a>Step1. 安装 <a href="https://github.com/dvajs/dva-cli" target="_blank" rel="external">dva-cli</a> 并创建应用</h2><p>先安装 dva-cli，并确保版本是 0.7.x。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm i dva-cli@0.7 -g</div><div class="line">$ dva -v</div><div class="line">0.7.0</div></pre></td></tr></table></figure>
-<p>然后创建应用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ dva new dva-learning</div></pre></td></tr></table></figure>
-<p>创建成功后进入该文件夹：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">$ cd dva-learning </div><div class="line">`项目的目录结构`</div><div class="line">dva_learning</div><div class="line">|-----mock									# =&gt; 前端模拟数据</div><div class="line">|-----node_modules							# =&gt; 项目依赖采用npm管理，所有包均在此目录。</div><div class="line">|-----public								# =&gt; 存放index.html</div><div class="line">|-----src									</div><div class="line">	   |------assets						# =&gt; 项目静态资源文件夹（图片等）</div><div class="line">	   |------components					# =&gt; 无状态组件文件夹</div><div class="line">	   |------models						# =&gt; 状态model文件夹</div><div class="line">	   |------routes						# =&gt; 路由配置文件夹，页面存放在该文件夹下</div><div class="line">	   |------services						# =&gt; 服务层文件夹</div><div class="line">	   |------utils							# =&gt; 工具函数文件夹</div><div class="line">	   |------index.css						# =&gt; 全局通用样式</div><div class="line">	   |------index.js						# =&gt; 单页引用入口js，dva项目初始化</div><div class="line">	   |------router.js						# =&gt; 全局路由状态管理文件</div><div class="line">|-----package.json							# =&gt; npm包管理文件</div><div class="line">|-----.eslintrc								# =&gt; 代码规范配置文件</div><div class="line">|-----.roadhogrc							# =&gt; 打包配置文件</div><div class="line">|-----.roadhogrc.mock.js					# =&gt; 模拟数据配置文件</div><div class="line">|-----README.md</div><div class="line">`项目的目录结构`</div><div class="line">`运行项目`</div><div class="line">$ npm start</div></pre></td></tr></table></figure>
-<p>如果运行成功的话，浏览器会自动弹出并访问8000端口，看到如下画面：</p>
-<img src="/2017/10/30/dva-learning/run_success@2x.png" alt="This is an example image" title="This is an example image">
-<h2 id="Step2-配置-antd-和-babel-plugin-import"><a href="#Step2-配置-antd-和-babel-plugin-import" class="headerlink" title="Step2. 配置 antd 和 babel-plugin-import"></a>Step2. 配置 <a href="https://github.com/ant-design/ant-design" target="_blank" rel="external">antd</a> 和 <a href="https://github.com/ant-design/babel-plugin-import" target="_blank" rel="external">babel-plugin-import</a></h2><p>antd是由蚂蚁金服开发的一套UI组件，具有学习成本低、上手速度快、实现效果好的特点。十分适合初学者并且与dva无缝接入。如需了解更多请查看 <a href="https://ant.design/index-cn" target="_blank" rel="external">ANT DESIGN</a>。</p>
-<p>babel-plugin-import 用于按需引入 antd 的 JavaScript 和 CSS，这样打包出来的文件不至于太大。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm i antd --save</div><div class="line">$ npm i babel-plugin-import --save-dev</div></pre></td></tr></table></figure>
-<p>修改 <code>.roadhogrc</code>，在 <code>&quot;extraBabelPlugins&quot;</code> 里加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&quot;import&quot;, &#123; &quot;libraryName&quot;: &quot;antd&quot;, &quot;style&quot;: &quot;css&quot; &#125;]</div></pre></td></tr></table></figure>
-<h2 id="Step3-添加新页面"><a href="#Step3-添加新页面" class="headerlink" title="Step3. 添加新页面"></a>Step3. 添加新页面</h2><p>我们的目标是写一个登录的界面，成功之后显示dva默认的首页。所以在src/routes文件夹下，新建Login.js和Login.css文件。js文件用来写组件布局，css文件用来写样式，默认为js文件和css文件一一对应。</p>
-<p>在Login.js中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">`Login.js`</div><div class="line">import React from &apos;react&apos;;</div><div class="line">import &#123; connect &#125; from &apos;dva&apos;;</div><div class="line">import &#123; Input, Icon, Button &#125; from &apos;antd&apos;;</div><div class="line">import styles from &apos;./Login.css&apos;;</div><div class="line"></div><div class="line">function Login() &#123;</div><div class="line">  return (</div><div class="line">    &lt;div className=&#123;styles.inputDiv&#125;&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;Input</div><div class="line">          placeholder=&quot;用户名&quot;</div><div class="line">          prefix=&#123;&lt;Icon type=&quot;user&quot; /&gt;&#125;</div><div class="line">          size=&quot;large&quot;</div><div class="line">          className=&#123;styles.inputUser&#125;</div><div class="line">        /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div&gt;</div><div class="line">        &lt;Input</div><div class="line">          placeholder=&quot;密码&quot;</div><div class="line">          prefix=&#123;&lt;Icon type=&quot;lock&quot; /&gt;&#125;</div><div class="line">          size=&quot;large&quot;</div><div class="line">          className=&#123;styles.inputPass&#125;</div><div class="line">        /&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;Button type=&quot;primary&quot; className=&#123;styles.button&#125;&gt;</div><div class="line">          登录</div><div class="line">      &lt;/Button&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line">Login.propTypes = &#123;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">export default connect()(Login);</div></pre></td></tr></table></figure>
-<p>为这个页面添加样式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">`Login.css`</div><div class="line">.inputDiv &#123;</div><div class="line">  position: absolute;</div><div class="line">  top: 50%;</div><div class="line">  left: 50%;</div><div class="line">  width: 200px;</div><div class="line">  height: 220px;</div><div class="line">  margin: -110px 0 0 -100px;</div><div class="line">&#125;</div><div class="line">.inputUser &#123;</div><div class="line">  width: 200px;</div><div class="line">&#125;</div><div class="line">.inputPass &#123;</div><div class="line">  width: 200px;</div><div class="line">  margin-top: 20px;</div><div class="line">&#125;</div><div class="line">.button &#123;</div><div class="line">  width: 200px;</div><div class="line">  margin-top: 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后修改router.js页面，将新写的登录页面，放到默认显示页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">`router.js`</div><div class="line">import React from &apos;react&apos;;</div><div class="line">import &#123; Router, Route &#125; from &apos;dva/router&apos;;</div><div class="line">import IndexPage from &apos;./routes/IndexPage&apos;;</div><div class="line">import Login from &apos;./routes/Login&apos;;</div><div class="line"></div><div class="line">function RouterConfig(&#123; history &#125;) &#123;</div><div class="line">  return (</div><div class="line">    &lt;Router history=&#123;history&#125;&gt;</div><div class="line">      &lt;Route path=&quot;/&quot; component=&#123;Login&#125; /&gt;</div><div class="line">      &lt;Route path=&quot;/home&quot; component=&#123;IndexPage&#125; /&gt;</div><div class="line">    &lt;/Router&gt;</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default RouterConfig;</div></pre></td></tr></table></figure>
-<p>然后运行，会看到你完成的页面</p>
-<img src="/2017/10/30/dva-learning/dva登录@2x.png" alt="This is an example image" title="This is an example image">
-<h2 id="Step4-添加事件"><a href="#Step4-添加事件" class="headerlink" title="Step4. 添加事件"></a>Step4. 添加事件</h2><p>之前完成的页面还没有添加点击事件，接下来添加几行代码，让它可以编辑，可以输入和点击</p>
-<p>页面中使用的Input, Icon, Button均是Antd中基本的组件，在 <a href="https://ant.design/index-cn" target="_blank" rel="external">ANT DESIGN</a>有对它们详细的介绍。</p>
-<p>为Button添加一个单击事件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">`点击button时触发`</div><div class="line">const submit = () =&gt; &#123;</div><div class="line">  alert(&apos;here&apos;)</div><div class="line">&#125;;</div><div class="line">`在Button中添加这个方法`</div><div class="line">&lt;Button type=&quot;primary&quot; className=&#123;styles.button&#125; onClick=&#123;submit&#125;&gt;</div><div class="line">登录</div><div class="line">&lt;/Button&gt;</div></pre></td></tr></table></figure>
-<p>再次运行项目，点击登录按钮会显示</p>
-<img src="/2017/10/30/dva-learning/dva单击事件@2x.png" alt="This is an example image" title="This is an example image">
-<h2 id="Step-5-处理逻辑"><a href="#Step-5-处理逻辑" class="headerlink" title="Step.5 处理逻辑"></a>Step.5 处理逻辑</h2><p>如果需要这个登录界面更加真实的话，需要处理一些登录中的逻辑，比如点击登录按钮的时候，判断输入框中是否输入了数据等。</p>
-<p>dva中有专门的文件夹存放这些处理页面内逻辑的代码。查看src/models/example.js文件，这是一个标准的模版，每个处理逻辑的文件都包含下面几部分</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">export default &#123;</div><div class="line"></div><div class="line">  namespace: &apos;example&apos;,									# =&gt; 唯一标识，应用中唯一</div><div class="line"></div><div class="line">  state: &#123;&#125;,											# =&gt; 需要存储的值，每次修改会刷新界面</div><div class="line"></div><div class="line">  subscriptions: &#123;										# =&gt; 订阅</div><div class="line">    setup(&#123; dispatch, history &#125;) &#123;  </div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  effects: &#123;											# =&gt; 副作用，一般用来发起请求</div><div class="line">    *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123;  </div><div class="line">      yield put(&#123; type: &apos;save&apos; &#125;);</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  reducers: &#123;											# =&gt; 只有在这里才能修改state的值</div><div class="line">    save(state, action) &#123;</div><div class="line">      return &#123; ...state, ...action.payload &#125;;</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>更多关于dva的api，请查看<a href="https://github.com/dvajs/dva/blob/master/docs/API.md" target="_blank" rel="external">dva APIs</a></p>
-<p>在src/models中新建login.js文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">`login.js`</div><div class="line">export default &#123;</div><div class="line"></div><div class="line">  namespace: &apos;login&apos;,</div><div class="line"></div><div class="line">  state: &#123;</div><div class="line">    loading: false,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  subscriptions: &#123;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  effects: &#123;</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  reducers: &#123;</div><div class="line">    save(state, action) &#123;</div><div class="line">      return &#123; ...state, ...action.payload &#125;;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>然后在Login.js中调用save方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">`Login.js`</div><div class="line">const userName = (e) =&gt; &#123;</div><div class="line">  dispatch(&#123;</div><div class="line">    type: &apos;login/save&apos;,</div><div class="line">    payload: &#123;</div><div class="line">      user: e.target.value,</div><div class="line">    &#125;,</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个方法的意思是：当输入用户名的时候，调用save方法，并将输入的值，保存在state.user中。</p>
-<h2 id="Step-6-发送请求"><a href="#Step-6-发送请求" class="headerlink" title="Step.6 发送请求"></a>Step.6 发送请求</h2><p>输入完用户名以及密码之后，单击登录按钮，将输入的值发送至后台校验，校验通过之后跳转到下一个页面。</p>
-<p>现在已经有了输入的用户名和密码，分别是login.user和login.password，现在需要将这两个数据发送到后台。由于现在并没有后台服务支持，dva支持mock数据，所以先在前台模拟一个后台服务。</p>
-<p>在项目根目录下新建.roadhogrc.mock.js并添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">`.roadhogrc.mock.js`</div><div class="line">const mock = &#123;&#125;</div><div class="line">require(&apos;fs&apos;).readdirSync(require(&apos;path&apos;).join(__dirname + &apos;/mock&apos;)).forEach(function(file) &#123;</div><div class="line">  Object.assign(mock, require(&apos;./mock/&apos; + file))</div><div class="line">&#125;)</div><div class="line">module.exports = mock</div></pre></td></tr></table></figure>
-<p>之后在mock文件夹中新建login.js并添加：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">`login.js`</div><div class="line">const qs = require(&apos;qs&apos;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  &apos;POST /login&apos; (req, res) &#123;</div><div class="line">    console.log(req.body);</div><div class="line">    console.log(&apos;接受到请求&apos;);</div><div class="line">    setTimeout(()=&gt;res.json(&#123;code:&apos;200&apos;,message:&apos;从mock/example.js请求成功&apos;&#125;),2000)</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个的意思是说，监听本地的8000端口，当访问<a href="http://localhost:8000/login的时候，会延迟2秒并返回数据。" target="_blank" rel="external">http://localhost:8000/login的时候，会延迟2秒并返回数据。</a></p>
-<p>模拟的后台服务已经完成，现在要在button中添加点击事件，去请求这个接口。</p>
-<p>首先改造一下fetch请求，在utils/request.js中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">export default function request(url, method, params) &#123;</div><div class="line">  if (method === &apos;POST&apos;) &#123;</div><div class="line">    const formData = new FormData();</div><div class="line"></div><div class="line">    for (const key in params) &#123;</div><div class="line">      if (params[key] != null) &#123;</div><div class="line">        const value = params[key];</div><div class="line">        formData.append(key, value);</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    return fetch(url, &#123;</div><div class="line">      method: method,</div><div class="line">      body: formData,</div><div class="line">    &#125;).then(checkStatus)</div><div class="line">      .then(parseJSON)</div><div class="line">      .then(data =&gt; (&#123; data &#125;))</div><div class="line">      .catch(err =&gt; (&#123; err &#125;));</div><div class="line">  &#125;</div><div class="line">  if (method === &apos;GET&apos;) &#123;</div><div class="line">    return fetch(url)</div><div class="line">      .then(checkStatus)</div><div class="line">      .then(parseJSON)</div><div class="line">      .then(data =&gt; (&#123; data &#125;))</div><div class="line">      .catch(err =&gt; (&#123; err &#125;));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>然后在services中新建login.js，这里可以理解为转发，从点击事件中传递到request里请求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">import request from &apos;../utils/request&apos;;</div><div class="line"></div><div class="line">export function login(params) &#123;</div><div class="line">  console.log(&apos;services处理&apos;);</div><div class="line">  return request(&apos;/login&apos;, &apos;POST&apos;, params);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>之后在models/login.js，发起这个请求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">effects: &#123;</div><div class="line">  *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123;  // eslint-disable-line</div><div class="line">    if(!payload.userName || !payload.passWord) &#123;</div><div class="line">      message.error(&apos;请输入账号密码&apos;);</div><div class="line">      return;</div><div class="line">    &#125;</div><div class="line">    const &#123; data &#125; = yield call(service.login, payload);</div><div class="line">  &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>最后在界面的button的点击事件中，调用models里的事件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const submit = () =&gt; &#123;</div><div class="line">  dispatch(&#123;</div><div class="line">    type: &apos;login/fetch&apos;,</div><div class="line">    payload: &#123;</div><div class="line">      userName: login.user,</div><div class="line">      passWord: login.password,</div><div class="line">    &#125;,</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>所有的都完成之后，重启项目，点击button之后可以在命令行中看到：</p>
-<img src="/2017/10/30/dva-learning/dva的mock@2x.png" alt="This is an example image" title="This is an example image">
-<p>undefined的原因是，roadhog的版本问题，获取不到从前台传递过来的参数。</p>
-<h2 id="Step-7-完善细节"><a href="#Step-7-完善细节" class="headerlink" title="Step.7 完善细节"></a>Step.7 完善细节</h2><p>整体的流程已经完成，现在要为它添加一些细节，让它看起来更加的真实</p>
-<p>添加一个加载等待的圈圈，在点击button的同时显示，后台反馈结果后消失并跳转到下一个界面。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Spin spinning=&#123;login.loading&#125;&gt;</div><div class="line">...</div><div class="line">&lt;/Spin&gt;</div></pre></td></tr></table></figure>
-<p>用Spin标签将其他的标签包起来，当它显示的时候，会出现在被包裹的标签之上。</p>
-<p>通过控制login.loading来控制Spin的显示与消失。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> reducers: &#123;</div><div class="line">...</div><div class="line">   loadingShow(state) &#123;</div><div class="line">     return &#123; ...state, loading: true&#125;;</div><div class="line">   &#125;,</div><div class="line">   loadingHide(state) &#123;</div><div class="line">     return &#123; ...state, loading: false&#125;;</div><div class="line">   &#125;</div><div class="line"> &#125;,</div></pre></td></tr></table></figure>
-<p> 最后在请求的时候完成这个流程</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">effects: &#123;</div><div class="line">  *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123; </div><div class="line">    if(!payload.userName || !payload.passWord) &#123;</div><div class="line">      message.error(&apos;请输入账号密码&apos;);</div><div class="line">      return;</div><div class="line">    &#125;</div><div class="line">    yield put(&#123; type: &apos;loadingShow&apos; &#125;);</div><div class="line">    const &#123; data &#125; = yield call(service.login, payload);</div><div class="line">    if(data.code === &apos;200&apos;) &#123;</div><div class="line">      yield put(&#123; type: &apos;loadingHide&apos; &#125;);</div><div class="line">      browserHistory.push(&apos;/home&apos;);</div><div class="line">    &#125;else &#123;</div><div class="line">      yield put(&#123; type: &apos;loadingHide&apos; &#125;);</div><div class="line">      message.error(&apos;登录失败&apos;);</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<p>如果需要在显示登录页面之前执行某些操作，可以在subscriptions中订阅：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">subscriptions: &#123;</div><div class="line">  setup(&#123; dispatch, history &#125;) &#123;</div><div class="line">    history.listen((location) =&gt; &#123;</div><div class="line">      if (location.pathname === &apos;/&apos;) &#123;</div><div class="line">        message.info(&apos;进入了登录页&apos;);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个登录页面，展示了从页面到请求的整个过程，虽然看起来有点绕，涉及了很多的页面。但是当文件多了，就会体现出dva这样分层的好处：各个文件夹各司其职，功能单一。</p>
-<p>最后实现的效果：</p>
-<img src="/2017/10/30/dva-learning/dva-learning.gif" alt="This is an example image" title="This is an example image">
-
-      
-
-      
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/30/dva-learning/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-app-develop-mode" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/19/app-develop-mode/">App开发模式简介</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/19/app-develop-mode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/app-develop-mode/" itemprop="url">App开发模式简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T21:16:49+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/10/19/app-develop-mode/" class="article-date">
-  <time datetime="2017-10-19T13:16:49.000Z" itemprop="datePublished">2017-10-19</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>​    对于手机app来说，近几年有以下几种开发模式</p>
+
+      
+        
+          <img src="/2017/10/19/app-develop-mode/app-develop_logo.jpg" alt="app-develop_logo.jpg" title="">
+<p>对于手机app来说，近几年有以下几种开发模式</p>
 <table>
 <thead>
 <tr>
@@ -759,322 +1288,599 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h2><p>原生开发是系统自带的app开发方式，也是大部分人最熟悉app开发的技术，如android、ios、wp。是开发者采用最广泛的开发方式，优点十分显著。相比其他开发方式而言，原生开发可以访问设备中的所有功能，运行速度更快，性能更高，而且可以启用优秀的离线处理和存储能力等等，提供最佳的用户体验，最优质的用户界面，最华丽的交互。原生开发人员众多，开发环境成熟，有许多的开源库提供开发人员调用，可是方便实现各种设计效果。<br><br><br>​原生开发的缺点在逐渐的开发、运营过程中显现出来。开发成本高，不同平台需要定制不同的app，也就是android定制apk，ios定制app，开发人员需要多平台多语言，人力成本、时间成本较多，通用性差；上线时间不稳定，需要审核，特别是苹果审核机制，审核时间长短不一，对内容还有控制，国内Android APP市场（百度手机助手，应用宝，360市场等等）也有类似的问题；版本控制能力差，版本发布到达率无法控制，多个版本更新发布，修复bug，无法保证及时送达到用户手中；获得新版本需要重新下载安装，虽然目前有增量升级方式逐渐改变，但是随之而来的其他问题如增量升级多版本控制也是个很头疼的问题。</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>提供最佳的用户体验，最优质的用户界面，最华丽的交互效果</li>
-<li>针对不同平台提供不同体验</li>
-<li>可访问手机的所有功能</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>开发成本较高</li>
-<li>范围限制多</li>
-<li>未知的部署时间（应用商店审核时间）</li>
-<li>内容限制</li>
-</ul>
-<h2 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h2><p>​    Web无需安装，对设备碎片化的适应能力优于App，它只需要通过HTML、CSS和JavaScript就可以在任意移动浏览器中执行。随着iPhone带来的WebKit浏览体验升级，使得专为iPhone等有WebKit浏览内核的移动设备开发的Web应用，也有了如App一般流畅的用户体验。</p>
-<p>​    Web App即在浏览器直接可以访问的应用</p>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>开发成本低</li>
-<li>一套代码适配多种移动设备</li>
-<li>跨平台和终端</li>
-<li>迭代更容易</li>
-<li>无需安装成本</li>
-</ul>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>浏览体验短期内还无法超越原生应用</li>
-<li>不支持离线模式（断网无法访问）</li>
-<li>消息推送不及时</li>
-<li>调用系统能力弱</li>
-</ul>
-<h2 id="Cordova"><a href="#Cordova" class="headerlink" title="Cordova"></a>Cordova</h2><p>​    Apache Cordova是一套设备API，允许移动应用的开发者使用JavaScript来访问本地设备的功能，比如摄像头、加速计。它可以与UI框架（如jQuery Mobile或Dojo Mobile或Sencha Touch）等相结合使用，这些UI框架可以使用HTML、CSS和JavaScript开发智能手机应用。</p>
-<p>​    在使用<strong>Cordova</strong> API时，应用程序的构建可以无需本地代码（如Java或对象C等），使用的是Web技术。由于这些JavaScript API在多个设备平台上是一致的，而且是基于Web标准创建的，因此应用程序的移植很方便，基本不做什么改变。使用<strong>Cordova</strong>的应用使用平台SDK打包成应用程序，可以从每种设备的应用程序商店下载安装。</p>
-<p>​    <strong>Cordova</strong>提供了一套统一的JavaScript库供调用，它支持iOS、Android、Blackberry、Windows Phone、Palm WebOS、Bada和Symbian。</p>
-<ul>
-<li>开发自由度</li>
-</ul>
-<p>​     首先 <strong>Cordova</strong> 构建的是一个运行于手机内置浏览器中的单页 Web 应用，因此理论上我们能够使用 jQuery，Angular 等等任何 Web 技术。</p>
-<ul>
-<li>界面表现</li>
-</ul>
-<p>​     <strong>Cordova</strong> 应用因为本质上是一个 Web 应用，因此某些地方会显得有些怪怪的。比如，列表滚动不像原生那么流畅，点击效果也缺少反馈。当然如果我们想让 <strong>Cordova</strong> 应用尽可能像原生应用的话，这些问题都是可以解决的，但也意味着我们需要付出额外的努力。</p>
-<ul>
-<li>性能方面</li>
-</ul>
-<p>​      <strong>Cordova</strong> 应用的性能很大程度上局限于运行它手机的 WebView 性能。比如，在 iOS 上，同一个 Web 应用，运行在默认 WebView 引擎上要明显慢于运行于 Safari 中。而 Android 也是在 4.0 之后 WebView 才换成了 Chrome 内核，因此，在老旧的 Android 机型上 <strong>Cordova</strong> 的表现会非常糟糕。进一步，由于 JavaScript 是单线程的，如果我们的<strong>Cordova</strong>应用同时做了很多事情，那可能就会遇到麻烦。</p>
-<h2 id="Weex"><a href="#Weex" class="headerlink" title="Weex"></a>Weex</h2><p>​    <strong>Weex</strong>能够完美兼顾性能与动态性，让移动开发者通过简捷的前端语法写出Native级别的性能体验，并支持iOS、安卓、YunOS及Web等多端部署。</p>
-<p>​    对于移动开发者来说，<strong>Weex</strong>主要解决了频繁发版和多端研发两大痛点，同时解决了前端语言性能差和显示效果受限的问题。开发者可通过Weex官网申请内测。</p>
-<p>​    开发者只需要在自己的APP中嵌入Weex的SDK，就可以通过撰写HTML/CSS/JavaScript来开发Native级别的<strong>Weex</strong>界面。<strong>Weex</strong>界面的生成码其实就是一段很小的JS，可以像发布网页一样轻松部署在服务端，然后在APP中请求执行。</p>
-<p>目前<strong>Weex</strong>有三种集成方式：</p>
-<ol>
-<li>全页模式<br>​    目前支持单页使用或整个app使用<strong>Weex</strong>开发（还不完善，需要开发router和生命周期管理）这是主推的模式，可以类比RN。</li>
-<li>Native Component模式<br>​        把<strong>Weex</strong>当作一个iOS/Android组件来使用，类比ImageView。这类需求遍布手淘主链路，如首页、主搜结果、交易组件化等，和业务同学沟 通下来这类Native页面主体已经很稳定，但是局部动态化需求旺盛导致频繁发版，解决这类问题也是<strong>Weex</strong>的重点。</li>
-<li>H5 Component模式<br>​        在H5种使用<strong>Weex</strong>，类比WVC。一些较复杂或特殊的H5页面短期内无法完全转为<strong>Weex</strong>全页模式（或RN），比如猫超、互动类页面、一些复杂频道页 等。针对这个痛点我发起过WVC项目，并在实际业务中验证了这样的想法：在现有的H5页面上做微调，引入Native解决长列表内存暴增、滚动不流畅、动 画/手势体验差等问题。WVC将会融入到<strong>Weex</strong>中，成为<strong>Weex</strong>的H5 Components模式。</li>
-</ol>
-<p>这3种模式几乎涵盖了淘系业务上的动态化需求（针对Native）或体验提升需求（针对H5）。更有趣的是这3种模式的技术基础是一致的，这非常重要，意 味着：业务方可以使用Native或H5 Component模式 解决实际的业务痛点，同时平滑过渡到<strong>Weex</strong>全页模式。期待<strong>Weex</strong>成长壮大到AppFramework的那天。</p>
-<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>由于 Weex 采用了 Vue 作为上层框架，相较于 React 更加轻量，Vue 的官网宣传就是非常轻量，体积小巧，语法简单。</li>
-<li>Vue 的学习成本相较于 React 更加小，大部分 Native 开发者更容易上手。</li>
-<li>Weex 吸收了 RN 的精华，可以说 Weex 是站在巨人的肩膀上问世。</li>
-</ul>
-<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>Weex 相较于 RN 起步比较晚，社区没有 RN 活跃。</li>
-<li>从问世的时间上来看，RN 具有更大的优势，Weex 的学习资料比较少。</li>
-<li>Weex 现在存在的 BUG 相较于 RN 还比较多，对于使用来说会有一些影响。</li>
-</ul>
-<h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>​    React Native 是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。</p>
-<p>​    使用React Native开发者可以维护多种平台(Web,Android和IOS)的同一份业务逻辑核心代码来创建原生应用。</p>
-<p>​    现阶段Web APP的的体验还是无法达到Native APP的体验，所以这边fackbook更加强调的是<strong>“learn once, write everywhere”</strong>，应用前端我们使用js和React来开发不同平台的UI，下层核心模块编写复用的业务逻辑代码，提供应用开发效率。</p>
-<p>​    React Native的设计理念：既拥有Native的用户体验、又保留React的开发效率。</p>
-<h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>可以大大节省开发成本,百分之90多界面可以通过RN开发,一份代码可以适配Android和IOS。</li>
-<li>RN有独特的UI实现框架,借助组件化开发是团队规模更容易进行调整,可以快速迭代项目。</li>
-<li>RN可以通过一些手段自动匹配不同屏幕大小的手机,再也不需要自己去计算视图的大小和位置。</li>
-<li>RN具备高效的UI调试。</li>
-</ul>
-<h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>RN开发的程序内存消耗略大, 开发模式下开销大几十兆,发布后差异不大, 目前手机基本上都有2G以上的内存, 几十兆可以忽略不计了。</li>
-<li>运行速度略慢， 不可否认，原生代码比RN运行速度略快, 显示一个界面多一两毫秒吧,正常的人根本感觉不到,如果你用不经过优化的原生代码反而不如RN。</li>
-<li>安装包比原生代码安装包大,这点更可以忽略了, 现在手机什么都缺就不缺空间。</li>
-</ul>
-
-      
-
-      
+<h2 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h2><p>原生开发是系统自带的app开发方式，也是大部分人最熟悉app开发的技术，如android、ios、wp。是开发者采用最广泛的开发方式，优点十分显著。相比其他开发方式而言，原生开发可以访问设备中的所有功能，运行速度更快，性能更高，而且可以启用优秀的离线处理和存储能力等等，提供最佳的用户体验，最优质的用户界面，最华丽的交互。原生开发人员众多，开发环境成熟，有许多的开源库提供开发人员调用，可是方便实现各种设计效果。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/19/app-develop-mode/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-dva-compatible" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/10/dva-compatible/">Dva兼容性</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/10/dva-compatible/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/dva-compatible/" itemprop="url">Dva兼容性</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T19:02:32+08:00">
+                2017-10-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/10/10/dva-compatible/" class="article-date">
-  <time datetime="2017-10-10T11:02:32.000Z" itemprop="datePublished">2017-10-10</time>
-</a>
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Dva项目兼容性"><a href="#Dva项目兼容性" class="headerlink" title="Dva项目兼容性"></a>Dva项目兼容性</h2><p>之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。</p>
-<h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><p>之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自带的请求框架，就没有深入的学习。查询一系列资料之后，将fetch的知识学习了一遍。</p>
-<p>Fetch API 是基于 Promise 设计，在你理解了Promise之后，Fetch对于你来说并不困难，通过阅读文档很快就能学会。推荐推荐 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch" target="_blank" rel="external">MDN Fetch 教程</a> 和 万能的<a href="https://fetch.spec.whatwg.org/" target="_blank" rel="external">WHATWG Fetch 规范</a>。由于旧的浏览器并不支持Promise，所以导致了Fetch的局限性。</p>
-<p>Fetch原生支持率：</p>
-<img src="/2017/10/10/dva-compatible/fetch兼容性.png" alt="This is an example image" title="This is an example image">
-<p>由此可见，Fetch的兼容性并不好。不过网上给出了相应的解决办法，通过引入polyfill以支持IE8+</p>
-<ol>
-<li>由于 IE8 是 ES3，需要引入 ES5 的 polyfill: <a href="https://github.com/es-shims/es5-shim" target="_blank" rel="external">es5-shim, es5-sham</a></li>
-<li>引入 Promise 的 polyfill: <a href="https://github.com/jakearchibald/es6-promise" target="_blank" rel="external">es6-promise</a></li>
-<li>引入 fetch 探测库：<a href="https://github.com/camsong/fetch-detector" target="_blank" rel="external">fetch-detector</a></li>
-<li>引入 fetch 的 polyfill: <a href="https://github.com/camsong/fetch-ie8" target="_blank" rel="external">fetch-ie8</a></li>
-<li>可选：如果你还使用了 jsonp，引入 <a href="https://github.com/camsong/fetch-jsonp" target="_blank" rel="external">fetch-jsonp</a></li>
-<li>可选：开启 Babel 的 runtime 模式，现在就使用 async/await</li>
-</ol>
-<p>在尝试了以上方法，把它们引入后，并没有生效（不</p>
-<p>Fetch 请求默认是不带 cookie 的，需要设置 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fetch(url, &#123;credentials: &apos;include&apos;&#125;)</div></pre></td></tr></table></figure>
-<p>在实际操作的时候，加上了上述代码，依然不能带着cookie传递给后台（不</p>
-<p>这里只介绍fetch的最简单应用，更具体的应用请看<a href="https://github.com/github/fetch" target="_blank" rel="external">github</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">`post请求`</div><div class="line">fetch(url, &#123;</div><div class="line">	method: method,</div><div class="line">	body: formData,</div><div class="line">  &#125;).then(checkStatus)</div><div class="line">.then(parseJSON)</div><div class="line">.then((data) =&gt; &#123;</div><div class="line"> return &#123; data &#125;;</div><div class="line">&#125;)</div><div class="line">.catch(err =&gt; (&#123; err &#125;));</div></pre></td></tr></table></figure>
-<p>发起fetch请求，需要将参数转化成FormData类型，请求成功后会依次执行.then()函数，在data中获取后台数据。</p>
-<h3 id="XMLHTTPRequest"><a href="#XMLHTTPRequest" class="headerlink" title="XMLHTTPRequest"></a>XMLHTTPRequest</h3><p>各种引入polyfill仍然不能在IE中兼容，随后将目光转移到了原生js上。查看文档发现：所有现代浏览器 (IE7+、Firefox、Chrome、Safari 以及 Opera) 都内建了 XMLHttpRequest 对象。</p>
-<p>由于没有用过jQuery和ajax，只是在查过文档稍稍了解了一下用法（误导</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xhr;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest) &#123;</div><div class="line">  xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.ActiveXObject) &#123; <span class="comment">// IE</span></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Msxml2.XMLHTTP'</span>);</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">      xhr = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</div><div class="line">    &#125; <span class="keyword">catch</span> (e) &#123;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (xhr) &#123;</div><div class="line">  xhr.open(<span class="string">'POST'</span>, url, <span class="literal">true</span>);</div><div class="line">  xhr.setRequestHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/x-www-form-urlencoded'</span>);</div><div class="line">  xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span> &amp;&amp; xhr.status === <span class="number">200</span>)&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.parse(xhr.responseText));</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">  xhr.send(paramstring);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>虽然并不知道原理，但上述代码在IE浏览器上运行正常，可以正确的获取到后台的值。但是由于它时候在onreadystatechange属性中，一直调用后面的方法，整个请求下来，调用五次后面的方法，在最后一次readyState等于4的时候，才获取到值。而且值在回调函数中，不能直接赋值获取，需要通过调用者传递一个回调函数，将值回调出去。</p>
-<p>由于项目中采用Promise回调，并不想做太大改动，所以摒弃了这种写法</p>
-<h3 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h3><p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
-<img src="/2017/10/10/dva-compatible/68747470733a2f2f73617563656c6162732e636f6d2f6f70656e5f73617563652f6275696c645f6d61747269782f6178696f732e737667.svg" alt="This is an example image" title="This is an example image">
-<p>由上图可知，axios兼容性十分不错，寄希望它可以解决Dva项目的兼容性问题。用axios整体替换掉fetch。Axios API和Fetch API十分相近，简单的用法和fetch基本一致：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="string">`post请求`</span></div><div class="line">axios.post(<span class="string">'/user'</span>, &#123;</div><div class="line">    firstName: <span class="string">'Fred'</span>,</div><div class="line">    lastName: <span class="string">'Flintstone'</span></div><div class="line">  &#125;)</div><div class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(response);</div><div class="line">  &#125;)</div><div class="line">  .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(error);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
-<p>然后在入口函数中引入es6-promise</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">require(&apos;es6-promise&apos;).polyfill();</div></pre></td></tr></table></figure>
-<p>经本地测试，IE浏览器可以正常访问，基本解决了IE兼容性的问题。</p>
-<p>大致查看了一下文档，axios的拓展性以及可定制性比较高，操作空间比fetch要强，考虑后续将fetch都替换成axios</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li>在测试FireFox浏览器的时候，一直白屏。控制台报错</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">错误:样式表单index.css 未载入，因为它的MIME类型 &quot;text/html&quot; 不是 &quot;text/css&quot;</div></pre></td></tr></table></figure>
-<p>在index.html中，将</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</div><div class="line">  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</div></pre></td></tr></table></figure>
-<p>改成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!--[if IE]&gt;</div><div class="line">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</div><div class="line">  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
-<p>这样，只有在IE下才会使用这个头部声明，而在FireFox下是不会使用的。</p>
-<ul>
-<li>访问项目，到某路由下刷新出现白屏并且出现如下错误</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">index.js:1 Uncaught SyntaxError: Unexpected token &lt;</div></pre></td></tr></table></figure>
-<p>在编译之前将index.js的相对路径改成绝对路径、</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> */</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/index.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>index.css同理</p>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
       
         
+          <img src="/2017/10/10/dva-compatible/dva_logo2.jpg" alt="dva_logo2.jpg" title="">
+<h2 id="Dva项目兼容性"><a href="#Dva项目兼容性" class="headerlink" title="Dva项目兼容性"></a>Dva项目兼容性</h2><p>之前上线的Dva项目，在Chrome和Safari中表现良好，但是在有些浏览器打不开，比如IE、某些版本的FireFox。这是由于在项目中，网络请求模块用到了fetch请求，由于fetch的局限性，导致部分浏览器不兼容。现记录下适配到IE的过程，以供自己学习。</p>
+<h3 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h3><p>之前发现IE浏览器打不开，通过查询得知是fetch的原因。由于一开始没有关注过fetch请求，以为是dva框架自带的请求框架，就没有深入的学习。查询一系列资料之后，将fetch的知识学习了一遍。<br>Fetch API 是基于 Promise 设计，在你理解了Promise之后，Fetch对于你来说并不困难，通过阅读文档很快就能学会。推荐推荐 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/GlobalFetch/fetch" target="_blank" rel="external">MDN Fetch 教程</a> 和 万能的<a href="https://fetch.spec.whatwg.org/" target="_blank" rel="external">WHATWG Fetch 规范</a>。由于旧的浏览器并不支持Promise，所以导致了Fetch的局限性。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/10/dva-compatible/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
-</article>
-
-
-
   
-    <article id="post-dva-deploy" class="article article-type-post" itemscope itemprop="blogPost">
   
-  <div class="article-inner">
+  </article>
+
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/01/dva-deploy/">Dva项目部署至Nginx服务器</a>
-    </h1>
+      
+
   
 
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/01/dva-deploy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/01/dva-deploy/" itemprop="url">Dva项目部署至Nginx服务器</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-01T22:31:10+08:00">
+                2017-10-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
       </header>
     
-    <div class="article-meta">
-      <a href="/2017/10/01/dva-deploy/" class="article-date">
-  <time datetime="2017-10-01T14:31:10.000Z" itemprop="datePublished">2017-10-01</time>
-</a>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
-    </div>
-    <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
-<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure>
+
+      
+        
+          <img src="/2017/10/01/dva-deploy/dva_logo.jpg" alt="dva_logo.jpg" title="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
+<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure></p>
 <p>成功下载完所有配置文件之后执行，再次确认你的项目可以正确访问</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm start</div></pre></td></tr></table></figure>
 <p>即可自动打开浏览器的8000端口，成功运行该项目，如果没有自动弹出则访问<a href="http://localhost:8000/" target="_blank" rel="external">localhost:8000/</a></p>
-<h2 id="部署配置"><a href="#部署配置" class="headerlink" title="部署配置"></a>部署配置</h2><p>在项目中的.roadhogrc文件中删除以下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;proxy&quot;: &#123;</div><div class="line">  &quot;/api&quot;: &#123;</div><div class="line">  &quot;target&quot;: 你的后台服务地址,</div><div class="line">  &quot;changeOrigin&quot;: true,</div><div class="line">  &quot;pathRewrite&quot;: &#123; &quot;^/api&quot; : &quot;&quot; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>之后进入命令行，执行编译操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm run build</div></pre></td></tr></table></figure>
-<p>执行完之后会在主目录下生成dist文件夹，里面包含index.html、index.js、index.css以及资源文件夹static。<br>打包完成后，把dist文件夹上传至服务器上即可访问，这里用的是nginx服务器。</p>
-<h3 id="nginx简介"><a href="#nginx简介" class="headerlink" title="nginx简介"></a>nginx简介</h3><p><strong>Nginx</strong>（发音同 engine x）是一款轻量级的Web 服务器／反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。</p>
-<p><strong>本项目采用 Nginx 作为 Web 服务器。</strong></p>
-<h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找</p>
-<p>登录服务器之后执行，下载nginx安装包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo wget http://nginx.org/download/nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
-<p>然后解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo  tar -xzvf nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
-<p>进入解压之后的文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd nginx-1.2.2</div><div class="line"><span class="meta">$</span> ./configure</div></pre></td></tr></table></figure>
-<p>如果一切顺利的话，执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> make</div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure>
-<p>完成安装，可以在/usr/local文件下找到nginx文件夹</p>
-<p>然后访问服务器即可看到</p>
-<p>welcome nginx</p>
-<h2 id="nginx安装常见问题"><a href="#nginx安装常见问题" class="headerlink" title="nginx安装常见问题"></a>nginx安装常见问题</h2><ul>
-<li><h3 id="缺少pcre"><a href="#缺少pcre" class="headerlink" title="缺少pcre"></a>缺少pcre</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
-<p>即提示缺少pcre library</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get undate</div><div class="line">$ sudo apt-get install libpcre3 libpcre3-dev</div></pre></td></tr></table></figure>
-</li>
-<li><h3 id="缺少gcc-c-和libtool"><a href="#缺少gcc-c-和libtool" class="headerlink" title="缺少gcc-c++和libtool"></a>缺少gcc-c++和libtool</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libtool: compile: unrecognized option `-DHAVE_CONFIG_H&apos;</div><div class="line">libtool: compile: Try `libtool --help&apos; for more information.</div><div class="line">make[1]: *** [pcrecpp.lo] Error 1</div><div class="line">make[1]: Leaving directory `/usr/local/src//pcre-8.31&apos;</div><div class="line">make: *** [all] Error 2root@wolfdog-virtual-machine:~/work/pcre-8.12$ libtool -help -DHAVE_CONFIG_H</div><div class="line">The program &apos;libtool&apos; is currently not installed.  You can install it by typing:</div><div class="line">sudo apt-get install libtool</div></pre></td></tr></table></figure>
-<p>即提示缺少libtool和gcc-c++</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libtool</div><div class="line">$ sudo apt-get install gcc-c++</div></pre></td></tr></table></figure>
-</li>
-<li><h3 id="缺少zlib库"><a href="#缺少zlib库" class="headerlink" title="缺少zlib库"></a>缺少zlib库</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP gzip module requires the zlib library.</div><div class="line">You can either disable the module by using --without-http_gzip_module</div><div class="line">option, or install the zlib library into the system, or build the zlib library</div><div class="line">statically from the source with nginx by using --with-zlib=&lt;path&gt; option.</div></pre></td></tr></table></figure>
-<p>其提示缺少zlib库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssl libssl-dev libperl-dev</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>nginx的配置文件在/usr/local/nginx/conf文件夹下，其主要的配置文件是nginx.conf文件，编辑该文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> vi nginx.conf</div></pre></td></tr></table></figure>
-<p>在配置文件的http下写入如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #charset koi8-r;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">       proxy_set_header X-Real-IP $remote_addr;</div><div class="line">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">       proxy_set_header HOST $http_host;</div><div class="line">       proxy_set_header X-Nginx_Proxy true;</div><div class="line">       proxy_redirect off;</div><div class="line">       root  dist;</div><div class="line">       index  index.html index.htm;</div><div class="line">       try_files $uri /index.html;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location ^~ /api/ &#123;</div><div class="line">      proxy_set_header  X-Real-IP  $remote_addr;</div><div class="line">      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">      proxy_read_timeout       300;</div><div class="line">      proxy_send_timeout       600;</div><div class="line">      proxy_ignore_client_abort on;</div><div class="line">      proxy_connect_timeout    300;</div><div class="line">      proxy_next_upstream     error;</div><div class="line">      proxy_pass 这里填入后台服务地址;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p>之后用scp命令将本地的dist文件夹上传至服务器的/usr/local/nginx文件夹下即可，上传成功之后启动nginx</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</div></pre></td></tr></table></figure>
-<p>成功之后访问服务器即可看到项目首页</p>
-
-      
-
-      
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/01/dva-deploy/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
+      
     </div>
-  </div>
-  
-</article>
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
-</section>
-        <aside id="sidebar">
-  <nav class="menus">
-  	<ul>
-  		<li><a href="/"><i class="icon icon-home"></i></a></li>
-  		
-			<li><a href="/archives"><i class="icon icon-fenlei"></i></a></li>
-  		
-  		
-			<li><a href="/tags"><i class="icon icon-tag"></i></a></li>
-  		
-  		
-  			<li><a href="https://github.com/mah93" target="_blank"><i class="icon icon-github"></i></a></li>
-  		
-  	</ul>
-  </nav>
-  <a id="go-top" href="#"><i class="icon icon-up"></i></a>
-</aside>
-
-      </div>
-      <footer id="footer">
-  
-	<div id="footer-info" class="inner">
-	  &copy; 2017 mah93 
-	  - Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	  - Theme <a href="https://github.com/hejianxian/hexo-theme-jane/" target="_blank">Jane</a>
-	</div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-    <a href="/tags" class="mobile-nav-link">Tag</a>
-  
-    <a href="https://github.com/mah93" class="mobile-nav-link">Github</a>
-  
-</nav>
+    
+    
     
 
-<script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 
-<script src="/js/script.js"></script>
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">mah93</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">Tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mah93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
