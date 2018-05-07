@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="代码规范只是让代码更容易被理解，让多人开发时代码也能保持内部一致性。 制定代码规范的标准因团队而异，可以根据多数人的开发习惯或者是参考别人的规范 实现代码规范的方法有很多种，在React-Native中可以使用ESLint配合编译器进行代码规范审核 不必矫枉过正">
+<meta name="keywords" content="React Native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="code-standard">
+<meta property="og:url" content="https://mah93.github.io/2018/05/07/code-standard/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="代码规范只是让代码更容易被理解，让多人开发时代码也能保持内部一致性。 制定代码规范的标准因团队而异，可以根据多数人的开发习惯或者是参考别人的规范 实现代码规范的方法有很多种，在React-Native中可以使用ESLint配合编译器进行代码规范审核 不必矫枉过正">
+<meta property="og:image" content="https://mah93.github.io/2018/05/07/code-standard/code-standard.jpg">
+<meta property="og:updated_time" content="2018-05-07T04:29:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="code-standard">
+<meta name="twitter:description" content="代码规范只是让代码更容易被理解，让多人开发时代码也能保持内部一致性。 制定代码规范的标准因团队而异，可以根据多数人的开发习惯或者是参考别人的规范 实现代码规范的方法有很多种，在React-Native中可以使用ESLint配合编译器进行代码规范审核 不必矫枉过正">
+<meta name="twitter:image" content="https://mah93.github.io/2018/05/07/code-standard/code-standard.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mah93.github.io/2018/05/07/code-standard/"/>
+
+
+
+
+
+  <title>code-standard | mah93</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mah93</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2018/05/07/code-standard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">code-standard</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T12:22:40+08:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2018/05/07/code-standard/code-standard.jpg" alt="code-standard.jpg" title="">
+<blockquote>
+<p>代码规范只是让代码更容易被理解，让多人开发时代码也能保持内部一致性。</p>
+<p>制定代码规范的标准因团队而异，可以根据多数人的开发习惯或者是参考别人的规范</p>
+<p>实现代码规范的方法有很多种，在React-Native中可以使用ESLint配合编译器进行代码规范审核</p>
+<p>不必矫枉过正</p>
+</blockquote>
+<a id="more"></a> 
+<h3 id="编程规范"><a href="#编程规范" class="headerlink" title="编程规范"></a>编程规范</h3><h4 id="变量规范"><a href="#变量规范" class="headerlink" title="变量规范"></a>变量规范</h4><ul>
+<li>代码中变量的命名均不能以下划线或符号开始，也不能以下划线或符号为结束</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">错误：_title / $title / title_ / title$</div></pre></td></tr></table></figure>
+<ul>
+<li>变量命名采用lowerCamelCase驼峰命名的方式，第一个字母必须小写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正确：myName / birthDay</div></pre></td></tr></table></figure>
+<ul>
+<li>命名严禁使用拼音或者是拼音与英文混合的方式，正确的英文拼写和语法可以让阅读者易于理解，避免歧义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：shengchan / fenshu / bigshan</div><div class="line">正确：production ／ grade ／ bigMountain</div></pre></td></tr></table></figure>
+<ul>
+<li>常用的单词，在不引起歧义的情况下可以缩写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">例如：userMsg 等价于 userMessaage</div></pre></td></tr></table></figure>
+<ul>
+<li>数组或者对象变量，需明确指出其类型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正确： studentList / userObject</div></pre></td></tr></table></figure>
+<ul>
+<li>常量的命名全部采用大写，单词与单词之间采用下划线进行分割。力求保证见文知意，不要害怕变量过长</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：MaxValue / MAXVALUE</div><div class="line">正确：MAX_STUDENT_GRADE</div></pre></td></tr></table></figure>
+<ul>
+<li>对所有的变量，对象的引用，请使用const</li>
+</ul>
+<h4 id="函数规范"><a href="#函数规范" class="headerlink" title="函数规范"></a>函数规范</h4><ul>
+<li>方法、函数一律使用ES6中箭头函数的声明方式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">错误：function test() &#123;&#125;</div><div class="line">     test() &#123;&#125;</div><div class="line">正确：test = () =&gt; &#123;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>方法名、函数名一律采用lowerCamelCase驼峰命名的方式，第一个字母必须小写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正确：getAllUserInformation = () =&gt; &#123;&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>类名使用UpperCamelCase驼峰命名的方式，第一个字母必须大写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正确：export default class StringUtil &#123;&#125;</div></pre></td></tr></table></figure>
+<h4 id="组件规范"><a href="#组件规范" class="headerlink" title="组件规范"></a>组件规范</h4><ul>
+<li>JSX中的方法，超过一行必须写成一个新的函数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">正确：&lt;TouchableOpacity onPress=&#123;this.doSomething&#125;&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>组件嵌套时，子组件与父组件要有2个空格的缩进</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;Father&gt;</div><div class="line">  &lt;Children /&gt;</div><div class="line">&lt;/Father&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>组件需要设置样式的时候，如果只有一个样式可以用内联的方式写在JSX内，如果两个以上必须使用StyleSheet创建样式</li>
+<li>当一个组件有多个属性需要配置的时候，务必多行书写</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;TouchableOpacity</div><div class="line">  onPress=&#123;() =&gt; &#123;&#125;&#125;</div><div class="line">  style=&#123;&#125;</div><div class="line">&gt;</div><div class="line">  &lt;Children /&gt;</div><div class="line">&lt;/TouchableOpacity&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>自定义组件命名的时候，用UpperCamelCase命名。</li>
+<li>自定义组件，要详细写出属性列表，并解释每个属性的意思。为每个属性初始化一个默认值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">FlexButton.propTypes = &#123;</div><div class="line">  press: PropTypes.func,</div><div class="line">  top: PropTypes.number.isRequired,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">FlexButton.defaultProps = &#123;</div><div class="line">  press: () =&gt; &#123;&#125;,</div><div class="line">  top: 0,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>无状态的组件，即不涉及组件内部数据、UI变化的组件。请继承自PureComponent而不是Component</li>
+</ul>
+<h4 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h4><ul>
+<li>关键字左右需加空格，如if/for/else等关键字</li>
+</ul>
+<ul>
+<li>任何运算符左右必须都有一个空格，包括赋值、逻辑运算符、加减乘除等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：grade=20</div><div class="line">正确：grade = 20</div></pre></td></tr></table></figure>
+<ul>
+<li>大括号使用约定。如果大括号内为空，则写成{}即可，不需要换行。如果是非空代码块则左边括号空一格，右边闭括号需要换行，与方法名对其</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">例如：const getTest = () =&gt; &#123;</div><div class="line">    	// do something</div><div class="line">	 &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>单行字符数不超过120个（可在eslint中设置）超过的字符需要换行。单页代码不超过300行，超过的需要重构代码。</li>
+<li>方法参数在传入的时候，多个参数逗号前必须加括号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">onMsgCallBack = (msg, title, name) =&gt; &#123;</div><div class="line">    // do something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>合理使用空格，将不同功能或者是不同业务逻辑的方法分开。</li>
+</ul>
+<h4 id="条件语句规范"><a href="#条件语句规范" class="headerlink" title="条件语句规范"></a>条件语句规范</h4><ul>
+<li>简单的if/else逻辑判断，请使用三目运算符。逻辑判断请勿超过三层，如果超过了请重新思考代码逻辑。或者使用switch</li>
+<li>在一个 switch 块内，每个case要么通过 break/return 等来终止，要么注释说明程序将继续执行到哪一个 case 为止;在一个 switch 块内，都必须包含一个default 语句并且 放在最后，即使它什么代码也没有。</li>
+</ul>
+<h4 id="注释规范"><a href="#注释规范" class="headerlink" title="注释规范"></a>注释规范</h4><ul>
+<li>变量或者是属性，可以在后面使用单行注释来说明这个变量或者属性的用途</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const userName = &apos;Jace&apos;; // 用户姓名</div></pre></td></tr></table></figure>
+<ul>
+<li>类、类方法的注释不得使用//单行注释，必须使用/**/的多行注释。方法中如果需要传入参数，或者是有返回值。请在注释中详细写出。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * 获取所有信息</div><div class="line"> * param: name 获取信息人姓名</div><div class="line"> * param: number 获取信息人编号</div><div class="line"> * return: msg 返回用户信息</div><div class="line"> */</div><div class="line">const fetchAllMsg = (name, number) =&gt; &#123;</div><div class="line">    // doFetch</div><div class="line">    return msg</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li>逻辑代码中需要注释出逻辑流程</li>
+<li>注释掉的代码，如果不再使用请尽快删除，以免给后续维护人员带来麻烦。如果只是暂时注释，请说明注释原因</li>
+</ul>
+<h3 id="文件规范"><a href="#文件规范" class="headerlink" title="文件规范"></a>文件规范</h3><ul>
+<li>确定好项目的文件目录结构，要求文件层次清晰，功能划分明确</li>
+</ul>
+<ul>
+<li>文件命名遵循lowerCamelCase方式命名。如果是某一个平台特有的文件，可以加上ios或者android的后缀作为区分</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">例如：index.ios.js / index.android.js</div></pre></td></tr></table></figure>
+<ul>
+<li>文件开头需写明该文件作用、作者以及创建时间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line"> * 登录页面</div><div class="line"> * by XXX at 2018-2-10</div><div class="line"> */</div></pre></td></tr></table></figure>
+<h3 id="ESLint安装指南"><a href="#ESLint安装指南" class="headerlink" title="ESLint安装指南"></a>ESLint安装指南</h3><p>在项目的根目录中运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(</div><div class="line">  export PKG=eslint-config-airbnb;</div><div class="line">  npm info &quot;$PKG@latest&quot; peerDependencies --json | command sed &apos;s/[\&#123;\&#125;,]//g ; s/: /@/g&apos; | xargs npm install --save-dev &quot;$PKG@latest&quot;</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>之后需要安装babel-eslint，并创建.eslintrc。可以在里面写入自己的代码规则，类似于下方</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;parser&quot;: &quot;babel-eslint&quot;,</div><div class="line">  &quot;extends&quot;: &quot;airbnb&quot;,</div><div class="line">  &quot;rules&quot;: &#123;</div><div class="line">  	// 你的规则</div><div class="line">  &#125;,</div><div class="line">  &quot;parserOptions&quot;: &#123;</div><div class="line">    &quot;ecmaFeatures&quot;: &#123;</div><div class="line">      &quot;experimentalObjectRestSpread&quot;: true</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所有的规则可以在<a href="https://cn.eslint.org/docs/rules/" target="_blank" rel="external">ESLint规则</a>中查看，然后根据你的要求写到rules下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;rules&quot;: &#123;</div><div class="line">	&quot;no-bitwise&quot;: [0]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><code>&quot;off&quot;</code> 或 <code>0</code> - 关闭规则</li>
+<li><code>&quot;warn&quot;</code> 或 <code>1</code> - 开启规则，使用警告级别的错误：<code>warn</code> (不会导致程序退出)</li>
+<li><code>&quot;error&quot;</code> 或 <code>2</code> - 开启规则，使用错误级别的错误：<code>error</code> (当被触发的时候，程序会退出)</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag"># React Native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/react-native-develop-guide/" rel="next" title="React Native开发指北">
+                <i class="fa fa-chevron-left"></i> React Native开发指北
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4"
+                alt="mah93" />
+            
+              <p class="site-author-name" itemprop="name">mah93</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mah93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编程规范"><span class="nav-number">1.</span> <span class="nav-text">编程规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量规范"><span class="nav-number">1.1.</span> <span class="nav-text">变量规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数规范"><span class="nav-number">1.2.</span> <span class="nav-text">函数规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件规范"><span class="nav-number">1.3.</span> <span class="nav-text">组件规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#格式规范"><span class="nav-number">1.4.</span> <span class="nav-text">格式规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件语句规范"><span class="nav-number">1.5.</span> <span class="nav-text">条件语句规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释规范"><span class="nav-number">1.6.</span> <span class="nav-text">注释规范</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件规范"><span class="nav-number">2.</span> <span class="nav-text">文件规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ESLint安装指南"><span class="nav-number">3.</span> <span class="nav-text">ESLint安装指南</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
