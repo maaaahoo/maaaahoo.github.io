@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Masonry是一个轻量级的布局框架 拥有自己的描述语法 采用更优雅的链式语法封装自动布局 简洁明了 并具有高可读性 而且同时支持 iOS 和 Max OS X。 Masonry是一个对系统NSLayoutConstraint进行封装的第三方自动布局框架，采用链式编程的方式提供给开发者API。系统AutoLayout支持的操作，Masonry都支持，相比系统API功能来说，Masonry是有过之而">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Masonry笔记">
+<meta property="og:url" content="https://mah93.github.io/2018/12/07/masonry/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="Masonry是一个轻量级的布局框架 拥有自己的描述语法 采用更优雅的链式语法封装自动布局 简洁明了 并具有高可读性 而且同时支持 iOS 和 Max OS X。 Masonry是一个对系统NSLayoutConstraint进行封装的第三方自动布局框架，采用链式编程的方式提供给开发者API。系统AutoLayout支持的操作，Masonry都支持，相比系统API功能来说，Masonry是有过之而">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/center_v.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/center_h.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/center.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/insets.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/apposition.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/apposition_v.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/apposition_2.png">
+<meta property="og:image" content="https://mah93.github.io/2018/12/07/masonry/apposition_3.png">
+<meta property="og:updated_time" content="2018-12-07T09:36:46.490Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Masonry笔记">
+<meta name="twitter:description" content="Masonry是一个轻量级的布局框架 拥有自己的描述语法 采用更优雅的链式语法封装自动布局 简洁明了 并具有高可读性 而且同时支持 iOS 和 Max OS X。 Masonry是一个对系统NSLayoutConstraint进行封装的第三方自动布局框架，采用链式编程的方式提供给开发者API。系统AutoLayout支持的操作，Masonry都支持，相比系统API功能来说，Masonry是有过之而">
+<meta name="twitter:image" content="https://mah93.github.io/2018/12/07/masonry/center_v.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mah93.github.io/2018/12/07/masonry/"/>
+
+
+
+
+
+  <title>Masonry笔记 | mah93</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mah93</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2018/12/07/masonry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Masonry笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-07T17:21:26+08:00">
+                2018-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Masonry是一个轻量级的布局框架 拥有自己的描述语法 采用更优雅的链式语法封装自动布局 简洁明了 并具有高可读性 而且同时支持 iOS 和 Max OS X。</p>
+<p>Masonry是一个对系统NSLayoutConstraint进行封装的第三方自动布局框架，采用链式编程的方式提供给开发者API。系统AutoLayout支持的操作，Masonry都支持，相比系统API功能来说，Masonry是有过之而无不及。也就是说Masonry就是NSLayoutConstraint，只不过是提供了更加简单的书写方法。如果你对NSLayoutConstraint有所了解，那么Masonry可以说是简单易懂</p>
+<p>Masonry属性与NSLayoutAttrubute的对照表如下</p>
+<table>
+<thead>
+<tr>
+<th>Masonry</th>
+<th>NSLayoutAttrubute</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>left</td>
+<td>NSLayoutAttrubuteLeft</td>
+<td>左侧</td>
+</tr>
+<tr>
+<td>top</td>
+<td>NSLayoutAttrubuteTop</td>
+<td>上侧</td>
+</tr>
+<tr>
+<td>right</td>
+<td>NSLayoutAttrubuteRight</td>
+<td>右侧</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>NSLayoutAttrubuteBottom</td>
+<td>下侧</td>
+</tr>
+<tr>
+<td>leading</td>
+<td>NSLayoutAttrubuteLeading</td>
+<td>首部</td>
+</tr>
+<tr>
+<td>trailing</td>
+<td>NSLayoutAttrubuteTrailing</td>
+<td>尾部</td>
+</tr>
+<tr>
+<td>width</td>
+<td>NSLayoutAttrubuteWidth</td>
+<td>宽度</td>
+</tr>
+<tr>
+<td>height</td>
+<td>NSLayoutAttrubuteHeight</td>
+<td>高度</td>
+</tr>
+<tr>
+<td>centerX</td>
+<td>NSLayoutAttrubuteCenterX</td>
+<td>水平中心</td>
+</tr>
+<tr>
+<td>centerY</td>
+<td>NSLayoutAttrubuteCenterY</td>
+<td>竖直中心</td>
+</tr>
+<tr>
+<td>baseline</td>
+<td>NSLayoutAttrubuteBaseline</td>
+<td>文本基线</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a> 
+<h3 id="NSLayoutAttrubute"><a href="#NSLayoutAttrubute" class="headerlink" title="NSLayoutAttrubute"></a>NSLayoutAttrubute</h3><p>下面是用NSLayoutAttrubute，约束一个子视图，使之每个边与其父视图间距为10</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">UIView *superview = self.view;</div><div class="line"></div><div class="line">UIView *view1 = [[UIView alloc] init];</div><div class="line">view1.translatesAutoresizingMaskIntoConstraints = NO;</div><div class="line">view1.backgroundColor = [UIColor greenColor];</div><div class="line">[superview addSubview:view1];</div><div class="line"></div><div class="line">UIEdgeInsets padding = UIEdgeInsetsMake(10, 10, 10, 10);</div><div class="line"></div><div class="line">[superview addConstraints:@[</div><div class="line"></div><div class="line">    //view1 constraints</div><div class="line">    [NSLayoutConstraint constraintWithItem:view1</div><div class="line">                                 attribute:NSLayoutAttributeTop</div><div class="line">                                 relatedBy:NSLayoutRelationEqual</div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:NSLayoutAttributeTop</div><div class="line">                                multiplier:1.0</div><div class="line">                                  constant:padding.top],</div><div class="line"></div><div class="line">    [NSLayoutConstraint constraintWithItem:view1</div><div class="line">                                 attribute:NSLayoutAttributeLeft</div><div class="line">                                 relatedBy:NSLayoutRelationEqual</div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:NSLayoutAttributeLeft</div><div class="line">                                multiplier:1.0</div><div class="line">                                  constant:padding.left],</div><div class="line"></div><div class="line">    [NSLayoutConstraint constraintWithItem:view1</div><div class="line">                                 attribute:NSLayoutAttributeBottom</div><div class="line">                                 relatedBy:NSLayoutRelationEqual</div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:NSLayoutAttributeBottom</div><div class="line">                                multiplier:1.0</div><div class="line">                                  constant:-padding.bottom],</div><div class="line"></div><div class="line">    [NSLayoutConstraint constraintWithItem:view1</div><div class="line">                                 attribute:NSLayoutAttributeRight</div><div class="line">                                 relatedBy:NSLayoutRelationEqual</div><div class="line">                                    toItem:superview</div><div class="line">                                 attribute:NSLayoutAttributeRight</div><div class="line">                                multiplier:1</div><div class="line">                                  constant:-padding.right],</div><div class="line"></div><div class="line"> ]];</div></pre></td></tr></table></figure>
+<p>而使用了Masonry实现相同的约束，仅仅需要几行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[view mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.insets(UIEdgeInsetsMake(10, 10, 10, 10));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<h3 id="安装方式"><a href="#安装方式" class="headerlink" title="安装方式"></a>安装方式</h3><p>Masonry支持CocoaPods，可以直接通过podfile文件进行集成，要在CocoaPods中添加下面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pod &apos;Masonry&apos;</div><div class="line">pod install</div></pre></td></tr></table></figure>
+<p>之后直接在项目中引用即可，详情请参考<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="external">github</a></p>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><p>首先是约束的相关api</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (NSArray *)mas_makeConstraints:(void(^)(MASConstraintMaker *make))block;</div><div class="line">- (NSArray *)mas_updateConstraints:(void(^)(MASConstraintMaker *make))block;</div><div class="line">- (NSArray *)mas_remakeConstraints:(void(^)(MASConstraintMaker *make))block;</div><div class="line">/*</div><div class="line">mas_makeConstraints 只负责新增约束 Autolayout不能同时存在两条针对于同一对象的约束 否则会报错 </div><div class="line">mas_updateConstraints 针对上面的情况 会更新在block中出现的约束 不会导致出现两个相同约束的情况</div><div class="line">mas_remakeConstraints 则会清除之前的所有约束 仅保留最新的约束</div><div class="line">*/</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 在使用Masonry的约束之前，首先要将view添加到superview上</p>
+<p>之后调用mas_makeConstraints添加相应的约束</p>
+</blockquote>
+<h3 id="居中"><a href="#居中" class="headerlink" title="居中"></a>居中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[view mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.centerX.equalTo(subView.mas_centerX); // 水平</div><div class="line">    make.centerY.equalTo(subView.mas_centerY); // 竖直</div><div class="line">    make.size.mas_equalTo(CGSizeMake(100, 100));</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>水平居中</th>
+<th style="text-align:center"><img src="/2018/12/07/masonry/center_v.png" alt="center_v.png" title=""></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>竖直居中</strong></td>
+<td style="text-align:center"><img src="/2018/12/07/masonry/center_h.png" alt="center_h.png" title=""></td>
+</tr>
+<tr>
+<td><strong>居中</strong></td>
+<td style="text-align:center"><img src="/2018/12/07/masonry/center.png" alt="center.png" title=""></td>
+</tr>
+</tbody>
+</table>
+<h3 id="边距"><a href="#边距" class="headerlink" title="边距"></a>边距</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 添加一个与父视图上下左右都相距20的view</div><div class="line">[view mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.edges.insets(UIEdgeInsetsMake(20, 20, 20, 20));</div><div class="line"></div><div class="line">    /*  </div><div class="line">        make.top.equalTo(subView).with.offset(20);</div><div class="line">        make.left.equalTo(subView).with.offset(20);</div><div class="line">        make.bottom.equalTo(subView).with.offset(-20);</div><div class="line">        make.right.equalTo(subView).with.offset(-20);</div><div class="line">    */</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<img src="/2018/12/07/masonry/insets.png" alt="insets.png" title="">
+<h3 id="并列"><a href="#并列" class="headerlink" title="并列"></a>并列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 两个子视图水平排列，之间的间距为20</div><div class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.centerY.equalTo(subView.mas_centerY);</div><div class="line">    make.left.equalTo(subView.mas_left).with.offset(20);</div><div class="line">    make.right.equalTo(view2.mas_left).with.offset(-20);</div><div class="line">    make.height.mas_equalTo(@150);</div><div class="line">    make.width.equalTo(view2);</div><div class="line">&#125;];</div><div class="line"></div><div class="line">[view2 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.centerY.equalTo(subView.mas_centerY);</div><div class="line">    make.left.equalTo(view1.mas_right).with.offset(20);</div><div class="line">    make.right.equalTo(subView.mas_right).with.offset(-20);</div><div class="line">    make.height.mas_equalTo(@150);</div><div class="line">    make.width.equalTo(view1);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<img src="/2018/12/07/masonry/apposition.png" alt="apposition.png" title="">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 两个子视图竖直并列，之间间距为20</div><div class="line">[view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.centerX.equalTo(subView.mas_centerX);</div><div class="line">    make.top.equalTo(subView.mas_top).with.offset(20);</div><div class="line">    make.bottom.equalTo(view2.mas_top).with.offset(-20);</div><div class="line">    make.width.mas_equalTo(@150);</div><div class="line">    make.height.equalTo(view2);</div><div class="line">&#125;];</div><div class="line">    </div><div class="line">[view2 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">    make.centerX.equalTo(subView.mas_centerX);</div><div class="line">    make.top.equalTo(view1.mas_bottom).with.offset(20);</div><div class="line">    make.bottom.equalTo(subView.mas_bottom).with.offset(-20);</div><div class="line">    make.width.mas_equalTo(@150);</div><div class="line">    make.height.equalTo(view1);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
+<img src="/2018/12/07/masonry/apposition_v.png" alt="apposition_v.png" title="">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">//  上层左右并列，并与下层对其</div><div class="line">    [view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.centerX.equalTo(subView.mas_centerX);</div><div class="line">        make.top.equalTo(subView.mas_top).with.offset(20);</div><div class="line">        make.bottom.equalTo(view2.mas_top).with.offset(-20);</div><div class="line">        make.left.equalTo(subView.mas_left).with.offset(20);</div><div class="line">        make.right.equalTo(view3.mas_left).with.offset(-20);</div><div class="line">        make.width.equalTo(view3.mas_width);</div><div class="line">        make.height.equalTo(view2);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    [view3 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.centerX.equalTo(subView.mas_centerX);</div><div class="line">        make.top.equalTo(subView.mas_top).with.offset(20);</div><div class="line">        make.bottom.equalTo(view2.mas_top).with.offset(-20);</div><div class="line">        make.left.equalTo(view1.mas_right).with.offset(20);</div><div class="line">        make.right.equalTo(subView.mas_right).with.offset(-20);</div><div class="line">        make.width.mas_equalTo(view1.mas_width);</div><div class="line">        make.height.equalTo(view2);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    [view2 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.centerX.equalTo(subView.mas_centerX);</div><div class="line">        make.top.equalTo(view1.mas_bottom).with.offset(20);</div><div class="line">        make.bottom.equalTo(subView.mas_bottom).with.offset(-20);</div><div class="line">        make.left.equalTo(subView.mas_right).with.offset(20);</div><div class="line">        make.right.equalTo(subView.mas_right).with.offset(-20);</div><div class="line">        make.height.equalTo(view1);</div><div class="line">    &#125;];</div></pre></td></tr></table></figure>
+<img src="/2018/12/07/masonry/apposition_2.png" alt="apposition_2.png" title="">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//  右侧上下并列，并与左侧对其</div><div class="line">    [view1 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.centerY.equalTo(subView.mas_centerY);</div><div class="line">        make.left.equalTo(subView.mas_left).with.offset(20);</div><div class="line">        make.right.equalTo(view2.mas_left).with.offset(-20);</div><div class="line">        make.top.equalTo(subView.mas_top).with.offset(20);</div><div class="line">        make.bottom.equalTo(subView.mas_bottom).with.offset(-20);</div><div class="line">        make.width.equalTo(view2);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    [view2 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.left.equalTo(view1.mas_right).with.offset(20);</div><div class="line">        make.right.equalTo(subView.mas_right).with.offset(-20);</div><div class="line">        make.top.equalTo(subView.mas_top).with.offset(20);</div><div class="line">        make.bottom.equalTo(view3.mas_top).with.offset(-20);</div><div class="line">        make.width.equalTo(view1);</div><div class="line">        make.height.equalTo(view3);</div><div class="line">    &#125;];</div><div class="line">    </div><div class="line">    [view3 mas_makeConstraints:^(MASConstraintMaker *make) &#123;</div><div class="line">        make.left.equalTo(view1.mas_right).with.offset(20);</div><div class="line">        make.right.equalTo(subView.mas_right).with.offset(-20);</div><div class="line">        make.top.equalTo(view2.mas_bottom).with.offset(20);</div><div class="line">        make.bottom.equalTo(subView.mas_bottom).with.offset(-20);</div><div class="line">        make.width.equalTo(view1);</div><div class="line">        make.height.equalTo(view2);</div><div class="line">    &#125;];</div></pre></td></tr></table></figure>
+<img src="/2018/12/07/masonry/apposition_3.png" alt="apposition_3.png" title="">
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>以上仅仅是最最基础的布局，在实际的生产过程中要复杂许多。但是Masonry的确简化了NSLayoutConstraint的写法，使之更加语义化。虽然写法更加的复杂，对于团队开发也是一种规范。写下本笔记主要是为了记载自己学习Masonry的过程，暂时不能投入生产中，也无法更加熟练深刻的运用，仅记之以供后日查阅。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/28/charles-learn/" rel="next" title="Charles学习">
+                <i class="fa fa-chevron-left"></i> Charles学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4"
+                alt="mah93" />
+            
+              <p class="site-author-name" itemprop="name">mah93</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mah93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#NSLayoutAttrubute"><span class="nav-number">1.</span> <span class="nav-text">NSLayoutAttrubute</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装方式"><span class="nav-number">2.</span> <span class="nav-text">安装方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方式"><span class="nav-number">3.</span> <span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#居中"><span class="nav-number">4.</span> <span class="nav-text">居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边距"><span class="nav-number">5.</span> <span class="nav-text">边距</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并列"><span class="nav-number">6.</span> <span class="nav-text">并列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">7.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
