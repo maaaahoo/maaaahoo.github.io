@@ -357,7 +357,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">fetch</span>(<span class="selector-tag">url</span>, &#123;<span class="attribute">credentials</span>: <span class="string">'include'</span>&#125;)</div></pre></td></tr></table></figure>
 <p>在实际操作的时候，加上了上述代码，依然不能带着cookie传递给后台（不</p>
 <p>这里只介绍fetch的最简单应用，更具体的应用请看<a href="https://github.com/github/fetch" target="_blank" rel="external">github</a></p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">`<span class="javascript">post请求</span>`</div><div class="line">fetch(url, &#123;</div><div class="line">	method: method,</div><div class="line">	body: formData,</div><div class="line">  &#125;).<span class="keyword">then</span>(checkStatus)</div><div class="line">.<span class="keyword">then</span>(parseJSON)</div><div class="line">.<span class="keyword">then</span>(<span class="function"><span class="params">(data)</span> =&gt;</span> &#123;</div><div class="line"> <span class="keyword">return</span> &#123; data &#125;;</div><div class="line">&#125;)</div><div class="line">.<span class="keyword">catch</span>(err =&gt; (&#123; err &#125;));</div></pre></td></tr></table></figure>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">`post请求`</div><div class="line">fetch(url, &#123;</div><div class="line">	<span class="function"><span class="keyword">method</span>:</span> <span class="function"><span class="keyword">method</span>,</span></div><div class="line">	body: formData,</div><div class="line">  &#125;).<span class="keyword">then</span>(checkStatus)</div><div class="line">.<span class="keyword">then</span>(parseJSON)</div><div class="line">.<span class="keyword">then</span>((data) =&gt; &#123;</div><div class="line"> <span class="keyword">return</span> &#123; data &#125;;</div><div class="line">&#125;)</div><div class="line">.<span class="keyword">catch</span>(err =&gt; (&#123; err &#125;));</div></pre></td></tr></table></figure>
 <p>发起fetch请求，需要将参数转化成FormData类型，请求成功后会依次执行.then()函数，在data中获取后台数据。</p>
 <h3 id="XMLHTTPRequest"><a href="#XMLHTTPRequest" class="headerlink" title="XMLHTTPRequest"></a>XMLHTTPRequest</h3><p>各种引入polyfill仍然不能在IE中兼容，随后将目光转移到了原生js上。查看文档发现：所有现代浏览器 (IE7+、Firefox、Chrome、Safari 以及 Opera) 都内建了 XMLHttpRequest 对象。</p>
 <p>由于没有用过jQuery和ajax，只是在查过文档稍稍了解了一下用法（误导</p>
@@ -498,17 +498,12 @@
 
 
           
-
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
-
   
 
 

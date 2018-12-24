@@ -378,7 +378,7 @@
 <p>有如下的节点树变换：</p>
 <img src="/2018/04/11/react-deep-learn/dom-transform.png" alt="dom-transform.png" title="">
 <p>A节点被整个移动到D节点下，直观的考虑DOM Diff操作应该是：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">A</span><span class="selector-class">.parent</span><span class="selector-class">.remove</span>(<span class="selector-tag">A</span>); </div><div class="line"><span class="selector-tag">D</span><span class="selector-class">.append</span>(<span class="selector-tag">A</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>parent.remove(A); </div><div class="line"><span class="module-access"><span class="module"><span class="identifier">D</span>.</span></span>append(A);</div></pre></td></tr></table></figure>
 <ul>
 <li><h5 id="节点类型相同"><a href="#节点类型相同" class="headerlink" title="节点类型相同"></a>节点类型相同</h5></li>
 </ul>
@@ -514,17 +514,12 @@
 
 
           
-
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
-
   
 
 

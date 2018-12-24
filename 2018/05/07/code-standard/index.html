@@ -366,14 +366,14 @@
 <ul>
 <li>常量的命名全部采用大写，单词与单词之间采用下划线进行分割。力求保证见文知意，不要害怕变量过长</li>
 </ul>
-<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：<span class="keyword">MaxValue</span> / MAXVALUE</div><div class="line">正确：MAX_STUDENT_GRADE</div></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：<span class="keyword">MaxValue</span> / <span class="keyword">MAXVALUE</span></div><div class="line">正确：MAX_STUDENT_GRADE</div></pre></td></tr></table></figure>
 <ul>
 <li>对所有的变量，对象的引用，请使用const</li>
 </ul>
 <h4 id="函数规范"><a href="#函数规范" class="headerlink" title="函数规范"></a>函数规范</h4><ul>
 <li>方法、函数一律使用ES6中箭头函数的声明方式</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">错误：<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">     test() &#123;&#125;</div><div class="line">正确：test = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">错误：<span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">     test() &#123;&#125;</div><div class="line">正确：test = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</div></pre></td></tr></table></figure>
 <ul>
 <li>方法名、函数名一律采用lowerCamelCase驼峰命名的方式，第一个字母必须小写</li>
 </ul>
@@ -399,7 +399,7 @@
 <li>自定义组件命名的时候，用UpperCamelCase命名。</li>
 <li>自定义组件，要详细写出属性列表，并解释每个属性的意思。为每个属性初始化一个默认值</li>
 </ul>
-<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">FlexButton.propTypes = &#123;</div><div class="line">  <span class="attribute">press</span>: PropTypes<span class="variable">.func</span>,</div><div class="line">  top: PropTypes<span class="variable">.number</span><span class="variable">.isRequired</span>,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="attribute">FlexButton.defaultProps = &#123;</span></div><div class="line"><span class="attribute">  press</span>: () =&gt; &#123;&#125;,</div><div class="line">  top: 0,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="module-access"><span class="module"><span class="identifier">FlexButton</span>.</span></span>propTypes = &#123;</div><div class="line">  press: <span class="module-access"><span class="module"><span class="identifier">PropTypes</span>.</span></span>func,</div><div class="line">  top: <span class="module-access"><span class="module"><span class="identifier">PropTypes</span>.</span></span>number.isRequired,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="module-access"><span class="module"><span class="identifier">FlexButton</span>.</span></span>defaultProps = &#123;</div><div class="line">  press:<span class="function"> <span class="params">()</span> =&gt;</span> &#123;&#125;,</div><div class="line">  top: <span class="number">0</span>,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <ul>
 <li>无状态的组件，即不涉及组件内部数据、UI变化的组件。请继承自PureComponent而不是Component</li>
 </ul>
@@ -409,7 +409,7 @@
 <ul>
 <li>任何运算符左右必须都有一个空格，包括赋值、逻辑运算符、加减乘除等</li>
 </ul>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：grade=<span class="number">20</span></div><div class="line">正确：grade = <span class="number">20</span></div></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">错误：grade=<span class="number">20</span></div><div class="line">正确：grade = <span class="number">20</span></div></pre></td></tr></table></figure>
 <ul>
 <li>大括号使用约定。如果大括号内为空，则写成{}即可，不需要换行。如果是非空代码块则左边括号空一格，右边闭括号需要换行，与方法名对其</li>
 </ul>
@@ -569,17 +569,12 @@
 
 
           
-
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
-
   
 
 

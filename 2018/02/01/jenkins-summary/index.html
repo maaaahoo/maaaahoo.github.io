@@ -358,11 +358,11 @@
 <ul>
 <li><code>rpm</code>增加<code>jenkins</code>源的<code>key</code></li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo rpm --<span class="keyword">import</span> <span class="string">http:</span><span class="comment">//pkg.jenkins-ci.org/redhat/jenkins-ci.org.key</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>sudo rpm --<span class="keyword">import</span> <span class="symbol">http:</span>/<span class="regexp">/pkg.jenkins-ci.org/redhat</span><span class="regexp">/jenkins-ci.org.key</span></div></pre></td></tr></table></figure>
 <ul>
 <li>安装 <code>jenkins</code></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install jenkins</span></div></pre></td></tr></table></figure>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo yum <span class="keyword">install</span> jenkins</div></pre></td></tr></table></figure>
 <ul>
 <li>配置Jenkins文件（可跳过）</li>
 </ul>
@@ -517,17 +517,12 @@
 
 
           
-
   
     <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
+      
+        <div id="gitment-container"></div>
+      
     </div>
-
   
 
 
