@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml" />
+
 
 
 
@@ -159,6 +161,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
+    <a href="https://github.com/mah93" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -297,6 +300,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/01/dva-deploy/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/01/dva-deploy/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -323,53 +337,53 @@
       
         <img src="/2017/10/01/dva-deploy/dva_logo.jpg" alt="dva_logo.jpg" title="">
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
-<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure></p>
+<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> 你的dva项目</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> project</span></div><div class="line"><span class="meta">$</span><span class="bash"> npm install</span></div></pre></td></tr></table></figure></p>
 <p>成功下载完所有配置文件之后执行，再次确认你的项目可以正确访问</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm start</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm start</span></div></pre></td></tr></table></figure>
 <p>即可自动打开浏览器的8000端口，成功运行该项目，如果没有自动弹出则访问<a href="http://localhost:8000/" target="_blank" rel="external">localhost:8000/</a></p>
 <a id="more"></a> 
 <h2 id="部署配置"><a href="#部署配置" class="headerlink" title="部署配置"></a>部署配置</h2><p>在项目中的.roadhogrc文件中删除以下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&quot;proxy&quot;: &#123;</div><div class="line">  &quot;/api&quot;: &#123;</div><div class="line">  &quot;target&quot;: 你的后台服务地址,</div><div class="line">  &quot;changeOrigin&quot;: true,</div><div class="line">  &quot;pathRewrite&quot;: &#123; &quot;^/api&quot; : &quot;&quot; &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="string">"proxy"</span>: &#123;</div><div class="line">  <span class="string">"/api"</span>: &#123;</div><div class="line">  <span class="string">"target"</span>: 你的后台服务地址,</div><div class="line">  <span class="string">"changeOrigin"</span>: true,</div><div class="line">  <span class="string">"pathRewrite"</span>: &#123; <span class="string">"^/api"</span> : <span class="string">""</span> &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>之后进入命令行，执行编译操作</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm run build</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm run build</span></div></pre></td></tr></table></figure>
 <p>执行完之后会在主目录下生成dist文件夹，里面包含index.html、index.js、index.css以及资源文件夹static。<br>打包完成后，把dist文件夹上传至服务器上即可访问，这里用的是nginx服务器。</p>
 <h3 id="nginx简介"><a href="#nginx简介" class="headerlink" title="nginx简介"></a>nginx简介</h3><p><strong>Nginx</strong>（发音同 engine x）是一款轻量级的Web 服务器／反向代理服务器及电子邮件（IMAP/POP3）代理服务器，并在一个BSD-like 协议下发行。</p>
 <p><strong>本项目采用 Nginx 作为 Web 服务器。</strong></p>
 <h2 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h2><p>由于服务器是ubuntu系统，这里仅展示在ubuntu系统下安装过程，其他操作系统可自行查找</p>
 <p>登录服务器之后执行，下载nginx安装包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo wget http://nginx.org/download/nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo wget http://nginx.org/download/nginx-1.2.2.tar.gz</span></div></pre></td></tr></table></figure>
 <p>然后解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo  tar -xzvf nginx-1.2.2.tar.gz</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo  tar -xzvf nginx-1.2.2.tar.gz</span></div></pre></td></tr></table></figure>
 <p>进入解压之后的文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> cd nginx-1.2.2</div><div class="line"><span class="meta">$</span> ./configure</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> nginx-1.2.2</span></div><div class="line"><span class="meta">$</span><span class="bash"> ./configure</span></div></pre></td></tr></table></figure>
 <p>如果一切顺利的话，执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> make</div><div class="line"><span class="meta">$</span> make install</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> make</span></div><div class="line"><span class="meta">$</span><span class="bash"> make install</span></div></pre></td></tr></table></figure>
 <p>完成安装，可以在/usr/local文件下找到nginx文件夹</p>
 <p>然后访问服务器即可看到</p>
 <p>welcome nginx</p>
 <h2 id="nginx安装常见问题"><a href="#nginx安装常见问题" class="headerlink" title="nginx安装常见问题"></a>nginx安装常见问题</h2><ul>
 <li><h3 id="缺少pcre"><a href="#缺少pcre" class="headerlink" title="缺少pcre"></a>缺少pcre</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite module requires the PCRE library. You can either disable the module by using --without-http_rewrite_module option, or install the PCRE library into the system, or build the PCRE library statically from the source with nginx by using --with-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP rewrite <span class="keyword">module</span> requires the PCRE <span class="keyword">library</span>. You can either disable the <span class="keyword">module</span> <span class="keyword">by</span> <span class="keyword">using</span> --without-http_rewrite_module option, <span class="keyword">or</span> install the PCRE <span class="keyword">library</span> <span class="keyword">into</span> the system, <span class="keyword">or</span> build the PCRE <span class="keyword">library</span> statically <span class="keyword">from</span> the source <span class="keyword">with</span> nginx <span class="keyword">by</span> <span class="keyword">using</span> --<span class="keyword">with</span>-pcre=&lt;path&gt; option.</div></pre></td></tr></table></figure>
 <p>即提示缺少pcre library</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get undate</div><div class="line">$ sudo apt-get install libpcre3 libpcre3-dev</div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-<span class="builtin-name">get</span> undate</div><div class="line">$ sudo apt-<span class="builtin-name">get</span> install libpcre3 libpcre3-dev</div></pre></td></tr></table></figure>
 </li>
 <li><h3 id="缺少gcc-c-和libtool"><a href="#缺少gcc-c-和libtool" class="headerlink" title="缺少gcc-c++和libtool"></a>缺少gcc-c++和libtool</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libtool: compile: unrecognized option `-DHAVE_CONFIG_H&apos;</div><div class="line">libtool: compile: Try `libtool --help&apos; for more information.</div><div class="line">make[1]: *** [pcrecpp.lo] Error 1</div><div class="line">make[1]: Leaving directory `/usr/local/src//pcre-8.31&apos;</div><div class="line">make: *** [all] Error 2root@wolfdog-virtual-machine:~/work/pcre-8.12$ libtool -help -DHAVE_CONFIG_H</div><div class="line">The program &apos;libtool&apos; is currently not installed.  You can install it by typing:</div><div class="line">sudo apt-get install libtool</div></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">libtool: <span class="keyword">compile</span>: unrecognized option `-DHAVE_CONFIG_H'</div><div class="line">libtool: <span class="keyword">compile</span>: Try `libtool --help' <span class="keyword">for</span> more information.</div><div class="line"><span class="built_in">make</span>[<span class="number">1</span>]: *** [pcrecpp.lo] <span class="built_in">Error</span> <span class="number">1</span></div><div class="line"><span class="built_in">make</span>[<span class="number">1</span>]: Leaving directory `/usr/<span class="keyword">local</span>/src<span class="comment">//pcre-8.31'</span></div><div class="line"><span class="built_in">make</span>: *** [all] <span class="built_in">Error</span> <span class="number">2</span>root<span class="comment">@wolfdog-virtual-machine:~/work/pcre-8.12$ libtool -help -DHAVE_CONFIG_H</span></div><div class="line"><span class="comment">The program 'libtool' is currently not installed.  You can install it by typing:</span></div><div class="line"><span class="comment">sudo apt-get install libtool</span></div></pre></td></tr></table></figure>
 <p>即提示缺少libtool和gcc-c++</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install libtool</div><div class="line">$ sudo apt-get install gcc-c++</div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-<span class="builtin-name">get</span> install libtool</div><div class="line">$ sudo apt-<span class="builtin-name">get</span> install gcc-c++</div></pre></td></tr></table></figure>
 </li>
 <li><h3 id="缺少zlib库"><a href="#缺少zlib库" class="headerlink" title="缺少zlib库"></a>缺少zlib库</h3><p>执行./configure之后，出现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure: error: the HTTP gzip module requires the zlib library.</div><div class="line">You can either disable the module by using --without-http_gzip_module</div><div class="line">option, or install the zlib library into the system, or build the zlib library</div><div class="line">statically from the source with nginx by using --with-zlib=&lt;path&gt; option.</div></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./configure: error: <span class="keyword">the</span> HTTP gzip module requires <span class="keyword">the</span> zlib library.</div><div class="line">You can either disable <span class="keyword">the</span> module <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--without-http_gzip_module</span></div><div class="line">option, <span class="keyword">or</span> install <span class="keyword">the</span> zlib library <span class="keyword">into</span> <span class="keyword">the</span> <span class="keyword">system</span>, <span class="keyword">or</span> build <span class="keyword">the</span> zlib library</div><div class="line">statically <span class="built_in">from</span> <span class="keyword">the</span> source <span class="keyword">with</span> nginx <span class="keyword">by</span> <span class="keyword">using</span> <span class="comment">--with-zlib=&lt;path&gt; option.</span></div></pre></td></tr></table></figure>
 <p>其提示缺少zlib库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install openssl libssl-dev libperl-dev</div></pre></td></tr></table></figure>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-<span class="built_in">get</span> install openssl libssl-<span class="built_in">dev</span> libperl-<span class="built_in">dev</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h2><p>nginx的配置文件在/usr/local/nginx/conf文件夹下，其主要的配置文件是nginx.conf文件，编辑该文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> vi nginx.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> vi nginx.conf</span></div></pre></td></tr></table></figure>
 <p>在配置文件的http下写入如下配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       80;</div><div class="line">    server_name  localhost;</div><div class="line"></div><div class="line">    #charset koi8-r;</div><div class="line"></div><div class="line">    #access_log  logs/host.access.log  main;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">       proxy_set_header X-Real-IP $remote_addr;</div><div class="line">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">       proxy_set_header HOST $http_host;</div><div class="line">       proxy_set_header X-Nginx_Proxy true;</div><div class="line">       proxy_redirect off;</div><div class="line">       root  dist;</div><div class="line">       index  index.html index.htm;</div><div class="line">       try_files $uri /index.html;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location ^~ /api/ &#123;</div><div class="line">      proxy_set_header  X-Real-IP  $remote_addr;</div><div class="line">      proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">      proxy_read_timeout       300;</div><div class="line">      proxy_send_timeout       600;</div><div class="line">      proxy_ignore_client_abort on;</div><div class="line">      proxy_connect_timeout    300;</div><div class="line">      proxy_next_upstream     error;</div><div class="line">      proxy_pass 这里填入后台服务地址;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</div><div class="line">    <span class="attribute">server_name</span>  localhost;</div><div class="line"></div><div class="line">    <span class="comment">#charset koi8-r;</span></div><div class="line"></div><div class="line">    <span class="comment">#access_log  logs/host.access.log  main;</span></div><div class="line"></div><div class="line">    <span class="attribute">location</span> / &#123;</div><div class="line">       <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</div><div class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">       <span class="attribute">proxy_set_header</span> HOST <span class="variable">$http_host</span>;</div><div class="line">       <span class="attribute">proxy_set_header</span> X-Nginx_Proxy <span class="literal">true</span>;</div><div class="line">       <span class="attribute">proxy_redirect</span> <span class="literal">off</span>;</div><div class="line">       <span class="attribute">root</span>  dist;</div><div class="line">       <span class="attribute">index</span>  index.html index.htm;</div><div class="line">       <span class="attribute">try_files</span> <span class="variable">$uri</span> /index.html;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="attribute">location</span><span class="regexp"> ^~</span> /api/ &#123;</div><div class="line">      <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">      <span class="attribute">proxy_set_header</span>  X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">      <span class="attribute">proxy_read_timeout</span>       <span class="number">300</span>;</div><div class="line">      <span class="attribute">proxy_send_timeout</span>       <span class="number">600</span>;</div><div class="line">      <span class="attribute">proxy_ignore_client_abort</span> <span class="literal">on</span>;</div><div class="line">      <span class="attribute">proxy_connect_timeout</span>    <span class="number">300</span>;</div><div class="line">      <span class="attribute">proxy_next_upstream</span>     <span class="literal">error</span>;</div><div class="line">      <span class="attribute">proxy_pass</span> 这里填入后台服务地址;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>之后用scp命令将本地的dist文件夹上传至服务器的/usr/local/nginx文件夹下即可，上传成功之后启动nginx</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> /usr/<span class="built_in">local</span>/nginx/sbin/nginx -c /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span></div></pre></td></tr></table></figure>
 <p>成功之后访问服务器即可看到项目首页</p>
 
       
@@ -388,11 +402,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag"># React</a>
+            <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
           
-            <a href="/tags/Dva/" rel="tag"># Dva</a>
+            <a href="/tags/Dva/" rel="tag"><i class="fa fa-tag"></i> Dva</a>
           
-            <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+            <a href="/tags/Nginx/" rel="tag"><i class="fa fa-tag"></i> Nginx</a>
           
         </div>
       
@@ -436,6 +450,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -447,7 +499,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
+  
 
 
         </div>
@@ -498,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -519,6 +580,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -717,6 +785,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://mah93.github.io/2017/10/01/dva-deploy/';
+          this.page.identifier = '2017/10/01/dva-deploy/';
+          this.page.title = 'Dva项目部署至Nginx服务器';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -738,6 +826,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'mah93',
+            repo: 'mah93.github.io',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'fa37415f1b8a7440caf3ec2b0d326227b6e9abae',
+            
+                client_id: 'ed463a1ada021a7192f1'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 

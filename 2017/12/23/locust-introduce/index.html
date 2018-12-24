@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml" />
+
 
 
 
@@ -160,6 +162,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
+    <a href="https://github.com/mah93" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -298,6 +301,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/23/locust-introduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/23/locust-introduce/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -335,11 +349,11 @@
 <a id="more"></a> 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><p>安装Python2 或Python3，通过命令行或者是官网安装</p>
 <h3 id="安装Locust"><a href="#安装Locust" class="headerlink" title="安装Locust"></a>安装Locust</h3><p>通过pip命令安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip  install --index https://pypi.mirrors.ustc.edu.cn/simple/ locust</div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip  install --<span class="built_in">index</span> http<span class="variable">s:</span>//pypi.mirrors.ustc.edu.<span class="keyword">cn</span>/simple/ locust</div></pre></td></tr></table></figure>
 <p>安装完成后，命令行中验证</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust --help</div></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust <span class="comment">--help</span></div></pre></td></tr></table></figure>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="创建test-py"><a href="#创建test-py" class="headerlink" title="创建test.py"></a>创建test.py</h3><p>创建一个test.py，然后编辑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">from locust import HttpLocust, TaskSet, task</div><div class="line"></div><div class="line">class WebsiteTasks(TaskSet):</div><div class="line">    def on_start(self):</div><div class="line">        pass</div><div class="line">        </div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.post(&quot;/login&quot;, &#123;</div><div class="line">            &quot;username&quot;: &quot;test_user&quot;,</div><div class="line">            &quot;password&quot;: &quot;&quot;</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def index(self):</div><div class="line">        self.client.get(&quot;/&quot;)</div><div class="line"></div><div class="line">    @task(1)</div><div class="line">    def about(self):</div><div class="line">        self.client.get(&quot;/about/&quot;)</div><div class="line"></div><div class="line">class WebsiteUser(HttpLocust):</div><div class="line">    task_set = WebsiteTasks</div><div class="line">    min_wait = 5000</div><div class="line">    max_wait = 15000</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">from locust import HttpLocust, TaskSet, task</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteTasks</span>(<span class="title">TaskSet</span>):</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_start</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></div><div class="line">        pass</div><div class="line">        </div><div class="line">    @task(<span class="number">1</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></div><div class="line">        <span class="keyword">self</span>.client.post(<span class="string">"/login"</span>, &#123;</div><div class="line">            <span class="string">"username"</span>: <span class="string">"test_user"</span>,</div><div class="line">            <span class="string">"password"</span>: <span class="string">""</span></div><div class="line">        &#125;)</div><div class="line"></div><div class="line">    @task(<span class="number">1</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></div><div class="line">        <span class="keyword">self</span>.client.get(<span class="string">"/"</span>)</div><div class="line"></div><div class="line">    @task(<span class="number">1</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">about</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></div><div class="line">        <span class="keyword">self</span>.client.get(<span class="string">"/about/"</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebsiteUser</span>(<span class="title">HttpLocust</span>):</span></div><div class="line">    task_set = WebsiteTasks</div><div class="line">    min_wait = <span class="number">5000</span></div><div class="line">    max_wait = <span class="number">15000</span></div></pre></td></tr></table></figure>
 <p>task_set：任务指定的方法</p>
 <p>min_wait：最小等待时间（ms）</p>
 <p>max_ wait：最大等待时间（ms）</p>
@@ -349,9 +363,9 @@
 <h3 id="自定义成功失败"><a href="#自定义成功失败" class="headerlink" title="自定义成功失败"></a>自定义成功失败</h3><p>locust会根据一次请求的状态码来确定该次请求是否成功，并表现在界面上。</p>
 <p>当需要测试的接口，涉及到业务。就需要根据返回的数据来判断该次请求是否成功</p>
 <p>需要将post请求改成以下方式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with self.client.post(&quot;/login&quot;, &#123;&quot;username&quot;: &quot;test_user&quot;,&quot;password&quot;: &quot;123&quot;&#125;) as response:</div><div class="line">        response.success(&apos;success&apos;)//成功</div><div class="line">        response.failure(&apos;error&apos;)//失败</div></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">with self<span class="selector-class">.client</span><span class="selector-class">.post</span>(<span class="string">"/login"</span>, &#123;<span class="string">"username"</span>: <span class="string">"test_user"</span>,<span class="string">"password"</span>: <span class="string">"123"</span>&#125;) as response:</div><div class="line">        response.success(<span class="string">'success'</span>)<span class="comment">//成功</span></div><div class="line">        response.failure(<span class="string">'error'</span>)<span class="comment">//失败</span></div></pre></td></tr></table></figure>
 <h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><p>编辑完test.py之后，在命令行中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust -f ./test.py --host=你的服务器地址</div></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">locust -f <span class="string">./test.py</span> <span class="params">--host=</span>你的服务器地址</div></pre></td></tr></table></figure>
 <p>没有报错之后，打开本地8089端口，即可看到locust的测试页面</p>
 <img src="/2017/12/23/locust-introduce/locust.png" alt="locust-home" title="locust-home">
 <p>输入所需测试强度，即可开始测试。</p>
@@ -372,7 +386,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Locust/" rel="tag"># Locust</a>
+            <a href="/tags/Locust/" rel="tag"><i class="fa fa-tag"></i> Locust</a>
           
         </div>
       
@@ -416,6 +430,44 @@
 
     <div class="post-spread">
       
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
     </div>
   </div>
 
@@ -427,7 +479,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
+  
 
 
         </div>
@@ -478,7 +539,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -499,6 +560,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -697,6 +765,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://mah93.github.io/2017/12/23/locust-introduce/';
+          this.page.identifier = '2017/12/23/locust-introduce/';
+          this.page.title = 'Locust使用说明';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -718,6 +806,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'mah93',
+            repo: 'mah93.github.io',
+            
+            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'fa37415f1b8a7440caf3ec2b0d326227b6e9abae',
+            
+                client_id: 'ed463a1ada021a7192f1'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
