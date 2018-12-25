@@ -484,33 +484,6 @@
 
     <div class="post-spread">
       
-        
-  <script>
-    window._bd_share_config = {
-      "common": {
-        "bdText": "",
-        "bdMini": "1",
-        "bdMiniList": false,
-        "bdPic": ""
-      },
-      "image": {
-        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
-        "viewText": "分享到：",
-        "viewSize": "16"
-      },
-      "slide": {
-        "bdImg": "5",
-        "bdPos": "left",
-        "bdTop": "100"
-      }
-    }
-  </script>
-
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
-      
     </div>
   </div>
 
@@ -521,11 +494,7 @@
 
           
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
+    <div id="gitalk-container"></div>
   
 
 
@@ -852,45 +821,25 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'mah93',
-            repo: 'mah93.github.io',
-            
-            lang: "zh-Hans" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: 'fa37415f1b8a7440caf3ec2b0d326227b6e9abae',
-            
-                client_id: 'ed463a1ada021a7192f1'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '',
+          clientSecret: '',
+          repo: 'mah93.github.io',
+          owner: '',
+          admin: [''],
+          id: location.pathname,
+          distractionFreeMode: ''
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
