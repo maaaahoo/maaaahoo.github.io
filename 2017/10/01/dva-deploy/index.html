@@ -337,9 +337,9 @@
       
         <img src="/2017/10/01/dva-deploy/dva_logo.jpg" alt="dva_logo.jpg" title="">
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>dva是在现有的应用架构进行了轻量级封装，相比于redux更易上手。如需了解更多请参考<a href="https://github.com/dvajs/dva" target="_blank" rel="external">这里</a><br>项目中运用的技术架构是react+dva+antd，完成之后需要将应用部署到服务器上，需要一台服务器，仅以Nginx为例，记录整个的部署流程。</p>
-<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git clone 你的dva项目</div><div class="line"><span class="meta">$</span> cd project</div><div class="line"><span class="meta">$</span> npm install</div></pre></td></tr></table></figure></p>
+<h2 id="部署前准备"><a href="#部署前准备" class="headerlink" title="部署前准备"></a>部署前准备</h2><p>在完成你的dva项目之后，从coding或者你的git服务器上克隆项目到本地<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> 你的dva项目</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> project</span></div><div class="line"><span class="meta">$</span><span class="bash"> npm install</span></div></pre></td></tr></table></figure></p>
 <p>成功下载完所有配置文件之后执行，再次确认你的项目可以正确访问</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> npm start</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm start</span></div></pre></td></tr></table></figure>
 <p>即可自动打开浏览器的8000端口，成功运行该项目，如果没有自动弹出则访问<a href="http://localhost:8000/" target="_blank" rel="external">localhost:8000/</a></p>
 <a id="more"></a> 
 <h2 id="部署配置"><a href="#部署配置" class="headerlink" title="部署配置"></a>部署配置</h2><p>在项目中的.roadhogrc文件中删除以下配置</p>
@@ -473,7 +473,7 @@
   </script>
 
 <script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 </script>
 
       
