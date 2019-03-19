@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://mah93.github.io/"/>
-  <updated>2019-03-13T11:34:17.711Z</updated>
+  <updated>2019-03-19T11:46:16.490Z</updated>
   <id>https://mah93.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react-native模版</title>
+    <link href="https://mah93.github.io/2019/03/19/react-native-template/"/>
+    <id>https://mah93.github.io/2019/03/19/react-native-template/</id>
+    <published>2019-03-19T11:45:18.000Z</published>
+    <updated>2019-03-19T11:46:16.490Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h3><p>项目模版就是在项目创建之后，默认带的一些文件。比如用react-native-cli创建的项目，运行之后就会看到react-native为你预设的模版</p><p>hello world。这里就介绍一下如何创建自己的模版工程，将一些常用的功能放入模版之中，以后再新建项目不必从头开始配置了。</p><h3 id="创建模版"><a href="#创建模版" class="headerlink" title="创建模版"></a>创建模版</h3><p>通过如下命令创建模版工程</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-<span class="keyword">native</span> <span class="keyword">init</span> XXX --template AAA</div></pre></td></tr></table></figure><p>其中AAA是你的模版在npm上的名称，可以供别人使用。新建完工程之后，它和普通的项目没有区别。可以在上面加入你需要的功能。完成之后在package.json中修改你的模版名称以及版本号</p><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"react-native-template-AAA"</span>,<span class="comment">//上传 NPM 仓库的名称</span></div><div class="line">    <span class="string">"version"</span>: <span class="string">"0.0.2"</span><span class="comment">//版本号，同一仓库不可以上传两次同版本号的内容</span></div><div class="line">&#125;</div></pre></td></tr></table></figure><p>之后就可以上传至<a href="https://www.npmjs.com/" target="_blank" rel="external">npm官网</a>上。注册完账号之后在命令行中登录</p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm adduser --<span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npmjs.org</div></pre></td></tr></table></figure><p>之后进入你的模版工程目录发布即可</p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm publish --<span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npmjs.org</div></pre></td></tr></table></figure><a id="more"></a> <h3 id="react-native-template-mah简介"><a href="#react-native-template-mah简介" class="headerlink" title="react-native-template-mah简介"></a>react-native-template-mah简介</h3><p>这是一个关于react-native的模版，用于新项目的初始化或者是作为RN的练习项目</p><p>该模版集成了RN常用的第三方组件，如react-navigation、netinfo等，采用mobx作为数据管理。</p><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>新建项目的时候使用如下命令</p><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-<span class="keyword">native</span> <span class="keyword">init</span> XXX --template mah</div></pre></td></tr></table></figure><p>其中XXX为项目的名称可以随便填写，后面mah即指定为以<code>react-native-template-mah</code>为模版新建项目。命令执行完成之后，进入项目根目录</p><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd XXX</div><div class="line"><span class="built_in">npm</span> install</div><div class="line">react-<span class="keyword">native</span> run-ios &amp;&amp; react-<span class="keyword">native</span> run-android</div></pre></td></tr></table></figure><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── src</div><div class="line">|   ├── app.js         <span class="string">//</span> app 配置文件</div><div class="line">|   ├── compenents     <span class="string">//</span> 组件</div><div class="line">|   ├── constant       <span class="string">//</span> 常量</div><div class="line">|   ├── image          <span class="string">//</span> 图片资源</div><div class="line">|   ├── mobx           <span class="string">//</span> mobx逻辑处理</div><div class="line">|   ├── pages          <span class="string">//</span> 页面文件</div><div class="line">|   └── untils         <span class="string">//</span> 常用工具</div><div class="line">├── index.js           <span class="string">//</span> app 入口文件</div><div class="line">├── <span class="string">.eslintrc.js</span>       <span class="string">//</span> eslint配置文件</div><div class="line">├── <span class="string">.prettierrc.js</span>     <span class="string">//</span> prettier配置文件</div><div class="line">└── <span class="string">.flowconfig.js</span>     <span class="string">//</span> flow配置文件</div></pre></td></tr></table></figure><h3 id="功能简介"><a href="#功能简介" class="headerlink" title="功能简介"></a>功能简介</h3><h4 id="mobx"><a href="#mobx" class="headerlink" title="mobx"></a>mobx</h4><p>该模版采用mobx作为数据管理工具，在App.js中提供了Provider方法以方便子组件通过inject的方式注入。inject的方式一般用于注入配置之类的数据，对于具体每个页面中的store还是推荐import引入并初始化的方式。一个页面对应一个store管理，对于页面来说需要有一个类似container的父组件调节组件与数据之间的关系，而其子组件使用纯函数创建以确保组件的复用性。</p><p>关于mobx的具体的使用方法请参照<a href="https://cn.mobx.js.org/" target="_blank" rel="external">mobx官网</a></p><h4 id="react-navigation"><a href="#react-navigation" class="headerlink" title="react-navigation"></a>react-navigation</h4><p>react-navigation 3.x与之前的版本有些许不同，但常用的方法依旧是StackNavigation和TabNavigation。通过react-navigation组织页面关系，将所有的跳转配置以及页面配置都在app_router.js下。这种集中的处理方式，为后续维护带来很大的便利。</p><blockquote><p>在自己的项目中引入react-navigation，如果报错的话请查看是否已经安装react-native-gesture-handler</p><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; npm install --save react-<span class="keyword">native</span>-gesture-<span class="keyword">handler</span></div><div class="line">&gt; react-<span class="keyword">native</span> link react-<span class="keyword">native</span>-gesture-<span class="keyword">handler</span></div><div class="line">&gt;</div></pre></td></tr></table></figure></blockquote><h4 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h4><p>模版中采用了axios作为请求工具，具体方法可查看<a href="https://github.com/axios/axios" target="_blank" rel="external">axios的github</a>。在untils/request.js中简单的封装了post和get请求，通过Promise的方式返回数据。</p><h4 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h4><ul><li><p>引入了eslint和prettier作为代码规范的检查</p></li><li><p>引入flow做参数类型检查</p></li><li>实现了换肤功能，为了展示inject的用法</li><li>定义了一些简单的常量，如屏幕宽高</li></ul><h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul><li><a href="https://www.jianshu.com/p/b11c134cfa6f" target="_blank" rel="external">《React Native高效开发》之 template</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;模版&quot;&gt;&lt;a href=&quot;#模版&quot; class=&quot;headerlink&quot; title=&quot;模版&quot;&gt;&lt;/a&gt;模版&lt;/h3&gt;&lt;p&gt;项目模版就是在项目创建之后，默认带的一些文件。比如用react-native-cli创建的项目，运行之后就会看到react-native为你预设的模版&lt;/p&gt;
+&lt;p&gt;hello world。这里就介绍一下如何创建自己的模版工程，将一些常用的功能放入模版之中，以后再新建项目不必从头开始配置了。&lt;/p&gt;
+&lt;h3 id=&quot;创建模版&quot;&gt;&lt;a href=&quot;#创建模版&quot; class=&quot;headerlink&quot; title=&quot;创建模版&quot;&gt;&lt;/a&gt;创建模版&lt;/h3&gt;&lt;p&gt;通过如下命令创建模版工程&lt;/p&gt;
+&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;react-&lt;span class=&quot;keyword&quot;&gt;native&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;init&lt;/span&gt; XXX --template AAA&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中AAA是你的模版在npm上的名称，可以供别人使用。新建完工程之后，它和普通的项目没有区别。可以在上面加入你需要的功能。完成之后在package.json中修改你的模版名称以及版本号&lt;/p&gt;
+&lt;figure class=&quot;highlight 1c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;name&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;react-native-template-AAA&quot;&lt;/span&gt;,&lt;span class=&quot;comment&quot;&gt;//上传 NPM 仓库的名称&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&quot;version&quot;&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&quot;0.0.2&quot;&lt;/span&gt;&lt;span class=&quot;comment&quot;&gt;//版本号，同一仓库不可以上传两次同版本号的内容&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;之后就可以上传至&lt;a href=&quot;https://www.npmjs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;npm官网&lt;/a&gt;上。注册完账号之后在命令行中登录&lt;/p&gt;
+&lt;figure class=&quot;highlight tcl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;npm adduser --&lt;span class=&quot;keyword&quot;&gt;registry&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;http&lt;/span&gt;://&lt;span class=&quot;keyword&quot;&gt;registry&lt;/span&gt;.npmjs.org&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;之后进入你的模版工程目录发布即可&lt;/p&gt;
+&lt;figure class=&quot;highlight tcl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;npm publish --&lt;span class=&quot;keyword&quot;&gt;registry&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;http&lt;/span&gt;://&lt;span class=&quot;keyword&quot;&gt;registry&lt;/span&gt;.npmjs.org&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="https://mah93.github.io/categories/javascript/"/>
+    
+    
+      <category term="React Native" scheme="https://mah93.github.io/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>Redux初体验</title>
@@ -637,68 +668,6 @@
       <category term="React" scheme="https://mah93.github.io/tags/React/"/>
     
       <category term="Dva" scheme="https://mah93.github.io/tags/Dva/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>App开发模式简介</title>
-    <link href="https://mah93.github.io/2017/10/19/app-develop-mode/"/>
-    <id>https://mah93.github.io/2017/10/19/app-develop-mode/</id>
-    <published>2017-10-19T13:16:49.000Z</published>
-    <updated>2018-12-25T04:42:48.994Z</updated>
-    
-    <content type="html"><![CDATA[<img src="/2017/10/19/app-develop-mode/app-develop_logo.jpg" alt="app-develop_logo.jpg" title=""><p>对于手机app来说，近几年有以下几种开发模式</p><table><thead><tr><th style="text-align:center"></th><th style="text-align:center">Native App</th><th style="text-align:center">Web App</th><th style="text-align:center">Cordova</th><th style="text-align:center">Weex</th><th style="text-align:center">React Native</th></tr></thead><tbody><tr><td style="text-align:center">优点</td><td style="text-align:center">性能高</td><td style="text-align:center">无需安装</td><td style="text-align:center">界面复用性强</td><td style="text-align:center">跨平台执行</td><td style="text-align:center">跨平台执行</td></tr><tr><td style="text-align:center">缺点</td><td style="text-align:center">开发维护成本高</td><td style="text-align:center">用户体验不好</td><td style="text-align:center">性能差</td><td style="text-align:center">开源较晚</td><td style="text-align:center">学习曲线高</td></tr><tr><td style="text-align:center">技术</td><td style="text-align:center">oc、swift、java</td><td style="text-align:center">html、js</td><td style="text-align:center">html、js</td><td style="text-align:center">vue.js</td><td style="text-align:center">react.js</td></tr></tbody></table><h2 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h2><p>原生开发是系统自带的app开发方式，也是大部分人最熟悉app开发的技术，如android、ios、wp。是开发者采用最广泛的开发方式，优点十分显著。相比其他开发方式而言，原生开发可以访问设备中的所有功能，运行速度更快，性能更高，而且可以启用优秀的离线处理和存储能力等等，提供最佳的用户体验，最优质的用户界面，最华丽的交互。原生开发人员众多，开发环境成熟，有许多的开源库提供开发人员调用，可是方便实现各种设计效果。<br><a id="more"></a><br>​原生开发的缺点在逐渐的开发、运营过程中显现出来。开发成本高，不同平台需要定制不同的app，也就是android定制apk，ios定制app，开发人员需要多平台多语言，人力成本、时间成本较多，通用性差；上线时间不稳定，需要审核，特别是苹果审核机制，审核时间长短不一，对内容还有控制，国内Android APP市场（百度手机助手，应用宝，360市场等等）也有类似的问题；版本控制能力差，版本发布到达率无法控制，多个版本更新发布，修复bug，无法保证及时送达到用户手中；获得新版本需要重新下载安装，虽然目前有增量升级方式逐渐改变，但是随之而来的其他问题如增量升级多版本控制也是个很头疼的问题。</p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>提供最佳的用户体验，最优质的用户界面，最华丽的交互效果</li><li>针对不同平台提供不同体验</li><li>可访问手机的所有功能</li></ul><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul><li>开发成本较高</li><li>范围限制多</li><li>未知的部署时间（应用商店审核时间）</li><li>内容限制</li></ul><h2 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h2><p>​    Web无需安装，对设备碎片化的适应能力优于App，它只需要通过HTML、CSS和JavaScript就可以在任意移动浏览器中执行。随着iPhone带来的WebKit浏览体验升级，使得专为iPhone等有WebKit浏览内核的移动设备开发的Web应用，也有了如App一般流畅的用户体验。</p><p>​    Web App即在浏览器直接可以访问的应用</p><h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul><li>开发成本低</li><li>一套代码适配多种移动设备</li><li>跨平台和终端</li><li>迭代更容易</li><li>无需安装成本</li></ul><h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul><li>浏览体验短期内还无法超越原生应用</li><li>不支持离线模式（断网无法访问）</li><li>消息推送不及时</li><li>调用系统能力弱</li></ul><h2 id="Cordova"><a href="#Cordova" class="headerlink" title="Cordova"></a>Cordova</h2><p>​    Apache Cordova是一套设备API，允许移动应用的开发者使用JavaScript来访问本地设备的功能，比如摄像头、加速计。它可以与UI框架（如jQuery Mobile或Dojo Mobile或Sencha Touch）等相结合使用，这些UI框架可以使用HTML、CSS和JavaScript开发智能手机应用。</p><p>​    在使用<strong>Cordova</strong> API时，应用程序的构建可以无需本地代码（如Java或对象C等），使用的是Web技术。由于这些JavaScript API在多个设备平台上是一致的，而且是基于Web标准创建的，因此应用程序的移植很方便，基本不做什么改变。使用<strong>Cordova</strong>的应用使用平台SDK打包成应用程序，可以从每种设备的应用程序商店下载安装。</p><p>​    <strong>Cordova</strong>提供了一套统一的JavaScript库供调用，它支持iOS、Android、Blackberry、Windows Phone、Palm WebOS、Bada和Symbian。</p><ul><li>开发自由度</li></ul><p>​     首先 <strong>Cordova</strong> 构建的是一个运行于手机内置浏览器中的单页 Web 应用，因此理论上我们能够使用 jQuery，Angular 等等任何 Web 技术。</p><ul><li>界面表现</li></ul><p>​     <strong>Cordova</strong> 应用因为本质上是一个 Web 应用，因此某些地方会显得有些怪怪的。比如，列表滚动不像原生那么流畅，点击效果也缺少反馈。当然如果我们想让 <strong>Cordova</strong> 应用尽可能像原生应用的话，这些问题都是可以解决的，但也意味着我们需要付出额外的努力。</p><ul><li>性能方面</li></ul><p>​      <strong>Cordova</strong> 应用的性能很大程度上局限于运行它手机的 WebView 性能。比如，在 iOS 上，同一个 Web 应用，运行在默认 WebView 引擎上要明显慢于运行于 Safari 中。而 Android 也是在 4.0 之后 WebView 才换成了 Chrome 内核，因此，在老旧的 Android 机型上 <strong>Cordova</strong> 的表现会非常糟糕。进一步，由于 JavaScript 是单线程的，如果我们的<strong>Cordova</strong>应用同时做了很多事情，那可能就会遇到麻烦。</p><h2 id="Weex"><a href="#Weex" class="headerlink" title="Weex"></a>Weex</h2><p>​    <strong>Weex</strong>能够完美兼顾性能与动态性，让移动开发者通过简捷的前端语法写出Native级别的性能体验，并支持iOS、安卓、YunOS及Web等多端部署。</p><p>​    对于移动开发者来说，<strong>Weex</strong>主要解决了频繁发版和多端研发两大痛点，同时解决了前端语言性能差和显示效果受限的问题。开发者可通过Weex官网申请内测。</p><p>​    开发者只需要在自己的APP中嵌入Weex的SDK，就可以通过撰写HTML/CSS/JavaScript来开发Native级别的<strong>Weex</strong>界面。<strong>Weex</strong>界面的生成码其实就是一段很小的JS，可以像发布网页一样轻松部署在服务端，然后在APP中请求执行。</p><p>目前<strong>Weex</strong>有三种集成方式：</p><ol><li>全页模式<br>​    目前支持单页使用或整个app使用<strong>Weex</strong>开发（还不完善，需要开发router和生命周期管理）这是主推的模式，可以类比RN。</li><li>Native Component模式<br>​        把<strong>Weex</strong>当作一个iOS/Android组件来使用，类比ImageView。这类需求遍布手淘主链路，如首页、主搜结果、交易组件化等，和业务同学沟 通下来这类Native页面主体已经很稳定，但是局部动态化需求旺盛导致频繁发版，解决这类问题也是<strong>Weex</strong>的重点。</li><li>H5 Component模式<br>​        在H5种使用<strong>Weex</strong>，类比WVC。一些较复杂或特殊的H5页面短期内无法完全转为<strong>Weex</strong>全页模式（或RN），比如猫超、互动类页面、一些复杂频道页 等。针对这个痛点我发起过WVC项目，并在实际业务中验证了这样的想法：在现有的H5页面上做微调，引入Native解决长列表内存暴增、滚动不流畅、动 画/手势体验差等问题。WVC将会融入到<strong>Weex</strong>中，成为<strong>Weex</strong>的H5 Components模式。</li></ol><p>这3种模式几乎涵盖了淘系业务上的动态化需求（针对Native）或体验提升需求（针对H5）。更有趣的是这3种模式的技术基础是一致的，这非常重要，意 味着：业务方可以使用Native或H5 Component模式 解决实际的业务痛点，同时平滑过渡到<strong>Weex</strong>全页模式。期待<strong>Weex</strong>成长壮大到AppFramework的那天。</p><h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul><li>由于 Weex 采用了 Vue 作为上层框架，相较于 React 更加轻量，Vue 的官网宣传就是非常轻量，体积小巧，语法简单。</li><li>Vue 的学习成本相较于 React 更加小，大部分 Native 开发者更容易上手。</li><li>Weex 吸收了 RN 的精华，可以说 Weex 是站在巨人的肩膀上问世。</li></ul><h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul><li>Weex 相较于 RN 起步比较晚，社区没有 RN 活跃。</li><li>从问世的时间上来看，RN 具有更大的优势，Weex 的学习资料比较少。</li><li>Weex 现在存在的 BUG 相较于 RN 还比较多，对于使用来说会有一些影响。</li></ul><h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>​    React Native 是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。</p><p>​    使用React Native开发者可以维护多种平台(Web,Android和IOS)的同一份业务逻辑核心代码来创建原生应用。</p><p>​    现阶段Web APP的的体验还是无法达到Native APP的体验，所以这边fackbook更加强调的是<strong>“learn once, write everywhere”</strong>，应用前端我们使用js和React来开发不同平台的UI，下层核心模块编写复用的业务逻辑代码，提供应用开发效率。</p><p>​    React Native的设计理念：既拥有Native的用户体验、又保留React的开发效率。</p><h3 id="优点-3"><a href="#优点-3" class="headerlink" title="优点"></a>优点</h3><ul><li>可以大大节省开发成本,百分之90多界面可以通过RN开发,一份代码可以适配Android和IOS。</li><li>RN有独特的UI实现框架,借助组件化开发是团队规模更容易进行调整,可以快速迭代项目。</li><li>RN可以通过一些手段自动匹配不同屏幕大小的手机,再也不需要自己去计算视图的大小和位置。</li><li>RN具备高效的UI调试。</li></ul><h3 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h3><ul><li>RN开发的程序内存消耗略大, 开发模式下开销大几十兆,发布后差异不大, 目前手机基本上都有2G以上的内存, 几十兆可以忽略不计了。</li><li>运行速度略慢， 不可否认，原生代码比RN运行速度略快, 显示一个界面多一两毫秒吧,正常的人根本感觉不到,如果你用不经过优化的原生代码反而不如RN。</li><li>安装包比原生代码安装包大,这点更可以忽略了, 现在手机什么都缺就不缺空间。</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;img src=&quot;/2017/10/19/app-develop-mode/app-develop_logo.jpg&quot; alt=&quot;app-develop_logo.jpg&quot; title=&quot;&quot;&gt;
-&lt;p&gt;对于手机app来说，近几年有以下几种开发模式&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;Native App&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;Web App&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;Cordova&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;Weex&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;React Native&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;优点&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;性能高&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;无需安装&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;界面复用性强&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;跨平台执行&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;跨平台执行&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;缺点&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;开发维护成本高&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;用户体验不好&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;性能差&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;开源较晚&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;学习曲线高&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;技术&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;oc、swift、java&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;html、js&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;html、js&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;vue.js&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;react.js&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id=&quot;Native-App&quot;&gt;&lt;a href=&quot;#Native-App&quot; class=&quot;headerlink&quot; title=&quot;Native App&quot;&gt;&lt;/a&gt;Native App&lt;/h2&gt;&lt;p&gt;原生开发是系统自带的app开发方式，也是大部分人最熟悉app开发的技术，如android、ios、wp。是开发者采用最广泛的开发方式，优点十分显著。相比其他开发方式而言，原生开发可以访问设备中的所有功能，运行速度更快，性能更高，而且可以启用优秀的离线处理和存储能力等等，提供最佳的用户体验，最优质的用户界面，最华丽的交互。原生开发人员众多，开发环境成熟，有许多的开源库提供开发人员调用，可是方便实现各种设计效果。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="App" scheme="https://mah93.github.io/categories/App/"/>
-    
-    
-      <category term="App" scheme="https://mah93.github.io/tags/App/"/>
     
   </entry>
   
