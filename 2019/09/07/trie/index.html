@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法与数据结构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Trie树简介Trie 树，也叫字典树或者叫前缀树。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的树状结构，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的本质，就是利用字符串之间的公共前缀，将重复的前缀合并在一起。">
+<meta name="keywords" content="算法与数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Trie树">
+<meta property="og:url" content="https://mah93.github.io/2019/09/07/trie/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="Trie树简介Trie 树，也叫字典树或者叫前缀树。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的树状结构，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的本质，就是利用字符串之间的公共前缀，将重复的前缀合并在一起。">
+<meta property="og:image" content="https://mah93.github.io/2019/09/07/trie/Trie-logo.png">
+<meta property="og:image" content="https://mah93.github.io/2019/09/07/trie/Trie-Tres.jpg">
+<meta property="og:image" content="https://mah93.github.io/2019/09/07/trie/Trie-up.jpg">
+<meta property="og:updated_time" content="2019-09-07T08:38:37.862Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Trie树">
+<meta name="twitter:description" content="Trie树简介Trie 树，也叫字典树或者叫前缀树。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的树状结构，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的本质，就是利用字符串之间的公共前缀，将重复的前缀合并在一起。">
+<meta name="twitter:image" content="https://mah93.github.io/2019/09/07/trie/Trie-logo.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mah93.github.io/2019/09/07/trie/"/>
+
+
+
+
+
+  <title>Trie树 | mah93</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <a href="https://github.com/mah93" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mah93</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/09/07/trie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Trie树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T16:35:18+08:00">
+                2019-09-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/07/trie/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/09/07/trie/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2019/09/07/trie/Trie-logo.png" alt="Trie-logo.png" title="">
+<h2 id="Trie树简介"><a href="#Trie树简介" class="headerlink" title="Trie树简介"></a>Trie树简介</h2><p>Trie 树，也叫字典树或者叫前缀树。顾名思义，它是一个树形结构。它是一种专门处理字符串匹配的树状结构，用来解决在一组字符串集合中快速查找某个字符串的问题。Trie 树的本质，就是利用字符串之间的公共前缀，将重复的前缀合并在一起。</p>
+<a id="more"></a> 
+<p>下面展示了一个由“hello”、“her”、“hi”、“how”、“see”以及“so”组成的Trie树。</p>
+<img src="/2019/09/07/trie/Trie-Tres.jpg" alt="Trie-Tres.jpg" title="">
+<h2 id="Trie特点"><a href="#Trie特点" class="headerlink" title="Trie特点"></a>Trie特点</h2><p>由上图中的Trie中可知</p>
+<ul>
+<li>Trie的每个节点存储一个字符，根节点不保存字符</li>
+<li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串</li>
+<li>每个节点的所有子节点包含的字符都不相同</li>
+</ul>
+<h2 id="实现Trie树"><a href="#实现Trie树" class="headerlink" title="实现Trie树"></a>实现Trie树</h2><h3 id="Trie树节点"><a href="#Trie树节点" class="headerlink" title="Trie树节点"></a>Trie树节点</h3><p>由于每个节点只存储一个字符，以及指向它的子节点，那么对于每个节点有如下的数据结构</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrieNode</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.key = key;</div><div class="line">    <span class="keyword">this</span>.children = [];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中key保存了这个节点的值，children中保存了该节点的所有子节点（对于小写英文字母而言，这个数组的长度为26）</p>
+<h3 id="Trie树的插入"><a href="#Trie树的插入" class="headerlink" title="Trie树的插入"></a>Trie树的插入</h3><p>构建一棵Trie树就是将字符串逐个插入的过程。由于Trie的特点，插入操作的过程中。要先判断Trie是否已经存在了与待插入字符串相同的前缀，找到所有的公共前缀后，将不同的字符插入Trie中。对于插入的过程，大致的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 采用递归插入字符串</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertData</span>(<span class="params">data, node</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (data === <span class="string">''</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> children = node.children;</div><div class="line">    <span class="keyword">let</span> haveData = <span class="literal">null</span>;</div><div class="line">    </div><div class="line">   <span class="comment">// 判断存储子节点的数组中，是否有与插入字符串的第一个值匹配的节点</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">        <span class="keyword">if</span> (children[i].key == data[<span class="number">0</span>]) &#123;</div><div class="line">            haveData = children[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(haveData) &#123;</div><div class="line">        <span class="comment">// 待插入的第一个字符已经存在children数组中，则继续判断下一个字符</span></div><div class="line">        <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), haveData);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">      <span class="comment">// 未找到相应的子节点，分为两种情况</span></div><div class="line">      <span class="comment">// 已经是现有Trie的叶子节点</span></div><div class="line">        <span class="keyword">if</span>(children.length === <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>]);</div><div class="line">            children.push(insertNode);</div><div class="line">            <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">          <span class="comment">// 要在当前的children中找到合适的位置，插入字符</span></div><div class="line">            <span class="keyword">let</span> validPosition = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j <span class="keyword">in</span> children) &#123;</div><div class="line">                <span class="keyword">if</span> (children[j].key &lt; data[<span class="number">0</span>]) &#123;</div><div class="line">                    validPosition++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>]);</div><div class="line">            children.splice(validPosition, <span class="number">0</span>, insertNode);</div><div class="line">            <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在插入Trie树的过程中，需要遍历所有的字符串，时间复杂度是O(n)，n表示所有字符串的长度和。</p>
+<h3 id="Trie树的查找"><a href="#Trie树的查找" class="headerlink" title="Trie树的查找"></a>Trie树的查找</h3><p>查找的过程与插入的过程类似，需要逐层遍历，寻找与待匹配字符串相同的字符。其大概代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (data === <span class="string">''</span> || <span class="keyword">this</span>.root.children.length === <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">  <span class="comment">// 遍历children</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> <span class="keyword">this</span>.root.children) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.searchNext(<span class="keyword">this</span>.root.children[i], data)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 递归查找</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchNext</span>(<span class="params">node, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(data[<span class="number">0</span>] !== node.key) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">let</span> children = node.children;</div><div class="line">  <span class="comment">// 该节点已经是叶子节点，并且待查找字符串已查找完毕</span></div><div class="line">    <span class="keyword">if</span>(children.length === <span class="number">0</span> &amp;&amp; data.length === <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(children.length &gt; <span class="number">0</span> &amp;&amp; data.length &gt; <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">            <span class="comment">// 继续判断下一个字符</span></div><div class="line">            <span class="keyword">if</span>(children[i].key === data[<span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">return</span> searchNext(children[i], data.substring(<span class="number">1</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在Trie树已经构建完成的情况下，查找一个字符串是否在Trie中效率是非常高的，其事件复杂度为O(K)，k表示待查找字符串的长度。</p>
+<h3 id="Trie树的删除"><a href="#Trie树的删除" class="headerlink" title="Trie树的删除"></a>Trie树的删除</h3><p>先递归查找到字符串的叶子节点，然后从字符串的叶子节点逐级向根节点递归删除叶子节点，直到删除字符串。其大概的代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNode</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.search(data)) &#123; <span class="comment">// 判断是否存在该单词（字符串）</span></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> <span class="keyword">this</span>.root.children) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.deleteNext(<span class="keyword">this</span>.root, i, data, data)) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">* @param parent 父节点</span></div><div class="line"><span class="comment">* @param index 子节点在父节点children数组中的索引位置</span></div><div class="line"><span class="comment">* @param stringData 递归遍历中的字符串</span></div><div class="line"><span class="comment">* @param delStr 调用delete方法时的原始字符串</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNext</span>(<span class="params">parent, index, stringData, delStr</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> node = parent.children[index];</div><div class="line">    <span class="comment">// 若字符与节点key不相等，则不匹配</span></div><div class="line">    <span class="keyword">if</span> (stringData[<span class="number">0</span>] != node.key) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 若与key相等，继续判断</span></div><div class="line">        <span class="keyword">let</span> children = node.children;</div><div class="line">        <span class="keyword">if</span> (children.length == <span class="number">0</span> &amp;&amp; stringData.length == <span class="number">1</span>) &#123; <span class="comment">// 叶子节点，最后一个字符，则完全匹配</span></div><div class="line">            <span class="comment">// 删除叶子节点，利用父节点删除子节点原理</span></div><div class="line">            parent.children.splice(index, <span class="number">1</span>);</div><div class="line">            <span class="comment">// 字符串从尾部移除一个字符后，继续遍历删除方法</span></div><div class="line">            <span class="keyword">this</span>.deleteNode(delStr.substring(<span class="number">0</span>, delStr.length - <span class="number">1</span>));</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (children.length &gt; <span class="number">0</span> &amp;&amp; stringData.length &gt; <span class="number">1</span>) &#123; <span class="comment">// 既不是叶子节点，也不是最后一个字符，则继续递归查找</span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">                <span class="keyword">if</span> (children[i].key == stringData[<span class="number">1</span>]) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>.deleteNext(node, i, stringData.substring(<span class="number">1</span>), delStr); <span class="comment">// 记得return 递归函数，否则获取的返回值为undefined</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Trie改进"><a href="#Trie改进" class="headerlink" title="Trie改进"></a>Trie改进</h2><p>Trie树是非常消耗内存的数据结构，用的是一种空间换时间的思路。Trie树的问题就在于存储子节点的children数组中。如果字符串中只包含从a到z的26个字符，那么children的长度就为26。<strong>注意，这里说的是每一个Trie树的节点，都需要申请一个长度为26的数组，即使这个节点只有一个子节点！</strong></p>
+<p>那么如果字符串包含了大小写，或者是数字特殊字符。Trie所需的空间就更大了。尤其是在重复的前缀不多的情况下，Trie树不但不能节省内存，而且还有可能浪费更多的内存空间。可以想到的方法就是，将children修改为其他的数据结构，比如有序数组、跳表等。</p>
+<p>对只有一个子节点的节点，而且此节点不是一个串的结束节点可以将此节点与子节点合并，这就是<strong>缩点优化</strong>。</p>
+<img src="/2019/09/07/trie/Trie-up.jpg" alt="Trie-up.jpg" title="">
+<h2 id="Trie树完整代码"><a href="#Trie树完整代码" class="headerlink" title="Trie树完整代码"></a>Trie树完整代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrieNode</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.key = key;</div><div class="line">    <span class="keyword">this</span>.children = [];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Trie</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.root = <span class="keyword">new</span> TrieNode(<span class="string">'/'</span>); <span class="comment">// 添加根节点</span></div><div class="line">    <span class="keyword">this</span>.insert = insert; <span class="comment">// 插入</span></div><div class="line">    <span class="keyword">this</span>.insertData = insertData;</div><div class="line">    <span class="keyword">this</span>.search = search; <span class="comment">// 查找</span></div><div class="line">    <span class="keyword">this</span>.searchNext = searchNext;</div><div class="line">    <span class="keyword">this</span>.deleteNode = deleteNode; <span class="comment">// 删除</span></div><div class="line">    <span class="keyword">this</span>.deleteNext = deleteNext;</div><div class="line"></div><div class="line">    <span class="keyword">this</span>.nodeNumber = <span class="number">0</span>; <span class="comment">// trie所有节点个数</span></div><div class="line">    <span class="keyword">this</span>.print = print; <span class="comment">// 打印Trie树</span></div><div class="line">    <span class="keyword">this</span>.printHelper = printHelper;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.insertData(data, <span class="keyword">this</span>.root);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertData</span>(<span class="params">data, node</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (data === <span class="string">''</span>) &#123;</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">let</span> children = node.children;</div><div class="line">    <span class="keyword">let</span> haveData = <span class="literal">null</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">        <span class="keyword">if</span> (children[i].key == data[<span class="number">0</span>]) &#123;</div><div class="line">            haveData = children[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>(haveData) &#123;</div><div class="line">        <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), haveData);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">if</span>(children.length === <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>]);</div><div class="line">            children.push(insertNode);</div><div class="line">            <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">let</span> validPosition = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> j <span class="keyword">in</span> children) &#123;</div><div class="line">                <span class="keyword">if</span> (children[j].key &lt; data[<span class="number">0</span>]) &#123;</div><div class="line">                    validPosition++;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>]);</div><div class="line">            children.splice(validPosition, <span class="number">0</span>, insertNode);</div><div class="line">            <span class="keyword">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (data === <span class="string">''</span> || <span class="keyword">this</span>.root.children.length === <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> <span class="keyword">this</span>.root.children) &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.searchNext(<span class="keyword">this</span>.root.children[i], data)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">searchNext</span>(<span class="params">node, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(data[<span class="number">0</span>] !== node.key) <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">let</span> children = node.children;</div><div class="line">    <span class="keyword">if</span>(children.length === <span class="number">0</span> &amp;&amp; data.length === <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(children.length &gt; <span class="number">0</span> &amp;&amp; data.length &gt; <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">            <span class="keyword">if</span>(children[i].key === data[<span class="number">1</span>]) &#123;</div><div class="line">                <span class="keyword">return</span> searchNext(children[i], data.substring(<span class="number">1</span>));</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNode</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.search(data)) &#123; </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> <span class="keyword">this</span>.root.children) &#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.deleteNext(<span class="keyword">this</span>.root, i, data, data)) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteNext</span>(<span class="params">parent, index, stringData, delStr</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> node = parent.children[index];</div><div class="line">    <span class="keyword">if</span> (stringData[<span class="number">0</span>] != node.key) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> children = node.children;</div><div class="line">        <span class="keyword">if</span> (children.length == <span class="number">0</span> &amp;&amp; stringData.length == <span class="number">1</span>) &#123; </div><div class="line">            parent.children.splice(index, <span class="number">1</span>);</div><div class="line">            <span class="keyword">this</span>.deleteNode(delStr.substring(<span class="number">0</span>, delStr.length - <span class="number">1</span>));</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (children.length &gt; <span class="number">0</span> &amp;&amp; stringData.length &gt; <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> children) &#123;</div><div class="line">                <span class="keyword">if</span> (children[i].key == stringData[<span class="number">1</span>]) &#123;</div><div class="line">                    <span class="keyword">return</span> <span class="keyword">this</span>.deleteNext(node, i, stringData.substring(<span class="number">1</span>), delStr);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> <span class="keyword">this</span>.root.children) &#123;</div><div class="line">        <span class="keyword">this</span>.nodeNumber++;</div><div class="line">        <span class="keyword">this</span>.printHelper(<span class="keyword">this</span>.root.children[i], [<span class="keyword">this</span>.root.children[i].key]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printHelper</span> (<span class="params">node, data</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (node.children.length === <span class="number">0</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'&gt;'</span>, data.join(<span class="string">''</span>));</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> node.children) &#123;</div><div class="line">        <span class="keyword">this</span>.nodeNumber++;</div><div class="line">        data.push(node.children[i].key);</div><div class="line">        <span class="keyword">this</span>.printHelper(node.children[i], data);</div><div class="line">        data.pop();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> trie = <span class="keyword">new</span> Trie();</div><div class="line"></div><div class="line">trie.insert(<span class="string">'apple'</span>);</div><div class="line">trie.insert(<span class="string">'appcd'</span>);</div><div class="line">trie.insert(<span class="string">'banana'</span>);</div><div class="line"></div><div class="line">trie.print();</div><div class="line"><span class="built_in">console</span>.log(trie.search(<span class="string">"app"</span>));</div><div class="line">trie.deleteNode(<span class="string">'appcd'</span>)</div><div class="line">trie.print();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(trie.nodeNumber);</div><div class="line"></div><div class="line"><span class="comment">// 输出结果</span></div><div class="line">&gt; appcd</div><div class="line">&gt; apple</div><div class="line">&gt; banana</div><div class="line"><span class="literal">false</span></div><div class="line">&gt; apple</div><div class="line">&gt; banana</div><div class="line"><span class="number">11</span></div></pre></td></tr></table></figure>
+<h2 id="学习心得"><a href="#学习心得" class="headerlink" title="学习心得"></a>学习心得</h2><p>第一次看Trie树的概念，完全没明白到底是什么样的数据结构。直到看了Trie树的图示例，一下就明白了，Trie树的概念非常好理解，就是把相同的前缀放到一起构成了一个数据结构。在对比字符串的时候，就像查字典一层层的比较。</p>
+<p>对于每个节点的存储结构确实比较绕，每次遍历children数组就相当于去往下一层比较了，反正每次涉及到递归函数总是不好理解。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><p><a href="https://www.jianshu.com/p/ba70ca95c33b" target="_blank" rel="external">Trie树的JS或TS实现</a></p>
+</li>
+<li><p><a href="https://time.geekbang.org/column/article/72414" target="_blank" rel="external">Trie树：如何实现搜索引擎的搜索关键词提示功能？</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法与数据结构/" rel="tag"><i class="fa fa-tag"></i> 算法与数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/12/binary-search/" rel="next" title="二分查找">
+                <i class="fa fa-chevron-left"></i> 二分查找
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "1",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      },
+      "slide": {
+        "bdImg": "5",
+        "bdPos": "left",
+        "bdTop": "100"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?'+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+    <div id="gitalk-container"></div>
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4"
+                alt="mah93" />
+            
+              <p class="site-author-name" itemprop="name">mah93</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/mah93" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mahao9393@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie树简介"><span class="nav-number">1.</span> <span class="nav-text">Trie树简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie特点"><span class="nav-number">2.</span> <span class="nav-text">Trie特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现Trie树"><span class="nav-number">3.</span> <span class="nav-text">实现Trie树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trie树节点"><span class="nav-number">3.1.</span> <span class="nav-text">Trie树节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trie树的插入"><span class="nav-number">3.2.</span> <span class="nav-text">Trie树的插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trie树的查找"><span class="nav-number">3.3.</span> <span class="nav-text">Trie树的查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Trie树的删除"><span class="nav-number">3.4.</span> <span class="nav-text">Trie树的删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie改进"><span class="nav-number">4.</span> <span class="nav-text">Trie改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie树完整代码"><span class="nav-number">5.</span> <span class="nav-text">Trie树完整代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习心得"><span class="nav-number">6.</span> <span class="nav-text">学习心得</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://mah93.github.io/2019/09/07/trie/';
+          this.page.identifier = '2019/09/07/trie/';
+          this.page.title = 'Trie树';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: 'ed463a1ada021a7192f1',
+          clientSecret: 'fa37415f1b8a7440caf3ec2b0d326227b6e9abae',
+          repo: 'mah93.github.io',
+          owner: 'mah93',
+          admin: ['mah93'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
