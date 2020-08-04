@@ -102,7 +102,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Penulis'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Beranda
+            Home
           </a>
         </li>
       
@@ -214,7 +214,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
-            Kategori
+            Categories
           </a>
         </li>
       
@@ -224,7 +224,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Arsip
+            Archives
           </a>
         </li>
       
@@ -247,6 +247,165 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/11/21/app-safety-design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/11/21/app-safety-design/" itemprop="url">App安全性设计</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-21T12:34:26+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/App/" itemprop="url" rel="index">
+                    <span itemprop="name">App</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/21/app-safety-design/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/21/app-safety-design/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <img src="/2017/11/21/app-safety-design/app_logo.jpg" alt="app_logo.jpg" title="">
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>​    HTTP协议是没有加密的明文传输协议，<strong>如果APP采用HTTP传输数据，则会泄露传输内容，可能被中间人劫持，修改传输的内容</strong>。劫持了HTTP通信，往APP的通信中加入了自己的推广内容，还有一些低俗的推广广告，这很影响用户体验。一些别有用心的人通过搭建公共WiFi，进行流量劫持、嗅探，可以获得通过HTTP传输的敏感信息。为了保护用户的信息安全、保护自己的商业利益，减少攻击面，需要保障通信信道的安全，采用开发方便的HTTPS无疑是最优方案。<br>​    <strong>HTTPS：</strong>在http(超文本传输协议)基础上提出的一种安全的http协议，因此可以称为安全的超文本传输协议。http协议直接放置在TCP协议之上，而https提出在http和TCP中间加上一层加密层。从发送端看，这一层负责把http的内容加密后送到下层的TCP，从接收方看，这一层负责将TCP送来的数据解密还原成http的内容。</p>
+<p>​    其实HTTPS从最终的数据解析的角度，与HTTP没有任何的区别，HTTPS就是将HTTP协议数据包放到SSL/TSL层加密后，在TCP/IP层组成IP数据报去传输，以此保证传输数据的安全；而对于接收端，在SSL/TSL将接收的数据包解密之后，将数据传给HTTP协议层，就是普通的HTTP数据。HTTP和SSL/TSL都处于OSI模型的应用层。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/21/app-safety-design/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -290,7 +449,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-15T10:26:05+08:00">
                 2017-11-15
@@ -311,7 +470,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -386,7 +545,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/15/react-native-introduce/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -465,7 +624,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-03T13:29:52+08:00">
                 2017-11-03
@@ -486,7 +645,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -553,7 +712,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/11/03/nginx-introduce/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -632,7 +791,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-30T21:50:36+08:00">
                 2017-10-30
@@ -653,7 +812,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -722,7 +881,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/30/dva-learning/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -801,7 +960,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T21:16:49+08:00">
                 2017-10-19
@@ -822,7 +981,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -919,7 +1078,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/19/app-develop-mode/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -998,7 +1157,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-10T19:02:32+08:00">
                 2017-10-10
@@ -1019,7 +1178,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1078,7 +1237,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/10/dva-compatible/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1157,7 +1316,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-01T22:31:10+08:00">
                 2017-10-01
@@ -1178,7 +1337,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Di</span>
+                <span class="post-meta-item-text">In</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -1240,7 +1399,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/01/dva-deploy/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1319,7 +1478,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-01T22:27:11+08:00">
                 2017-10-01
@@ -1376,7 +1535,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/01/hello-world/#more" rel="contents">
-              Baca lebih &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1467,8 +1626,8 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">37</span>
-                  <span class="site-state-item-name">posting</span>
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1479,7 +1638,7 @@
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
                   <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">kategori</span>
+                  <span class="site-state-item-name">categories</span>
                 </a>
               </div>
             
@@ -1567,7 +1726,7 @@
 
 
 
-  <div class="theme-info">Tema &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
