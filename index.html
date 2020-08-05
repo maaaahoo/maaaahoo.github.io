@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Accueil
           </a>
         </li>
       
@@ -261,6 +261,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2020/08/05/code-push/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/05/code-push/" itemprop="url">CodePush</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posté le</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-05T11:05:25+08:00">
+                2020-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/05/code-push/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/08/05/code-push/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <img src="/2020/08/05/code-push/code-push-logo.png" alt="code-push-logo.png" title="">
+<p>App的热更新即，不通过应用商店的审核，直接下载远程的代码更新用户手机中的app。由于iOS应用审核周期长，审核规则复杂所以热更新对于iOS平台来说显得更为迫切，但在原生的iOS代码中实现起来比较复杂，有被拒绝的风险。而React Native由于其加载jsbundle的特点，实现热更新并不复杂。而采用Js热更新的React Native并没有受到WaxPatch、JSPatch等热修复框架被禁止的影响。</p>
+<p>React Native的热更新方案有很多种，比如微软的CodePush、或者如携程的jsbundle拆分方案等，但是基本原理都是一致的，就是远程加载jsbundle，下面记录实现热更新的几种方案</p>
+<p>CodePush 是微软提供的一套用于热更新 React Native 和 Cordova 应用的服务。<br>CodePush 是提供给 React Native 和 Cordova 开发者直接部署移动应用更新给用户设备的云服务。CodePush 作为一个中央仓库，开发者可以推送更新 (JS, HTML, CSS and images)，应用可以从客户端 SDK 里面查询更新。CodePush 可以让应用有更多的可确定性，也可以让你直接接触用户群。在修复一些小问题和添加新特性的时候，不需要经过二进制打包，可以直接推送代码进行实时更新。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/05/code-push/#more" rel="contents">
+              Lire la suite &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2020/07/09/es6-summary/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -290,7 +450,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-09T10:24:15+08:00">
                 2020-07-09
@@ -370,7 +530,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/07/09/es6-summary/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -449,7 +609,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T17:06:08+08:00">
                 2020-03-03
@@ -689,7 +849,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-08T17:28:05+08:00">
                 2020-01-08
@@ -770,7 +930,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/08/what-is-docker/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -849,7 +1009,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-30T17:28:57+08:00">
                 2019-12-30
@@ -931,7 +1091,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/12/30/iOS-learn/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1010,7 +1170,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T17:23:08+08:00">
                 2019-09-26
@@ -1092,7 +1252,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/26/aho-corasick/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1171,7 +1331,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T16:35:18+08:00">
                 2019-09-07
@@ -1250,7 +1410,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/07/trie/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1329,7 +1489,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-12T17:12:54+08:00">
                 2019-08-12
@@ -1409,7 +1569,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/12/binary-search/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1488,7 +1648,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-08T12:59:26+08:00">
                 2019-08-08
@@ -1567,7 +1727,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/08/string-matching/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1646,7 +1806,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Posté le</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T17:17:28+08:00">
                 2019-07-19
@@ -1726,168 +1886,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/19/js-linked/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/07/05/typescript-g/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="mah93">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mah93">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/07/05/typescript-g/" itemprop="url">TypeScript接口与泛型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-05T16:23:13+08:00">
-                2019-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/07/05/typescript-g/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/07/05/typescript-g/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <img src="/2019/07/05/typescript-g/typescript_var_logo.png" alt="typescript_var_logo.png" title="">
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>定义方法中参数的约束</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printLabel</span>(<span class="params">label: <span class="built_in">string</span></span>): <span class="title">void</span> </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">""</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">printLabel(<span class="string">"sss"</span>);</div></pre></td></tr></table></figure>
-<p>自定义方法传入参数对json的约束</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printLabel</span>(<span class="params">labelInfo: &#123; label: <span class="built_in">string</span> &#125;</span>): <span class="title">void</span> </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">""</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">printLabel(&#123; label: <span class="string">"ssss"</span> &#125;);</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/05/typescript-g/#more" rel="contents">
-              Read more &raquo;
+              Lire la suite &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1978,8 +1977,8 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">38</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">articles</span>
                 </a>
               </div>
             
@@ -2078,7 +2077,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
