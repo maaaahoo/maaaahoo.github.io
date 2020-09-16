@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Home
           </a>
         </li>
       
@@ -290,7 +290,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-05T11:05:25+08:00">
                 2020-08-05
@@ -371,7 +371,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/08/05/code-push/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -450,7 +450,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-09T10:24:15+08:00">
                 2020-07-09
@@ -530,7 +530,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/07/09/es6-summary/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -609,7 +609,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T17:06:08+08:00">
                 2020-03-03
@@ -683,97 +683,18 @@
 
       
         
-          
-            <p><img src="https://upload-images.jianshu.io/upload_images/4428454-e64c1f261bfe22e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm_logo.jpg"></p>
+          <img src="/2020/03/03/realm-summary/realm-logo.webp" alt="realm-logo.webp" title="">
 <h2 id="Realm简介"><a href="#Realm简介" class="headerlink" title="Realm简介"></a>Realm简介</h2><p>Realm是一个跨平台的移动数据库引擎，目前支持iOS、Android平台，同时支持Objective-C、Swift、Java、React Native、Xamarin等多种编程语言。Realm并不是对SQLite或者CoreData的简单封装, 是由核心数据引擎C++打造，是拥有独立的数据库存储引擎，可以方便、高效的完成数据库的各种操作。</p>
 <p>官方文档：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Frealm.io" target="_blank" rel="external">https://realm.io</a> </p>
 <p>GitHub：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Frealm%2Frealm-cocoa" target="_blank" rel="external">https://github.com/realm/realm-cocoa</a></p>
 <p>Realm Studio: <a href="https://realm.io/cn/products/realm-studio" target="_blank" rel="external">https://realm.io/cn/products/realm-studio</a></p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> <span class="comment">--save realm</span></div></pre></td></tr></table></figure>
-<p>react-native版本大于等于0.60</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ios <span class="meta">&amp; pod install</span></div></pre></td></tr></table></figure>
-<p>react-native版本小于0.60</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-<span class="keyword">native</span> link realm</div></pre></td></tr></table></figure>
-<blockquote>
-<p>安卓端可能使用 <em>link</em> 无效，这时可以进行以下步骤：</p>
-<p>在 android/setting.gradle 内添加:</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">include</span> ':realm'</div><div class="line">&gt; project(':realm').projectDir = <span class="keyword">new</span> <span class="constructor">File(<span class="params">rootProject</span>.<span class="params">projectDir</span>, '..<span class="operator">/</span><span class="params">node_modules</span><span class="operator">/</span><span class="params">realm</span><span class="operator">/</span><span class="params">android</span>')</span></div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>在android/app/build.gradle增加依赖库</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> // When using Android Gradle plugin 3.0 or higher</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> dependencies &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   implementation project(<span class="string">':realm'</span>)</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> </span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> // When using Android Gradle plugin lower than 3.0</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> dependencies &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   compile project(<span class="string">':realm'</span>)</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
-</blockquote>
-<p>&gt;</p>
-<blockquote>
-<p>在MainApplication.java中导入并且链接package</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="keyword">import</span> io.realm.react.<span class="type">RealmReactPackage</span>; <span class="comment">// add this </span></div><div class="line">&gt; </div><div class="line">&gt; <span class="keyword">import</span> public <span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> <span class="keyword">extends</span> <span class="title">Application</span> <span class="title">implements</span> <span class="title">ReactApplication</span> </span>&#123;</div><div class="line">&gt;     <span class="meta">@Override</span></div><div class="line">&gt;     <span class="keyword">protected</span> <span class="type">List</span>&lt;<span class="type">ReactPackage</span>&gt; getPackages() &#123;</div><div class="line">&gt;         <span class="keyword">return</span> <span class="type">Arrays</span>.&lt;<span class="type">ReactPackage</span>&gt;asList(</div><div class="line">&gt;             <span class="keyword">new</span> <span class="type">MainReactPackage</span>(),</div><div class="line">&gt;             <span class="keyword">new</span> <span class="type">RealmReactPackage</span>() <span class="comment">// add this line</span></div><div class="line">&gt;         );</div><div class="line">&gt;     &#125;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="建立model"><a href="#建立model" class="headerlink" title="建立model"></a>建立model</h2><p>通过schema定义的模型会在realm初始化的时候加入realm数据库中，每个schema都有一个name字段定义的名字、primaryKey为主键以及其他属性。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定一个car</span></div><div class="line"><span class="keyword">const</span> CarSchema = &#123;</div><div class="line">  name: <span class="string">'Car'</span>,</div><div class="line">  properties: &#123;</div><div class="line">    <span class="built_in">make</span>:  <span class="string">'string'</span>,  <span class="comment">// 字符类型</span></div><div class="line">    model: <span class="string">'string'</span>,  <span class="comment">// 字符类型</span></div><div class="line">    miles: &#123;<span class="keyword">type</span>: <span class="string">'int'</span>, <span class="keyword">default</span>: <span class="number">0</span>&#125;, <span class="comment">// 数字类型，并且初始值为0</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="支持的类型"><a href="#支持的类型" class="headerlink" title="支持的类型"></a>支持的类型</h3><p>Realm支持的基本类型有：<code>bool</code>, <code>int</code>, <code>float</code>, <code>double</code>, <code>string</code>, <code>data</code>, and <code>date</code></p>
-<ul>
-<li><code>bool</code> 对应JavaScript中的<code>boolean</code></li>
-<li><code>int</code>, <code>float</code>,  <code>double</code> 对应JavaScript中的 <code>number</code> </li>
-<li><code>string</code> 对应JavaScript中的 <code>string</code></li>
-<li><code>data</code> 对应JavaScript中的<code>ArrayBuffer</code></li>
-<li><code>date</code> 对应JavaScript中的 <code>Date</code></li>
-</ul>
-<h3 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h3><p>通过设置一个<code>string</code>或者<code>int</code>类型的值作为model的主键</p>
-<figure class="highlight sas"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const BookSchema = &#123;</div><div class="line">  name: <span class="string">'Book'</span>,</div><div class="line">  primaryKey: <span class="string">'id'</span>,</div><div class="line">  properties: &#123;</div><div class="line">    id:    <span class="string">'int'</span>,    // <span class="meta">primary</span> <span class="meta">key</span></div><div class="line">    <span class="meta">title</span>: <span class="string">'string'</span>,</div><div class="line">    price: <span class="string">'float'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p>Realm的基本类型是非可选的，并且不可以存储<code>null</code>以及<code>undefined</code>。但是可以在属性定义中添加可选的指示符<code>?</code>来使属性成为可选属性。</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const PersonSchema = &#123;</div><div class="line">  name: 'Person',</div><div class="line">  properties: &#123;</div><div class="line">    realName:    '<span class="keyword">string</span>', // required <span class="keyword">property</span><span class="title"></span></div><div class="line">    displayName: '<span class="keyword">string</span>?', // optional <span class="keyword">property</span><span class="title"></span></div><div class="line">    birthday:    &#123;<span class="keyword">type</span>: '<span class="keyword">date</span>', optional: <span class="literal">true</span>&#125;, // optional <span class="keyword">property</span><span class="title"></span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="设置默认值"><a href="#设置默认值" class="headerlink" title="设置默认值"></a>设置默认值</h3><p>通过<code>default</code>字段为属性添加一个默认值</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const <span class="type">CarSchema</span> = &#123;</div><div class="line">  name: <span class="symbol">'Ca</span>r',</div><div class="line">  properties: &#123;</div><div class="line">    make:  &#123;<span class="class"><span class="keyword">type</span></span>: <span class="symbol">'strin</span>g'&#125;,</div><div class="line">    model: &#123;<span class="class"><span class="keyword">type</span></span>: <span class="symbol">'strin</span>g'&#125;,</div><div class="line">    drive: &#123;<span class="class"><span class="keyword">type</span></span>: <span class="symbol">'strin</span>g', <span class="keyword">default</span>: <span class="symbol">'fw</span>d'&#125;,</div><div class="line">    miles: &#123;<span class="class"><span class="keyword">type</span></span>: <span class="symbol">'in</span>t',    <span class="keyword">default</span>: <span class="number">0</span>&#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>除了存储单个值之外，还可以将属性声明为任何受支持的基本类型的列表。 这是通过在类型名称后附加<code>[]</code>来完成</p>
-<figure class="highlight sqf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const PersonSchema = &#123;</div><div class="line">  <span class="built_in">name</span>: <span class="string">'Person'</span>,</div><div class="line">  properties: &#123;</div><div class="line">    <span class="built_in">name</span>: <span class="string">'string'</span>,</div><div class="line">    testScores: <span class="string">'double?[]'</span>  <span class="comment">// 一个存储double类型的数组</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const PersonSchema = &#123;</div><div class="line">  <span class="built_in">name</span>: <span class="string">'Person'</span>,</div><div class="line">  properties: &#123;</div><div class="line">    <span class="built_in">name</span>:     <span class="string">'string'</span>,</div><div class="line">    birthday: <span class="string">'date'</span>,</div><div class="line">    cars:     <span class="string">'Car[]'</span>  <span class="comment">// 一个存储Car对象的数组</span></div><div class="line">    picture:  <span class="string">'data?'</span>, <span class="comment">// optional property</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h2 id="初始化Realm"><a href="#初始化Realm" class="headerlink" title="初始化Realm"></a>初始化Realm</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Realm.open(&#123;schema: [Car, Person]&#125;)</div><div class="line"><span class="keyword">  .then</span>(realm =&gt; &#123;</div><div class="line">    // ...use the realm<span class="built_in"> instance </span>here</div><div class="line">  &#125;)</div><div class="line"><span class="keyword">  .catch</span>(error =&gt; &#123;</div><div class="line">    // Handle the error here<span class="built_in"> if </span>something went wrong</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
-<p>通过realm中的<code>open</code>方法以及定义好的models，即可快速的创建并打开数据库。</p>
-<p>当然也可以通过创建realm实例打开</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const realm = <span class="keyword">new</span> <span class="constructor">Realm(&#123;<span class="params">schema</span>: [PersonSchema]&#125;)</span>;</div></pre></td></tr></table></figure>
-<h2 id="增"><a href="#增" class="headerlink" title="增"></a>增</h2><p>对域中对象的更改、创建、更新和删除，必须在<code>write</code>事务块中进行。<br>需要注意：写入事务具有不可忽略的开销，应该尽量减少代码中写入块的数量。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">try</span> &#123;</div><div class="line">  <span class="selector-tag">realm</span><span class="selector-class">.write</span>(() =&gt; &#123;</div><div class="line">    <span class="selector-tag">realm</span><span class="selector-class">.create</span>(<span class="string">"Hello"</span>, &#123;</div><div class="line">      <span class="attribute">uid</span>: <span class="string">"a371d56d7b6f77ba31f71d22"</span>,</div><div class="line">      <span class="attribute">name</span>: <span class="string">"名字1"</span>,</div><div class="line">      <span class="attribute">phone</span>: <span class="string">"137xxxxxxxx"</span></div><div class="line">    &#125;);</div><div class="line">    <span class="selector-tag">realm</span><span class="selector-class">.create</span>(<span class="string">"Hello"</span>, &#123;</div><div class="line">      <span class="attribute">uid</span>: <span class="string">"a371d56d7b6f77ba31f71d22"</span>,</div><div class="line">      <span class="attribute">name</span>: <span class="string">"名字1"</span>,</div><div class="line">      <span class="attribute">phone</span>: <span class="string">"137xxxxxxxx"</span></div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;);</div><div class="line"><span class="selector-tag">catch</span>(e) &#123;</div><div class="line">  <span class="selector-tag">console</span><span class="selector-class">.log</span>(<span class="string">"Error on creation"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="删"><a href="#删" class="headerlink" title="删"></a>删</h2><p>通过<code>delete</code>方法删除，必须在<code>write</code>事务块中进行。</p>
-<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">realm.write(() =&gt; &#123;</div><div class="line">  // <span class="keyword">Create</span> a book <span class="keyword">object</span></div><div class="line">  <span class="keyword">let</span> book = <span class="keyword">realm</span>.<span class="keyword">create</span>(<span class="string">'Book'</span>, &#123;id: <span class="number">1</span>, <span class="built_in">title</span>: <span class="string">'Recipes'</span>, price: <span class="number">35</span>&#125;);</div><div class="line"></div><div class="line">  // <span class="keyword">Delete</span> the book</div><div class="line">  <span class="keyword">realm</span>.<span class="keyword">delete</span>(book);</div><div class="line"></div><div class="line">  // <span class="keyword">Delete</span> multiple books <span class="keyword">by</span> passing <span class="keyword">in</span> a <span class="symbol">`Results`</span>, <span class="symbol">`List`</span>,</div><div class="line">  // <span class="keyword">or</span> JavaScript <span class="symbol">`Array`</span></div><div class="line">  <span class="keyword">let</span> allBooks = <span class="keyword">realm</span>.objects(<span class="string">'Book'</span>);</div><div class="line">  realm.delete(allBooks); // Deletes all books</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="改"><a href="#改" class="headerlink" title="改"></a>改</h2><p>在创建方法后面添加参数<code>true</code>即可</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">realm.write(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  realm.create(<span class="string">"Hello"</span>, &#123;</div><div class="line">    uid: <span class="string">"a371d56d7b6f77ba31f71d22"</span>,</div><div class="line">    name: <span class="string">"名字1"</span>,</div><div class="line">    phone: <span class="string">"137xxxxxxxx"</span></div><div class="line">  &#125;, <span class="literal">true</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="查"><a href="#查" class="headerlink" title="查"></a>查</h2><p>通过model的名称查找数据</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> dogs = realm.objects(<span class="string">'Dog'</span>); <span class="comment">// retrieves all Dogs from the Realm</span></div></pre></td></tr></table></figure>
-<p>返回<code>Dog</code>中的所有数据，或者通过<code>filtered</code>查找指定数据</p>
-<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const tanDogs = dogs.filtered(<span class="symbol">'color</span> = <span class="string">"tan"</span> <span class="keyword">AND</span> name BEGINSWITH <span class="string">"B"</span>');</div></pre></td></tr></table></figure>
-<h2 id="Realm-Studio"><a href="#Realm-Studio" class="headerlink" title="Realm Studio"></a>Realm Studio</h2><p>Realm Studio是Realm数据库的可视化工具，通过<a href="https://realm.io/products/realm-studio/#download-studio" target="_blank" rel="external">Realm Studio</a>下载，支持<code>Windows</code>、<code>Linux</code>、<code>Mac OS</code>系统，下载打开之后</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4428454-0088bf3c73ada230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm-studio-logo.png"></p>
-<p>点击<code>Open Realm file</code> 选中需要打开的数据库即可，是以<code>realm</code>为后缀的文件</p>
-<h3 id="找到realm文件"><a href="#找到realm文件" class="headerlink" title="找到realm文件"></a>找到realm文件</h3><p>如果是在iOS模拟器上，那么可以到以下路径查找</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Users/你的名字/Library/Developer/CoreSimulator/Devices/<span class="number">2</span>AAE2917<span class="number">-8519</span><span class="number">-4024</span>-BAE7<span class="number">-3</span>A59F124691E/data/Containers/Data/Application/<span class="number">0</span>EE00136<span class="number">-357</span>D<span class="number">-46</span>F8-B709<span class="number">-2</span>BAA1DDF8909/Documents</div></pre></td></tr></table></figure>
-<p>如果是在iOS真机上，可以在Xcode中的<code>Devices and Simulator</code>查找</p>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><ul>
-<li>Realm安装不上</li>
-</ul>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">React Native <span class="number">0.31</span><span class="number">.0</span> <span class="keyword">and</span> later <span class="keyword">is</span> supported.</div><div class="line">Node version <span class="number">8.3</span><span class="number">.0</span> (<span class="keyword">and</span> later versions <span class="keyword">in</span> <span class="number">8.</span>x) <span class="keyword">and</span> <span class="number">10.</span>x are supported.</div><div class="line"></div><div class="line">仅支持React Native <span class="number">0.31</span><span class="number">.0</span>及以上</div><div class="line">仅支持node <span class="number">8.3</span><span class="number">.0</span>及以上或者<span class="number">10.</span>x</div></pre></td></tr></table></figure>
-<ul>
-<li>realm-sync-cocoa下载失败</li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/4428454-d24ab4f9a2b5bb8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm-sync-cocoa.png"></p>
-<blockquote>
-<p>首次运行时，如果出现长时间卡在编辑阶段，打开Xcode发现一直在下载realm-sync-cocoa-4.9.2.tar.gz<br>该文件大概有100M以上，翻墙效果依旧不明显</p>
-</blockquote>
-<ol>
-<li>手动下载realm-sync-cocoa-4.9.2.tar.gz</li>
-<li>打开/node_modules/realm/scripts/download-realm.js文件，并找到以下代码</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">generateRandomString</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// return crypto.randomBytes(20).toString('hex');</span></div><div class="line">    <span class="keyword">return</span> <span class="string">'realm'</span>;  </div><div class="line">&#125;</div><div class="line"><span class="comment">// 该方法是返回一个20位随机字符串作为下载的文件夹名，每次启动下载realm-sync-cocoa任务的时候，都会先创建一个文件夹，并将下载到该文件夹中，这里将文件夹名称改成固定名称，目的是把手动下载好的文件直接放入。</span></div></pre></td></tr></table></figure>
-<p>修改之后重新编译一下，就会生成一个<code>realm</code>文件夹</p>
-<ol>
-<li>在命令行输入<code>getconf DARWIN_USER_TEMP_DIR</code>获取下载缓存路径，并把手动下载好的文件，放入realm中</li>
-<li>清空项目并且编译即可成功</li>
-</ol>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://juejin.im/post/5c11c22f6fb9a04a03791555" target="_blank" rel="external">移动数据库 Realm 在 React-Native 的使用详解</a></li>
-<li><a href="https://realm.io/docs/javascript/latest/#realms" target="_blank" rel="external">realm.io</a></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/03/realm-summary/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -849,7 +770,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-08T17:28:05+08:00">
                 2020-01-08
@@ -930,7 +851,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/08/what-is-docker/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1009,7 +930,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-30T17:28:57+08:00">
                 2019-12-30
@@ -1091,7 +1012,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/12/30/iOS-learn/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1170,7 +1091,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-26T17:23:08+08:00">
                 2019-09-26
@@ -1252,7 +1173,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/26/aho-corasick/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1331,7 +1252,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-07T16:35:18+08:00">
                 2019-09-07
@@ -1410,7 +1331,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/09/07/trie/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1489,7 +1410,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-12T17:12:54+08:00">
                 2019-08-12
@@ -1569,7 +1490,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/12/binary-search/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1648,7 +1569,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-08T12:59:26+08:00">
                 2019-08-08
@@ -1727,7 +1648,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/08/08/string-matching/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1806,7 +1727,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T17:17:28+08:00">
                 2019-07-19
@@ -1886,7 +1807,7 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/07/19/js-linked/#more" rel="contents">
-              Lire la suite &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1978,7 +1899,7 @@
                 <a href="/archives">
               
                   <span class="site-state-item-count">39</span>
-                  <span class="site-state-item-name">articles</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -2077,7 +1998,7 @@
 
 
 
-  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 

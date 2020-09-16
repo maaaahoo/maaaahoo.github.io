@@ -88,14 +88,14 @@
 <meta property="og:url" content="https://mah93.github.io/2020/03/03/realm-summary/index.html">
 <meta property="og:site_name" content="mah93">
 <meta property="og:description" content="Realm简介Realm是一个跨平台的移动数据库引擎，目前支持iOS、Android平台，同时支持Objective-C、Swift、Java、React Native、Xamarin等多种编程语言。Realm并不是对SQLite或者CoreData的简单封装, 是由核心数据引擎C++打造，是拥有独立的数据库存储引擎，可以方便、高效的完成数据库的各种操作。 官方文档：https://realm.">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4428454-e64c1f261bfe22e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4428454-0088bf3c73ada230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/4428454-d24ab4f9a2b5bb8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-08-04T09:08:44.648Z">
+<meta property="og:image" content="https://mah93.github.io/2020/03/03/realm-summary/realm-logo.webp">
+<meta property="og:image" content="https://mah93.github.io/2020/03/03/realm-summary/realm-studio-logo.webp">
+<meta property="og:image" content="https://mah93.github.io/2020/03/03/realm-summary/realm-err.webp">
+<meta property="og:updated_time" content="2020-09-16T03:26:52.103Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="realm使用记录">
 <meta name="twitter:description" content="Realm简介Realm是一个跨平台的移动数据库引擎，目前支持iOS、Android平台，同时支持Objective-C、Swift、Java、React Native、Xamarin等多种编程语言。Realm并不是对SQLite或者CoreData的简单封装, 是由核心数据引擎C++打造，是拥有独立的数据库存储引擎，可以方便、高效的完成数据库的各种操作。 官方文档：https://realm.">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/4428454-e64c1f261bfe22e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://mah93.github.io/2020/03/03/realm-summary/realm-logo.webp">
 
 
 
@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Accueil
+            Home
           </a>
         </li>
       
@@ -296,7 +296,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posté le</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T17:06:08+08:00">
                 2020-03-03
@@ -369,11 +369,12 @@
       
 
       
-        <p><img src="https://upload-images.jianshu.io/upload_images/4428454-e64c1f261bfe22e8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm_logo.jpg"></p>
+        <img src="/2020/03/03/realm-summary/realm-logo.webp" alt="realm-logo.webp" title="">
 <h2 id="Realm简介"><a href="#Realm简介" class="headerlink" title="Realm简介"></a>Realm简介</h2><p>Realm是一个跨平台的移动数据库引擎，目前支持iOS、Android平台，同时支持Objective-C、Swift、Java、React Native、Xamarin等多种编程语言。Realm并不是对SQLite或者CoreData的简单封装, 是由核心数据引擎C++打造，是拥有独立的数据库存储引擎，可以方便、高效的完成数据库的各种操作。</p>
 <p>官方文档：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Frealm.io" target="_blank" rel="external">https://realm.io</a> </p>
 <p>GitHub：<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Frealm%2Frealm-cocoa" target="_blank" rel="external">https://github.com/realm/realm-cocoa</a></p>
 <p>Realm Studio: <a href="https://realm.io/cn/products/realm-studio" target="_blank" rel="external">https://realm.io/cn/products/realm-studio</a></p>
+<a id="more"></a> 
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> <span class="comment">--save realm</span></div></pre></td></tr></table></figure>
 <p>react-native版本大于等于0.60</p>
 <figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ios <span class="meta">&amp; pod install</span></div></pre></td></tr></table></figure>
@@ -427,7 +428,7 @@
 <p>返回<code>Dog</code>中的所有数据，或者通过<code>filtered</code>查找指定数据</p>
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const tanDogs = dogs.filtered(<span class="symbol">'color</span> = <span class="string">"tan"</span> <span class="keyword">AND</span> name BEGINSWITH <span class="string">"B"</span>');</div></pre></td></tr></table></figure>
 <h2 id="Realm-Studio"><a href="#Realm-Studio" class="headerlink" title="Realm Studio"></a>Realm Studio</h2><p>Realm Studio是Realm数据库的可视化工具，通过<a href="https://realm.io/products/realm-studio/#download-studio" target="_blank" rel="external">Realm Studio</a>下载，支持<code>Windows</code>、<code>Linux</code>、<code>Mac OS</code>系统，下载打开之后</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/4428454-0088bf3c73ada230.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm-studio-logo.png"></p>
+<img src="/2020/03/03/realm-summary/realm-studio-logo.webp" alt="realm-studio-logo.webp" title="">
 <p>点击<code>Open Realm file</code> 选中需要打开的数据库即可，是以<code>realm</code>为后缀的文件</p>
 <h3 id="找到realm文件"><a href="#找到realm文件" class="headerlink" title="找到realm文件"></a>找到realm文件</h3><p>如果是在iOS模拟器上，那么可以到以下路径查找</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/Users/你的名字/Library/Developer/CoreSimulator/Devices/<span class="number">2</span>AAE2917<span class="number">-8519</span><span class="number">-4024</span>-BAE7<span class="number">-3</span>A59F124691E/data/Containers/Data/Application/<span class="number">0</span>EE00136<span class="number">-357</span>D<span class="number">-46</span>F8-B709<span class="number">-2</span>BAA1DDF8909/Documents</div></pre></td></tr></table></figure>
@@ -439,7 +440,7 @@
 <ul>
 <li>realm-sync-cocoa下载失败</li>
 </ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/4428454-d24ab4f9a2b5bb8d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="realm-sync-cocoa.png"></p>
+<img src="/2020/03/03/realm-summary/realm-err.webp" alt="realm-err.webp" title="">
 <blockquote>
 <p>首次运行时，如果出现长时间卡在编辑阶段，打开Xcode发现一直在下载realm-sync-cocoa-4.9.2.tar.gz<br>该文件大概有100M以上，翻墙效果依旧不明显</p>
 </blockquote>
@@ -580,10 +581,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table Des Matières
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Ensemble
+            Overview
           </li>
         </ul>
       
@@ -608,7 +609,7 @@
                 <a href="/archives">
               
                   <span class="site-state-item-count">39</span>
-                  <span class="site-state-item-name">articles</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -723,7 +724,7 @@
 
 
 
-  <div class="theme-info">Thème &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
