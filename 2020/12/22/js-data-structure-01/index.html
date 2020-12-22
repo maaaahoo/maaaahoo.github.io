@@ -84,16 +84,16 @@
 <meta name="description" content="队列队列（queue）是一种先进先出的、操作受限的线性表。必须从队尾插入新元素，队列中的元素只能从队首取出。下面是用数组实现的简单队列。">
 <meta name="keywords" content="算法与数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript的数据结构-01">
+<meta property="og:title" content="JavaScript的数据结构汇总-01">
 <meta property="og:url" content="https://mah93.github.io/2020/12/22/js-data-structure-01/index.html">
 <meta property="og:site_name" content="mah93">
 <meta property="og:description" content="队列队列（queue）是一种先进先出的、操作受限的线性表。必须从队尾插入新元素，队列中的元素只能从队首取出。下面是用数组实现的简单队列。">
-<meta property="og:image" content="https://mah93.github.io/2020/12/22/js-data-structure-01/js-data-struct.jpeg">
-<meta property="og:updated_time" content="2020-12-22T03:11:09.312Z">
+<meta property="og:image" content="https://mah93.github.io/2020/12/22/js-data-structure-01/js-data-struct.png">
+<meta property="og:updated_time" content="2020-12-22T03:30:50.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript的数据结构-01">
+<meta name="twitter:title" content="JavaScript的数据结构汇总-01">
 <meta name="twitter:description" content="队列队列（queue）是一种先进先出的、操作受限的线性表。必须从队尾插入新元素，队列中的元素只能从队首取出。下面是用数组实现的简单队列。">
-<meta name="twitter:image" content="https://mah93.github.io/2020/12/22/js-data-structure-01/js-data-struct.jpeg">
+<meta name="twitter:image" content="https://mah93.github.io/2020/12/22/js-data-structure-01/js-data-struct.png">
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title>JavaScript的数据结构-01 | mah93</title>
+  <title>JavaScript的数据结构汇总-01 | mah93</title>
   
 
 
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript的数据结构-01</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript的数据结构汇总-01</h1>
         
 
         <div class="post-meta">
@@ -367,7 +367,7 @@
       
 
       
-        <img src="/2020/12/22/js-data-structure-01/js-data-struct.jpeg" alt="js-data-struct.jpeg" title="">
+        <img src="/2020/12/22/js-data-structure-01/js-data-struct.png" alt="js-data-struct.png" title="">
 <h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>队列（queue）是一种先进先出的、操作受限的线性表。必须从队尾插入新元素，队列中的元素只能从队首取出。下面是用数组实现的简单队列。</p>
 <a id="more"></a> 
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 队列</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</div><div class="line">  <span class="keyword">constructor</span>() &#123;</div><div class="line">    <span class="keyword">this</span>.queue = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">    <span class="keyword">this</span>.size = <span class="keyword">this</span>.queue.length;</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 向队列中添加一个元素</span></div><div class="line">  enqueue = <span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.queue.push(item)</div><div class="line">    <span class="keyword">this</span>.print();</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 从队列中取出一个元素</span></div><div class="line">  dequeue = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.queue.shift();</div><div class="line">    <span class="keyword">this</span>.print();</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 获取队列的大小</span></div><div class="line">  size = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.size;</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 清空队列</span></div><div class="line">  clear = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">this</span>.queue = [];</div><div class="line">    <span class="keyword">this</span>.print();</div><div class="line">  &#125;</div><div class="line"><span class="comment">// 显示队列</span></div><div class="line">  print = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`当前队列：<span class="subst">$&#123;<span class="keyword">this</span>.queue&#125;</span>`</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -428,6 +428,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/22/js-data-structure-02/" rel="prev" title="JavaScript的数据结构汇总-02">
+                JavaScript的数据结构汇总-02 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -535,7 +539,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -785,7 +789,7 @@
         var disqus_config = function () {
           this.page.url = 'https://mah93.github.io/2020/12/22/js-data-structure-01/';
           this.page.identifier = '2020/12/22/js-data-structure-01/';
-          this.page.title = 'JavaScript的数据结构-01';
+          this.page.title = 'JavaScript的数据结构汇总-01';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
