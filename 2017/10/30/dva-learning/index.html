@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言由于之前写了几个dva的项目，近期没怎么用有些遗忘了，写个小结记录一下。 dva是基于react、react-router、redux封装的一个轻框架。详细的介绍在 dva官网，这里仅仅摘录部分。项目托管在GitHub上，点击这里。 特性 易学易用：仅有 6 个 api，对 redux 用户尤其友好 elm 概念：通过 reducers, effects 和 subscriptions 组织">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dva最不佳实践">
+<meta property="og:url" content="https://mah93.github.io/2017/10/30/dva-learning/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="前言由于之前写了几个dva的项目，近期没怎么用有些遗忘了，写个小结记录一下。 dva是基于react、react-router、redux封装的一个轻框架。详细的介绍在 dva官网，这里仅仅摘录部分。项目托管在GitHub上，点击这里。 特性 易学易用：仅有 6 个 api，对 redux 用户尤其友好 elm 概念：通过 reducers, effects 和 subscriptions 组织">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva_logo3.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/run_success@2x.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva%E7%99%BB%E5%BD%95@2x.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva%E5%8D%95%E5%87%BB%E4%BA%8B%E4%BB%B6@2x.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva%E7%9A%84mock@2x.png">
+<meta property="og:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva-learning.gif">
+<meta property="article:published_time" content="2017-10-30T13:50:36.000Z">
+<meta property="article:modified_time" content="2018-12-25T04:42:05.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Dva">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2017/10/30/dva-learning/dva_logo3.png">
+
+<link rel="canonical" href="https://mah93.github.io/2017/10/30/dva-learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Dva最不佳实践 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/10/30/dva-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Dva最不佳实践
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-10-30 21:50:36" itemprop="dateCreated datePublished" datetime="2017-10-30T21:50:36+08:00">2017-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-25 12:42:05" itemprop="dateModified" datetime="2018-12-25T12:42:05+08:00">2018-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2017/10/30/dva-learning/dva_logo3.png" class="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于之前写了几个dva的项目，近期没怎么用有些遗忘了，写个小结记录一下。</p>
+<p>dva是基于react、react-router、redux封装的一个轻框架。详细的介绍在 <a target="_blank" rel="noopener" href="https://github.com/dvajs/dva">dva官网</a>，这里仅仅摘录部分。项目托管在GitHub上，<a target="_blank" rel="noopener" href="https://github.com/mah93/dva-learning">点击这里</a>。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li><strong>易学易用</strong>：仅有 6 个 api，对 redux 用户尤其友好</li>
+<li><strong>elm 概念</strong>：通过 <code>reducers</code>, <code>effects</code> 和 <code>subscriptions</code> 组织 model</li>
+<li><strong>支持 mobile 和 react-native</strong>：跨平台 (<a target="_blank" rel="noopener" href="https://github.com/sorrycc/dva-example-react-native">react-native 例子</a>)</li>
+<li><strong>支持 HMR</strong>：目前基于 <a target="_blank" rel="noopener" href="https://github.com/dvajs/babel-plugin-dva-hmr">babel-plugin-dva-hmr</a> 支持 components、routes 和 models 的 HMR</li>
+<li><strong>动态加载 Model 和路由</strong>：按需加载加快访问速度 (<a target="_blank" rel="noopener" href="https://github.com/dvajs/dva/blob/master/packages/dva-example-user-dashboard/src/router.js">例子</a>)</li>
+<li><strong>插件机制</strong>：比如 <a target="_blank" rel="noopener" href="https://github.com/dvajs/dva-loading">dva-loading</a> 可以自动处理 loading 状态，不用一遍遍地写 showLoading 和 hideLoading</li>
+<li><strong>完善的语法分析库 dva-ast</strong>：<a target="_blank" rel="noopener" href="https://github.com/dvajs/dva-cli">dva-cli</a> 基于此实现了智能创建 model, router 等</li>
+<li><strong>支持 TypeScript</strong>：通过 d.ts (<a target="_blank" rel="noopener" href="https://github.com/sorrycc/dva-boilerplate-typescript">例子</a>)</li>
+</ul>
+<a id="more"></a> 
+
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
+<li>确保 node 版本是 6.5 +</li>
+<li>用 <a target="_blank" rel="noopener" href="https://github.com/cnpm/cnpm">cnpm</a> 或 <a target="_blank" rel="noopener" href="https://github.com/yarnpkg/yarn">yarn</a> 能节约你安装依赖的时间</li>
+</ul>
+<h2 id="Step1-安装-dva-cli-并创建应用"><a href="#Step1-安装-dva-cli-并创建应用" class="headerlink" title="Step1. 安装 dva-cli 并创建应用"></a>Step1. 安装 <a target="_blank" rel="noopener" href="https://github.com/dvajs/dva-cli">dva-cli</a> 并创建应用</h2><p>先安装 dva-cli，并确保版本是 0.7.x。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>npm i dva-cli<span class="variable">@0</span>.<span class="number">7</span> -g</span><br><span class="line"><span class="variable">$ </span>dva -v</span><br><span class="line">0.<span class="number">7.0</span></span><br></pre></td></tr></table></figure>
+<p>然后创建应用：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dva <span class="keyword">new</span> <span class="type">dva</span>-learning</span><br></pre></td></tr></table></figure>
+<p>创建成功后进入该文件夹：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">cd</span> dva-learning </span><br><span class="line">`项目的目录结构`</span><br><span class="line">dva_learning</span><br><span class="line">|<span class="params">-----mock</span>									<span class="comment"># =&gt; 前端模拟数据</span></span><br><span class="line">|<span class="params">-----node_modules</span>							<span class="comment"># =&gt; 项目依赖采用npm管理，所有包均在此目录。</span></span><br><span class="line">|<span class="params">-----public</span>								<span class="comment"># =&gt; 存放index.html</span></span><br><span class="line">|<span class="params">-----src</span>									</span><br><span class="line">	   |<span class="params">------assets</span>						<span class="comment"># =&gt; 项目静态资源文件夹（图片等）</span></span><br><span class="line">	   |<span class="params">------components</span>					<span class="comment"># =&gt; 无状态组件文件夹</span></span><br><span class="line">	   |<span class="params">------models</span>						<span class="comment"># =&gt; 状态model文件夹</span></span><br><span class="line">	   |<span class="params">------routes</span>						<span class="comment"># =&gt; 路由配置文件夹，页面存放在该文件夹下</span></span><br><span class="line">	   |<span class="params">------services</span>						<span class="comment"># =&gt; 服务层文件夹</span></span><br><span class="line">	   |<span class="params">------utils</span>							<span class="comment"># =&gt; 工具函数文件夹</span></span><br><span class="line">	   |<span class="params">------index</span>.css						<span class="comment"># =&gt; 全局通用样式</span></span><br><span class="line">	   |<span class="params">------index</span>.js						<span class="comment"># =&gt; 单页引用入口js，dva项目初始化</span></span><br><span class="line">	   |<span class="params">------router</span>.js						<span class="comment"># =&gt; 全局路由状态管理文件</span></span><br><span class="line">|<span class="params">-----package</span>.json							<span class="comment"># =&gt; npm包管理文件</span></span><br><span class="line">|<span class="params">-----</span><span class="string">.eslintrc</span>								<span class="comment"># =&gt; 代码规范配置文件</span></span><br><span class="line">|<span class="params">-----</span><span class="string">.roadhogrc</span>							<span class="comment"># =&gt; 打包配置文件</span></span><br><span class="line">|<span class="params">-----</span><span class="string">.roadhogrc.mock.js</span>					<span class="comment"># =&gt; 模拟数据配置文件</span></span><br><span class="line">|<span class="params">-----README</span>.md</span><br><span class="line">`项目的目录结构`</span><br><span class="line">`运行项目`</span><br><span class="line">$ npm start</span><br></pre></td></tr></table></figure>
+<p>如果运行成功的话，浏览器会自动弹出并访问8000端口，看到如下画面：</p>
+<img src="/2017/10/30/dva-learning/run_success@2x.png" class="" title="run-success">
+
+<h2 id="Step2-配置-antd-和-babel-plugin-import"><a href="#Step2-配置-antd-和-babel-plugin-import" class="headerlink" title="Step2. 配置 antd 和 babel-plugin-import"></a>Step2. 配置 <a target="_blank" rel="noopener" href="https://github.com/ant-design/ant-design">antd</a> 和 <a target="_blank" rel="noopener" href="https://github.com/ant-design/babel-plugin-import">babel-plugin-import</a></h2><p>antd是由蚂蚁金服开发的一套UI组件，具有学习成本低、上手速度快、实现效果好的特点。十分适合初学者并且与dva无缝接入。如需了解更多请查看 <a target="_blank" rel="noopener" href="https://ant.design/index-cn">ANT DESIGN</a>。</p>
+<p>babel-plugin-import 用于按需引入 antd 的 JavaScript 和 CSS，这样打包出来的文件不至于太大。</p>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm i antd <span class="comment">--save</span></span><br><span class="line">$ npm i babel-plugin-<span class="keyword">import</span> <span class="comment">--save-dev</span></span><br></pre></td></tr></table></figure>
+<p>修改 <code>.roadhogrc</code>，在 <code>&quot;extraBabelPlugins&quot;</code> 里加上：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&quot;import&quot;</span>, &#123; <span class="attr">&quot;libraryName&quot;</span>: <span class="string">&quot;antd&quot;</span>, <span class="attr">&quot;style&quot;</span>: <span class="string">&quot;css&quot;</span> &#125;]</span><br></pre></td></tr></table></figure>
+<h2 id="Step3-添加新页面"><a href="#Step3-添加新页面" class="headerlink" title="Step3. 添加新页面"></a>Step3. 添加新页面</h2><p>我们的目标是写一个登录的界面，成功之后显示dva默认的首页。所以在src/routes文件夹下，新建Login.js和Login.css文件。js文件用来写组件布局，css文件用来写样式，默认为js文件和css文件一一对应。</p>
+<p>在Login.js中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`Login.js`</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">&#x27;dva&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Input, Icon, Button &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">&#x27;./Login.css&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Login</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div className=&#123;styles.inputDiv&#125;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input</span><br><span class="line">          placeholder=<span class="string">&quot;用户名&quot;</span></span><br><span class="line">          prefix=&#123;<span class="xml"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">type</span>=<span class="string">&quot;user&quot;</span> /&gt;</span></span>&#125;</span><br><span class="line">          size=<span class="string">&quot;large&quot;</span></span><br><span class="line">          className=&#123;styles.inputUser&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Input</span><br><span class="line">          placeholder=<span class="string">&quot;密码&quot;</span></span><br><span class="line">          prefix=&#123;<span class="xml"><span class="tag">&lt;<span class="name">Icon</span> <span class="attr">type</span>=<span class="string">&quot;lock&quot;</span> /&gt;</span></span>&#125;</span><br><span class="line">          size=<span class="string">&quot;large&quot;</span></span><br><span class="line">          className=&#123;styles.inputPass&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;Button type=<span class="string">&quot;primary&quot;</span> className=&#123;styles.button&#125;&gt;</span><br><span class="line">          登录</span><br><span class="line">      &lt;/Button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Login.propTypes = &#123;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect()(Login);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>为这个页面添加样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">`<span class="selector-tag">Login</span><span class="selector-class">.css</span>`</span><br><span class="line"><span class="selector-class">.inputDiv</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">220px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">110px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inputUser</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inputPass</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.button</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后修改router.js页面，将新写的登录页面，放到默认显示页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`router.js`</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Router, Route &#125; <span class="keyword">from</span> <span class="string">&#x27;dva/router&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> IndexPage <span class="keyword">from</span> <span class="string">&#x27;./routes/IndexPage&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Login <span class="keyword">from</span> <span class="string">&#x27;./routes/Login&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RouterConfig</span>(<span class="params">&#123; history &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Router history=&#123;history&#125;&gt;</span><br><span class="line">      &lt;Route path=<span class="string">&quot;/&quot;</span> component=&#123;Login&#125; /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">&quot;/home&quot;</span> component=&#123;IndexPage&#125; /&gt;</span><br><span class="line">    &lt;/Router&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> RouterConfig;</span><br></pre></td></tr></table></figure>
+<p>然后运行，会看到你完成的页面</p>
+<img src="/2017/10/30/dva-learning/dva%E7%99%BB%E5%BD%95@2x.png" class="" title="dva-login">
+
+<h2 id="Step4-添加事件"><a href="#Step4-添加事件" class="headerlink" title="Step4. 添加事件"></a>Step4. 添加事件</h2><p>之前完成的页面还没有添加点击事件，接下来添加几行代码，让它可以编辑，可以输入和点击</p>
+<p>页面中使用的Input, Icon, Button均是Antd中基本的组件，在 <a target="_blank" rel="noopener" href="https://ant.design/index-cn">ANT DESIGN</a>有对它们详细的介绍。</p>
+<p>为Button添加一个单击事件</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">`点击<span class="keyword">button</span>时触发`</span><br><span class="line">const submit = () =&gt; &#123;</span><br><span class="line">  alert(<span class="string">&#x27;here&#x27;</span>)</span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line">`在<span class="keyword">Button</span>中添加这个方法`</span><br><span class="line">&lt;<span class="keyword">Button</span> type=<span class="string">&quot;primary&quot;</span> className=&#123;styles.button&#125; <span class="keyword">onClick</span>=&#123;submit&#125;&gt;</span><br><span class="line">登录</span><br><span class="line">&lt;/<span class="keyword">Button</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>再次运行项目，点击登录按钮会显示</p>
+<img src="/2017/10/30/dva-learning/dva%E5%8D%95%E5%87%BB%E4%BA%8B%E4%BB%B6@2x.png" class="" title="dva-click">
+
+<h2 id="Step-5-处理逻辑"><a href="#Step-5-处理逻辑" class="headerlink" title="Step.5 处理逻辑"></a>Step.5 处理逻辑</h2><p>如果需要这个登录界面更加真实的话，需要处理一些登录中的逻辑，比如点击登录按钮的时候，判断输入框中是否输入了数据等。</p>
+<p>dva中有专门的文件夹存放这些处理页面内逻辑的代码。查看src/models/example.js文件，这是一个标准的模版，每个处理逻辑的文件都包含下面几部分</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">export <span class="keyword">default</span> &#123;</span><br><span class="line"></span><br><span class="line">  namespace: &#x27;example&#x27;,									<span class="comment"># =&gt; 唯一标识，应用中唯一</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">state</span>: &#123;&#125;,											<span class="comment"># =&gt; 需要存储的值，每次修改会刷新界面</span></span><br><span class="line"></span><br><span class="line">  subscriptions: &#123;										<span class="comment"># =&gt; 订阅</span></span><br><span class="line">    setup(&#123; dispatch, history &#125;) &#123;  </span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  effects: &#123;											<span class="comment"># =&gt; 副作用，一般用来发起请求</span></span><br><span class="line">    *fetch(&#123; payload &#125;, &#123; call, put &#125;) &#123;  </span><br><span class="line">      yield put(&#123; type: &#x27;save&#x27; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  reducers: &#123;											<span class="comment"># =&gt; 只有在这里才能修改state的值</span></span><br><span class="line">    save(<span class="keyword">state</span>, action) &#123;</span><br><span class="line">      return &#123; ...<span class="keyword">state</span>, ...action.payload &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>更多关于dva的api，请查看<a target="_blank" rel="noopener" href="https://github.com/dvajs/dva/blob/master/docs/API.md">dva APIs</a></p>
+<p>在src/models中新建login.js文件</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">`login.js`</span><br><span class="line">export <span class="keyword">default</span> &#123;</span><br><span class="line"></span><br><span class="line">  namespace: &#x27;login&#x27;,</span><br><span class="line"></span><br><span class="line">  <span class="keyword">state</span>: &#123;</span><br><span class="line">    loading: false,</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  subscriptions: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  effects: &#123;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  reducers: &#123;</span><br><span class="line">    save(<span class="keyword">state</span>, action) &#123;</span><br><span class="line">      return &#123; ...<span class="keyword">state</span>, ...action.payload &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后在Login.js中调用save方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`Login.js`</span></span><br><span class="line"><span class="keyword">const</span> userName = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  dispatch(&#123;</span><br><span class="line">    type: <span class="string">&#x27;login/save&#x27;</span>,</span><br><span class="line">    payload: &#123;</span><br><span class="line">      user: e.target.value,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个方法的意思是：当输入用户名的时候，调用save方法，并将输入的值，保存在state.user中。</p>
+<h2 id="Step-6-发送请求"><a href="#Step-6-发送请求" class="headerlink" title="Step.6 发送请求"></a>Step.6 发送请求</h2><p>输入完用户名以及密码之后，单击登录按钮，将输入的值发送至后台校验，校验通过之后跳转到下一个页面。</p>
+<p>现在已经有了输入的用户名和密码，分别是login.user和login.password，现在需要将这两个数据发送到后台。由于现在并没有后台服务支持，dva支持mock数据，所以先在前台模拟一个后台服务。</p>
+<p>在项目根目录下新建.roadhogrc.mock.js并添加：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`.roadhogrc.mock.js`</span></span><br><span class="line"><span class="keyword">const</span> mock = &#123;&#125;</span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>).readdirSync(<span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>).join(__dirname + <span class="string">&#x27;/mock&#x27;</span>)).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.assign(mock, <span class="built_in">require</span>(<span class="string">&#x27;./mock/&#x27;</span> + file))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">module</span>.exports = mock</span><br></pre></td></tr></table></figure>
+<p>之后在mock文件夹中新建login.js并添加：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">`<span class="javascript">login.js</span>`</span><br><span class="line">const qs = <span class="built_in">require</span>(<span class="string">&#x27;qs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.<span class="built_in">exports</span> = &#123;</span><br><span class="line">  <span class="string">&#x27;POST /login&#x27;</span> (req, res) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(req.body);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;接受到请求&#x27;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function"><span class="params">()</span>=&gt;</span>res.json(&#123;code:<span class="string">&#x27;200&#x27;</span>,message:<span class="string">&#x27;从mock/example.js请求成功&#x27;</span>&#125;),<span class="number">2000</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这个的意思是说，监听本地的8000端口，当访问<a target="_blank" rel="noopener" href="http://localhost:8000/login%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%BC%9A%E5%BB%B6%E8%BF%9F2%E7%A7%92%E5%B9%B6%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE%E3%80%82">http://localhost:8000/login的时候，会延迟2秒并返回数据。</a></p>
+<p>模拟的后台服务已经完成，现在要在button中添加点击事件，去请求这个接口。</p>
+<p>首先改造一下fetch请求，在utils/request.js中：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">export <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span><span class="params">(url, <span class="keyword">method</span>, <span class="keyword">params</span>)</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">  if (method === &#x27;POST&#x27;) &#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    const formData = new FormData();</span></span></span><br><span class="line"><span class="function"><span class="comment"></span></span></span><br><span class="line"><span class="function"><span class="comment">    for (const key in params) &#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">      if (params[key] != null) &#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">        const value = params[key];</span></span></span><br><span class="line"><span class="function"><span class="comment">        formData.append(key, value);</span></span></span><br><span class="line"><span class="function"><span class="comment">      &#125;</span></span></span><br><span class="line"><span class="function">    &#125;</span></span><br><span class="line"><span class="function">    <span class="title">return</span> <span class="title">fetch</span><span class="params">(url, &#123;</span></span></span><br><span class="line"><span class="function"><span class="params">      <span class="keyword">method</span>: <span class="keyword">method</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">      body: formData,</span></span></span><br><span class="line"><span class="function"><span class="params">    &#125;)</span>.<span class="title">then</span><span class="params">(checkStatus)</span></span></span><br><span class="line"><span class="function">      .<span class="title">then</span><span class="params">(parseJSON)</span></span></span><br><span class="line"><span class="function">      .<span class="title">then</span><span class="params">(data =&gt; (&#123; data &#125;)</span>)</span></span><br><span class="line"><span class="function">      .<span class="title">catch</span><span class="params">(err =&gt; (&#123; err &#125;)</span>);</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="function"><span class="keyword">method</span> === &#x27;<span class="title">GET</span>&#x27;) <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    return fetch(url)</span></span></span><br><span class="line"><span class="function"><span class="comment">      .then(checkStatus)</span></span></span><br><span class="line"><span class="function"><span class="comment">      .then(parseJSON)</span></span></span><br><span class="line"><span class="function"><span class="comment">      .then(data =&gt; (&#123; data &#125;</span>))</span></span><br><span class="line"><span class="function">      .<span class="title">catch</span><span class="params">(err =&gt; (&#123; err &#125;)</span>);</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在services中新建login.js，这里可以理解为转发，从点击事件中传递到request里请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span> <span class="string">&#x27;../utils/request&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span>(<span class="params">params</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;services处理&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> request(<span class="string">&#x27;/login&#x27;</span>, <span class="string">&#x27;POST&#x27;</span>, params);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后在models/login.js，发起这个请求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">effects: &#123;</span><br><span class="line">  *<span class="function"><span class="title">fetch</span>(<span class="params">&#123; payload &#125;, &#123; call, put &#125;</span>)</span> &#123;  <span class="comment">// eslint-disable-line</span></span><br><span class="line">    <span class="keyword">if</span>(!payload.userName || !payload.passWord) &#123;</span><br><span class="line">      message.error(<span class="string">&#x27;请输入账号密码&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(service.login, payload);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>最后在界面的button的点击事件中，调用models里的事件：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const submit = () =&gt; &#123;</span><br><span class="line">  dispatch(&#123;</span><br><span class="line">    <span class="keyword">type</span>: <span class="string">&#x27;login/fetch&#x27;</span>,</span><br><span class="line">    payload: &#123;</span><br><span class="line">      userName: <span class="keyword">login</span>.<span class="keyword">user</span>,</span><br><span class="line">      <span class="keyword">passWord</span>: <span class="keyword">login</span>.<span class="keyword">password</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>所有的都完成之后，重启项目，点击button之后可以在命令行中看到：</p>
+<img src="/2017/10/30/dva-learning/dva%E7%9A%84mock@2x.png" class="" title="dva-mock">
+
+<p>undefined的原因是，roadhog的版本问题，获取不到从前台传递过来的参数。</p>
+<h2 id="Step-7-完善细节"><a href="#Step-7-完善细节" class="headerlink" title="Step.7 完善细节"></a>Step.7 完善细节</h2><p>整体的流程已经完成，现在要为它添加一些细节，让它看起来更加的真实</p>
+<p>添加一个加载等待的圈圈，在点击button的同时显示，后台反馈结果后消失并跳转到下一个界面。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Spin</span> <span class="attr">spinning</span>=<span class="string">&#123;login.loading&#125;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">Spin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>用Spin标签将其他的标签包起来，当它显示的时候，会出现在被包裹的标签之上。</p>
+<p>通过控制login.loading来控制Spin的显示与消失。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> reducers: &#123;</span><br><span class="line">...</span><br><span class="line">   loadingShow(<span class="keyword">state</span>) &#123;</span><br><span class="line">     return &#123; ...<span class="keyword">state</span>, loading: true&#125;;</span><br><span class="line">   &#125;,</span><br><span class="line">   loadingHide(<span class="keyword">state</span>) &#123;</span><br><span class="line">     return &#123; ...<span class="keyword">state</span>, loading: false&#125;;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+<p> 最后在请求的时候完成这个流程</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">effects: &#123;</span><br><span class="line">  *<span class="function"><span class="title">fetch</span>(<span class="params">&#123; payload &#125;, &#123; call, put &#125;</span>)</span> &#123; </span><br><span class="line">    <span class="keyword">if</span>(!payload.userName || !payload.passWord) &#123;</span><br><span class="line">      message.error(<span class="string">&#x27;请输入账号密码&#x27;</span>);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">&#x27;loadingShow&#x27;</span> &#125;);</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = <span class="keyword">yield</span> call(service.login, payload);</span><br><span class="line">    <span class="keyword">if</span>(data.code === <span class="string">&#x27;200&#x27;</span>) &#123;</span><br><span class="line">      <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">&#x27;loadingHide&#x27;</span> &#125;);</span><br><span class="line">      browserHistory.push(<span class="string">&#x27;/home&#x27;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">&#x27;loadingHide&#x27;</span> &#125;);</span><br><span class="line">      message.error(<span class="string">&#x27;登录失败&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>如果需要在显示登录页面之前执行某些操作，可以在subscriptions中订阅：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">subscriptions: &#123;</span><br><span class="line">  <span class="function"><span class="title">setup</span>(<span class="params">&#123; dispatch, history &#125;</span>)</span> &#123;</span><br><span class="line">    history.listen(<span class="function">(<span class="params">location</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (location.pathname === <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">        message.info(<span class="string">&#x27;进入了登录页&#x27;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个登录页面，展示了从页面到请求的整个过程，虽然看起来有点绕，涉及了很多的页面。但是当文件多了，就会体现出dva这样分层的好处：各个文件夹各司其职，功能单一。</p>
+<p>最后实现的效果：</p>
+<img src="/2017/10/30/dva-learning/dva-learning.gif" class="" title="finish">
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/Dva/" rel="tag"># Dva</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/10/19/app-develop-mode/" rel="prev" title="App开发模式简介">
+      <i class="fa fa-chevron-left"></i> App开发模式简介
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/03/nginx-introduce/" rel="next" title="学习Nginx小结">
+      学习Nginx小结 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">2.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-%E5%AE%89%E8%A3%85-dva-cli-%E5%B9%B6%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">Step1. 安装 dva-cli 并创建应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-%E9%85%8D%E7%BD%AE-antd-%E5%92%8C-babel-plugin-import"><span class="nav-number">5.</span> <span class="nav-text">Step2. 配置 antd 和 babel-plugin-import</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-%E6%B7%BB%E5%8A%A0%E6%96%B0%E9%A1%B5%E9%9D%A2"><span class="nav-number">6.</span> <span class="nav-text">Step3. 添加新页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step4-%E6%B7%BB%E5%8A%A0%E4%BA%8B%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">Step4. 添加事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-5-%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91"><span class="nav-number">8.</span> <span class="nav-text">Step.5 处理逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-6-%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="nav-number">9.</span> <span class="nav-text">Step.6 发送请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step-7-%E5%AE%8C%E5%96%84%E7%BB%86%E8%8A%82"><span class="nav-number">10.</span> <span class="nav-text">Step.7 完善细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : '2f140d6eb54dd2d11ddec1d9d86a3700',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

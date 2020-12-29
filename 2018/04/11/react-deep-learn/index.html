@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="虚拟dom​    在react中，render执行的结果并不是真正的DOM节点，结果仅仅是轻量级的JavaScript对象，我们称之为virtual DOM。虚拟DOM具有batching(批处理)和高效的Diff算法。由虚拟DOM来确保只对界面上真正的部分进行实际的DOM操作。 ​    比较innerHTML 和Virtual DOM 的重绘过程如下：  innerHTML: rende">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react学习摘要">
+<meta property="og:url" content="https://mah93.github.io/2018/04/11/react-deep-learn/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="虚拟dom​    在react中，render执行的结果并不是真正的DOM节点，结果仅仅是轻量级的JavaScript对象，我们称之为virtual DOM。虚拟DOM具有batching(批处理)和高效的Diff算法。由虚拟DOM来确保只对界面上真正的部分进行实际的DOM操作。 ​    比较innerHTML 和Virtual DOM 的重绘过程如下：  innerHTML: rende">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-deep-learn.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-study.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/dom-transform.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-warning.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-diif-1.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-diff-2.png">
+<meta property="og:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-diff-3.png">
+<meta property="article:published_time" content="2018-04-11T09:16:26.000Z">
+<meta property="article:modified_time" content="2018-12-25T04:41:20.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2018/04/11/react-deep-learn/react-deep-learn.png">
+
+<link rel="canonical" href="https://mah93.github.io/2018/04/11/react-deep-learn/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>react学习摘要 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2018/04/11/react-deep-learn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          react学习摘要
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-04-11 17:16:26" itemprop="dateCreated datePublished" datetime="2018-04-11T17:16:26+08:00">2018-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-25 12:41:20" itemprop="dateModified" datetime="2018-12-25T12:41:20+08:00">2018-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2018/04/11/react-deep-learn/react-deep-learn.png" class="">
+
+<h2 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h2><p>​    在react中，render执行的结果并不是真正的DOM节点，结果仅仅是轻量级的JavaScript对象，我们称之为virtual DOM。虚拟DOM具有batching(批处理)和高效的Diff算法。由虚拟DOM来确保只对界面上真正的部分进行实际的DOM操作。</p>
+<p>​    比较innerHTML 和Virtual DOM 的重绘过程如下：</p>
+<ul>
+<li>innerHTML: render html string + 重新创建所有 DOM 元素</li>
+</ul>
+<ul>
+<li>Virtual DOM: render Virtual DOM + diff算法+ 必要的 DOM 更新</li>
+</ul>
+<h4 id="批量DOM处理"><a href="#批量DOM处理" class="headerlink" title="批量DOM处理"></a>批量DOM处理</h4><p>​    依靠 setState 的异步性，React在一段时间间隔内，将所有DOM更新收集起来，然后批量处理。也就是说调用setState的时候并不会立即更新状态，而是一段时间时候统一将变动的属性集体进行更新。从而达到减少渲染次数，提高性能的目的。</p>
+<a id="more"></a> 
+
+<h2 id="diff算法"><a href="#diff算法" class="headerlink" title="diff算法"></a>diff算法</h2><p>​    在React中，构建UI界面的思路是由当前状态决定界面。前后两个状态就对应两套界面，然后由React来比较两个界面的区别，这就需要对DOM树进行Diff算法分析。</p>
+<p>​    即给定任意两棵树，找到最少的转换步骤。但是<a target="_blank" rel="noopener" href="http://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf">标准的的Diff算法</a>复杂度需要O(n^3)。Facebook工程师结合Web界面的特点做出了两个简单的假设，使得Diff算法复杂度直接降低到O(n)：</p>
+<ol>
+<li>两个相同组件产生类似的DOM结构，不同的组件产生不同的DOM结构；</li>
+<li>对于同一层次的一组子节点，它们可以通过唯一的id进行区分。</li>
+</ol>
+<h3 id="不同节点类型的比较"><a href="#不同节点类型的比较" class="headerlink" title="不同节点类型的比较"></a>不同节点类型的比较</h3><p>为了在树之间进行比较，我们首先要能够比较两个节点，在React中即比较两个虚拟DOM节点，当两个节点不同时，应该如何处理。这分为两种情况：</p>
+<ol>
+<li>节点类型不同。</li>
+<li>节点类型相同，但是属性不同。</li>
+</ol>
+<ul>
+<li><h5 id="节点类型不同"><a href="#节点类型不同" class="headerlink" title="节点类型不同"></a>节点类型不同</h5></li>
+</ul>
+<p>即在树的同一个位置，前后两次输出了不同类型的节点。React会直接删除掉之前的节点，然后创建并插入新的节点。</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rende<span class="symbol">rA:</span> &lt;div /&gt;</span><br><span class="line">rende<span class="symbol">rB:</span> &lt;span /&gt;</span><br><span class="line">=&gt; [removeNode &lt;div /&gt;], [insertNode &lt;span /&gt;]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要注意的是，删除节点意味着彻底销毁该节点，而不是再后续的比较中再去看是否有另外一个节点等同于该删除的节点。如果该删除的节点之下有子节点，那么这些子节点也会被完全删除，它们也不会用于后面的比较。</p>
+</blockquote>
+<p>当React在同一个位置遇到不同的组件时，也是简单的销毁第一个组件，而把新创建的组件加上去。这正是应用了第一个假设，不同的组件一般会产生不一样的DOM结构，与其浪费时间去比较它们基本上不会等价的DOM结构，还不如完全创建一个新的组件加上去。</p>
+<h5 id="逐层进行节点比较"><a href="#逐层进行节点比较" class="headerlink" title="逐层进行节点比较"></a>逐层进行节点比较</h5><p>在React中，树的算法其实非常简单，那就是两棵树只会对同一层次的节点进行比较。</p>
+<img src="/2018/04/11/react-deep-learn/react-study.png" class="">
+
+<p>React只会对相同颜色方框内的DOM节点进行比较，即同一个父节点下的所有子节点。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。这样只需要对树进行一次遍历，便能完成整个DOM树的比较。</p>
+<p>有如下的节点树变换：</p>
+<img src="/2018/04/11/react-deep-learn/dom-transform.png" class="">
+
+<p>A节点被整个移动到D节点下，直观的考虑DOM Diff操作应该是：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">A</span>.</span></span>parent.remove(A); </span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">D</span>.</span></span>append(A);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="节点类型相同"><a href="#节点类型相同" class="headerlink" title="节点类型相同"></a>节点类型相同</h5></li>
+</ul>
+<p>React会对属性进行重设从而实现节点的转换。</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rende<span class="symbol">rA:</span> &lt;div id=<span class="string">&quot;before&quot;</span> /&gt;</span><br><span class="line">rende<span class="symbol">rB:</span> &lt;div id=<span class="string">&quot;after&quot;</span> /&gt;</span><br><span class="line">=&gt; [replaceAttribute id <span class="string">&quot;after&quot;</span>]</span><br></pre></td></tr></table></figure>
+<p>虚拟DOM的style属性稍有不同，其值并不是一个简单字符串而必须为一个对象，因此转换过程如下：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rende<span class="symbol">rA:</span> &lt;div style=&#123;&#123;col<span class="symbol">or:</span> &#x27;red&#x27;&#125;&#125; /&gt;</span><br><span class="line">rende<span class="symbol">rB:</span> &lt;div style=&#123;&#123;fontWeig<span class="symbol">ht:</span> &#x27;bold&#x27;&#125;&#125; /&gt;</span><br><span class="line">=&gt; [removeStyle color], [addStyle font-weight &#x27;bold&#x27;]</span><br></pre></td></tr></table></figure>
+<h5 id="列表节点的比较"><a href="#列表节点的比较" class="headerlink" title="列表节点的比较"></a>列表节点的比较</h5><p>​    上面介绍了对于不在同一层的节点的比较，即使它们完全一样，也会销毁并重新创建。那么当它们在同一层时，又是如何处理的呢？这就涉及到列表节点的Diff算法。相信很多使用React的同学大多遇到过这样的警告：</p>
+<img src="/2018/04/11/react-deep-learn/react-warning.png" class="">
+
+<p>这是React在遇到列表时却又找不到key时提示的警告。虽然无视这条警告大部分界面也会正确工作，但这通常意味着潜在的性能问题。因为React觉得自己可能无法高效的去更新这个列表。</p>
+<p>​    列表节点的操作通常包括添加、删除和排序。例如下图，我们需要往B和C直接插入节点F，在jQuery中我们可能会直接使用$(B).after(F)来实现。而在React中，我们只会告诉React新的界面应该是A-B-F-C-D-E，由Diff算法完成更新界面。</p>
+<img src="/2018/04/11/react-deep-learn/react-diif-1.png" class="">
+
+<p>这时如果每个节点都没有唯一的标识，React无法识别每一个节点，那么更新过程会很低效，即，将C更新成F，D更新成C，E更新成D，最后再插入一个E节点。效果如下图所示：</p>
+<img src="/2018/04/11/react-deep-learn/react-diff-2.png" class="">
+
+<p>可以看到，React会逐个对节点进行更新，转换到目标节点。而最后插入新的节点E，涉及到的DOM操作非常多。而如果给每个节点唯一的标识（key），那么React能够找到正确的位置去插入新的节点，入下图所示：</p>
+<img src="/2018/04/11/react-deep-learn/react-diff-3.png" class="">
+
+<h3 id="diff算法对代码的影响"><a href="#diff算法对代码的影响" class="headerlink" title="diff算法对代码的影响"></a>diff算法对代码的影响</h3><ul>
+<li>由于diff算法对于DOM树的添加删除的特点，保持稳定的DOM结构会有助于性能的提升。</li>
+<li>对于列表节点提供唯一的key属性可以帮助React定位到正确的节点进行比较，从而大幅减少DOM操作次数，提高了性能。</li>
+</ul>
+<h2 id="setState究竟干了些什么"><a href="#setState究竟干了些什么" class="headerlink" title="setState究竟干了些什么"></a>setState究竟干了些什么</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">constructor() &#123;</span><br><span class="line">    super();</span><br><span class="line">    this.state &#x3D; &#123;</span><br><span class="line">      val: 0</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.setState(&#123;val: this.state.val + 1&#125;);</span><br><span class="line">    console.log(this.state.val);    &#x2F;&#x2F; 第 1 次 log</span><br><span class="line"></span><br><span class="line">    this.setState(&#123;val: this.state.val + 1&#125;);</span><br><span class="line">    console.log(this.state.val);    &#x2F;&#x2F; 第 2 次 log</span><br><span class="line"></span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      this.setState(&#123;val: this.state.val + 1&#125;);</span><br><span class="line">      console.log(this.state.val);  &#x2F;&#x2F; 第 3 次 log</span><br><span class="line"></span><br><span class="line">      this.setState(&#123;val: this.state.val + 1&#125;);</span><br><span class="line">      console.log(this.state.val);  &#x2F;&#x2F; 第 4 次 log</span><br><span class="line">    &#125;, 0);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    return null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&gt; 问上述代码中 4 次 console.log 打印出来的 val 分别是多少？</span><br><span class="line">&gt; 答案：4 次 log 的值分别是：0、0、2、3。</span><br></pre></td></tr></table></figure>
+<p>上述面试题说明了，setState方法并不是同步的，也不是异步的。这牵扯到了react的更新机制。</p>
+<p>以下是翻自官方setState原代码的注解，官网的说明也是类似:</p>
+<blockquote>
+<p>不保证<code>this.state</code>会立即更新，所以在调用这个方法后存取<code>this.state</code>可能会回传旧的值。</p>
+<p>不保证呼叫<code>setState</code>就会同步地执行，而它们也可能最终被被批量调用(多次呼叫的情况下)。你可以提供额外的回调(callback)，回调(callback)将会在<code>setState</code>实际被完成时被执行。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/02/26/science-net/" rel="prev" title="科学上网">
+      <i class="fa fa-chevron-left"></i> 科学上网
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/04/27/react-native-develop-guide/" rel="next" title="React Native开发指北">
+      React Native开发指北 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9Fdom"><span class="nav-number">1.</span> <span class="nav-text">虚拟dom</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8FDOM%E5%A4%84%E7%90%86"><span class="nav-number">1.0.1.</span> <span class="nav-text">批量DOM处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diff%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">diff算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">2.1.</span> <span class="nav-text">不同节点类型的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E4%B8%8D%E5%90%8C"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">节点类型不同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%90%E5%B1%82%E8%BF%9B%E8%A1%8C%E8%8A%82%E7%82%B9%E6%AF%94%E8%BE%83"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">逐层进行节点比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%E7%9B%B8%E5%90%8C"><span class="nav-number">2.1.0.3.</span> <span class="nav-text">节点类型相同</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E8%8A%82%E7%82%B9%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">2.1.0.4.</span> <span class="nav-text">列表节点的比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diff%E7%AE%97%E6%B3%95%E5%AF%B9%E4%BB%A3%E7%A0%81%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">2.2.</span> <span class="nav-text">diff算法对代码的影响</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setState%E7%A9%B6%E7%AB%9F%E5%B9%B2%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88"><span class="nav-number">3.</span> <span class="nav-text">setState究竟干了些什么</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : '80e1e232461f5aa5583ead5d66f280c8',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="App跨平台方案Hybrid框架Hybrid App，其实就是原生应用和Web应用相结合，一般做法就是项目中的某一部分是原生界面，一部分是Web页面，通过原生平台的WebView去调用Web页面。 由于原生WebView存在一定的局限性，和Web交互起来有些问题不好处理，于是出现了一些基于原生WebView封装的Hybrid框架，这些框架有一个共同特点：封装了移动端设备上最常用的本地API调用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter简介以及环境配置">
+<meta property="og:url" content="https://mah93.github.io/2019/04/03/flutter-introduce/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="App跨平台方案Hybrid框架Hybrid App，其实就是原生应用和Web应用相结合，一般做法就是项目中的某一部分是原生界面，一部分是Web页面，通过原生平台的WebView去调用Web页面。 由于原生WebView存在一定的局限性，和Web交互起来有些问题不好处理，于是出现了一些基于原生WebView封装的Hybrid框架，这些框架有一个共同特点：封装了移动端设备上最常用的本地API调用">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_intro.png">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_hybrid.png">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_react.png">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_frame.png">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_doctor.png">
+<meta property="og:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_hello.gif">
+<meta property="article:published_time" content="2019-04-03T03:17:04.000Z">
+<meta property="article:modified_time" content="2019-04-03T03:20:45.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="Flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2019/04/03/flutter-introduce/flutter_intro.png">
+
+<link rel="canonical" href="https://mah93.github.io/2019/04/03/flutter-introduce/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Flutter简介以及环境配置 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/04/03/flutter-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Flutter简介以及环境配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-04-03 11:17:04 / Modified: 11:20:45" itemprop="dateCreated datePublished" datetime="2019-04-03T11:17:04+08:00">2019-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter/" itemprop="url" rel="index"><span itemprop="name">Flutter</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2019/04/03/flutter-introduce/flutter_intro.png" class="">
+
+<h2 id="App跨平台方案"><a href="#App跨平台方案" class="headerlink" title="App跨平台方案"></a>App跨平台方案</h2><h3 id="Hybrid框架"><a href="#Hybrid框架" class="headerlink" title="Hybrid框架"></a>Hybrid框架</h3><p>Hybrid App，其实就是原生应用和Web应用相结合，一般做法就是项目中的某一部分是原生界面，一部分是Web页面，通过原生平台的WebView去调用Web页面。</p>
+<p>由于原生WebView存在一定的局限性，和Web交互起来有些问题不好处理，于是出现了一些基于原生WebView封装的Hybrid框架，这些框架有一个共同特点：封装了移动端设备上最常用的本地API调用，然后以统一的Javascript API形式提供给Web开发者调用。这样一来原生不能解决的问题可以用Web去处理，同时你也可以自己封装原生API，做成一些插件使用。比较热门的Hybrid框架有Ionic、Cordova、DCloud：</p>
+<img src="/2019/04/03/flutter-introduce/flutter_hybrid.png" class="">
+
+<a id="more"></a> 
+
+<h3 id="响应式视图"><a href="#响应式视图" class="headerlink" title="响应式视图"></a>响应式视图</h3><p>像ReactJS或其他的响应式编程框架已经变得很流行了，主要是因为他们通过使用从响应式编程中借用的编程模式来简化 Web 视图的创建过程。2015 年， React Native 将响应式视图的许多优势带给了移动应用程序。React Native 是非常受欢迎的（这是它应得的），但是因为 JavaScript 访问了原生 UI 组件，所以它也必须经过这些“桥接器”，界面上的 UI 控件通常被频繁地访问（在动画、转化或者用户用手指“滑动”屏幕上的某些东西时，每秒被访问高达 60 次），因此这很可能会导致性能问题。</p>
+<img src="/2019/04/03/flutter-introduce/flutter_react.png" class="">
+
+<h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><p>和 React Native 一样，Flutter 也提供响应式的视图，Flutter 采用不同的方法避免由 JavaScript 桥接器引起的性能问题，即用名为 Dart 的程序语言来编译。Dart 是用预编译的方式编译多个平台的原生代码，这允许 Flutter 直接与平台通信，而不需要通过执行上下文切换的 JavaScript 桥接器。编译为原生代码也可以加快应用程序的启动时间。</p>
+<img src="/2019/04/03/flutter-introduce/flutter_frame.png" class="">
+
+<h2 id="Flutter简介"><a href="#Flutter简介" class="headerlink" title="Flutter简介"></a>Flutter简介</h2><p>Flutter是谷歌的移动UI框架，可以快速在iOS和Android上构建高质量的<strong>原生用户</strong>界面。 Flutter可以与现有的代码一起工作。在全世界，Flutter正在被越来越多的开发者和组织使用，并且Flutter是完全免费、开源的。简单来说，Flutter是一款移动应用程序SDK，包含框架、控件和一些工具，可以用一套代码同时构建Android和iOS应用，并且性能可以达到原生应用一样的性能。详情请参考<a target="_blank" rel="noopener" href="https://flutter.io/">Flutter简介</a> 。</p>
+<ul>
+<li>快速开发：毫秒级的热重载，修改后，您的应用界面会立即更新。使用丰富的、完全可定制的widget在几分钟内构建原生界面。</li>
+<li>富有表现力和灵活的UI：快速发布聚焦于原生体验的功能。分层的架构允许您完全自定义，从而实现难以置信的快速渲染和富有表现力、灵活的设计。</li>
+<li>原生性能：Flutter包含了许多核心的widget，如滚动、导航、图标和字体等，这些都可以在iOS和Android上达到原生应用一样的性能。</li>
+</ul>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>这里仅以在Mac下搭建为例，在其它系统上配置环境请参考<a target="_blank" rel="noopener" href="https://flutter.dev/docs/get-started/install">flutter 官网</a></p>
+<h3 id="获取Flutter-SDK"><a href="#获取Flutter-SDK" class="headerlink" title="获取Flutter SDK"></a>获取Flutter SDK</h3><ol>
+<li><p>去flutter官网下载其最新可用的安装包，<a target="_blank" rel="noopener" href="https://flutter.io/sdk-archive/#macos">转到下载页</a> 。</p>
+<p>注意，Flutter的渠道版本会不停变动，请以Flutter官网为准。另外，在中国大陆地区，要想正常获取安装包列表或下载安装包，可能需要翻墙，读者也可以去Flutter github项目下去下载安装包，<a target="_blank" rel="noopener" href="https://github.com/flutter/flutter/releases">转到下载页</a> 。</p>
+</li>
+<li><p>解压安装包到你想安装的目录，如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/development</span><br><span class="line">unzip ~/Downloads/flutter_macos_v0.5.1-beta.zip</span><br></pre></td></tr></table></figure></li>
+<li><p>添加<code>flutter</code>相关工具到path中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=`pwd`/flutter/bin:$PATH</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 由于一些<code>flutter</code>命令需要联网获取数据，如果您是在国内访问，直接访问很可能不会成功。可以使用以下镜像</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">PUB_HOSTED_URL</span>=https://pub.flutter-io.cn</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">FLUTTER_STORAGE_BASE_URL</span>=https://storage.flutter-io.cn</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 此镜像为临时镜像，并不能保证一直可用，可以参考详情请参考 <a target="_blank" rel="noopener" href="https://github.com/flutter/flutter/wiki/Using-Flutter-in-China">Using Flutter in China</a> 以获得有关镜像服务器的最新动态。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="更新环境变量"><a href="#更新环境变量" class="headerlink" title="更新环境变量"></a>更新环境变量</h3><p>您在命令行只能更新当前会话的PATH变量，如<a target="_blank" rel="noopener" href="https://flutterchina.club/setup-macos/#clone-the-repo">Clone Flutter repo</a>所示。 但是，您可能需要的是永久更新此变量，以便您可以运行<code>flutter</code>命令在任何终端会话中。</p>
+<p>对于所有终端会话永久修改此变量的步骤是和特定计算机系统相关的。通常，您会在打开新窗口时将设置环境变量的命令添加到执行的文件中。例如</p>
+<ol>
+<li>确定您Flutter SDK的目录，您将在步骤3中用到。</li>
+<li>打开(或创建) <code>$HOME/.bash_profile</code>. 文件路径和文件名可能在您的机器上不同.</li>
+<li>添加以下行并更改<code>[PATH_TO_FLUTTER_GIT_DIRECTORY]</code>为克隆Flutter的git repo的路径:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PUB_HOSTED_URL&#x3D;https:&#x2F;&#x2F;pub.flutter-io.cn &#x2F;&#x2F;国内用户需要设置</span><br><span class="line">export FLUTTER_STORAGE_BASE_URL&#x3D;https:&#x2F;&#x2F;storage.flutter-io.cn &#x2F;&#x2F;国内用户需要设置</span><br><span class="line">export PATH&#x3D;PATH_TO_FLUTTER_GIT_DIRECTORY&#x2F;flutter&#x2F;bin:$PATH</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：<code>PATH_TO_FLUTTER_GIT_DIRECTORY</code> 为你flutter的路径，比如“~/document/code”</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH&#x3D;~&#x2F;document&#x2F;code&#x2F;flutter&#x2F;bin:$PATH</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>运行 <code>source $HOME/.bash_profile</code> 刷新当前终端窗口.</li>
+</ol>
+<blockquote>
+<p><strong>注意:</strong> 如果你使用的是zsh，终端启动时 <code>~/.bash_profile</code> 将不会被加载，解决办法就是修改 <code>~/.zshrc</code> ，在其中添加：source ~/.bash_profile</p>
+</blockquote>
+<ol start="5">
+<li>通过运行<code>flutter/bin</code>命令验证目录是否在已经在PATH中:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+<h3 id="安装iOS环境以及Android环境"><a href="#安装iOS环境以及Android环境" class="headerlink" title="安装iOS环境以及Android环境"></a>安装iOS环境以及Android环境</h3><p>安装Xcode以及Android Studio，详情参考<a target="_blank" rel="noopener" href="https://flutterchina.club/setup-macos/">平台配置</a></p>
+<h3 id="检查flutter环境"><a href="#检查flutter环境" class="headerlink" title="检查flutter环境"></a>检查flutter环境</h3><p>以上步骤完成之后，运行<code>flutter doctor</code>检查环境是否配置成功</p>
+<img src="/2019/04/03/flutter-introduce/flutter_doctor.png" class="">
+
+<p>遇到任何的错误，请按照命令行提示执行</p>
+<h3 id="运行flutter"><a href="#运行flutter" class="headerlink" title="运行flutter"></a>运行flutter</h3><p>通过<code> flutter create myapp</code>命令创建一个flutter 初始项目，通过命令行进入该项目<code>cd myapp</code>，连接好手机设备之后，通过<code>flutter run</code>命令运行app</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flutter create myapp</span><br><span class="line">cd myapp</span><br><span class="line">flutter <span class="keyword">run</span></span><br></pre></td></tr></table></figure>
+<p>运行成功之后，可以在app中看到如下页面，通过修改<code>lib/main.dart</code>文件来创建自己的应用</p>
+<img src="/2019/04/03/flutter-introduce/flutter_hello.gif" class="">
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://flutterchina.club/">Flutter中文网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/why-is-flutter-revolutionary">为什么说 Flutter 是革命性的？</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/03/26/react-hooks/" rel="prev" title="React Hooks小笔记">
+      <i class="fa fa-chevron-left"></i> React Hooks小笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/05/30/typescript-mooc/" rel="next" title="TypeSript简介">
+      TypeSript简介 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#App%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%96%B9%E6%A1%88"><span class="nav-number">1.</span> <span class="nav-text">App跨平台方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hybrid%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">Hybrid框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E8%A7%86%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">响应式视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flutter"><span class="nav-number">1.3.</span> <span class="nav-text">Flutter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">Flutter简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Flutter-SDK"><span class="nav-number">3.1.</span> <span class="nav-text">获取Flutter SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">更新环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85iOS%E7%8E%AF%E5%A2%83%E4%BB%A5%E5%8F%8AAndroid%E7%8E%AF%E5%A2%83"><span class="nav-number">3.3.</span> <span class="nav-text">安装iOS环境以及Android环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5flutter%E7%8E%AF%E5%A2%83"><span class="nav-number">3.4.</span> <span class="nav-text">检查flutter环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8Cflutter"><span class="nav-number">3.5.</span> <span class="nav-text">运行flutter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : 'cc58c59fd5a4471011369abec558b289',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

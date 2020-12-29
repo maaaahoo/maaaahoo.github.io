@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="开发前准备 搭建开发环境  根据自身的硬件环境，分别安装不同的环境，具体请看官网的教程。#搭建开发环境  关于node  开发RN项目之前，需要熟悉几个npm命令。例如 1npm install 安装该项目中所有依赖包，一般写在package.json中 1npm install XXX --save 为你的项目中添加某个依赖包 等等。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native开发指北">
+<meta property="og:url" content="https://mah93.github.io/2018/04/27/react-native-develop-guide/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="开发前准备 搭建开发环境  根据自身的硬件环境，分别安装不同的环境，具体请看官网的教程。#搭建开发环境  关于node  开发RN项目之前，需要熟悉几个npm命令。例如 1npm install 安装该项目中所有依赖包，一般写在package.json中 1npm install XXX --save 为你的项目中添加某个依赖包 等等。。">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2018/04/27/react-native-develop-guide/react-native-develop-north.jpg">
+<meta property="article:published_time" content="2018-04-27T09:31:47.000Z">
+<meta property="article:modified_time" content="2018-12-25T04:41:13.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React Native">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2018/04/27/react-native-develop-guide/react-native-develop-north.jpg">
+
+<link rel="canonical" href="https://mah93.github.io/2018/04/27/react-native-develop-guide/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>React Native开发指北 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2018/04/27/react-native-develop-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Native开发指北
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-04-27 17:31:47" itemprop="dateCreated datePublished" datetime="2018-04-27T17:31:47+08:00">2018-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-25 12:41:13" itemprop="dateModified" datetime="2018-12-25T12:41:13+08:00">2018-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2018/04/27/react-native-develop-guide/react-native-develop-north.jpg" class="">
+
+<h3 id="开发前准备"><a href="#开发前准备" class="headerlink" title="开发前准备"></a>开发前准备</h3><ul>
+<li>搭建开发环境</li>
+</ul>
+<p>根据自身的硬件环境，分别安装不同的环境，具体请看官网的教程。<a target="_blank" rel="noopener" href="https://reactnative.cn/docs/0.44/getting-started.html#content">#搭建开发环境</a></p>
+<ul>
+<li>关于node</li>
+</ul>
+<p>开发RN项目之前，需要熟悉几个npm命令。例如</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<p>安装该项目中所有依赖包，一般写在package.json中</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install XXX <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>为你的项目中添加某个依赖包</p>
+<p>等等。。</p>
+<a id="more"></a> 
+
+<p>当你在本地运行一个React Native的项目时，会同步打开一个终端。会在本地的8081端口启动Js Server，当程序启动的时候，会通过这个服务读取Js代码，并完成页面的渲染。在程序运行的过程中，要保持这个终端处于一直运行的状态。不涉及原生代码改动的时候，无需重新编译。重新Reload页面即可。</p>
+<ul>
+<li>React Native版本</li>
+</ul>
+<p>开始一个新的项目之前，首先确定要使用的RN版本（官方每三个月更新一次），基本上都会使用0.43以上的版本。因为许多组件在之前的老版本并不存在，比如FlatList。新建一个指定版本的RN项目只需</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init MyApp --version 0.39.2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意版本号必须精确到两个小数点。</p>
+</blockquote>
+<ul>
+<li>开发工具</li>
+</ul>
+<p>开发工具推荐使用WebStorm或者是VSCode，下载一个Chrome浏览器对于调试有很大帮助。</p>
+<h3 id="辅助功能"><a href="#辅助功能" class="headerlink" title="辅助功能"></a>辅助功能</h3><p>除了正常的开发工作，你可能还需要一些辅助的功能来帮助更好的开发</p>
+<ul>
+<li>ESLint</li>
+</ul>
+<p>ESLint是一个JS插件，用来检测代码规范性。它自己包含了一些规范，当然你也可以自己去配置一些符合自己编码习惯的规则。虽然它是一个代码检测，但也不是所有的规则都需要遵循。在.eslintrc中编辑你的规则。<a target="_blank" rel="noopener" href="https://cn.eslint.org/">ESLint中文官方网站</a></p>
+<p>当配置好你的规则之后，打开IDE的代码检测功能。当你违反了制定的代码规范，会以红标提示。你也可以手动执行命令进行代码检测。</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eslint <span class="params">--ext</span> <span class="string">.js</span> src test</span><br></pre></td></tr></table></figure>
+<p>执行完之后，会精确到代码行数的报错。</p>
+<blockquote>
+<p>如果需要强制执行，请使用pre-commit插件。它会在每次commit之前执行某些操作，如果遇到问题，就会停止commit操作。</p>
+</blockquote>
+<p>如果你不希望有些代码进行代码检测，把它们的路径加入到.eslintignore文件中:)</p>
+<ul>
+<li>mock</li>
+</ul>
+<p>界面完成之后，可能你的后台服务并没有完成。有些界面会根据数据的不同进行调整。这时候可以通过node服务，模拟一个后台服务器并mock出模拟数据返回到前台页面，完成简单的接口测试。</p>
+<p>你可以使用express来搭建一个简单的node服务器</p>
+<p>通过mock来完成简单的数据，具体方式请参见<a target="_blank" rel="noopener" href="http://mockjs.com/">mock官方网站</a></p>
+<ul>
+<li>git</li>
+</ul>
+<p>无论是单人开发还是多人协作，git无疑是最好的版本控制工具。日常开发中涉及的git命令并不多，学习成本也不高，请务必使用。实在是没有使用过的请参考<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">廖雪峰GIT教程</a>!</p>
+<p>这里需要强调的是分支管理，如果是多人开发必须制定一些规则使每个人可以更加方便的开发。</p>
+<ol>
+<li>新建master分支，用于大版本的合并，并设立保护分支</li>
+<li>新建develop分支，用于日常的开发工作，并设立保护分支</li>
+<li>新建submit分支，用于测试版本</li>
+<li>为每一个人新建一个分支，每个人只能在自己的分支上进行开发工作，下班前提交到自己的远程分支上</li>
+<li>一个阶段的代码完成后，需要合并到develop分支，需提交合并请求由项目管理员进行合并操作</li>
+<li>合并之后每个成员合并develop分支</li>
+</ol>
+<p>以上可以根据项目的需求自行修改</p>
+<h3 id="需要考虑的事情"><a href="#需要考虑的事情" class="headerlink" title="需要考虑的事情"></a>需要考虑的事情</h3><p>一个新的项目首先要考虑的就是结构：目录结构、代码结构、系统架构等等，这些会一直影响着项目的健壮性、拓展性。但当代码遇到问题的时候，重构也是必要的。</p>
+<ul>
+<li>目录结构</li>
+</ul>
+<p>这里说的是文件的物理结构。</p>
+<p>1.功能相同的放入同一个文件夹</p>
+<p>功能相同就是说，把所有的页面放入一个文件夹，把所有的逻辑处理放入一个文件夹类似于这种分类方式。优点是同类型的文件都放在一起。缺点是关于同一个页面的代码会分散在几个或者好几个文件夹中，寻找起来比较麻烦。</p>
+<p>2.统一模块的代码放入同一个文件夹</p>
+<p>统一模块的代码包含了这个模块的界面、逻辑处理、网络请求等所有涉及的代码，一个文件夹代表着一个功能模块。优点是相关代码放在一起，寻找或者引用的时候比较快，代码迁移比较方便。缺点是功能模块难以有明确的区分点，一些页面有复用情况。</p>
+<ul>
+<li>代码结构</li>
+</ul>
+<p>你可以在React Naitve的代码中编写JS，也可以写JSX，还可以写样式表或者是内联在JSX中的样式，网络请求也可以写。上面所有的内容都可以写在同一个JS中，这里就需要制定规则。哪些可以写在一起，哪些需要新建另外一个文件去辅助。</p>
+<p>当然还有一些可有可无的东西，例如注释、属性列表等。它们可以帮助代码更好的被理解，增加代码可读性。也可以制定合理的代码规范，配合插件可以很好的使用。</p>
+<ul>
+<li>系统架构</li>
+</ul>
+<p>有关系统架构需要考虑的因素就更多了，如何去处理数据逻辑，网络请求如何去实现，页面与页面之间的联系如何进行等等。这些问题会涉及很多的第三方组件，你需要用以下几个方面去考察这个第三方组件：</p>
+<ol>
+<li>github上stars的数量，可以直观反映出这个组件的质量如何</li>
+<li>上一次提交的时间。如果超过一年没有更新过，那么很可能并不适合新版的RN</li>
+<li>github上issuse数量，当遇到问题的时候大部分都是通过issuse解决</li>
+</ol>
+<p>当然这仅仅是最基本的方面，还有许多别的考察方面，比如它的实现方式，README有没有写的比较详细等等。当你逐个确定要使用的组件之后，一一引入。有些仅仅在开发阶段使用的组件，可以将它们引入开发依赖包中，以免打包进入项目，使得项目包变大。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/04/11/react-deep-learn/" rel="prev" title="react学习摘要">
+      <i class="fa fa-chevron-left"></i> react学习摘要
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/07/code-standard/" rel="next" title="React-Native代码规范">
+      React-Native代码规范 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">开发前准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">辅助功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%BA%8B%E6%83%85"><span class="nav-number">3.</span> <span class="nav-text">需要考虑的事情</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : 'ae67f10b1d8af6ff9a378823f49c223d',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

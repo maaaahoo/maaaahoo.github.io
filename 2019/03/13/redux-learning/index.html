@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux可以作为任何UI层的store，所以它可以运行在Angular、Angular 2、 Vue、React甚至React-Native中。Redux 提供的订阅机制，可以与任何代码集成。这里仅仅记录一些Redux在React-Native中的实现。 为什么要用状态管理在React中已经提供了state以及setSt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux初体验">
+<meta property="og:url" content="https://mah93.github.io/2019/03/13/redux-learning/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux可以作为任何UI层的store，所以它可以运行在Angular、Angular 2、 Vue、React甚至React-Native中。Redux 提供的订阅机制，可以与任何代码集成。这里仅仅记录一些Redux在React-Native中的实现。 为什么要用状态管理在React中已经提供了state以及setSt">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2019/03/13/redux-learning/redux-logo.png">
+<meta property="og:image" content="https://mah93.github.io/2019/03/13/redux-learning/redux-count.png">
+<meta property="og:image" content="https://mah93.github.io/2019/03/13/redux-learning/redux-logger.png">
+<meta property="article:published_time" content="2019-03-13T11:29:01.000Z">
+<meta property="article:modified_time" content="2019-03-13T11:34:17.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React Native">
+<meta property="article:tag" content="Redux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2019/03/13/redux-learning/redux-logo.png">
+
+<link rel="canonical" href="https://mah93.github.io/2019/03/13/redux-learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Redux初体验 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/03/13/redux-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redux初体验
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-03-13 19:29:01 / Modified: 19:34:17" itemprop="dateCreated datePublished" datetime="2019-03-13T19:29:01+08:00">2019-03-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2019/03/13/redux-learning/redux-logo.png" class="">
+
+<p>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。Redux可以作为任何UI层的store，所以它可以运行在Angular、Angular 2、 Vue、React甚至React-Native中。Redux 提供的订阅机制，可以与任何代码集成。这里仅仅记录一些Redux在React-Native中的实现。</p>
+<h3 id="为什么要用状态管理"><a href="#为什么要用状态管理" class="headerlink" title="为什么要用状态管理"></a>为什么要用状态管理</h3><p>在React中已经提供了state以及setState来实现页面的改动，那么为什么需要状态管理呢？无论是Mobx还是Redux都作为setState的替代品。那么state以及setState有什么缺陷，必须通过这种第三方的状态管理的介入去构建应用。</p>
+<p>setState方法在React中是一个很重要的方法，每当调用setState的时候React会重新渲染render方法，其中调用state的值就会相应发生改变，也就完成了一次页面响应。在React的教程中，也大多是这种介绍。那么问题在哪里呢？</p>
+<a id="more"></a> 
+
+<p>首先，setState并不能保证是一个同步的方法，有可能是同步的，也有可能是异步的。它是一个合成法方法，后续会调用一系列的方法来完成组件重新渲染，关于setState的问题详情可以看<a target="_blank" rel="noopener" href="https://juejin.im/post/5b45c57c51882519790c7441">这里</a>。总之，state的状态并不是可以预测的。其次，在实际的生产中，复杂的页面会导致render下的DOM结构非常复杂，会包含一百到几百行的JSX代码。假如这个时候去改变其中某一个button的选中状态，本意是只改动button这个组件，其他的组件保持当前状态不动。当调用setState的时候，它并不会智能的仅仅改变button的状态，而是重新渲染整个庞大的DOM树。虽然React在Virtual DOM做了优化，但这种大规模的无用渲染仍然会影响应用性能。当然有解决的方法，就是将大组件拆分，分成很多的小组件，然后在shouldComponentUpdate中去做优化。关于shouldComponentUpdate相关优化问题可以参考<a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/01/05/react-render-optimization/">这里</a>。还有的话就是，state数据与JSX混杂在同一个页面，耦合高十分不方便维护。一般来说页面的UI、逻辑、网络请求分开来写，既方便维护，代码逻辑也很清楚。</p>
+<p>上述的问题只是本人在React-Native上实践遇到的，如果有任何错误，请及时通知我。</p>
+<h3 id="Redux思想"><a href="#Redux思想" class="headerlink" title="Redux思想"></a>Redux思想</h3><p>既然在state以及setState实践上遇到了问题，那么Redux是如何解决这些问题的呢？先来看看Redux的核心概念：Action、Reducer和Store。Store中存储了数据state，state这个对象就像 “Model”，区别是它并没有 setter（修改器方法），因此其它的代码不能随意修改它，造成难以复现的 bug。Action 就是一个普通 JavaScript 对象它是用来描述发生了什么。为了把 action 和 state 串起来，开发一些函数，reducer 只是一个接收 state 和 action，并返回新的 state 的函数。 以上差不多就是Redux的全部思想了，Store、Action、Reducer各司其职配合工作。</p>
+<p>在这里还要强调Redux中的三个原则：单一数据源、State 是只读的、使用纯函数来执行修改。</p>
+<ol>
+<li>单一数据源：<strong>整个应用的 state 被储存在一棵 object tree 中，并且这个 object tree 只存在于唯一一个 store 中。</strong></li>
+<li>State 是只读的：<strong>唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。</strong></li>
+<li>使用纯函数来执行修改：<strong>为了描述 action 如何改变 state tree ，你需要编写 reducers。</strong></li>
+</ol>
+<h3 id="在React-Native中使用"><a href="#在React-Native中使用" class="headerlink" title="在React-Native中使用"></a>在React-Native中使用</h3><p>既然已经了解了Redux的基础概念，那么就在React-Native中使用它，才能进一步理解Redux是如何运作的。使用Redux实现一个简单的计数器。</p>
+<img src="/2019/03/13/redux-learning/redux-count.png" class="">
+
+<p>就是这样的一个简单的例子，点击➕号数字加一，点击➖数字减一。当然在这里是可以用setState来实现的，为了学习Redux还是将它按照Redux的规范来编写。</p>
+<p>首先要先引入redux，在项目的根目录执行</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save redux</span></span><br></pre></td></tr></table></figure>
+<h4 id="构建UI"><a href="#构建UI" class="headerlink" title="构建UI"></a>构建UI</h4><p>首先我们先构建出这个UI页面，只要是接触过React-Native。那么是很容易实现的，大致的代码是这个样子的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">export default class Count extends Component&lt;Props&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; number, addNumber, inNumber &#125; &#x3D; this.props;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.welcome&#125;&gt;0&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.instructions&#125; onPress&#x3D;&#123;() &#x3D;&gt; 加一&#125;&gt;+&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.instructions&#125; onPress&#x3D;&#123;() &#x3D;&gt; 减一&#125;&gt;-&lt;&#x2F;Text&gt;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>UI出现了，那么就差点击事件的处理了。</p>
+<h4 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h4><p>这里我们需要发起一个事件，在这里点击的时候要让数字加一，所以首先要构建一个Action描述一个这个事情。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; action</span><br><span class="line">export const addNumber &#x3D; number &#x3D;&gt; (&#123;</span><br><span class="line">  type: &#39;INCREMENT&#39;,</span><br><span class="line">  number</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>type相当于key，作为Action的一个标识，注意这里的type是不可以有重复的，保证其唯一性。还接受了一个参数number，就是点击的时候，要在当前的number基础上加一。</p>
+<h4 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h4><p>上面的Action仅仅表示了要发生的事情，并没有描述这个事情该怎么做。Reducer的功能就是去具体的实现state的变化，在这里就是承担了加一这个事情。记住，Reducer是一个纯函数，它接收state和action作为参数，并且返回一个新的state。也即是(state, action) =&gt; newState。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; reducer</span><br><span class="line">export default function changeNumber(state&#x3D;0, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#39;INCREMENT&#39;:</span><br><span class="line">      return Object.assign(&#123;&#125;, state, &#123;</span><br><span class="line">        number: action.number + 1</span><br><span class="line">      &#125;);</span><br><span class="line">  default:</span><br><span class="line">  	return state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还记得之前的Action设置的type吗？在Reducer中它作为区分不同的Action的一个标识，Reduce通过不同的type可以处理很多的Action。注意到Reducer返回了一个新的对象，虽然只改变了state中的一个字段。这里是通过Object.assign方法来实现的，也可以使用ES6中的{..state, number: action.number + 1}来完成这一操作。</p>
+<p>现在完成了➕事件的处理，就差把onPress事件和Action连接起来了。</p>
+<h4 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h4><p>在一个应用中只存在一个store，为了方便所有子组件访问该store，一般来说会在顶层组件中提供Provider组件，以便于子组件可以通过props的方式访问到store，可以自己实现一个Provider，一般的情况使用的是第三方组件react-redux。在项目的根目录中引用该组件</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save react-redux</span></span><br></pre></td></tr></table></figure>
+<p>在项目的入口文件中，用Provider将UI组件包裹起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Provider&gt;</span><br><span class="line">	&lt;Count &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;Provider&gt;</span><br></pre></td></tr></table></figure>
+<p>这里还有没将store传入Provider中，首先要创建一个store，通过Redux提供的createStore方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore &#125; from &#39;redux&#39;;</span><br><span class="line">import &#123; Provider &#125; from &#39;react-redux&#39;;</span><br><span class="line">import rootReducer from &#39;.&#x2F;src&#x2F;reducers&#x2F;index&#39;;</span><br><span class="line"></span><br><span class="line">export default class App extends Component&lt;Props&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const store &#x3D; createStore(rootReducer);</span><br><span class="line">    return (</span><br><span class="line">      &lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">        &lt;Count &#x2F;&gt;</span><br><span class="line">      &lt;&#x2F;Provider&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>createStore方法接受一个Reducer，将刚才写的Reducer传入其中即可完成一个store创建。下面就是将store与UI关联起来。在最开始写完的UI页面中加入如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#39;react-redux&#39;;</span><br><span class="line">import &#123; addNumber &#125; from &#39;.&#x2F;actions&#x2F;countAction&#39;</span><br><span class="line"></span><br><span class="line">type Props &#x3D; &#123;&#125;;</span><br><span class="line">class Count extends Component&lt;Props&gt; &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    const &#123; number, plus &#125; &#x3D; this.props;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style&#x3D;&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.welcome&#125;&gt;&#123;number&#125;&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.instructions&#125; onPress&#x3D;&#123;() &#x3D;&gt; plus(number)&#125;&gt;+&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;Text style&#x3D;&#123;styles.instructions&#125; onPress&#x3D;&#123;() &#x3D;&gt; 减一&#125;&gt;-&lt;&#x2F;Text&gt;</span><br><span class="line">      &lt;&#x2F;View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapStateToProps(state)&#123;</span><br><span class="line">	return &#123;</span><br><span class="line">		number: state.number,</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function mapDispatchToProps(dispatch)&#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    plus: id &#x3D;&gt; &#123;</span><br><span class="line">      dispatch(addNumber(id))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(mapStateToProps,mapDispatchToProps)(Count);</span><br></pre></td></tr></table></figure>
+<p>主要是通过connect这个方法将store中的state以及action都传递给UI页面，可以通过props的方式访问store。在mapStateToProps以及mapDispatchToProps中定义参数名称以方便使用。完成以上所有代码之后，即可尝试运行代码，点击➕是否可以正常显示，减法和加法是同样的流程，这里并不做说明。</p>
+<p>到这里就完成了一个由Redux构建的应用，可以看到为了实现一个方法的调用，做了很多的工作，从Action到Reducer再到state然后在渲染页面。可以说Redux的实现十分的繁琐，所以在具体的生产环节中，一定要思考清楚到底需不需要Redux，这里也有<a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/faq/General.html">何时使用Redux</a>的说明以供参考。</p>
+<h4 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h4><p>关于Redux的中间件了解的并不多，这里只做简单的介绍。中间件实现的即是在Action与Reducer中间做一些操作的功能。比如，需要一个异步请求、需要调试每一次Actions执行的时候打印日志。这些都可以使用中间件完成。比如常用的redux-thunk、redux-logger等等。如果还是不知道中间件是做什么的，那么在项目中引用redux-logger</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install <span class="comment">--save redux-logger</span></span><br></pre></td></tr></table></figure>
+<p>完成之后，在创建store的时候将中间件添加进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import logger from &#39;redux-logger&#39;;</span><br><span class="line">const store &#x3D; createStore(rootReducer, applyMiddleware(logger));</span><br></pre></td></tr></table></figure>
+<p>之后打开React-Native的调试页面，点击➕即可发现，控制台会自动的打印出相关的state信息，并不需要在代码中添加console.log操作，确实是极大的方便了调试。</p>
+<img src="/2019/03/13/redux-learning/redux-logger.png" class="">
+
+<p>redux-thunk主要是用来实现异步操作，比如网络请求之类的场景这里就不一一做尝试了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>关于Redux我了解也不是很多，只能做一些简单的demo。在上述例子中并没有介绍Redux其他的应用技巧，在后续的学习中，逐步了解这些技巧的原理后再做记录。Redux确实在开发流程上做出了很多的规范，无论它是否真的适合生产中应用，都是只得学习它的思想的。</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.redux.org.cn/">redux中文网</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5b45c57c51882519790c7441">你真的理解setState吗？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.techbridge.cc/2018/01/05/react-render-optimization/">React 性能優化大挑戰：一次理解 Immutable data 跟 shouldComponentUpdate</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+              <a href="/tags/Redux/" rel="tag"># Redux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/01/04/flow-note/" rel="prev" title="flow笔记">
+      <i class="fa fa-chevron-left"></i> flow笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/19/react-native-template/" rel="next" title="react-native模版">
+      react-native模版 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">为什么要用状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux%E6%80%9D%E6%83%B3"><span class="nav-number">2.</span> <span class="nav-text">Redux思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8React-Native%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">在React-Native中使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BAUI"><span class="nav-number">3.1.</span> <span class="nav-text">构建UI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action"><span class="nav-number">3.2.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducer"><span class="nav-number">3.3.</span> <span class="nav-text">Reducer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Store"><span class="nav-number">3.4.</span> <span class="nav-text">Store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Middleware"><span class="nav-number">3.5.</span> <span class="nav-text">Middleware</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : '30bd0d477067a693378e40457e6bef98',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

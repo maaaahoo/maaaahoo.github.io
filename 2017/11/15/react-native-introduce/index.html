@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言用React Native开发有一段时间了，想写一下有关的资料以便自己查阅，一下内容均来自于网络，如有侵犯联系我删除。是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。使用React Native开发者可以维护多种平台(Web,And">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native简介">
+<meta property="og:url" content="https://mah93.github.io/2017/11/15/react-native-introduce/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="前言用React Native开发有一段时间了，想写一下有关的资料以便自己查阅，一下内容均来自于网络，如有侵犯联系我删除。是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。使用React Native开发者可以维护多种平台(Web,And">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native_logo.jpg">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native%E7%AE%80%E5%8D%95%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92.png">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native%E6%9C%AC%E5%9C%B0%E9%80%9A%E8%AE%AF.png">
+<meta property="og:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native%E8%B0%83%E8%AF%95.png">
+<meta property="article:published_time" content="2017-11-15T02:26:05.000Z">
+<meta property="article:modified_time" content="2018-12-25T04:41:03.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React Native">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2017/11/15/react-native-introduce/react-native_logo.jpg">
+
+<link rel="canonical" href="https://mah93.github.io/2017/11/15/react-native-introduce/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>React Native简介 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2017/11/15/react-native-introduce/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Native简介
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-15 10:26:05" itemprop="dateCreated datePublished" datetime="2017-11-15T10:26:05+08:00">2017-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-12-25 12:41:03" itemprop="dateModified" datetime="2018-12-25T12:41:03+08:00">2018-12-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2017/11/15/react-native-introduce/react-native_logo.jpg" class="">
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>用React Native开发有一段时间了，想写一下有关的资料以便自己查阅，一下内容均来自于网络，如有侵犯联系我删除。<br>是Facebook发布的，可以让广大开发者使用JavaScript和React开发应用，提倡组件化开发，也就是说React Native提供了一个个封装好的组件让开发者来进行使用，甚至可以相关嵌套形成新的组件。<br>使用React Native开发者可以维护多种平台(Web,Android和IOS)的同一份业务逻辑核心代码来创建原生应用。<br>现阶段Web APP的的体验还是无法达到Native APP的体验，所以这边fackbook更加强调的是<strong>“learn once, write everywhere”</strong>，应用前端我们使用js和React来开发不同平台的UI，下层核心模块编写复用的业务逻辑代码，提供应用开发效率。</p>
+<p>React Native的设计理念：<strong>既拥有Native的用户体验、又保留React的开发效率</strong>。</p>
+<h2 id="React-Native背景"><a href="#React-Native背景" class="headerlink" title="React Native背景"></a>React Native背景</h2><ul>
+<li>React 是由Facebook推出的一个JavaScript框架，主要用于前端开发。</li>
+<li>React 采用组件化方式简化Web开发<ul>
+<li>DOM:每个HTML界面可以看做一个DOM</li>
+<li>原生的web开发方式，HTML一个文件，javaScript一个文件，文件分开，就会导致修改起来比较麻烦。</li>
+<li>可以把一组相关的HTML标签和JavaScript单独封装到一个组件类中，便于复用，方便开发。</li>
+</ul>
+</li>
+<li>React 可以高效的绘制界面<ul>
+<li>原生的Web,刷新界面(DOM)，需要把整个界面刷新.</li>
+<li>React只会刷新部分界面，不会整个界面刷新。</li>
+<li>因为React独创了Virtual DOM机制。Virtual DOM是一个存在于内存中的JavaScript对象，它与DOM是一一对应的关系，当界面发送变化时，React会利用DOM Diff算法，把有变化的DOM进行刷新.</li>
+</ul>
+</li>
+<li>React是采用JSX语法，一种JS语法糖，方便快速开发。</li>
+</ul>
+<a id="more"></a> 
+
+<h2 id="常见的五种App开发模式"><a href="#常见的五种App开发模式" class="headerlink" title="常见的五种App开发模式"></a>常见的五种App开发模式</h2><h3 id="Native-App"><a href="#Native-App" class="headerlink" title="Native App"></a>Native App</h3><ul>
+<li>Native App:指使用原生API开发App,比如iOS用OC语言开发</li>
+<li>优点：性能高</li>
+<li>缺点：开发维护成本高，养一个原生开发工程师需要很多钱，最重要iOS版本更新也成问题。</li>
+</ul>
+<h3 id="Web-App"><a href="#Web-App" class="headerlink" title="Web App"></a>Web App</h3><ul>
+<li>Web App:指使用Html开发的移动端网页App,类似微信小程序，整个App都是网页。</li>
+<li>优点：用户不需要安装，不会占用手机内存</li>
+<li>缺点：用户体验不好，不能离线，必须联网</li>
+</ul>
+<h3 id="Hybrid-App（Cordova）"><a href="#Hybrid-App（Cordova）" class="headerlink" title="Hybrid App（Cordova）"></a>Hybrid App（Cordova）</h3><ul>
+<li>Hybrid App:混合开发模式，原生Api+Html共同开发，比如iOS,用html写好界面，用UIWebView展示。</li>
+<li>优点:界面复用性强，一个界面，iOS和安卓都可以使用</li>
+<li>缺点:相对于原生，性能相对有所损害</li>
+</ul>
+<h3 id="Weex"><a href="#Weex" class="headerlink" title="Weex"></a>Weex</h3><ul>
+<li>Weex:基于Vue(JS框架)的语法开发的App,底层会自动把JS代码解析成对应平台(iOS,安卓)的原生API，本质还是原生API开发，只不过表面是用Vue开发。</li>
+<li>优点:可以做到一套代码，跨平台执行，底层会自动判断当前是哪个平台，转换为对应平台的原生API代码。</li>
+<li>缺点：开源较晚，互联网上相关资料还比较少，社区规模较小</li>
+</ul>
+<h3 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h3><ul>
+<li>React Native:基于React开发的App</li>
+<li>优点：跳过App Store审核，远程更新代码，提高迭代频率和效率，既有Native的体验，又保留React的开发效率。</li>
+<li>缺点:对于不熟悉前端开发的人员上手比较慢，不能真正意义上做到跨平台，使用后，对app体积增加。</li>
+<li>相信大多数人了解完React Native，越来越困惑了，那不是跟Native冲突了吗，Native是用原生Api开发,但是React Native又是用React开发。</li>
+</ul>
+<h2 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h2><img src="/2017/11/15/react-native-introduce/react-native%E7%AE%80%E5%8D%95%E6%A1%86%E6%9E%B6.png" class="">
+
+<ol>
+<li>React：不同平台上编写基于React的代码，“Learn once, write anywhere”。</li>
+<li>Virtual DOM：相对Browser环境下的DOM（文档对象模型）而言，Virtual DOM是DOM在内存中的一种轻量级表达方式（原话是lightweight representation of the document），可以通过不同的渲染引擎生成不同平台下的UI，JS和Native之间通过Bridge通信。</li>
+<li>iOS/Android。(Web得通过React Web)</li>
+</ol>
+<h2 id="线程模型"><a href="#线程模型" class="headerlink" title="线程模型"></a>线程模型</h2><img src="/2017/11/15/react-native-introduce/react-native%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png" class="">
+
+<p>React Native应用中存在三个线程队列，它们工作的流程大概如下：UI Event Queue触发事件，通过Bridge调用JS代码在JS Event Queue中运行，JS运行后将视图更新分发给Native Module Event Queue中的线程,Native Module Event Queue负责计算，然后将最后的结果交给UI Event Queue中的线程去更新。 其中UI Event Queue为主线程。</p>
+<h3 id="JavaScript对象和原生代码交互"><a href="#JavaScript对象和原生代码交互" class="headerlink" title="JavaScript对象和原生代码交互"></a>JavaScript对象和原生代码交互</h3><p>下图以JavaScript与Objective-C交互为例，大致描述交互过程。</p>
+<img src="/2017/11/15/react-native-introduce/react-native%E5%BA%95%E5%B1%82%E4%BA%A4%E4%BA%92.png" class="">
+
+<p>1.JS端调用某个OC模块暴露出来的方法。</p>
+<p>2.把上一步的调用分解为ModuleName,MethodName,arguments，再扔给MessageQueue处理。</p>
+<p>在初始化时模块配置表上的每一个模块都生成了对应的remoteModule对象，对象里也生成了跟模块配置表里一一对应的方法，这些方法里可以拿到自身的模块名，方法名，并对callback进行一些处理，再移交给MessageQueue。具体实现在BatchedBridgeFactory.js的<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/blob/72d3d724a3a0c6bc46981efd0dad8f7f61121a47/Libraries/BatchedBridge/BatchingImplementation/BatchedBridgeFactory.js#L37">_createBridgedModule</a>里，整个实现区区24行代码，感受下JS的魔力吧。</p>
+<p>3.在这一步把JS的callback函数缓存在MessageQueue的一个成员变量里，用CallbackID代表callback。在通过保存在MessageQueue的模块配置表把上一步传进来的ModuleName和MethodName转为ModuleID和MethodID。</p>
+<p>4.把上述步骤得到的ModuleID,MethodId,CallbackID和其他参数argus传给OC。至于具体是怎么传的，后面再说。</p>
+<p>5.OC接收到消息，通过模块配置表拿到对应的模块和方法。</p>
+<p>实际上模块配置表已经经过处理了，跟JS一样，在初始化时OC也对模块配置表上的每一个模块生成了对应的实例并缓存起来，模块上的每一个方法也都生成了对应的<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native/blob/72d3d724a3a0c6bc46981efd0dad8f7f61121a47/React/Base/RCTBridge.m#L111">RCTModuleMethod</a>对象，这里通过ModuleID和MethodID取到对应的Module实例和RCTModuleMethod实例进行调用。具体实现在_handleRequestNumber:moduleID:methodID:params:。</p>
+<p>6.RCTModuleMethod对JS传过来的每一个参数进行处理。</p>
+<p>RCTModuleMethod可以拿到OC要调用的目标方法的每个参数类型，处理JS类型到目标类型的转换，所有JS传过来的数字都是NSNumber，这里会转成对应的int/long/double等类型，更重要的是会为block类型参数的生成一个block。</p>
+<p>例如-(void)select:(int)index response:(RCTResponseSenderBlock)callback 这个方法，拿到两个参数的类型为int,block，JS传过来的两个参数类型是NSNumber,NSString(CallbackID)，这时会把NSNumber转为int，NSString(CallbackID)转为一个block，block的内容是把回调的值和CallbackID传回给JS。</p>
+<p>这些参数组装完毕后，通过NSInvocation动态调用相应的OC模块方法。</p>
+<p>7.OC模块方法调用完，执行block回调。</p>
+<p>8.调用到第6步说明的RCTModuleMethod生成的block。</p>
+<p>9.block里带着CallbackID和block传过来的参数去调JS里MessageQueue的方法invokeCallbackAndReturnFlushedQueue。</p>
+<p>10.MessageQueue通过CallbackID找到相应的JS callback方法。</p>
+<p>11.调用callback方法，并把OC带过来的参数一起传过去，完成回调。</p>
+<p>整个流程就是这样，简单概括下，差不多就是：JS函数调用转ModuleID/MethodID -&gt; callback转CallbackID -&gt; OC根据ID拿到方法 -&gt; 处理参数 -&gt; 调用OC方法 -&gt; 回调CallbackID -&gt; JS通过CallbackID拿到callback执行</p>
+<h2 id="JavaScript和本地代码间的通信"><a href="#JavaScript和本地代码间的通信" class="headerlink" title="JavaScript和本地代码间的通信"></a>JavaScript和本地代码间的通信</h2><img src="/2017/11/15/react-native-introduce/react-native%E6%9C%AC%E5%9C%B0%E9%80%9A%E8%AE%AF.png" class="">
+
+<p>其中通信的特点是：</p>
+<ul>
+<li>异步的</li>
+<li>序列化的</li>
+<li>批量的，对于大批量的通信事件可以将其分成几部分，减少时间延迟</li>
+</ul>
+<h2 id="异步执行"><a href="#异步执行" class="headerlink" title="异步执行"></a>异步执行</h2><p>在Javascript代码和原生平台之间的所有操作都是异步执行的，并且原生模块还可以根据需要创建新的线程。这意味着你可以在主线程解码图片，然后在后台将它保存到磁盘，或者在不阻塞UI的情况下计算文字大小和界面布局等等。所以React Native开发的app天然具备流畅和反应灵敏的优势。Javascript和原生代码之间的通讯是完全可序列化的，这使得我们可以借助Chrome开发者工具去调试应用，而不论应用运行在模拟器还是真机上。</p>
+<img src="/2017/11/15/react-native-introduce/react-native%E8%B0%83%E8%AF%95.png" class="">
+
+<h2 id="拓展性"><a href="#拓展性" class="headerlink" title="拓展性"></a>拓展性</h2><p>使用React Native，无需编写一行原生代码即可创造一款不错的app。尽管如此，使用自定义的原生视图和模块来扩展React Native也非常容易 —— 这意味着你现有的所有工作都可以被复用，你喜欢的各种原生库都可以被导入。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/11/03/nginx-introduce/" rel="prev" title="学习Nginx小结">
+      <i class="fa fa-chevron-left"></i> 学习Nginx小结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/11/21/app-safety-design/" rel="next" title="App安全性设计">
+      App安全性设计 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">React Native背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BA%94%E7%A7%8DApp%E5%BC%80%E5%8F%91%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">常见的五种App开发模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Native-App"><span class="nav-number">3.1.</span> <span class="nav-text">Native App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-App"><span class="nav-number">3.2.</span> <span class="nav-text">Web App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hybrid-App%EF%BC%88Cordova%EF%BC%89"><span class="nav-number">3.3.</span> <span class="nav-text">Hybrid App（Cordova）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weex"><span class="nav-number">3.4.</span> <span class="nav-text">Weex</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-Native"><span class="nav-number">3.5.</span> <span class="nav-text">React Native</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">4.</span> <span class="nav-text">框架简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.</span> <span class="nav-text">线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81%E4%BA%A4%E4%BA%92"><span class="nav-number">5.1.</span> <span class="nav-text">JavaScript对象和原生代码交互</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript%E5%92%8C%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%A0%81%E9%97%B4%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">6.</span> <span class="nav-text">JavaScript和本地代码间的通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C"><span class="nav-number">7.</span> <span class="nav-text">异步执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E6%80%A7"><span class="nav-number">8.</span> <span class="nav-text">拓展性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : '0aada1db4691e09b0d0496a4319a286b',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

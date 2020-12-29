@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="多模式串匹配算法简介敏感词过滤最基本的原理就是字符串匹配算法，也就是通过维护一个敏感词的字典，当用户输入一段文字内容后，通过字符串匹配算法，来查找用户输入的这段文字，是否包含敏感词。 字符串匹配算法有很多比如BF算法、RK算法、BM算法、KMP算法还有Trie树。前面四种算法都是单模式串匹配算法，只有Trie树是多模式串匹配算法。 我们可以针对每个敏感词，通过单模式匹配算法与用户输入的文字内容">
+<meta property="og:type" content="article">
+<meta property="og:title" content="敏感词过滤Aho-Corasick算法">
+<meta property="og:url" content="https://mah93.github.io/2019/09/26/aho-corasick/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="多模式串匹配算法简介敏感词过滤最基本的原理就是字符串匹配算法，也就是通过维护一个敏感词的字典，当用户输入一段文字内容后，通过字符串匹配算法，来查找用户输入的这段文字，是否包含敏感词。 字符串匹配算法有很多比如BF算法、RK算法、BM算法、KMP算法还有Trie树。前面四种算法都是单模式串匹配算法，只有Trie树是多模式串匹配算法。 我们可以针对每个敏感词，通过单模式匹配算法与用户输入的文字内容">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2019/09/26/aho-corasick/ac-logo.jpg">
+<meta property="og:image" content="https://mah93.github.io/2019/09/26/aho-corasick/ac-failure.png">
+<meta property="article:published_time" content="2019-09-26T09:23:08.000Z">
+<meta property="article:modified_time" content="2019-09-26T09:27:06.000Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2019/09/26/aho-corasick/ac-logo.jpg">
+
+<link rel="canonical" href="https://mah93.github.io/2019/09/26/aho-corasick/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>敏感词过滤Aho-Corasick算法 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/09/26/aho-corasick/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          敏感词过滤Aho-Corasick算法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-09-26 17:23:08 / Modified: 17:27:06" itemprop="dateCreated datePublished" datetime="2019-09-26T17:23:08+08:00">2019-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2019/09/26/aho-corasick/ac-logo.jpg" class="">
+
+<h2 id="多模式串匹配算法简介"><a href="#多模式串匹配算法简介" class="headerlink" title="多模式串匹配算法简介"></a>多模式串匹配算法简介</h2><p>敏感词过滤最基本的原理就是字符串匹配算法，也就是通过维护一个敏感词的字典，当用户输入一段文字内容后，通过字符串匹配算法，来查找用户输入的这段文字，是否包含敏感词。</p>
+<p>字符串匹配算法有很多比如BF算法、RK算法、BM算法、KMP算法还有Trie树。前面四种算法都是单模式串匹配算法，只有Trie树是多模式串匹配算法。</p>
+<p>我们可以针对每个敏感词，通过单模式匹配算法与用户输入的文字内容进行匹配。但是这样做的话，每个需要匹配的敏感词都需要扫描一遍用户输入的内容。如果敏感词有很多，并且用户输入的内容很长，这种处理的方法就显得比较低效。</p>
+<p>与单模式匹配算法相比，多模式串匹配算法在敏感词过滤这个问题上处理就很高效了，它只需要扫描一遍主串，就能在主串中一次性查找多个模式串是否存在。</p>
+<a id="more"></a> 
+
+<h2 id="Aho-Corasick算法"><a href="#Aho-Corasick算法" class="headerlink" title="Aho-Corasick算法"></a>Aho-Corasick算法</h2><p>Aho-Corasick算法一般称作AC自动机，<strong>AC自动机实际上就是在Trie树之上，加了类似KMP的next数组，只不过此处的next数组是构建在trie树上罢了。</strong></p>
+<p>AC自动机有三个核心函数，分别是：</p>
+<ul>
+<li>success状态，成功转移到下一个节点（即Trie树）</li>
+<li>failure状态，在该节点匹配失败，则跳转到一个特定的节点，从根节点到这个特定的节点的路径恰好是失败前文本的一部分。</li>
+<li>output状态，匹配到了敏感词</li>
+</ul>
+<p>根据以上AC算法的特点，改进Trie节点的属性如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrieNode</span>(<span class="params">key, parent, word</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.key = key;</span><br><span class="line">    <span class="built_in">this</span>.children = [];    </span><br><span class="line">    <span class="built_in">this</span>.parent = parent;   <span class="comment">// 该节点的父节点，用于构建failure表</span></span><br><span class="line">    <span class="built_in">this</span>.failure = <span class="literal">null</span>;    <span class="comment">// 失效之后指向的节点</span></span><br><span class="line">    <span class="built_in">this</span>.word = word        <span class="comment">// 该节点是否为某一个敏感词的尾字符 </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构建Trie树"><a href="#构建Trie树" class="headerlink" title="构建Trie树"></a>构建Trie树</h2><p>和普通的trie构建是一样的，逐个插入节点。假设敏感词以及待过滤的字符串，均是小写的英文字母。以英文字母的ASCII码作为数组下标存储节点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.insertData(data, <span class="built_in">this</span>.root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertData</span>(<span class="params">data, node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data === <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> children = node.children;</span><br><span class="line">    <span class="keyword">let</span> haveData = children[data[<span class="number">0</span>].charCodeAt() - <span class="number">97</span>];</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">if</span>(haveData) &#123;</span><br><span class="line">        <span class="built_in">this</span>.insertData(data.substring(<span class="number">1</span>), haveData);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> isWord = data.length === <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>], node, isWord);</span><br><span class="line">        children[data[<span class="number">0</span>].charCodeAt() - <span class="number">97</span>] = insertNode;</span><br><span class="line">        <span class="built_in">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="添加Failure失效节点"><a href="#添加Failure失效节点" class="headerlink" title="添加Failure失效节点"></a>添加Failure失效节点</h2><p>下图是以<code>[&#39;HER&#39;, &#39;HEQ&#39;, &#39;SHR&#39;]</code>构建的trie树：</p>
+<img src="/2019/09/26/aho-corasick/ac-failure.png" class="">
+
+
+<p>在这张图中，虚线表示failure后的指向，上面我们也说到failure状态的作用，就是在失配的时候告诉程序往哪里走，为什么要这么做，从这张表我们可以很清楚的看到，当我们匹配<code>SHER</code>时，程序会走右边的分支，当走到S &gt; H &gt; E时，会出现失配，怎么办？可能有小伙伴会想到回滚到ROOT从H开始重新匹配，但这样回溯是有成本的，我们既然走了H节点，为什么要回溯呢？</p>
+<p>这个时候failure就发挥作用了，我们看到右分支的H有一条虚线指向了左分支的H，我们也知道这就是failure的指向，通过这个指向，我们很轻松的将当前状态移交过去。程序继续匹配E &gt; R，加上移交过来的H，我们可以轻松的匹配到HER。</p>
+<p><strong>问：假设有一个节点为currNode，它的子节点是childNode，那么子节点childNode的failure指向怎么求？</strong></p>
+<p><em>解：首先，我们需要找到childNode父节点currNode的failure指向，假设这个指向是Q的话，<strong>我们就要看看Q的孩子（children属性）中有没有与childNode字符相同（key相同）的节点</strong>，如果有的话，这个节点就是childNode的failure指向。如果没有，我们就需要沿着currNode -&gt; failure -&gt; failure重复上述过程，如果一直没找到，就将其指向root。</em></p>
+<p>由此可知，一个节点的失效指针一定在该节点的上层。需要注意的是，我们在构建Trie树时，并不知道failure指向到哪里的，所以failure指向需要在Trie树构建完成后插入。</p>
+<p>首先将trie树第二层节点的失效指针指向root，之后逐层为每一个节点添加失效指针，即采用广度优先遍历Trie树：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFailure</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> currQueue = <span class="built_in">Object</span>.values(<span class="built_in">this</span>.root.children);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (currQueue.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> nextQueue = [];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; currQueue.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> node = currQueue[i]</span><br><span class="line">        <span class="keyword">let</span> key = node.key</span><br><span class="line">        <span class="keyword">let</span> parent = node.parent</span><br><span class="line">        node.failure = <span class="built_in">this</span>.root</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> k <span class="keyword">in</span> node.children) &#123;</span><br><span class="line">          nextQueue.push(node.children[k])</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (parent) &#123;</span><br><span class="line">          <span class="keyword">let</span> failure = parent.failure</span><br><span class="line">          <span class="keyword">while</span> (failure) &#123;</span><br><span class="line">            <span class="keyword">let</span> children = failure.children[key.charCodeAt() - <span class="number">97</span>]</span><br><span class="line">            <span class="keyword">if</span> (children) &#123;</span><br><span class="line">              node.failure = children</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            failure = failure.failure</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      currQueue = nextQueue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="敏感词过滤"><a href="#敏感词过滤" class="headerlink" title="敏感词过滤"></a>敏感词过滤</h2><p>对于Trie树上的一些准备工作已经做完了，下面就是要对待匹配的字符串进行过滤。从头遍历当遇到output表中的节点时，就是出现了敏感词。在匹配失败的时候顺着失效节点继续匹配过程：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> children = <span class="built_in">this</span>.root.children;</span><br><span class="line">  <span class="keyword">let</span> currentNode = <span class="built_in">this</span>.root;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;word.length; i++)&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(currentNode.children[word[i].charCodeAt() - <span class="number">97</span>] == <span class="literal">null</span> &amp;&amp; currentNode != <span class="built_in">this</span>.root) &#123;</span><br><span class="line">      currentNode = currentNode.failure;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    currentNode = currentNode.children[word[i].charCodeAt() - <span class="number">97</span>];</span><br><span class="line">    <span class="keyword">if</span> (currentNode == <span class="literal">null</span>) &#123;</span><br><span class="line">      currentNode = <span class="built_in">this</span>.root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> temNode = currentNode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(temNode != <span class="built_in">this</span>.root) &#123;</span><br><span class="line">      <span class="keyword">if</span>(temNode.word === <span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;出现了敏感词&#x27;</span>);</span><br><span class="line">      &#125; </span><br><span class="line">      temNode = temNode.failure;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> trie = <span class="keyword">new</span> Trie();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成trie树</span></span><br><span class="line">trie.insert(<span class="string">&#x27;he&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;his&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;she&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;hers&#x27;</span>);</span><br><span class="line"></span><br><span class="line">trie.getFailure();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试数据</span></span><br><span class="line">trie.filter(<span class="string">&#x27;ushers&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 该字符串出现了三个敏感词</span></span><br></pre></td></tr></table></figure>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">TrieNode</span>(<span class="params">key, parent, word</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.key = key;</span><br><span class="line">    <span class="built_in">this</span>.children = [];</span><br><span class="line">    <span class="built_in">this</span>.parent = parent;</span><br><span class="line">    <span class="built_in">this</span>.failure = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.word = word</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Trie</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.root = <span class="keyword">new</span> TrieNode(<span class="string">&#x27;/&#x27;</span>, <span class="literal">null</span>, <span class="literal">false</span>); <span class="comment">// 添加根节点</span></span><br><span class="line">    <span class="built_in">this</span>.insert = insert; <span class="comment">// 插入</span></span><br><span class="line">    <span class="built_in">this</span>.insertData = insertData;</span><br><span class="line">  </span><br><span class="line">    <span class="built_in">this</span>.getFailure = getFailure;</span><br><span class="line">    <span class="built_in">this</span>.filter = filter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.insertData(data, <span class="built_in">this</span>.root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertData</span>(<span class="params">data, node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (data === <span class="string">&#x27;&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> children = node.children;</span><br><span class="line">    <span class="keyword">let</span> haveData = children[data[<span class="number">0</span>].charCodeAt() - <span class="number">97</span>];</span><br><span class="line">      </span><br><span class="line">    <span class="keyword">if</span>(haveData) &#123;</span><br><span class="line">        <span class="built_in">this</span>.insertData(data.substring(<span class="number">1</span>), haveData);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> isWord = data.length === <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">let</span> insertNode = <span class="keyword">new</span> TrieNode(data[<span class="number">0</span>], node, isWord);</span><br><span class="line">        children[data[<span class="number">0</span>].charCodeAt() - <span class="number">97</span>] = insertNode;</span><br><span class="line">        <span class="built_in">this</span>.insertData(data.substring(<span class="number">1</span>), insertNode); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFailure</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> currQueue = <span class="built_in">Object</span>.values(<span class="built_in">this</span>.root.children);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">while</span> (currQueue.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> nextQueue = [];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; currQueue.length; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> node = currQueue[i]</span><br><span class="line">        <span class="keyword">let</span> key = node.key</span><br><span class="line">        <span class="keyword">let</span> parent = node.parent</span><br><span class="line">        node.failure = <span class="built_in">this</span>.root</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> k <span class="keyword">in</span> node.children) &#123;</span><br><span class="line">          nextQueue.push(node.children[k])</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (parent) &#123;</span><br><span class="line">          <span class="keyword">let</span> failure = parent.failure</span><br><span class="line">          <span class="keyword">while</span> (failure) &#123;</span><br><span class="line">            <span class="keyword">let</span> children = failure.children[key.charCodeAt() - <span class="number">97</span>]</span><br><span class="line">            <span class="keyword">if</span> (children) &#123;</span><br><span class="line">              node.failure = children</span><br><span class="line">              <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            failure = failure.failure</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      currQueue = nextQueue</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">word</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> children = <span class="built_in">this</span>.root.children;</span><br><span class="line">  <span class="keyword">let</span> currentNode = <span class="built_in">this</span>.root;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;word.length; i++)&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(currentNode.children[word[i].charCodeAt() - <span class="number">97</span>] == <span class="literal">null</span> &amp;&amp; currentNode != <span class="built_in">this</span>.root) &#123;</span><br><span class="line">      currentNode = currentNode.failure;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    currentNode = currentNode.children[word[i].charCodeAt() - <span class="number">97</span>];</span><br><span class="line">    <span class="keyword">if</span> (currentNode == <span class="literal">null</span>) &#123;</span><br><span class="line">      currentNode = <span class="built_in">this</span>.root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> temNode = currentNode;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(temNode != <span class="built_in">this</span>.root) &#123;</span><br><span class="line">      <span class="keyword">if</span>(temNode.word === <span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;出现了敏感词&#x27;</span>);</span><br><span class="line">      &#125; </span><br><span class="line">      temNode = temNode.failure;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> trie = <span class="keyword">new</span> Trie();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成trie树</span></span><br><span class="line">trie.insert(<span class="string">&#x27;he&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;his&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;she&#x27;</span>);</span><br><span class="line">trie.insert(<span class="string">&#x27;hers&#x27;</span>);</span><br><span class="line"></span><br><span class="line">trie.getFailure();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试数据</span></span><br><span class="line">trie.filter(<span class="string">&#x27;ushers&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5cfa6bb6f265da1b8a4f0ed8#heading-4">TypeScript：Aho–Corasick算法实现敏感词过滤</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.hankcs.com/program/algorithm/implementation-and-analysis-of-aho-corasick-algorithm-in-java.html">Aho-Corasick算法的Java实现与分析</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/72810">36 | AC自动机：如何用多模式串匹配实现敏感词过滤功能？</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 算法与数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/09/07/trie/" rel="prev" title="Trie树">
+      <i class="fa fa-chevron-left"></i> Trie树
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/30/iOS-learn/" rel="next" title="iOS学习笔记">
+      iOS学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%A8%A1%E5%BC%8F%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">多模式串匹配算法简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Aho-Corasick%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Aho-Corasick算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E5%BB%BATrie%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text">构建Trie树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Failure%E5%A4%B1%E6%95%88%E8%8A%82%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">添加Failure失效节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">敏感词过滤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : '893ddf3fd4faf4ba8cb2d26e6ed9313c',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
