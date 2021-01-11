@@ -165,6 +165,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/03/19/react-native-template/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/19/react-native-template/" class="post-title-link" itemprop="url">react-native模版</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-03-19 19:45:18 / Modified: 19:46:16" itemprop="dateCreated datePublished" datetime="2019-03-19T19:45:18+08:00">2019-03-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="模版"><a href="#模版" class="headerlink" title="模版"></a>模版</h3><p>项目模版就是在项目创建之后，默认带的一些文件。比如用react-native-cli创建的项目，运行之后就会看到react-native为你预设的模版</p>
+<p>hello world。这里就介绍一下如何创建自己的模版工程，将一些常用的功能放入模版之中，以后再新建项目不必从头开始配置了。</p>
+<h3 id="创建模版"><a href="#创建模版" class="headerlink" title="创建模版"></a>创建模版</h3><p>通过如下命令创建模版工程</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-<span class="keyword">native</span> init XXX --template AAA</span><br></pre></td></tr></table></figure>
+<p>其中AAA是你的模版在npm上的名称，可以供别人使用。新建完工程之后，它和普通的项目没有区别。可以在上面加入你需要的功能。完成之后在package.json中修改你的模版名称以及版本号</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;react-native-template-AAA&quot;</span>,<span class="comment">//上传 NPM 仓库的名称</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.0.2&quot;</span><span class="comment">//版本号，同一仓库不可以上传两次同版本号的内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后就可以上传至<a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm官网</a>上。注册完账号之后在命令行中登录</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm adduser --<span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npmjs.org</span><br></pre></td></tr></table></figure>
+<p>之后进入你的模版工程目录发布即可</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm publish --<span class="keyword">registry</span> <span class="keyword">http</span>://<span class="keyword">registry</span>.npmjs.org</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/03/19/react-native-template/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2019/03/13/redux-learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -993,97 +1077,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2018/04/11/react-deep-learn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-      <meta itemprop="name" content="mah93">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mah93">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/11/react-deep-learn/" class="post-title-link" itemprop="url">react学习摘要</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-04-11 17:16:26" itemprop="dateCreated datePublished" datetime="2018-04-11T17:16:26+08:00">2018-04-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-12-25 12:41:20" itemprop="dateModified" datetime="2018-12-25T12:41:20+08:00">2018-12-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <img src="/2018/04/11/react-deep-learn/react-deep-learn.png" class="">
-
-<h2 id="虚拟dom"><a href="#虚拟dom" class="headerlink" title="虚拟dom"></a>虚拟dom</h2><p>​    在react中，render执行的结果并不是真正的DOM节点，结果仅仅是轻量级的JavaScript对象，我们称之为virtual DOM。虚拟DOM具有batching(批处理)和高效的Diff算法。由虚拟DOM来确保只对界面上真正的部分进行实际的DOM操作。</p>
-<p>​    比较innerHTML 和Virtual DOM 的重绘过程如下：</p>
-<ul>
-<li>innerHTML: render html string + 重新创建所有 DOM 元素</li>
-</ul>
-<ul>
-<li>Virtual DOM: render Virtual DOM + diff算法+ 必要的 DOM 更新</li>
-</ul>
-<h4 id="批量DOM处理"><a href="#批量DOM处理" class="headerlink" title="批量DOM处理"></a>批量DOM处理</h4><p>​    依靠 setState 的异步性，React在一段时间间隔内，将所有DOM更新收集起来，然后批量处理。也就是说调用setState的时候并不会立即更新状态，而是一段时间时候统一将变动的属性集体进行更新。从而达到减少渲染次数，提高性能的目的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/04/11/react-deep-learn/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1155,7 +1148,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1203,7 +1196,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
