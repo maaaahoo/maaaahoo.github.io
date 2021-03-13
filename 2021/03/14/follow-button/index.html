@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近在写一个基于react-native的Mastodon客户端。里面有一个关注用户的按钮，这里来记录一下自己是如何一步步修改并完善这个按钮的功能的。 需求分析这是一个和Twitter里类似的关注按钮，通过点击来关注和取关对方。在发起点击动作后，需要根据当前与对方的关系，来确定到底是发起关注该用户的请求、还是取关该用户的请求。那么可以确定的需求如下：  根据与对方用户的关系，按钮应该显示不一样">
+<meta property="og:type" content="article">
+<meta property="og:title" content="封装一个关注按钮">
+<meta property="og:url" content="https://mah93.github.io/2021/03/14/follow-button/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="最近在写一个基于react-native的Mastodon客户端。里面有一个关注用户的按钮，这里来记录一下自己是如何一步步修改并完善这个按钮的功能的。 需求分析这是一个和Twitter里类似的关注按钮，通过点击来关注和取关对方。在发起点击动作后，需要根据当前与对方的关系，来确定到底是发起关注该用户的请求、还是取关该用户的请求。那么可以确定的需求如下：  根据与对方用户的关系，按钮应该显示不一样">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow_code.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow_view.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_code.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_view.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_code.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/bothFollow_view.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeStatue.gif">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick.gif">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick2.gif">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick3.gif">
+<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeFinish.gif">
+<meta property="article:published_time" content="2021-03-13T16:33:34.000Z">
+<meta property="article:modified_time" content="2021-03-13T16:56:35.581Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React Native">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
+
+<link rel="canonical" href="https://mah93.github.io/2021/03/14/follow-button/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>封装一个关注按钮 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2021/03/14/follow-button/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          封装一个关注按钮
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-03-14 00:33:34 / Modified: 00:56:35" itemprop="dateCreated datePublished" datetime="2021-03-14T00:33:34+08:00">2021-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2021/03/14/follow-button/follow-button-logo.jpg" class="">
+
+<p>最近在写一个基于react-native的Mastodon客户端。里面有一个关注用户的按钮，这里来记录一下自己是如何一步步修改并完善这个按钮的功能的。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>这是一个和Twitter里类似的关注按钮，通过点击来<code>关注</code>和<code>取关</code>对方。在发起点击动作后，需要根据当前与对方的关系，来确定到底是发起关注该用户的请求、还是取关该用户的请求。那么可以确定的需求如下：</p>
+<ul>
+<li>根据与对方用户的关系，按钮应该显示不一样的状态</li>
+<li>根据与对方用户的关系，点击按钮应该发起不一样的请求</li>
+</ul>
+<a id="more"></a> 
+
+<h2 id="FollowButton"><a href="#FollowButton" class="headerlink" title="FollowButton"></a>FollowButton</h2><p>通过分析可以知道，这个Button在不同状态下有不同的表现方式，那么首先先定义出Button的几个状态，再基于这几个状态分别处理。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> FollowButtonStatus &#123;</span><br><span class="line">  UnFollow, <span class="comment">// 关注</span></span><br><span class="line">  Following, <span class="comment">// 正在关注</span></span><br><span class="line">  BothFollow, <span class="comment">// 互相关注</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再根据这三个状态，实现一个Button，类似于下面这样：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> FollowButton: React.FC&lt;FollowButtonProps&gt; = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;TouchableOpacity style=&#123;[styles.main, styles.out_view]&#125;&gt;</span><br><span class="line">      &lt;Text style=&#123;styles.text_style&#125;&gt;</span><br><span class="line">        关注</span><br><span class="line">      &lt;/Text&gt;</span><br><span class="line">    &lt;/TouchableOpacity&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">  main: &#123;</span><br><span class="line">    padding: <span class="number">15</span>,</span><br><span class="line">    justifyContent: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    alignItems: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">    height: <span class="number">40</span>, </span><br><span class="line">    paddingVertical: <span class="number">8</span>, </span><br><span class="line">    borderRadius: <span class="number">20</span>, </span><br><span class="line">    borderWidth: <span class="number">1</span>,</span><br><span class="line">    width: <span class="number">100</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  out_view: &#123;</span><br><span class="line">    backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">    borderColor: <span class="string">&#x27;#2593FC&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  text_style: &#123;</span><br><span class="line">    color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">    fontSize: <span class="number">18</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>目前为止实现了一个基本的Button效果，先手动修改一下代码，体验一下不同状态下这个按钮的表现。通过修改Text以及外层TouchableOpacity的样式可以得到以下效果：</p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="/2021/03/14/follow-button/follow_code.png" class=""></td>
+<td><img src="/2021/03/14/follow-button/follow_view.png" class=""></td>
+</tr>
+<tr>
+<td><img src="/2021/03/14/follow-button/followed_code.png" class=""></td>
+<td><img src="/2021/03/14/follow-button/followed_view.png" class=""></td>
+</tr>
+<tr>
+<td><img src="/2021/03/14/follow-button/followed_code.png" class=""></td>
+<td><img src="/2021/03/14/follow-button/bothFollow_view.png" class=""></td>
+</tr>
+</tbody></table>
+<p>可以看到，三个状态下的按钮仅仅是文字以及样式的改变。那么来创建一个state来表示按钮当前的状态，根据这个状态的变化去显示不同的按钮</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [buttonStatus, setButtonStatus] = useState(FollowButtonStatus.UnFollow);</span><br></pre></td></tr></table></figure>
+<p>我们定义了一个buttonStatus，并给了一个初始值也就是当FollowButton渲染完成之后，让它显示<code>关注</code>字样</p>
+<p>根据不同的状态，可以返回不同的样式去渲染不同的UI</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> content = useMemo(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.UnFollow: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,      </span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">18</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.Following: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;正在关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">16</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.BothFollow: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;互相关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">16</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,      </span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">18</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, [buttonStatus]);</span><br></pre></td></tr></table></figure>
+<p>相应地修改JSX，去对应地按照样式显示</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;TouchableOpacity style=&#123;[styles.main, content.buttonStyle]&#125;&gt;</span><br><span class="line">  &lt;Text style=&#123;content.textStyle&#125;&gt;</span><br><span class="line">  	&#123;content.buttonText&#125;</span><br><span class="line">  &lt;/Text&gt;</span><br><span class="line">&lt;/TouchableOpacity&gt;</span><br></pre></td></tr></table></figure>
+<img src="/2021/03/14/follow-button/changeStatue.gif" class="">
+
+<h2 id="处理点击事件"><a href="#处理点击事件" class="headerlink" title="处理点击事件"></a>处理点击事件</h2><p>现在我们要根据点击按钮时候，按钮本身的状态决定它发起什么请求</p>
+<ul>
+<li>当按钮处于UnFollow时，发起关注请求，请求成功后将按钮修改为Following</li>
+<li>当按钮处于Following和BothFollow时，发起取关请求，请求成功后将按钮修改为UnFollow</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> followSomeone = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    setButtonStatus(FollowButtonStatus.Following);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unFollowSomeone = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    setButtonStatus(FollowButtonStatus.UnFollow);</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> handleOnPress = useCallback(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(buttonStatus === FollowButtonStatus.UnFollow) &#123;</span><br><span class="line">    followSomeone();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (buttonStatus === FollowButtonStatus.Following || buttonStatus === FollowButtonStatus.BothFollow) &#123;</span><br><span class="line">    unFollowSomeone();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, [buttonStatus]);</span><br></pre></td></tr></table></figure>
+<p>暂时用一个定时器来模拟接口调用的过程，在请求成功之后通过setButtonStatus修改FollowButton状态</p>
+<img src="/2021/03/14/follow-button/changeClick.gif" class="">
+
+<h2 id="完善请求过程"><a href="#完善请求过程" class="headerlink" title="完善请求过程"></a>完善请求过程</h2><p>OK目前为止完成了大半的功能，剩下的都是一些有关用户体验上的修改了。比如在哪里实现<code>关注</code>与<code>取关</code>、在发起请求的时候，如何显示Loading状态。</p>
+<p>我是这样考虑的：</p>
+<ol>
+<li>首先这个Button在整个应用中出现频率比较高，在各个有关于用户的页面中都有这个Button出现。而且它的功能非常一致，就是用来实现<code>关注</code>与<code>取关</code>的，所以<code>关注</code>与<code>取关</code>这两个请求，就应该从它的父组件中，移动到组件内部。由组件内部发起请求，由组件内部管理自身的状态，它的父组件仅给它一个初始状态。</li>
+<li>可以看到在发起请求的时候，如果不做任何处理组件就会维持上一个状态直到接口返回了最新的数据。从上一个状态到下一个状态之间，明显缺少一个过渡地状态，即请求中这个状态。一般来说就是在页面中显示一个Loading，鉴于FollowButton的请求是否成功并不直接影响后续操作，那么在App中全屏显示一个Loading就没有必要而且影响用户的使用体验。所以在请求过程中让FollowButton中的文字部分显示一个等待视图。首先为FollowButton再添加一个Requesting状态，并在发起请求的时候将状态修改为Requesting。</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">enum</span> FollowButtonStatus &#123;</span><br><span class="line">  UnFollow, <span class="comment">// 关注</span></span><br><span class="line">  Following, <span class="comment">// 正在关注</span></span><br><span class="line">  BothFollow, <span class="comment">// 互相关注</span></span><br><span class="line">  Requesting, <span class="comment">// 正在请求</span></span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="keyword">const</span> handleOnPress = useCallback(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>(buttonStatus === FollowButtonStatus.UnFollow) &#123;</span><br><span class="line">      followSomeone();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (buttonStatus === FollowButtonStatus.Following || buttonStatus === FollowButtonStatus.BothFollow) &#123;</span><br><span class="line">      unFollowSomeone();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 发起请求时，将状态修改为Requesting</span></span><br><span class="line">    setButtonStatus(FollowButtonStatus.Requesting);</span><br><span class="line">&#125;, [buttonStatus]);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;TouchableOpacity onPress=&#123;handleOnPress&#125; style=&#123;[styles.main, content.buttonStyle]&#125;&gt;</span><br><span class="line">      &#123;</span><br><span class="line">        buttonStatus == FollowButtonStatus.Requesting ? </span><br><span class="line">          &lt;ActivityIndicator  /&gt; : </span><br><span class="line">          &lt;Text style=&#123;content.textStyle&#125;&gt;</span><br><span class="line">          &#123;content.buttonText&#125;</span><br><span class="line">        &lt;/Text&gt;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;/TouchableOpacity&gt;</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<img src="/2021/03/14/follow-button/changeClick2.gif" class="">
+
+<p>这和我们想要的效果完全一致，在状态与状态之间添加了一个中间状态。就是显得有一点点奇怪，ActivityIndicator它的颜色一直是灰色的，如果可以给它一个颜色就更好了。但究竟给它设置一个什么颜色呢？还有就是当从Following发起请求的时候，按钮突然变成白色显得有些突兀。所以我们需要在Requesting状态下，为FollowButton设置一个全新的样式。</p>
+<ul>
+<li><p>从UnFollow到Following时，Requesting背景颜色应该与UnFollow相同为白色，ActivityIndicator应该为蓝色</p>
+</li>
+<li><p>从Following到UnFollow时，Requesting背景颜色应该与Following相同为蓝色，ActivityIndicator应该为白色</p>
+</li>
+</ul>
+<p>可以看到Requesting的状态取决于上一个状态，那么首先要通过<code>useRef</code>获取上一个状态</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> prevContentRef: <span class="built_in">any</span> = useRef();</span><br><span class="line">useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">	prevContentRef.current = content;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> prevCount = prevContentRef.current;</span><br></pre></td></tr></table></figure>
+<p>再为ActivityIndicator动态地设置一个颜色</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> content = useMemo(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 当点击按钮发起请求的时候，保持Button当前状态，根据当前状态显示出不一样颜色的等待视图</span></span><br><span class="line">  <span class="comment">// 如果是第一次渲染，则返回一个默认状态</span></span><br><span class="line">  <span class="keyword">if</span>(buttonStatus === FollowButtonStatus.Requesting) &#123;</span><br><span class="line">    <span class="keyword">return</span> prevCount || &#123;</span><br><span class="line">      buttonText: <span class="string">&#x27;请求中&#x27;</span>,</span><br><span class="line">      buttonStyle: &#123;</span><br><span class="line">        backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">        borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,      </span><br><span class="line">      &#125;,</span><br><span class="line">      textStyle: &#123;</span><br><span class="line">        color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">        fontSize: <span class="number">18</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      indicatorColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">switch</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.UnFollow: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,      </span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">18</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        indicatorColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.Following: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;正在关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">16</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        indicatorColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">case</span> buttonStatus === FollowButtonStatus.BothFollow: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;互相关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">16</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        indicatorColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">default</span>: &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        buttonText: <span class="string">&#x27;关注&#x27;</span>,</span><br><span class="line">        buttonStyle: &#123;</span><br><span class="line">          backgroundColor: <span class="string">&#x27;#fff&#x27;</span>,</span><br><span class="line">          borderColor: <span class="string">&#x27;#2593FC&#x27;</span>,      </span><br><span class="line">        &#125;,</span><br><span class="line">        textStyle: &#123;</span><br><span class="line">          color: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">          fontSize: <span class="number">18</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        indicatorColor: <span class="string">&#x27;#2593FC&#x27;</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, [buttonStatus]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">  &lt;TouchableOpacity onPress=&#123;handleOnPress&#125; style=&#123;[styles.main, content.buttonStyle]&#125;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">      buttonStatus == FollowButtonStatus.Requesting ? </span><br><span class="line">      &lt;ActivityIndicator color=&#123;content.indicatorColor&#125; /&gt; : </span><br><span class="line">      &lt;Text style=&#123;content.textStyle&#125;&gt;</span><br><span class="line">        &#123;content.buttonText&#125;</span><br><span class="line">      &lt;/Text&gt;</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;/TouchableOpacity&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<img src="/2021/03/14/follow-button/changeClick3.gif" class="">
+
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>最后添加上实际的业务场景，点击一个用户之后跳转到该页面，请求当前用户与该用户的关系，之后显示当前的用户关系。所以将初始状态修改为Requesting，最终的效果如下：</p>
+<img src="/2021/03/14/follow-button/changeFinish.gif" class="">
+
+<p>全部的代码放在了<a target="_blank" rel="noopener" href="https://github.com/mah93/RNMastodon/blob/main/src/components/FollowButton/index.tsx">这里</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/01/11/js-data-structure-04/" rel="prev" title="JavaScript数据结构笔记-堆">
+      <i class="fa fa-chevron-left"></i> JavaScript数据结构笔记-堆
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="nav-number">1.</span> <span class="nav-text">需求分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FollowButton"><span class="nav-number">2.</span> <span class="nav-text">FollowButton</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">处理点击事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E5%96%84%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">完善请求过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%8C%E6%88%90"><span class="nav-number">5.</span> <span class="nav-text">完成</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : 'cd99a8c336f1312c48eec2567b921fae',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
