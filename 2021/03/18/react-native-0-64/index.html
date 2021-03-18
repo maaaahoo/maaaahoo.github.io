@@ -20,23 +20,26 @@
     var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Docker是什么Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。 总体来说，Docker 的接口相当简单，用户可以方便地创建和">
+  <meta name="description" content="前几天React-Native版本升级到了0.64，最近闲的没事积极响应最新版本（我不踩坑谁踩坑） 新版本主要的功能如下：  Hermes引擎可以在iOS上使用了 默认支持组件的懒加载 React版本升级到17">
 <meta property="og:type" content="article">
-<meta property="og:title" content="啥是docker">
-<meta property="og:url" content="https://mah93.github.io/2020/01/08/what-is-docker/index.html">
+<meta property="og:title" content="React-Native升级0.64">
+<meta property="og:url" content="https://mah93.github.io/2021/03/18/react-native-0-64/index.html">
 <meta property="og:site_name" content="mah93">
-<meta property="og:description" content="Docker是什么Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。它是目前最流行的 Linux 容器解决方案。 Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。 总体来说，Docker 的接口相当简单，用户可以方便地创建和">
+<meta property="og:description" content="前几天React-Native版本升级到了0.64，最近闲的没事积极响应最新版本（我不踩坑谁踩坑） 新版本主要的功能如下：  Hermes引擎可以在iOS上使用了 默认支持组件的懒加载 React版本升级到17">
 <meta property="og:locale">
-<meta property="og:image" content="https://mah93.github.io/2020/01/08/what-is-docker/docker_logo.png">
-<meta property="og:image" content="https://mah93.github.io/2020/01/08/what-is-docker/docker_desktop.png">
-<meta property="article:published_time" content="2020-01-08T09:28:05.000Z">
-<meta property="article:modified_time" content="2020-01-08T09:30:58.000Z">
+<meta property="og:image" content="https://mah93.github.io/2021/03/18/react-native-0-64/RN-0.64-logo.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/18/react-native-0-64/RN-0.64.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/18/react-native-0-64/RN-0.64-hermes.png">
+<meta property="og:image" content="https://mah93.github.io/2021/03/18/react-native-0-64/RN-0.64-pod.png">
+<meta property="article:published_time" content="2021-03-18T13:09:11.000Z">
+<meta property="article:modified_time" content="2021-03-18T14:04:25.507Z">
 <meta property="article:author" content="mah93">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="React Native">
+<meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mah93.github.io/2020/01/08/what-is-docker/docker_logo.png">
+<meta name="twitter:image" content="https://mah93.github.io/2021/03/18/react-native-0-64/RN-0.64-logo.png">
 
-<link rel="canonical" href="https://mah93.github.io/2020/01/08/what-is-docker/">
+<link rel="canonical" href="https://mah93.github.io/2021/03/18/react-native-0-64/">
 
 
 <script id="page-configurations">
@@ -49,7 +52,7 @@
   };
 </script>
 
-  <title>啥是docker | mah93</title>
+  <title>React-Native升级0.64 | mah93</title>
   
 
 
@@ -174,7 +177,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2020/01/08/what-is-docker/">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2021/03/18/react-native-0-64/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
@@ -187,7 +190,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          啥是docker
+          React-Native升级0.64
         </h1>
 
         <div class="post-meta">
@@ -198,7 +201,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-01-08 17:28:05 / Modified: 17:30:58" itemprop="dateCreated datePublished" datetime="2020-01-08T17:28:05+08:00">2020-01-08</time>
+              <time title="Created: 2021-03-18 21:09:11 / Modified: 22:04:25" itemprop="dateCreated datePublished" datetime="2021-03-18T21:09:11+08:00">2021-03-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -206,7 +209,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
                 </span>
             </span>
 
@@ -221,61 +224,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <img src="/2020/01/08/what-is-docker/docker_logo.png" class="">
+        <img src="/2021/03/18/react-native-0-64/RN-0.64-logo.png" class="">
 
-<h2 id="Docker是什么"><a href="#Docker是什么" class="headerlink" title="Docker是什么"></a>Docker是什么</h2><p><strong>Docker 属于 Linux 容器的一种封装，提供简单易用的容器使用接口。</strong>它是目前最流行的 Linux 容器解决方案。</p>
-<p>Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。</p>
-<p>总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。</p>
+<p>前几天React-Native版本升级到了0.64，最近闲的没事积极响应最新版本（我不踩坑谁踩坑）</p>
+<p>新版本主要的功能如下：</p>
+<ul>
+<li>Hermes引擎可以在iOS上使用了</li>
+<li>默认支持组件的懒加载</li>
+<li>React版本升级到17</li>
+</ul>
 <a id="more"></a> 
 
-<h2 id="Docker-的用途"><a href="#Docker-的用途" class="headerlink" title="Docker 的用途"></a>Docker 的用途</h2><p>Docker 的主要用途，目前有三大类。</p>
-<p><strong>（1）提供一次性的环境。</strong>比如，本地测试他人的软件、持续集成的时候提供单元测试和构建的环境。</p>
-<p><strong>（2）提供弹性的云服务。</strong>因为 Docker 容器可以随开随关，很适合动态扩容和缩容。</p>
-<p><strong>（3）组建微服务架构。</strong>通过多个容器，一台机器可以跑多个服务，因此在本机就可以模拟出微服务架构。</p>
-<h2 id="安装Docker-Desktop"><a href="#安装Docker-Desktop" class="headerlink" title="安装Docker Desktop"></a>安装Docker Desktop</h2><p>在docker官网上注册之后，下载desktop客户端</p>
-<img src="/2020/01/08/what-is-docker/docker_desktop.png" class="">
+<h2 id="在iOS平台启用Hermes"><a href="#在iOS平台启用Hermes" class="headerlink" title="在iOS平台启用Hermes"></a>在iOS平台启用Hermes</h2><p>在iOS中开启Hermes十分简单，只需要在<code>Podfile</code>中将<code>hermes_enabled</code>设置为true，之后执行<code>pod install</code>即可完成。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use_react_native!(</span><br><span class="line">   :<span class="type">path</span> =&gt; config[:reactNativePath],</span><br><span class="line">   # <span class="keyword">to</span> <span class="keyword">enable</span> hermes <span class="keyword">on</span> iOS, change `<span class="keyword">false</span>` <span class="keyword">to</span> `<span class="keyword">true</span>` <span class="keyword">and</span> <span class="keyword">then</span> install pods</span><br><span class="line">   :hermes_enabled =&gt; <span class="keyword">true</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="组件的懒加载"><a href="#组件的懒加载" class="headerlink" title="组件的懒加载"></a>组件的懒加载</h2><p>懒加载主要是为了提升<code>JavaScript modules</code>的启动速度，众所周知RN在初始化的时候，会将所有非懒加载的组件全部加载到原生中，其中包含了大量非必要首次加载的<code>modules </code>。使用组件懒加载的写法，即会提高这个加载速度。</p>
+<p>之前的写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; MyFunction &#125; <span class="keyword">from</span> <span class="string">&#x27;my-module&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MyComponent = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> result = MyFunction();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">Text</span>&gt;</span>&#123;result&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>懒加载：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> MyComponent = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="built_in">require</span>(<span class="string">&#x27;my-module&#x27;</span>).MyFunction();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">Text</span>&gt;</span>&#123;result&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>详情可以看<a target="_blank" rel="noopener" href="https://reactnative.dev/docs/ram-bundles-inline-requires#inline-requires">这里</a></p>
+<h2 id="React17"><a href="#React17" class="headerlink" title="React17"></a>React17</h2><p>React17本身没有什么大的改变，它会作为未来React的基石版本，使之升级更为方便</p>
+<p>详细的更新内容请看<a target="_blank" rel="noopener" href="https://reactjs.org/blog/2020/10/20/react-v17.html">这里</a></p>
+<h2 id="从0-63到0-64"><a href="#从0-63到0-64" class="headerlink" title="从0.63到0.64"></a>从0.63到0.64</h2><p>原有的项目版本是0.63，升级到0.64应该还是挺简单的</p>
+<p>首先打开<a target="_blank" rel="noopener" href="https://react-native-community.github.io/upgrade-helper/">版本升级助手</a>查看一下具体的更新内容，之后直接执行自动升级命令</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx react-<span class="keyword">native</span> upgrade</span><br></pre></td></tr></table></figure>
+<p>直接升级到最新的稳定版本</p>
+<img src="/2021/03/18/react-native-0-64/RN-0.64.png" class="">
 
-<p>选择平台之后双击安装即可，安装之后在命令行中输入docker得到相应输出后，即安装完成</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
-<thead>
-<tr>
-<th>命令</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>docker search</td>
-<td>查找所以可用软件包</td>
-</tr>
-<tr>
-<td>docker pull</td>
-<td>获取软件包</td>
-</tr>
-<tr>
-<td>docker images</td>
-<td>查看本地镜像</td>
-</tr>
-<tr>
-<td>docker ps -a</td>
-<td>查看正在运行的容器</td>
-</tr>
-<tr>
-<td>docker rm</td>
-<td>删除容器</td>
-</tr>
-<tr>
-<td>docker run</td>
-<td>运行容器</td>
-</tr>
-<tr>
-<td>docker rmi</td>
-<td>删除镜像</td>
-</tr>
-</tbody></table>
-<h2 id="例子：安装redis"><a href="#例子：安装redis" class="headerlink" title="例子：安装redis"></a>例子：安装redis</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> docker search redis</span><br><span class="line"><span class="variable">$</span> docker pull redis</span><br><span class="line"><span class="variable">$</span> docker run <span class="literal">-p</span> <span class="number">6379</span>:<span class="number">6379</span> <span class="literal">-v</span> <span class="variable">$PWD</span>/<span class="keyword">data</span>:/<span class="keyword">data</span>  <span class="literal">-d</span> redis:latest redis<span class="literal">-server</span> -<span class="literal">-appendonly</span> yes</span><br><span class="line"><span class="variable">$</span> docker run <span class="literal">-it</span> redis:latest redis<span class="literal">-cli</span> <span class="literal">-h</span> <span class="number">172.17</span>.<span class="number">0.1</span></span><br></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="%5Bhttp://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html%5D(http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)">Docker 入门教程</a></li>
-</ul>
+
+<blockquote>
+<p>注意更新完成之后，必须重新执行<code>pod intall</code>来更新iOS原生依赖</p>
+</blockquote>
+<h2 id="启用Hermes"><a href="#启用Hermes" class="headerlink" title="启用Hermes"></a>启用Hermes</h2><img src="/2021/03/18/react-native-0-64/RN-0.64-hermes.png" class="">
+
+<p>向上图所示修改<code>Podfile</code>文件，之后执行<code>pod install</code>，就会顺利卡住</p>
+<img src="/2021/03/18/react-native-0-64/RN-0.64-pod.png" class="">
+
+<p>因为<code>pod</code>要去github中下载<code>hermes</code>的源码，下载地址 <a target="_blank" rel="noopener" href="https://github.com/facebook/hermes/releases/download/v0.7.2/hermes-runtime-darwin-v0.7.2.tar.gz%E8%BF%99%E4%B8%AA%E5%8C%85%E5%A4%A7%E6%A6%82%E6%9C%89500M%E5%B7%A6%E5%8F%B3%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E7%9A%84%E8%AF%9D%E4%B8%8D%E7%9F%A5%E9%81%93%E8%A6%81%E4%B8%8B%E8%BD%BD%E5%A4%9A%E4%B9%85%E3%80%82%E4%B8%8B%E9%9D%A2%E6%9D%A5%E9%85%8D%E7%BD%AE%E4%B8%80%E4%B8%8B%60homebrew%60%E7%9A%84%E4%B8%8B%E8%BD%BD%E4%BB%A3%E7%90%86%EF%BC%9A">https://github.com/facebook/hermes/releases/download/v0.7.2/hermes-runtime-darwin-v0.7.2.tar.gz这个包大概有500M左右，如果不配置代理的话不知道要下载多久。下面来配置一下`homebrew`的下载代理：</a></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># 修改curl配置文件</span></span><br><span class="line">vim ~/.curlrc</span><br><span class="line"><span class="meta"># 写入，有可能端口号不一样，根据自己的端口号修改</span></span><br><span class="line">socks5 = <span class="string">&quot;127.0.0.1:1086&quot;</span></span><br></pre></td></tr></table></figure>
+<p>修改完之后应该就可以正常<code>pod install</code>了。</p>
+<p>至此升级<code>React-Native</code>到0.64版本完成～</p>
 
     </div>
 
@@ -285,7 +273,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+              <a href="/tags/React/" rel="tag"># React</a>
           </div>
 
         
@@ -294,13 +283,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2019/12/30/iOS-learn/" rel="prev" title="iOS学习笔记">
-      <i class="fa fa-chevron-left"></i> iOS学习笔记
+    <a href="/2021/03/14/follow-button/" rel="prev" title="封装一个关注按钮">
+      <i class="fa fa-chevron-left"></i> 封装一个关注按钮
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/03/realm-summary/" rel="next" title="realm使用记录">
-      realm使用记录 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -360,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">Docker是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker-%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">2.</span> <span class="nav-text">Docker 的用途</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Docker-Desktop"><span class="nav-number">3.</span> <span class="nav-text">安装Docker Desktop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%AE%89%E8%A3%85redis"><span class="nav-number">5.</span> <span class="nav-text">例子：安装redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8iOS%E5%B9%B3%E5%8F%B0%E5%90%AF%E7%94%A8Hermes"><span class="nav-number">1.</span> <span class="nav-text">在iOS平台启用Hermes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.</span> <span class="nav-text">组件的懒加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React17"><span class="nav-number">3.</span> <span class="nav-text">React17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E0-63%E5%88%B00-64"><span class="nav-number">4.</span> <span class="nav-text">从0.63到0.64</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8Hermes"><span class="nav-number">5.</span> <span class="nav-text">启用Hermes</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -495,7 +481,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'mah93.github.io',
       owner       : '',
       admin       : [''],
-      id          : '910360a0cfe933cfbe5e1709065747d8',
+      id          : 'ef5d588e89de5103c62addbd9ebf0f77',
         language: '',
       distractionFreeMode: 
     });
