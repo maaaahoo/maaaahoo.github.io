@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="suspense“等待”目标代码加载，并且可以直接指定一个加载的界面（像是个 spinner），让它在用户等待的时候显示 以声明的方式来“等待”任何内容，包括数据 在编写组件的时候更加关注于获取数据和展示数据，关注点不应该放在如何获取数据以及处理数据的异常状态。suspense组件可以帮助我们更好的管理数据到UI。 通常一个组件like this 123456789function List">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Conf 2021">
+<meta property="og:url" content="https://mah93.github.io/2021/12/30/2021-react-conf/index.html">
+<meta property="og:site_name" content="mah93">
+<meta property="og:description" content="suspense“等待”目标代码加载，并且可以直接指定一个加载的界面（像是个 spinner），让它在用户等待的时候显示 以声明的方式来“等待”任何内容，包括数据 在编写组件的时候更加关注于获取数据和展示数据，关注点不应该放在如何获取数据以及处理数据的异常状态。suspense组件可以帮助我们更好的管理数据到UI。 通常一个组件like this 123456789function List">
+<meta property="og:locale">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/logo.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/20211210140826-ainnp8a.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/3.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/1.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/2.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/client.png">
+<meta property="og:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/server.png">
+<meta property="article:published_time" content="2021-12-30T15:17:18.000Z">
+<meta property="article:modified_time" content="2021-12-30T15:43:08.054Z">
+<meta property="article:author" content="mah93">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mah93.github.io/2021/12/30/2021-react-conf/logo.png">
+
+<link rel="canonical" href="https://mah93.github.io/2021/12/30/2021-react-conf/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>React Conf 2021 | mah93</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?75a2cab18b47c5fd77ed255924ca3c7a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">mah93</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags" rel="section"><i class="tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2021/12/30/2021-react-conf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+      <meta itemprop="name" content="mah93">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mah93">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Conf 2021
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-30 23:17:18 / Modified: 23:43:08" itemprop="dateCreated datePublished" datetime="2021-12-30T23:17:18+08:00">2021-12-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <img src="/2021/12/30/2021-react-conf/logo.png" class="">
+
+
+<h2 id="suspense"><a href="#suspense" class="headerlink" title="suspense"></a>suspense</h2><p>“等待”目标代码加载，并且可以直接指定一个加载的界面（像是个 spinner），让它在用户等待的时候显示</p>
+<p><strong>以声明的方式来“等待”任何内容，包括数据</strong></p>
+<p>在编写组件的时候更加关注于获取数据和展示数据，关注点不应该放在如何获取数据以及处理数据的异常状态。suspense组件可以帮助我们更好的管理数据到UI。</p>
+<p>通常一个组件like this</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">List</span> (<span class="params">&#123;pageId&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [items, isLoading] = useData(pageId);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (isLoading) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Spinner</span> /&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> items[pageId].map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a> 
+
+<p>在这里会遇到两个问题</p>
+<p>第一个是在处理不同组件或者是不同的状态，isLoading的时候需要不同的处理。比如返回<Spinner />或者<Skeleton />或者干脆返回null</p>
+<p>第二个是如果要修改显示状态的时候或涉及到代码的移动。</p>
+<p>解决办法就是只从后台获取数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">List</span> (<span class="params">&#123;pageId&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> items = useData(pageId);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> items[pageId].map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们就像同步的在获取这些数据，而不考虑加载状态。</p>
+<p>那么加载状态如何展示呢？用一个父组件来处理这些状态是十分合理的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense fallback=&#123;<span class="xml"><span class="tag">&lt;<span class="name">Spinner</span> /&gt;</span></span>&#125;&gt;</span><br><span class="line">  &lt;List pageId=&#123;pageId&#125; /&gt;</span><br><span class="line">&lt;/Suspense&gt; </span><br></pre></td></tr></table></figure>
+<p>这类似于骨架的加载状态，在JSX中当UI还没准备好时，我们去展示一个不同的东西</p>
+<p>现在我们分开了数据获取和处理状态，这对我们工作流程有着非常积极的影响。</p>
+<p>完全不需要考虑加载状态，直到加载状态由最近的Suspense组件决定。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Suspense fallback=&#123;<span class="xml"><span class="tag">&lt;<span class="name">Skeleton</span> /&gt;</span></span>&#125;&gt;</span><br><span class="line">  &lt;Header /&gt;</span><br><span class="line">  &lt;Suspense fallback=&#123;<span class="xml"><span class="tag">&lt;<span class="name">ListPlaceholder</span> /&gt;</span></span>&#125;&gt;</span><br><span class="line">    &lt;ListLayout&gt;</span><br><span class="line">      &lt;SpecialList pageId=&#123;pageId&#125; /&gt;</span><br><span class="line">    &lt;/ListLayout&gt;</span><br><span class="line">  &lt;/Suspense&gt; </span><br><span class="line">&lt;/Suspense&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="React18"><a href="#React18" class="headerlink" title="React18"></a>React18</h2><p>从老版本迁移到react18十分的容易，仅仅需要少部分组件的修改，就可以使用新的特性。</p>
+<p>React 18 RC发布预计在明年发布正式版</p>
+<h2 id="Server-Components"><a href="#Server-Components" class="headerlink" title="Server Components"></a>Server Components</h2><p>在服务端执行的组件</p>
+<p>直接获取服务端的数据</p>
+<p>大量减少客户端的代码量</p>
+<p>无缝地跨越客户端以及服务端</p>
+<p>下面是迭代的计划</p>
+<img src="/2021/12/30/2021-react-conf/20211210140826-ainnp8a.png" class="">
+
+<h2 id="ReactNative"><a href="#ReactNative" class="headerlink" title="ReactNative"></a>ReactNative</h2><p>我们发现在ReactNative的线程模型的根本缺陷，在web上js是单线程运行的，而在native平台运行在多个线程上。这意味着为了在移动端提供更好的用户体验。我们需要一个能够在多个本地线程之间协调工作的模式。</p>
+<p>我们需要并发渲染，并且渲染是可以中断我们的工作然后切换到另一个线程或者并行多个渲染任务。</p>
+<p>网络调度程序</p>
+<p>依赖Suspense构建的并发渲染</p>
+<p>拓展到多个平台</p>
+<img src="/2021/12/30/2021-react-conf/3.png" class="">
+
+<p>多平台愿景：React会在每个平台上构建高质量的应用</p>
+<p>一致在努力重写ReactNative架构使其是<strong>同步</strong>的，新架构已经100%。新架构支持并发渲染以及react18</p>
+<p>ReactNative的新架构以及React18将于明年一起发布</p>
+<h2 id="React18体验"><a href="#React18体验" class="headerlink" title="React18体验"></a>React18体验</h2><h3 id="批处理"><a href="#批处理" class="headerlink" title="批处理"></a>批处理</h3><img src="/2021/12/30/2021-react-conf/1.png" class="">
+
+<p>react18之前执行三次setState会重新渲染三次，而在react18中做了批处理的工作，使三次执行只渲染一次</p>
+<img src="/2021/12/30/2021-react-conf/2.png" class="">
+
+<h3 id="Suspense-on-the-server"><a href="#Suspense-on-the-server" class="headerlink" title="Suspense on the server"></a>Suspense on the server</h3><p>快速显示内容，提升用户体验</p>
+<h3 id="New-API"><a href="#New-API" class="headerlink" title="New API"></a>New API</h3><p>startTransition()</p>
+<p>useTransition()</p>
+<p>useDeferredValue()</p>
+<p>useId()</p>
+<p>useSyncExternalStore()</p>
+<h2 id="如何升级React18"><a href="#如何升级React18" class="headerlink" title="如何升级React18"></a>如何升级React18</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react@bate react-dom@bate</span><br></pre></td></tr></table></figure>
+<p>修改React.render为ReactDOM.createRoot</p>
+<h2 id="客户端渲染和服务端渲染"><a href="#客户端渲染和服务端渲染" class="headerlink" title="客户端渲染和服务端渲染"></a>客户端渲染和服务端渲染</h2><p>客户端渲染</p>
+<img src="/2021/12/30/2021-react-conf/client.png" class="">
+
+<p>服务端渲染（增强用户体验）</p>
+<img src="/2021/12/30/2021-react-conf/server.png" class="">
+
+<p>Suspense组件不再阻塞浏览器显示HTML流</p>
+<h2 id="React-Dev-Tool"><a href="#React-Dev-Tool" class="headerlink" title="React Dev Tool"></a>React Dev Tool</h2><p>支持hook的命名</p>
+<p>React性能分析工具</p>
+<h2 id="React-Without-Memo"><a href="#React-Without-Memo" class="headerlink" title="React Without Memo"></a>React Without Memo</h2><p>不使用memo的操作</p>
+<p>未来可以自动为React组件添加memo</p>
+<p>React Forget</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"># React</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/09/native-to-react-native/" rel="prev" title="原生项目接入React Native">
+      <i class="fa fa-chevron-left"></i> 原生项目接入React Native
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#suspense"><span class="nav-number">1.</span> <span class="nav-text">suspense</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React18"><span class="nav-number">2.</span> <span class="nav-text">React18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Server-Components"><span class="nav-number">3.</span> <span class="nav-text">Server Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReactNative"><span class="nav-number">4.</span> <span class="nav-text">ReactNative</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React18%E4%BD%93%E9%AA%8C"><span class="nav-number">5.</span> <span class="nav-text">React18体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E5%A4%84%E7%90%86"><span class="nav-number">5.1.</span> <span class="nav-text">批处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspense-on-the-server"><span class="nav-number">5.2.</span> <span class="nav-text">Suspense on the server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#New-API"><span class="nav-number">5.3.</span> <span class="nav-text">New API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7React18"><span class="nav-number">6.</span> <span class="nav-text">如何升级React18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93"><span class="nav-number">7.</span> <span class="nav-text">客户端渲染和服务端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Dev-Tool"><span class="nav-number">8.</span> <span class="nav-text">React Dev Tool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Without-Memo"><span class="nav-number">9.</span> <span class="nav-text">React Without Memo</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="mah93"
+      src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
+  <p class="site-author-name" itemprop="name">mah93</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mah93</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '',
+      clientSecret: '',
+      repo        : 'mah93.github.io',
+      owner       : '',
+      admin       : [''],
+      id          : 'bc11217843ebbb85dcc632047b6491df',
+        language: '',
+      distractionFreeMode: 
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
