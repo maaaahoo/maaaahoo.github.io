@@ -17,37 +17,37 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"mah93.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"maaaahoo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="最近在写一个基于react-native的Mastodon客户端。里面有一个关注用户的按钮，这里来记录一下自己是如何一步步修改并完善这个按钮的功能的。 需求分析这是一个和Twitter里类似的关注按钮，通过点击来关注和取关对方。在发起点击动作后，需要根据当前与对方的关系，来确定到底是发起关注该用户的请求、还是取关该用户的请求。那么可以确定的需求如下：  根据与对方用户的关系，按钮应该显示不一样">
 <meta property="og:type" content="article">
 <meta property="og:title" content="封装一个关注按钮">
-<meta property="og:url" content="https://mah93.github.io/2021/03/14/follow-button/index.html">
-<meta property="og:site_name" content="mah93">
+<meta property="og:url" content="https://maaaahoo.github.io/2021/03/14/follow-button/index.html">
+<meta property="og:site_name" content="maaaahoo">
 <meta property="og:description" content="最近在写一个基于react-native的Mastodon客户端。里面有一个关注用户的按钮，这里来记录一下自己是如何一步步修改并完善这个按钮的功能的。 需求分析这是一个和Twitter里类似的关注按钮，通过点击来关注和取关对方。在发起点击动作后，需要根据当前与对方的关系，来确定到底是发起关注该用户的请求、还是取关该用户的请求。那么可以确定的需求如下：  根据与对方用户的关系，按钮应该显示不一样">
 <meta property="og:locale">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow_code.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/follow_view.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_code.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_view.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/followed_code.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/bothFollow_view.png">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeStatue.gif">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick.gif">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick2.gif">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeClick3.gif">
-<meta property="og:image" content="https://mah93.github.io/2021/03/14/follow-button/changeFinish.gif">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/follow_code.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/follow_view.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/followed_code.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/followed_view.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/followed_code.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/bothFollow_view.png">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/changeStatue.gif">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/changeClick.gif">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/changeClick2.gif">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/changeClick3.gif">
+<meta property="og:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/changeFinish.gif">
 <meta property="article:published_time" content="2021-03-13T16:33:34.000Z">
 <meta property="article:modified_time" content="2021-03-13T16:56:35.581Z">
-<meta property="article:author" content="mah93">
+<meta property="article:author" content="maaaahoo">
 <meta property="article:tag" content="React">
 <meta property="article:tag" content="React Native">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://mah93.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
+<meta name="twitter:image" content="https://maaaahoo.github.io/2021/03/14/follow-button/follow-button-logo.jpg">
 
-<link rel="canonical" href="https://mah93.github.io/2021/03/14/follow-button/">
+<link rel="canonical" href="https://maaaahoo.github.io/2021/03/14/follow-button/">
 
 
 <script id="page-configurations">
@@ -60,7 +60,7 @@
   };
 </script>
 
-  <title>封装一个关注按钮 | mah93</title>
+  <title>封装一个关注按钮 | maaaahoo</title>
   
 
 
@@ -100,7 +100,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="mah93" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="maaaahoo" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -121,7 +121,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">mah93</h1>
+      <h1 class="site-title">maaaahoo</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -185,16 +185,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://mah93.github.io/2021/03/14/follow-button/">
+    <link itemprop="mainEntityOfPage" href="https://maaaahoo.github.io/2021/03/14/follow-button/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-      <meta itemprop="name" content="mah93">
+      <meta itemprop="name" content="maaaahoo">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="mah93">
+      <meta itemprop="name" content="maaaahoo">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -403,9 +403,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="mah93"
+    <img class="site-author-image" itemprop="image" alt="maaaahoo"
       src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-  <p class="site-author-name" itemprop="name">mah93</p>
+  <p class="site-author-name" itemprop="name">maaaahoo</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -433,7 +433,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/mah93" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mah93" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/maaaahoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maaaahoo" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
@@ -465,7 +465,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">mah93</span>
+  <span class="author" itemprop="copyrightHolder">maaaahoo</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
@@ -529,7 +529,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     var gitalk = new Gitalk({
       clientID    : '',
       clientSecret: '',
-      repo        : 'mah93.github.io',
+      repo        : 'maaaahoo.github.io',
       owner       : '',
       admin       : [''],
       id          : 'cd99a8c336f1312c48eec2567b921fae',
