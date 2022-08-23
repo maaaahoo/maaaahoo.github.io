@@ -17,25 +17,25 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"maaaahoo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"mahaaoo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="JavaScript中的this依赖于函数的调用方式，因此把this称为调用上下文很合适。 先来一个最简单的例子 1234567891011function ask()&amp;#123;  console.log(this.name)&amp;#125;var li_lei &#x3D; &amp;#123;  name: &quot;han mei mei&quot;,  ask: ask&amp;#125;&#96;这两个方法分别输出什么">
 <meta property="og:type" content="article">
 <meta property="og:title" content="this到底指的是谁">
-<meta property="og:url" content="https://maaaahoo.github.io/2017/12/01/who-is-this/index.html">
-<meta property="og:site_name" content="maaaahoo">
+<meta property="og:url" content="https://mahaaoo.github.io/2017/12/01/who-is-this/index.html">
+<meta property="og:site_name" content="mahaaoo">
 <meta property="og:description" content="JavaScript中的this依赖于函数的调用方式，因此把this称为调用上下文很合适。 先来一个最简单的例子 1234567891011function ask()&amp;#123;  console.log(this.name)&amp;#125;var li_lei &#x3D; &amp;#123;  name: &quot;han mei mei&quot;,  ask: ask&amp;#125;&#96;这两个方法分别输出什么">
 <meta property="og:locale">
-<meta property="og:image" content="https://maaaahoo.github.io/2017/12/01/who-is-this/who_logo.jpg">
+<meta property="og:image" content="https://mahaaoo.github.io/2017/12/01/who-is-this/who_logo.jpg">
 <meta property="article:published_time" content="2017-12-01T10:47:04.000Z">
 <meta property="article:modified_time" content="2018-12-25T04:40:23.000Z">
-<meta property="article:author" content="maaaahoo">
+<meta property="article:author" content="mahaaoo">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://maaaahoo.github.io/2017/12/01/who-is-this/who_logo.jpg">
+<meta name="twitter:image" content="https://mahaaoo.github.io/2017/12/01/who-is-this/who_logo.jpg">
 
-<link rel="canonical" href="https://maaaahoo.github.io/2017/12/01/who-is-this/">
+<link rel="canonical" href="https://mahaaoo.github.io/2017/12/01/who-is-this/">
 
 
 <script id="page-configurations">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>this到底指的是谁 | maaaahoo</title>
+  <title>this到底指的是谁 | mahaaoo</title>
   
 
 
@@ -88,7 +88,7 @@
   </style>
 </noscript>
 
-<link rel="alternate" href="/atom.xml" title="maaaahoo" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="mahaaoo" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -109,7 +109,7 @@
 
     <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">maaaahoo</h1>
+      <h1 class="site-title">mahaaoo</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -173,16 +173,16 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://maaaahoo.github.io/2017/12/01/who-is-this/">
+    <link itemprop="mainEntityOfPage" href="https://mahaaoo.github.io/2017/12/01/who-is-this/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-      <meta itemprop="name" content="maaaahoo">
+      <meta itemprop="name" content="mahaaoo">
       <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="maaaahoo">
+      <meta itemprop="name" content="mahaaoo">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -336,9 +336,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="maaaahoo"
+    <img class="site-author-image" itemprop="image" alt="mahaaoo"
       src="https://avatars2.githubusercontent.com/u/16695567?s=400&u=c052fb19a7414fb9dca664d1b35f9894eb7f9df4&v=4">
-  <p class="site-author-name" itemprop="name">maaaahoo</p>
+  <p class="site-author-name" itemprop="name">mahaaoo</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -366,7 +366,7 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/maaaahoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maaaahoo" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/mahaaoo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;mahaaoo" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
         <a href="/mahao9393@163.com" title="E-Mail → mahao9393@163.com"><i class="envelope fa-fw"></i>E-Mail</a>
@@ -398,7 +398,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">maaaahoo</span>
+  <span class="author" itemprop="copyrightHolder">mahaaoo</span>
 </div>
   <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
@@ -462,7 +462,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     var gitalk = new Gitalk({
       clientID    : '',
       clientSecret: '',
-      repo        : 'maaaahoo.github.io',
+      repo        : 'mahaaoo.github.io',
       owner       : '',
       admin       : [''],
       id          : '5bdad0aa1b869cf12aae32194daaa8d9',
